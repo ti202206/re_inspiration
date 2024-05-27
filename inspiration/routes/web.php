@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// ログインルート
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// その他のwebルート
+Route::get('/{any}', function () {
+    // return view('app'); // ここでapp.blade.phpを返します
     return view('welcome');
-});
+})->where('any', '.*');

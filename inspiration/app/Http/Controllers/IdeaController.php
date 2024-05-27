@@ -14,10 +14,10 @@ class IdeaController extends Controller
     /**
      * コンストラクタで認証ミドルウェアを適用
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Display a listing of the resource.
