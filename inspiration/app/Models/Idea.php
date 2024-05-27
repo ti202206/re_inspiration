@@ -26,12 +26,22 @@ class Idea extends Model
 
     public function purchases()
     {
-        return $this->hasMany(purchases::class);
+        return $this->hasMany(Purchase::class);
     }
 
     // 平均評価を取得
     public function getAverageRatingAttribute()
     {
         return $this->purchases()->whereNotNull('rating')->avg('rating') ?: 'No ratings yet';
+    }
+
+    // purchasedがtrueの場合，編集できない
+    public function updateIdea(array $attributes)
+    {
+        if ($this->purchased) {
+            throw new \Exception('This idea has been purchased and cannot be edited.');
+        }
+
+        return $this->update($attributes);
     }
 }

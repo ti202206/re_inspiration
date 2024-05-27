@@ -31,6 +31,10 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
+        Schema::table('purchases', function (Blueprint $table) {
+            $table->dropForeign(['idea_id']);
+            $table->dropForeign(['buyer_id']);
+        });
         Schema::dropIfExists('purchases');
     }
 }

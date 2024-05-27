@@ -17,13 +17,13 @@ class IdeaFactory extends Factory
     {
         $faker = \Faker\Factory::create('ja_JP');
         return [
-            'user_id'=>User::factory(),
-            'category_id'=>Category::factory(),
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'category_id'=>Category::inRandomOrder()->first()->id,
             'title' => $faker->realText(30,3),
             'overview' => $faker->realText(90,3),
             'content' => $faker->realText(255,3),
             'price' => $faker->numberBetween(100, 10000),
-            'purchased'=>$this->faker->boolean,
+            'purchased'=>false,
         ];
     }
 }

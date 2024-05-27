@@ -33,6 +33,10 @@ class CreateIdeasTable extends Migration
      */
     public function down()
     {
+        Schema::table('ideas', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['category_id']);
+        });
         Schema::dropIfExists('ideas');
     }
 }

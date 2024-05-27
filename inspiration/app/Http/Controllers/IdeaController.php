@@ -116,7 +116,11 @@ class IdeaController extends Controller
         }
 
         // アイデアを更新
-        $idea->update($request->all());
+        try {
+            $idea->updateIdea($request->all());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 403);
+        }
 
         //データがあればjsonで返す（ステータスコード２０１）
         return response()->json($idea,200);

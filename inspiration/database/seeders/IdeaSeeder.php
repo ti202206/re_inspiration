@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class IdeaSeeder extends Seeder
@@ -14,12 +16,15 @@ class IdeaSeeder extends Seeder
      */
     public function run()
     {
+        $userIds = User::pluck('id')->toArray();
+        $categoryIds = Category::pluck('id')->toArray();
+
         Idea::factory()->count(10)->create([
-            'user_id'=>function(){
-                return rand(1,3);
+            'user_id' => function() use ($userIds) {
+                return $userIds[array_rand($userIds)];
             },
-            'category_id'=>function(){
-                return rand(1,7);
+            'category_id' => function() use ($categoryIds) {
+                return $categoryIds[array_rand($categoryIds)];
             }
         ]);
     }
