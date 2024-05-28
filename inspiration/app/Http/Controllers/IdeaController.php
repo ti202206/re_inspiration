@@ -110,8 +110,8 @@ class IdeaController extends Controller
      */
     public function update(UpdateIdeaRequest $request, Idea $idea)
     {
-        // 更新は投稿者のみ許可
-        if ($idea->user_id !== Auth::id()) {
+        // 更新は投稿者のみ許可、かつ purchased が false であることが条件
+        if ($idea->user_id !== Auth::id() || $idea->purchased) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
