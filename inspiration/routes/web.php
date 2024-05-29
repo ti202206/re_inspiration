@@ -24,5 +24,5 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // その他のwebルート
 Route::get('/{any}', function () {
     // return view('app'); // ここでapp.blade.phpを返します
-    return view('welcome');
+    return view('index'); //index.blade.phpを返す
 })->where('any', '.*');

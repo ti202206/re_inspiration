@@ -1,0 +1,56 @@
+// Primary Colors
+$prim-bright: #ff8c00; // 明るいオレンジ
+$prim-med: #ffa500; // ミドルオレンジ
+$prim-light: #f9cc9f;  // ライトオレンジ
+
+// Secondary Colors
+$sec-bg: #f9f9f9; // ページバックグラウンドカラー
+
+// Text Colors
+$txt-default: #333; // 通常のテキストカラー
+$txt-nav-bright: #ff8c00; // ナビゲーションリンクの文字色
+$txt-nav-white: white; // ナビゲーションリンクの文字色（白）
+
+// Link Colors
+$txt-nav-active: white;// アクティブ時のナビゲーションリンクの文字色
+$txt-link-hover: #ff8c00; // リンクホバー時の下線の色
+$txt-link-bg: #ff8c00; // リンクアクティブ時のバックグラウンドカラー
+
+// Button Colors
+$btn-bg-bright: #ff8c00; // 通常の明るいオレンジボタンの背景色
+$btn-txt-bright: #ffffff; // 明るいオレンジボタンのテキストの色
+
+$btn-bg-white: #ffffff; // 白色ボタンの背景色
+$btn-bg-light: #ffcc99; // ライトオレンジボタンの背景色
+$btn-txt-light: #ff8c00; // ライトオレンジボタンのテキストの色
+
+$btn-bg-hover: #ff8c00; // ホバー時のオレンジボタンの背景色
+$btn-txt-hover: #ffffff; // ホバー時のオレンジボタンのテキストの色
+
+// Background Colors
+$bg-light: #ffcc99; // ライトボタンの背景色
+$bg-page-margin: #f5f5f5; // ページのマージン部分の背景色
+
+// Border Colors
+$bd-default: #ddd; // セクション間の仕切り
+$bd-light: #f9cc9f; // ライトボタンのボーダーカラー
+
+// Shadow Colors
+$shdw-default: rgba(0, 0, 0, 0.1); // デフォルトの影の色
+
+// Header Colors
+$hdr-bg: white;
+
+// Footer Colors
+$ftr-bg: #333; // フッターの背景色
+$ftr-txt: white; //フッターのテキスト色
+
+// State Colors
+$error-red: red;
+$success-green: green;
+
+
+
+//フォントの定義
+$title-font-family:'title-logo', sans-serif;
+$txt-font-family:'Nunito',sans-serif;

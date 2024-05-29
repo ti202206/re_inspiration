@@ -1,0 +1,135 @@
+.mypage {
+    &__section{
+        flex-basis: calc(50% - 10px);
+        margin:0 2px 20px ;
+
+        @media only screen and (max-width: 1200px) {
+            flex-basis: 100%;
+        }
+    }
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
+
+        h2{
+            margin: 5px;
+            white-space: nowrap;
+        }
+
+        a{
+            color: $txt-nav-bright;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+            margin-right: 10px;
+
+            @media screen and (max-width: 600px){
+                font-size: 20px;
+            }
+
+            &::before{
+                content: '';
+                position: absolute;
+                bottom: -3px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: transparent;
+                transition: width 0.3s;
+            }
+
+            &:hover::before{
+                width: 100%;
+                background-color: $btn-bg-bright;
+            }
+
+            &:active{
+                background-color: $txt-link-bg;
+                color: $txt-nav-active;
+                transition: none;
+            }
+        }
+    }
+}
+
+.idea-card{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    &__content{
+        flex: 1;
+    }
+    
+    &__buttons{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        @media screen and (max-width: 600px){
+            margin: 0;
+            flex-direction: row;
+        }
+    }
+
+    &__button{
+        padding: 8px 15px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+
+        @media screen and (max-width: 600px){
+            flex: 1;
+            margin: 0 5px;
+        }
+    }
+
+    &__title{
+        margin: 0 10px 0 0;
+    }
+
+    &__title-category{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__category, &__summary, &__review, &__rating{
+        margin: 0;
+        margin-bottom: 5px;
+    }
+
+    &__meta{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 10px;
+
+        @media only screen and (max-width: 1200px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__review-count, &__average-rating{
+        margin: 0 10px 0 0;
+    }
+}

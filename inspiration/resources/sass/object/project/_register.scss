@@ -1,0 +1,181 @@
+// /*--- Blocks ---*/
+// body {
+//   margin: 0;
+//   font-family: Arial, sans-serif;
+//   background-color: #f5f5f5;
+// }
+
+// .header {
+//   background-color: $hdr-bg;
+//   color: #ffffff;
+//   padding: 20px 20px 3px 0px;
+//   text-align: center;
+//   position: fixed;
+//   top: 0;
+//   width: 100%;
+// }
+
+// .container {
+//   max-width: 1200px;
+//   margin: 80px auto 20px; /* ナビゲーションの高さを考慮 */
+//   padding: 40px 0 20px;
+//   background-color: #ffffff;
+//   border: 1px solid #ddd;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+
+// .footer {
+//   background-color: #333;
+//   color: #ffffff;
+//   padding: 20px 0;
+//   text-align: center;
+//   position: fixed;
+//   bottom: -0.1rem;
+//   width: 100%;
+//   left: 0;
+// }
+
+// .register-form {
+//   min-height: 80vh;
+//   max-width: 600px;
+//   margin: 0 auto;
+//   padding: 20px;
+//   background-color: #f9f9f9;
+//   border: 1px solid #ddd;
+//   border-radius: 5px;
+// }
+
+// /*--- Elements ---*/
+
+// .header__title {
+//   margin-bottom: 10px; /* タイトルの下にスペースを追加 */
+// }
+
+// .header__nav {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .header__links {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+// }
+
+// .header__link {
+//   display: inline-block;
+//   margin-right: 20px; /* リンクの間にスペースを追加 */
+// }
+
+// .header__link:last-child {
+//   margin-right: 0; /* 最後のリンクの右側のスペースを削除 */
+// }
+
+// .header__buttons {
+//   display: flex;
+//   align-items: center;
+// }
+
+
+// .header__button {
+//   padding: 5px 10px;
+//   margin: 5px;
+//   border: none;
+//   border-radius: 5px;
+//   color: white;
+// }
+
+// .footer__text {
+//   margin: 0;
+// }
+
+
+// .register-form label {
+//   display: block;
+//   margin-bottom: 10px;
+// }
+
+// .register-form input[type="email"],
+// .register-form input[type="password"] {
+//   width: calc(100% - 20px);
+//   padding: 10px;
+//   margin-bottom: 20px;
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+// }
+
+// .register-form button {
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   background-color: #ff8c00;
+//   color: #fff;
+//   cursor: pointer;
+// }
+
+// /*-- Modifiers --*/
+// .header__button--register {
+//   background-color: #388E3C; /* Tomato color for register button */
+// }
+
+// .header__button--login {
+//   background-color: #1976D2; /* Steel blue color for login button */
+// }
+
+
+// /* Responsive Styles */
+// @media only screen and (max-width: 600px) {
+//   .register-form {
+//     min-height: 70vh;
+//   }
+//   .header__link {
+//     margin-right: 3px; /* リンクの間にスペースを追加 */
+//   }
+//   .section-container {
+//     flex-direction: column;
+//   }
+
+//   .mypage__section {
+//     flex-basis: 100%;
+//   }
+
+//   .idea-card__meta {
+//     flex-wrap: wrap;
+//   }
+// }
+
+// @import "../../foundation/variables";
+
+// .register {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     text-align: center;
+
+//     .section--register {
+//         padding: 20px;
+//         border: 1px solid $shdw-default;
+//     }
+
+//     .register__form {
+//         margin: auto;
+//         line-height: 1.5;
+//     }
+
+//     @media only screen and (max-width: 600px) {
+//         .register {
+//             flex-direction: column;
+//         }
+//     }
+// }
+
+// input[type="search"],
+// input[type="number"],
+// input[type="range"],
+// button {
+//     -webkit-appearance: none; /* 旧キーワードを削除し、noneを指定 */
+//     appearance: none;
+// }
+

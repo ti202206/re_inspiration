@@ -1,0 +1,140 @@
+.header {
+    background-color: $hdr-bg;
+    color: $prim-bright;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 2px solid $prim-bright;
+    // padding-bottom: 2px; /* ボーダーがコンテンツと接触しないようにする */
+
+    &__title {
+        margin: 10px 0 0 0;
+        font-family: $title-font-family;
+        letter-spacing: 2px;
+        font-size: 60px;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // width: 1200px;
+        // margin: auto;
+        width: 100%; /* ナビゲーションの幅を常に100%に設定 */
+        // padding: 0 20px; /* 左右のパディング */
+    }
+
+    &__menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        &--item {
+            display: inline-block;
+            margin-right: 20px;
+
+            a {
+                color: $txt-nav-bright;
+                text-decoration: none;
+                position: relative;
+                transition: color 0.3s;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    bottom: -3px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: transparent;
+                    transition: width 0.3s;
+                }
+
+                &:hover::before {
+                    width: 100%;
+                    background-color: $txt-link-hover;
+                }
+
+                // &:hover{
+                //     color: $button-text-under-color;
+                // }
+
+                &:active{
+                    background-color: $txt-link-bg;
+                    color: $txt-nav-active;
+                    transition: none;
+                }
+            }
+        }
+    }
+
+    &__buttons{
+        display: flex;
+        align-items: center;
+
+        // &--register,&--login{
+        //     background-color: $btn-bg-light;
+        // }
+    }
+
+    &__button{
+        padding: 4px 8px;
+        margin: 5px;
+        border: 2px solid $bd-light;
+        border-radius: 5px;
+        color: $btn-txt-light;
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        outline: none;
+        &:hover{
+            background-color: $btn-bg-hover;
+            color: $btn-txt-hover;
+        }
+
+        // &--register, --login{
+        //     background-color: #ffcc99;
+        // }
+    }
+
+    /* Responsive Styles */
+    @media only screen and (max-width: 1200px) {
+        &__title{
+            font-size: 45px;
+            padding: 8px 0;
+        }
+
+        &__nav{
+            width: 100%;
+        }
+
+        &__link{
+            margin-right: 3px;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        &__title {
+            font-size: 30px;
+            padding: 0;
+        }
+        &__nav {
+            flex-direction: column;
+        }
+        &__menu, &__buttons {
+            width: 100%; /* レスポンシブでフル幅 */
+            justify-content: center;
+        }
+    }
+    @media only screen and (max-width: 350px) {
+        &__nav{
+            flex-direction: column;
+        }
+
+        &__title{
+            font-size: 30px;
+            padding: 0;
+        }
+    }
+}

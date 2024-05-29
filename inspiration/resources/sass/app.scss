@@ -1,0 +1,31 @@
+// Variables
+@import 'foundation/variables';
+
+// Reset and base styles
+@import 'foundation/_reset';
+@import 'foundation/_base';
+
+// Layout styles
+@import 'layout/_header';
+@import 'layout/_footer';
+@import 'layout/_container';
+
+// Object styles
+// components
+@import 'object/components/_button';
+@import 'object/components/_section';
+@import 'object/components/_links';
+@import 'object/components/icon';
+
+//project
+@import 'object/project/top';
+@import 'object/project/register';
+@import 'object/project/login';
+@import 'object/project/mypage';
+// @import 'object/project/top';
+// @import '';
+// @import '';
+// @import '';
+// @import '';
+// @import '';
+
