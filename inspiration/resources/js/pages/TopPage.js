@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 import "../../sass/object/project/_top.scss";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { brainstormImage } from '../assets';
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { brainstormImage } from "../assets";
 
 function TopPage() {
     const handleRegisterClick = () => {
-        window.location.href = '/register';
+        window.location.href = "/register";
     };
 
     const handleLoginClick = () => {
-        window.location.href = '/login';
+        window.location.href = "/login";
     };
 
     return (
@@ -66,7 +65,9 @@ function TopPage() {
                         みんなの「あ！」がどんどん集まってます。
                     </h2>
                     <div className="feature">
-                        <h3 className="feature__title">アイデアの価値を最大化</h3>
+                        <h3 className="feature__title">
+                            アイデアの価値を最大化
+                        </h3>
                         <div className="feature__description">
                             <img
                                 className="feature__image--first"
@@ -114,7 +115,9 @@ function TopPage() {
                         </div>
                     </div>
                     <div className="feature">
-                        <h3 className="feature__title">革新的な未来を共に築こう</h3>
+                        <h3 className="feature__title">
+                            革新的な未来を共に築こう
+                        </h3>
                         <div className="feature__description">
                             <img
                                 className="feature__image--tertiary"
@@ -136,7 +139,9 @@ function TopPage() {
                 </section>
 
                 <section className="section section--column" id="column">
-                    <h2 className="section__title">何事も最初は小さな一歩から</h2>
+                    <h2 className="section__title">
+                        何事も最初は小さな一歩から
+                    </h2>
                     <div className="column">
                         <p className="column__description">
                             ジェフ・ベゾスがAmazonを創業したのは1994年のこと。
@@ -185,10 +190,16 @@ function TopPage() {
                         あ！が消え去る前に．．．　　新規登録はこちら
                     </p>
                     <div className="registration__buttons">
-                        <button className="registration__button registration__button--register" onClick={handleRegisterClick}>
+                        <button
+                            className="registration__button registration__button--register"
+                            onClick={handleRegisterClick}
+                        >
                             新規登録
                         </button>
-                        <button className="registration__button registration__button--login" onClick={handleLoginClick}>
+                        <button
+                            className="registration__button registration__button--login"
+                            onClick={handleLoginClick}
+                        >
                             ログイン
                         </button>
                     </div>
