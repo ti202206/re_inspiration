@@ -51,31 +51,33 @@
 // export default Login;
 import React, { useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const LoginForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [error, setError] = useState('');
 
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    // axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        try {
-            const response = await axios.post('/login', { email, password });
-            localStorage.setItem('auth_token', response.data.token);
-            window.location.href = '/mypage';
-        } catch (error) {
-            setError('Login failed. Please check your credentials and try again.');
-        }
-    };
+    // const handleLogin = async (e) => {
+    //     e.preventDefault();
+    //     axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //     try {
+    //         const response = await axios.post('/login', { email, password });
+    //         localStorage.setItem('auth_token', response.data.token);
+    //         window.location.href = '/mypage';
+    //     } catch (error) {
+    //         setError('Login failed. Please check your credentials and try again.');
+    //     }
+    // };
     
 
     return (
         <div>
             <Header />
-            <form onSubmit={handleLogin}>
+            {/* <form onSubmit={handleLogin}>
                 <div>
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -86,7 +88,9 @@ const LoginForm = () => {
                 </div>
                 <button type="submit">Login</button>
                 {error && <div>{error}</div>}
-            </form>
+            </form> */}
+
+<p><br/><br/><br/><br/><br/><br/><br/><br/>login フォーム</p>
             <Footer />
         </div>
     );
