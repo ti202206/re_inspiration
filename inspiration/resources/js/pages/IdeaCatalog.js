@@ -30,7 +30,7 @@ function Ideas() {
             <section className="section-container">
                 <h2>アイディア一覧</h2>
 
-                {ideas.map((idea) => (
+                {ideas.map((idea) => ( //投稿はまだないを出す
                     <div className="idea-card" key={idea.id}>
                         <div className="idea-card__content">
                             <div className="idea-card__title-category">
@@ -57,21 +57,20 @@ function Ideas() {
                                     {idea.created_date}
                                 </p>
                             </div>
-                            <div className="idea-card__buttons">
-                                <button className="idea-card__button">
-                                    詳細
-                                </button>
-                                <button className="idea-card__button">
-                                    編集
-                                </button>
-                            </div>
                         </div>
-                        <Footer />
+                        <div className="idea-card__buttons">
+                            <button className="idea-card__button">
+                                詳細
+                            </button>
+                            <button className="idea-card__button">
+                                編集
+                            </button>
+                        </div>
                     </div>
                 ))}
             </section>
         </main>
-
+        <Footer />
     </div>
     );
 }

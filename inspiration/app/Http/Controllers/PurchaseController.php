@@ -13,10 +13,10 @@ class PurchaseController extends Controller
     /**
      * コンストラクタで認証ミドルウェアを適用
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * 自身の購入リストを表示する
@@ -37,6 +37,24 @@ class PurchaseController extends Controller
 
         // 一覧をJSON形式でレスポンス
         return response()->json($purchases);
+    }
+
+    /**
+     * 全ユーザーのレビュー履歴を表示する
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allReviews()
+    {
+        // 全てのレビューを持つ購入レコードを取得
+        $reviews = Purchase::whereNotNull('review')
+            ->with(['idea' => function($query) {
+                $query->select('id', 'title'); // アイディアのIDとタイトルを取得
+            }])
+            ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
+
+        // 一覧をJSON形式でレスポンス
+        return response()->json($reviews);
     }
 
     /**
