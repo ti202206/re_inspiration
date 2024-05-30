@@ -7,9 +7,11 @@ import IdeaCatalog from './IdeaCatalog';
 // import MyIdeaHistory from './MyIdeaHistory';
 // import MyReviewHistory from './MyReviewHistory';
 // import PurchaseList from './PurchaseList';
-// import ReviewList from './ReviewList';
+import ReviewList from './ReviewList';
 // import NotFound from './NotFound';
 import TopPage from './TopPage';
+import Register from './Register';
+import LoginForm from './Login';
 
 // const AuthenticatedApp = () => {
 //     return (
@@ -45,8 +47,10 @@ const AuthenticatedApp = () => {
                 {/* <Route path="/my-ideas" element={<MyIdeaHistory />} /> */}
                 {/* <Route path="/my-reviews" element={<MyReviewHistory />} /> */}
                 {/* <Route path="/purchases" element={<PurchaseList />} /> */}
-               {/* <Route path="/reviews" element={<ReviewList />} /> */}
+               <Route path="/reviews" element={<ReviewList />} />
                {/* <Route path="*" element={<NotFound />} /> */}
+               <Route path="/register" element={<Register />} />
+               <Route path="/login" element={<LoginForm />} />
             </Routes>
         </Router>
     );
