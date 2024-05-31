@@ -1,17 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MyPage from '../pages/MyPage';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MyPage from "../pages/MyPage";
 // import FavoriteList from './FavoriteList';
-import IdeaCatalog from './IdeaCatalog';
+import IdeaCatalog from "./IdeaCatalog";
 // import IdeaSubmission from './IdeaSubmission';
 // import MyIdeaHistory from './MyIdeaHistory';
 // import MyReviewHistory from './MyReviewHistory';
 // import PurchaseList from './PurchaseList';
-import ReviewList from './ReviewList';
+import ReviewList from "./ReviewList";
 // import NotFound from './NotFound';
-import TopPage from './TopPage';
-import Register from './Register';
-import LoginForm from './Login';
+import TopPage from "./TopPage";
+import Register from "./Register";
+import LoginForm from "./Login";
+import { login } from "../api/auth";
+import axios from "axios";
 
 // const AuthenticatedApp = () => {
 //     return (
@@ -33,7 +35,17 @@ import LoginForm from './Login';
 
 const AuthenticatedApp = () => {
     // const token = localStorage.getItem('auth_token'); // コメントアウト
-
+    useEffect(() => {
+        axios
+            .post("/api/login", {
+                name: "user1",
+                email: "test@example.com",
+                password: "12345678",
+            })
+            .then((response) => {
+                console.log(response);
+            });
+    }, []);
     // 開発中の一時的な措置: 常にすべてのルートを表示
     return (
         <Router>
@@ -47,10 +59,10 @@ const AuthenticatedApp = () => {
                 {/* <Route path="/my-ideas" element={<MyIdeaHistory />} /> */}
                 {/* <Route path="/my-reviews" element={<MyReviewHistory />} /> */}
                 {/* <Route path="/purchases" element={<PurchaseList />} /> */}
-               <Route path="/reviews" element={<ReviewList />} />
-               {/* <Route path="*" element={<NotFound />} /> */}
-               <Route path="/register" element={<Register />} />
-               <Route path="/login" element={<LoginForm />} />
+                <Route path="/reviews" element={<ReviewList />} />
+                {/* <Route path="*" element={<NotFound />} /> */}
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<LoginForm />} />
             </Routes>
         </Router>
     );

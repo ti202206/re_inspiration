@@ -22,12 +22,16 @@ use App\Http\Controllers\LoginController;
 //     return $request->user();
 // });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->name('user');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->name('user');
 
-    //userへのルート
-    // Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
+
+//userへのルート
+// Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
+Route::group(['middleware'=>'auth:sanctum'],function(){
     // Ideaへのルート
     Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
     Route::get('/my-ideas', [IdeaController::class, 'myIdeas'])->name('ideas.my-ideas');
@@ -46,3 +50,8 @@ Route::get('/user', function (Request $request) {
     Route::get('/reviewed-purchases', [PurchaseController::class, 'myReviewedPurchases'])->name('purchases.reviewed');
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
     Route::patch('/purchases/{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
+    
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
+});
