@@ -41,7 +41,9 @@ import "../../sass/app.scss"
     return (
         <div>
             <Header />
-            <main className="container">
+
+            <p><br/><br/><br/><br/><br/><br/><br/><br/>mypage</p>
+            {/* <main className="container">
                 <div className="section-container">
 
                     <section className="mypage__section">
@@ -93,12 +95,12 @@ import "../../sass/app.scss"
                                 <button className="idea-card__button">編集</button>
                             </div>
                         </div>
-                    </section>
+                    </section> */}
 
 
 
 
-                    {ideas.map((idea,index)=>(
+                    {/* {ideas.map((idea,index)=>(
                         <section key={index} className="mypage__section">
                         <div className="mypage__title">
                             <h2>投稿したアイディア（最新５件）</h2>
@@ -109,12 +111,12 @@ import "../../sass/app.scss"
                                 <div className="idea-card__title-category">
                                     <h3 className="idea-card__title">{idea.title}</h3>
                                 </div>
-                                <p className="idea-card__summary">{idea.summary}</p>
-                                <div className="idea-card__mate">
-                                    <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>11</span>  {/**Purchaseから */}
-                                    <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>★★★★☆</span> {/**Purchaseから */}
-                                    <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{idea.category}</p>
-                                </div>
+                                <p className="idea-card__summary">{idea.summary}</p> */}
+                                {/* <div className="idea-card__mate"> */}
+                                    {/* <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>11</span>  *Purchaseから */}
+                                    {/* <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>★★★★☆</span> *Purchaseから */}
+                                    {/* <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{idea.category}</p> */}
+                                {/* </div>
                             </div>
                             <div className="idea-card__buttons">
                                 <button className="idea-card__button">詳細</button>
@@ -122,14 +124,14 @@ import "../../sass/app.scss"
                             </div>
                         </div>
                     </section>
-                        ))}
+                        ))} */}
 
 
 
 
 
 
-                    <section className="mypage__section">
+                    {/* <section className="mypage__section">
                         <div className="mypage__title">
                             <h2>レビューしたアイディア（最新５件）</h2>
                             <a href="/ideas">全てを表示</a>
@@ -152,11 +154,11 @@ import "../../sass/app.scss"
                                 <button className="idea-card__button">編集</button>
                             </div>
                         </div>
-                    </section>
+                    </section> */}
 
 
-                </div>
-            </main>
+                {/* </div>
+            </main> */}
 
             <Footer />
         </div>

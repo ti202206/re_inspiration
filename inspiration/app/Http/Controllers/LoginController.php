@@ -19,10 +19,18 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+
+        //     return response()->json(Auth::user());
+        // }
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $user = Auth::user();
+            $token = $user->createToken('token-name')->plainTextToken;  // トークン生成
 
-            return response()->json(Auth::user());
+            return response()->json(['user' => $user, 'token' => $token]);
         }
 
         return response()->json([],401);
