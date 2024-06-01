@@ -33,19 +33,29 @@ import axios from "axios";
 //     );
 // };
 
+// const handleLogoutClick = async () => {
+//     try {
+//       await axios.post('/api/logout');
+//       localStorage.removeItem('auth_token');
+//       window.location.href = '/login';
+//     } catch (error) {
+//       console.error('Logout failed:', error);
+//     }
+//   };
+
 const AuthenticatedApp = () => {
     // const token = localStorage.getItem('auth_token'); // コメントアウト
-    useEffect(() => {
-        axios
-            .post("/api/login", {
-                name: "user1",
-                email: "test@example.com",
-                password: "12345678",
-            })
-            .then((response) => {
-                console.log(response);
-            });
-    }, []);
+    // useEffect(() => {
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('auth_token')}`;
+    //     axios.post("/api/login", {
+    //             name: "user1",
+    //             email: "test@example.com",
+    //             password: "12345678",
+    //         })
+    //         .then((response) => {
+    //             console.log(response);
+    //         });
+    // }, []);
     // 開発中の一時的な措置: 常にすべてのルートを表示
     return (
         <Router>

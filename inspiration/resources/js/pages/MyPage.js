@@ -22,19 +22,19 @@ import "../../sass/app.scss"
 
 
     const MyPage = () => {
-        useEffect(() => {
-            axios.get('/api/ideas', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-                }
-            })
-           .then(response => {
-                console.log(response.data);
-            })
-           .catch(error => {
-                console.error(error);
-            });
-        }, []);
+        // useEffect(() => {
+            // axios.get('/api/ideas', {
+            //     headers: {
+            //         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+            //     }
+        //     })
+        //    .then(response => {
+        //         console.log(response.data);
+        //     })
+        //    .catch(error => {
+        //         console.error(error);
+        //     });
+        // }, []);
 
 
         
@@ -42,7 +42,9 @@ import "../../sass/app.scss"
         <div>
             <Header />
             <main className="container">
-                <div className="section-container">
+
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p>
+                {/* <div className="section-container">
 
                     <section className="mypage__section">
                         <div className="mypage__title">
@@ -112,9 +114,9 @@ import "../../sass/app.scss"
                                 <p className="idea-card__summary">{idea.summary}</p>
                                 <div className="idea-card__mate">
                                     <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>11</span>  {/**Purchaseから */}
-                                    <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>★★★★☆</span> {/**Purchaseから */}
-                                    <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{idea.category}</p>
-                                </div>
+                                    {/* <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>★★★★☆</span> *Purchaseから */}
+                                    {/* <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{idea.category}</p> */}
+                                {/* </div>
                             </div>
                             <div className="idea-card__buttons">
                                 <button className="idea-card__button">詳細</button>
@@ -122,11 +124,11 @@ import "../../sass/app.scss"
                             </div>
                         </div>
                     </section>
-                        ))}
+                        ))} */}
 
 
 
-
+{/* 
 
 
                     <section className="mypage__section">
@@ -155,7 +157,7 @@ import "../../sass/app.scss"
                     </section>
 
 
-                </div>
+                </div> */} 
             </main>
 
             <Footer />

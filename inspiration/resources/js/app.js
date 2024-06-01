@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AuthenticatedApp from "./pages/AuthenticatedApp";
+import UnauthenticatedApp from "./pages/UnauthenticatedApp";
 // import TopPage from "../js/pages/TopPage";
 // import MyPage from '../js/pages/MyPage';
 // import FavoriteList from '../js/pages/FavoriteList';
@@ -22,10 +23,12 @@ import AuthenticatedApp from "./pages/AuthenticatedApp";
 // };
 
 const App = () => {
+    const token = localStorage.getItem('auth_token');
+    return token ? <AuthenticatedApp /> : <UnauthenticatedApp />;
     // const token = localStorage.getItem('auth_token');
 
     // 開発中の一時的な措置: 常にAuthenticatedAppを表示
-    return <AuthenticatedApp />;
+    // return <AuthenticatedApp />;
     // 本来は以下のように認証状態をチェック
     // return token? <AuthenticatedApp /> : <UnauthenticatedApp />;
 
