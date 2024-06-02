@@ -6953,10 +6953,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _pages_MyPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/MyPage */ "./resources/js/pages/MyPage.js");
+/* harmony import */ var _MyPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyPage */ "./resources/js/pages/MyPage.js");
 /* harmony import */ var _IdeaCatalog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./IdeaCatalog */ "./resources/js/pages/IdeaCatalog.js");
 /* harmony import */ var _ReviewList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReviewList */ "./resources/js/pages/ReviewList.js");
-/* harmony import */ var _TopPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TopPage */ "./resources/js/pages/TopPage.js");
+/* harmony import */ var _pages_TopPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/TopPage */ "./resources/js/pages/TopPage.js");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Register */ "./resources/js/pages/Register.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Login */ "./resources/js/pages/Login.js");
 /* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../api/auth */ "./resources/js/api/auth.js");
@@ -7026,10 +7026,10 @@ var AuthenticatedApp = function AuthenticatedApp() {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_TopPage__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_TopPage__WEBPACK_IMPORTED_MODULE_4__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
         path: "/mypage",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_MyPage__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_MyPage__WEBPACK_IMPORTED_MODULE_1__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
         path: "/ideas",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_IdeaCatalog__WEBPACK_IMPORTED_MODULE_2__["default"], {})

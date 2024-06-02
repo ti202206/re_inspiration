@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MyPage from "../pages/MyPage";
+import MyPage from "./MyPage";
 // import FavoriteList from './FavoriteList';
 import IdeaCatalog from "./IdeaCatalog";
 // import IdeaSubmission from './IdeaSubmission';
@@ -9,7 +9,7 @@ import IdeaCatalog from "./IdeaCatalog";
 // import PurchaseList from './PurchaseList';
 import ReviewList from "./ReviewList";
 // import NotFound from './NotFound';
-import TopPage from "./TopPage";
+import TopPage from "../pages/TopPage";
 import Register from "./Register";
 import LoginForm from "./Login";
 import { login } from "../api/auth";
