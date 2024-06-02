@@ -24,7 +24,21 @@ import UnauthenticatedApp from "./pages/UnauthenticatedApp";
 
 const App = () => {
     const token = localStorage.getItem('auth_token');
-    return token ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+    // return token ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+
+    return (
+        <Router>
+            <Routes>
+                {token ? (
+                    <Route path="*" element={<AuthenticatedApp />} />
+                ) : (
+                    <Route path="*" element={<UnauthenticatedApp />} />
+                )}
+            </Routes>
+        </Router>
+    );
+
+
     // const token = localStorage.getItem('auth_token');
 
     // 開発中の一時的な措置: 常にAuthenticatedAppを表示

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MyPage from "./MyPage";
+import MyPage from "../pages/MyPage";
 // import FavoriteList from './FavoriteList';
 import IdeaCatalog from "./IdeaCatalog";
 // import IdeaSubmission from './IdeaSubmission';
@@ -61,7 +61,7 @@ const AuthenticatedApp = () => {
         <Router>
             <Routes>
                 {/* すべてのルートをリストアップ */}
-                <Route path="/" element={<TopPage />} />
+                {/* <Route path="/" element={<TopPage />} /> */}
                 <Route path="/mypage" element={<MyPage />} />
                 {/* <Route path="/favorites" element={<FavoriteList />} /> */}
                 <Route path="/ideas" element={<IdeaCatalog />} />

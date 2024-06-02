@@ -6,7 +6,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,7 +28,7 @@ use App\Http\Controllers\LoginController;
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
-
+Route::post('/register', [RegisterController::class, 'register']);
 //userへのルート
 // Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
 Route::group(['middleware'=>'auth:sanctum'],function(){

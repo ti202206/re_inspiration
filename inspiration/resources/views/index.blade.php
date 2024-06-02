@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     <script src="https://kit.fontawesome.com/719016ddac.js" crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Inspiration index</title>
 </head>
 <body>
