@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MyPage from "../pages/MyPage";
+import MyPage from "./MyPage";
 // import FavoriteList from './FavoriteList';
 import IdeaCatalog from "./IdeaCatalog";
 // import IdeaSubmission from './IdeaSubmission';
@@ -58,11 +58,11 @@ const AuthenticatedApp = () => {
     // }, []);
     // 開発中の一時的な措置: 常にすべてのルートを表示
     return (
-        <Router>
+        // <Router>
             <Routes>
                 {/* すべてのルートをリストアップ */}
                 {/* <Route path="/" element={<TopPage />} /> */}
-                <Route path="/mypage" element={<MyPage />} />
+                {/* <Route path="/mypage" element={<MyPage />} /> */}
                 {/* <Route path="/favorites" element={<FavoriteList />} /> */}
                 <Route path="/ideas" element={<IdeaCatalog />} />
                 {/* <Route path="/idea-submission" element={<IdeaSubmission />} /> */}
@@ -74,7 +74,7 @@ const AuthenticatedApp = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<LoginForm />} />
             </Routes>
-        </Router>
+        // </Router>
     );
 };
 

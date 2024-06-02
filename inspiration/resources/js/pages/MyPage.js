@@ -22,6 +22,7 @@ import "../../sass/app.scss"
 
 
     const MyPage = () => {
+
         // useEffect(() => {
             // axios.get('/api/ideas', {
             //     headers: {
@@ -37,12 +38,56 @@ import "../../sass/app.scss"
         // }, []);
 
 
+        const [ideas, setIdeas] = useState([]);
+        const [user, setUser] = useState(null);
+
+        useEffect(() => {
+            const fetchIdeas = async () => {
+                try {
+                    const response = await axios.get('/api/ideas', {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                        }
+                    });
+                    setIdeas(response.data);
+                    console.log('Fetched ideas:', response.data);
+                } catch (error) {
+                    console.error('Error fetching ideas:', error);
+                }
+            };
+    
+            fetchIdeas();
+            fetchUser();
+        }, []);
+
+        const fetchUser = async () => {
+            try {
+                const response = await axios.get('/api/user', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                });
+                setUser(response.data);
+                console.log('Fetched user:', response.data);
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        };
+
+
         
     return (
         <div>
             <Header />
             <main className="container">
-
+            <div>
+                <h2>User Information</h2>
+                <pre>{JSON.stringify(user, null, 2)}</pre> {/* ユーザー情報を表示 */}
+            </div>
+            <div>
+                    <h2>Fetched Ideas (State)</h2>
+                    <pre>{JSON.stringify(ideas, null, 2)}</pre> {/* 状態を表示 */}
+                </div>
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p>
                 {/* <div className="section-container">
 
@@ -158,6 +203,7 @@ import "../../sass/app.scss"
 
 
                 </div> */} 
+                
             </main>
 
             <Footer />

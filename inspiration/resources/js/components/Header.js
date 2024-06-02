@@ -28,7 +28,8 @@ function Header() {
     if (token) {
       setIsAuthenticated(true);
     }
-  }, []);
+    console.log('isAuthenticated:', isAuthenticated); // コンソールログで確認
+  }, [isAuthenticated]);
 
   return (
     <header className='header'>
