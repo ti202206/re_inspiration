@@ -41,6 +41,7 @@ import "../../sass/app.scss"
         const [ideas, setIdeas] = useState([]);
         const [favorites, setFavorites] = useState([]);
         const [purchases, setPurchases] = useState([]);
+        const [reviewed, setReviewed] = useState([]);
 
         const fetchUser = async () => {
             try {
@@ -104,11 +105,28 @@ import "../../sass/app.scss"
             }
         };
 
+        const fetchMyReviewed = async () => {
+            try {
+                const response = await axios.get('/api/reviewed-purchases', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                });
+                const sortedReviewed = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const recentReviewed = sortedReviewed.slice(0, 5);
+                setReviewed(recentReviewed);
+                console.log('Fetched Reviewed:', recentReviewed);
+            } catch (error) {
+                console.error('Error fetching Reviewed:', error);
+            }
+        };
+
         useEffect(() => {
             fetchUser();
             fetchMyIdeas();
             fetchFavorites();
             fetchMyPurchases();
+            fetchMyReviewed();
         }, []);
 
 
@@ -132,6 +150,10 @@ import "../../sass/app.scss"
             <div>
                 <h2>Fetched purchase (State)</h2>
                 <pre>{JSON.stringify(purchases, null, 2)}</pre> {/* 状態を表示 */}
+            </div>
+            <div>
+                <h2>Fetched reviewed (State)</h2>
+                <pre>{JSON.stringify(reviewed, null, 2)}</pre> {/* 状態を表示 */}
             </div>
             {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p> */}
                 {/* <div className="section-container">

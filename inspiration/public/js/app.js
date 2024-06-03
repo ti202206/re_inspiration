@@ -7362,6 +7362,10 @@ var MyPage = function MyPage() {
     _useState8 = _slicedToArray(_useState7, 2),
     purchases = _useState8[0],
     setPurchases = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    reviewed = _useState10[0],
+    setReviewed = _useState10[1];
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -7506,11 +7510,49 @@ var MyPage = function MyPage() {
       return _ref4.apply(this, arguments);
     };
   }();
+  var fetchMyReviewed = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var response, sortedReviewed, recentReviewed;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviewed-purchases', {
+              headers: {
+                Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context5.sent;
+            sortedReviewed = response.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            recentReviewed = sortedReviewed.slice(0, 5);
+            setReviewed(recentReviewed);
+            console.log('Fetched Reviewed:', recentReviewed);
+            _context5.next = 13;
+            break;
+          case 10:
+            _context5.prev = 10;
+            _context5.t0 = _context5["catch"](0);
+            console.error('Error fetching Reviewed:', _context5.t0);
+          case 13:
+          case "end":
+            return _context5.stop();
+        }
+      }, _callee5, null, [[0, 10]]);
+    }));
+    return function fetchMyReviewed() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUser();
     fetchMyIdeas();
     fetchFavorites();
     fetchMyPurchases();
+    fetchMyReviewed();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
@@ -7538,6 +7580,12 @@ var MyPage = function MyPage() {
           children: "Fetched purchase (State)"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
           children: JSON.stringify(purchases, null, 2)
+        }), " "]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+          children: "Fetched reviewed (State)"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
+          children: JSON.stringify(reviewed, null, 2)
         }), " "]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
