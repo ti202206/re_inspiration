@@ -55,7 +55,7 @@ import "../../sass/app.scss"
             }
         };
 
-        const fetchIdeas = async () => {
+        const fetchMyIdeas = async () => {
             try {
                 const response = await axios.get('/api/my-ideas', {
                     headers: {
@@ -88,13 +88,8 @@ import "../../sass/app.scss"
         };
 
         useEffect(() => {
-
-            
-
-
-
             fetchUser();
-            fetchIdeas();
+            fetchMyIdeas();
             fetchFavorites();
         }, []);
 
