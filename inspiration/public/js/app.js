@@ -7356,8 +7356,12 @@ var MyPage = function MyPage() {
     setIdeas = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    favorite = _useState6[0],
+    favorites = _useState6[0],
     setFavorites = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    purchases = _useState8[0],
+    setPurchases = _useState8[1];
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -7448,7 +7452,7 @@ var MyPage = function MyPage() {
             });
             recentFavorites = sortedFavorites.slice(0, 5);
             setFavorites(recentFavorites);
-            console.log('Fetched favorites:', response.data);
+            console.log('Fetched favorites:', recentFavorites);
             _context3.next = 13;
             break;
           case 10:
@@ -7465,10 +7469,48 @@ var MyPage = function MyPage() {
       return _ref3.apply(this, arguments);
     };
   }();
+  var fetchMyPurchases = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response, sortedPurchases, recentPurchases;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/mypurchases', {
+              headers: {
+                Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context4.sent;
+            sortedPurchases = response.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            recentPurchases = sortedPurchases.slice(0, 5);
+            setPurchases(recentPurchases);
+            console.log('Fetched purchases:', recentPurchases);
+            _context4.next = 13;
+            break;
+          case 10:
+            _context4.prev = 10;
+            _context4.t0 = _context4["catch"](0);
+            console.error('Error fetching purchases:', _context4.t0);
+          case 13:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 10]]);
+    }));
+    return function fetchMyPurchases() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUser();
     fetchMyIdeas();
     fetchFavorites();
+    fetchMyPurchases();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
@@ -7489,8 +7531,14 @@ var MyPage = function MyPage() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
           children: "Fetched favorites (State)"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
-          children: JSON.stringify(favorite, null, 2)
-        }), " \u72B6\u614B\u3092\u8868\u793A"]
+          children: JSON.stringify(favorites, null, 2)
+        }), " "]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+          children: "Fetched purchase (State)"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
+          children: JSON.stringify(purchases, null, 2)
+        }), " "]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });

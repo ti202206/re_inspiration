@@ -39,7 +39,8 @@ import "../../sass/app.scss"
 
         const [user, setUser] = useState(null);
         const [ideas, setIdeas] = useState([]);
-        const [favorite, setFavorites] = useState([]);
+        const [favorites, setFavorites] = useState([]);
+        const [purchases, setPurchases] = useState([]);
 
         const fetchUser = async () => {
             try {
@@ -81,9 +82,25 @@ import "../../sass/app.scss"
                 const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 const recentFavorites = sortedFavorites.slice(0, 5);
                 setFavorites(recentFavorites);
-                console.log('Fetched favorites:', response.data);
+                console.log('Fetched favorites:', recentFavorites);
             } catch (error) {
                 console.error('Error fetching favorites:', error);
+            }
+        };
+
+        const fetchMyPurchases = async () => {
+            try {
+                const response = await axios.get('/api/mypurchases', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                });
+                const sortedPurchases = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const recentPurchases = sortedPurchases.slice(0, 5);
+                setPurchases(recentPurchases);
+                console.log('Fetched purchases:', recentPurchases);
+            } catch (error) {
+                console.error('Error fetching purchases:', error);
             }
         };
 
@@ -91,6 +108,7 @@ import "../../sass/app.scss"
             fetchUser();
             fetchMyIdeas();
             fetchFavorites();
+            fetchMyPurchases();
         }, []);
 
 
@@ -109,7 +127,11 @@ import "../../sass/app.scss"
             </div>
             <div>
                 <h2>Fetched favorites (State)</h2>
-                <pre>{JSON.stringify(favorite, null, 2)}</pre> 状態を表示
+                <pre>{JSON.stringify(favorites, null, 2)}</pre> {/* 状態を表示 */}
+            </div>
+            <div>
+                <h2>Fetched purchase (State)</h2>
+                <pre>{JSON.stringify(purchases, null, 2)}</pre> {/* 状態を表示 */}
             </div>
             {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p> */}
                 {/* <div className="section-container">
