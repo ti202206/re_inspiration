@@ -64,15 +64,15 @@ const AuthenticatedApp = () => {
                 {/* <Route path="/" element={<TopPage />} /> */}
                 {/* <Route path="/mypage" element={<MyPage />} /> */}
                 {/* <Route path="/favorites" element={<FavoriteList />} /> */}
-                <Route path="/ideas" element={<IdeaCatalog />} />
+                {/* <Route path="/ideas" element={<IdeaCatalog />} /> */}
                 {/* <Route path="/idea-submission" element={<IdeaSubmission />} /> */}
                 {/* <Route path="/my-ideas" element={<MyIdeaHistory />} /> */}
                 {/* <Route path="/my-reviews" element={<MyReviewHistory />} /> */}
                 {/* <Route path="/purchases" element={<PurchaseList />} /> */}
                 <Route path="/reviews" element={<ReviewList />} />
                 {/* <Route path="*" element={<NotFound />} /> */}
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<LoginForm />} />
+                {/* <Route path="/register" element={<Register />} /> */}
+                {/* <Route path="/login" element={<LoginForm />} /> */}
             </Routes>
         // </Router>
     );
