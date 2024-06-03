@@ -33,6 +33,23 @@ class IdeaController extends Controller
         return response()->json($ideas);
     }
 
+    /**
+     * Display a listing of the user's own ideas.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myIdeas()
+    {
+        // 認証されたユーザーを取得
+        $user = Auth::user();
+
+        // ユーザーが投稿したアイディアを取得
+        $ideas = Idea::where('user_id', $user->id)->orderByDesc('created_at')->get();
+
+        // JSON形式で返す
+        return response()->json($ideas);
+    }
+
     // /**
     //  * Show the form for creating a new resource.
     //  *
