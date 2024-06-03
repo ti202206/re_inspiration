@@ -8,6 +8,8 @@ import MyPage from "./MyPage"; //ページ確認用
 import IdeaCatalog from "./IdeaCatalog"; //ページ確認用
 import PurchaseList from "./PurchaseList" //ページ確認用
 import FavoriteList from "./FavoriteList"; //ページ確認用
+import IdeaSubmission from "./IdeaSubmission"; //ページ確認用
+import IdeaUpdate from "./IdeaUpdate"; //ページ確認用
 
 const UnauthenticatedApp = () => (
     // <Router>
@@ -20,6 +22,8 @@ const UnauthenticatedApp = () => (
             <Route path="/purchases" element={<PurchaseList />} /> {/* ページ確認用 */}
             <Route path="/favorites" element={<FavoriteList />} /> {/* ページ確認用 */}
             <Route path="/ideas" element={<IdeaCatalog />} /> {/* ページ確認用 */}
+            <Route path="/idea-submission" element={<IdeaSubmission />} /> {/* ページ確認用 */}
+            <Route path="/idea-update" element={<IdeaUpdate />} /> {/* ページ確認用 */}
         </Routes>
     // </Router>
 );
