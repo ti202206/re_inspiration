@@ -7346,52 +7346,52 @@ var MyPage = function MyPage() {
   //     });
   // }, []);
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    ideas = _useState2[0],
-    setIdeas = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    user = _useState2[0],
+    setUser = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    user = _useState4[0],
-    setUser = _useState4[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var fetchIdeas = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/ideas', {
-                headers: {
-                  Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
-                }
-              });
-            case 3:
-              response = _context.sent;
-              setIdeas(response.data);
-              console.log('Fetched ideas:', response.data);
-              _context.next = 11;
-              break;
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              console.error('Error fetching ideas:', _context.t0);
-            case 11:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[0, 8]]);
-      }));
-      return function fetchIdeas() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-    fetchIdeas();
-    fetchUser();
-  }, []);
+    ideas = _useState4[0],
+    setIdeas = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    favorite = _useState6[0],
+    setFavorites = _useState6[1];
   var fetchUser = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+              headers: {
+                Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context.sent;
+            setUser(response.data);
+            console.log('Fetched user:', response.data);
+            _context.next = 11;
+            break;
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            console.error('Error fetching user:', _context.t0);
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 8]]);
+    }));
+    return function fetchUser() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  var fetchIdeas = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -7399,31 +7399,69 @@ var MyPage = function MyPage() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/ideas', {
               headers: {
                 Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
               }
             });
           case 3:
             response = _context2.sent;
-            setUser(response.data);
-            console.log('Fetched user:', response.data);
+            setIdeas(response.data);
+            console.log('Fetched ideas:', response.data);
             _context2.next = 11;
             break;
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.error('Error fetching user:', _context2.t0);
+            console.error('Error fetching ideas:', _context2.t0);
           case 11:
           case "end":
             return _context2.stop();
         }
       }, _callee2, null, [[0, 8]]);
     }));
-    return function fetchUser() {
+    return function fetchIdeas() {
       return _ref2.apply(this, arguments);
     };
   }();
+  var fetchFavorites = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/favorites', {
+              headers: {
+                Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context3.sent;
+            setFavorites(response.data);
+            console.log('Fetched favorites:', response.data);
+            _context3.next = 11;
+            break;
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](0);
+            console.error('Error fetching favorites:', _context3.t0);
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 8]]);
+    }));
+    return function fetchFavorites() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchUser();
+    fetchIdeas();
+    fetchFavorites();
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
@@ -7439,8 +7477,12 @@ var MyPage = function MyPage() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
           children: JSON.stringify(ideas, null, 2)
         }), " "]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-        children: "MyPage"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+          children: "Fetched favorites (State)"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
+          children: JSON.stringify(favorite, null, 2)
+        }), " \u72B6\u614B\u3092\u8868\u793A"]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
