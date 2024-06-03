@@ -13,6 +13,10 @@ function EditIdea() {
         price: ''
     });
 
+
+    // データを取得して，フォームに表示させる
+
+
     useEffect(() => {
         const fetchMyIdeas = async () => {
             try {

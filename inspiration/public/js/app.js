@@ -7496,6 +7496,9 @@ function EditIdea() {
     _useState6 = _slicedToArray(_useState5, 2),
     formData = _useState6[0],
     setFormData = _useState6[1];
+
+  // データを取得して，フォームに表示させる
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchMyIdeas = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
