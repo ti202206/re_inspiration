@@ -7391,7 +7391,7 @@ var MyPage = function MyPage() {
       return _ref.apply(this, arguments);
     };
   }();
-  var fetchIdeas = /*#__PURE__*/function () {
+  var fetchMyIdeas = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response, sortedIdeas, recentIdeas;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -7424,7 +7424,7 @@ var MyPage = function MyPage() {
         }
       }, _callee2, null, [[0, 10]]);
     }));
-    return function fetchIdeas() {
+    return function fetchMyIdeas() {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -7467,7 +7467,7 @@ var MyPage = function MyPage() {
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUser();
-    fetchIdeas();
+    fetchMyIdeas();
     fetchFavorites();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
