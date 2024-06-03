@@ -57,13 +57,15 @@ import "../../sass/app.scss"
 
         const fetchIdeas = async () => {
             try {
-                const response = await axios.get('/api/ideas', {
+                const response = await axios.get('/api/my-ideas', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
                     }
                 });
-                setIdeas(response.data);
-                console.log('Fetched ideas:', response.data);
+                const sortedIdeas = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const recentIdeas = sortedIdeas.slice(0, 5);
+                setIdeas(recentIdeas);
+                console.log('Fetched ideas:', recentIdeas);
             } catch (error) {
                 console.error('Error fetching ideas:', error);
             }
@@ -76,7 +78,9 @@ import "../../sass/app.scss"
                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
                     }
                 });
-                setFavorites(response.data);
+                const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const recentFavorites = sortedFavorites.slice(0, 5);
+                setFavorites(recentFavorites);
                 console.log('Fetched favorites:', response.data);
             } catch (error) {
                 console.error('Error fetching favorites:', error);

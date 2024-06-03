@@ -7393,32 +7393,36 @@ var MyPage = function MyPage() {
   }();
   var fetchIdeas = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var response;
+      var response, sortedIdeas, recentIdeas;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/ideas', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/my-ideas', {
               headers: {
                 Authorization: "Bearer ".concat(localStorage.getItem('auth_token'))
               }
             });
           case 3:
             response = _context2.sent;
-            setIdeas(response.data);
-            console.log('Fetched ideas:', response.data);
-            _context2.next = 11;
+            sortedIdeas = response.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            recentIdeas = sortedIdeas.slice(0, 5);
+            setIdeas(recentIdeas);
+            console.log('Fetched ideas:', recentIdeas);
+            _context2.next = 13;
             break;
-          case 8:
-            _context2.prev = 8;
+          case 10:
+            _context2.prev = 10;
             _context2.t0 = _context2["catch"](0);
             console.error('Error fetching ideas:', _context2.t0);
-          case 11:
+          case 13:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 10]]);
     }));
     return function fetchIdeas() {
       return _ref2.apply(this, arguments);
@@ -7426,7 +7430,7 @@ var MyPage = function MyPage() {
   }();
   var fetchFavorites = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var response;
+      var response, sortedFavorites, recentFavorites;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
@@ -7439,19 +7443,23 @@ var MyPage = function MyPage() {
             });
           case 3:
             response = _context3.sent;
-            setFavorites(response.data);
+            sortedFavorites = response.data.sort(function (a, b) {
+              return new Date(b.created_at) - new Date(a.created_at);
+            });
+            recentFavorites = sortedFavorites.slice(0, 5);
+            setFavorites(recentFavorites);
             console.log('Fetched favorites:', response.data);
-            _context3.next = 11;
+            _context3.next = 13;
             break;
-          case 8:
-            _context3.prev = 8;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             console.error('Error fetching favorites:', _context3.t0);
-          case 11:
+          case 13:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 8]]);
+      }, _callee3, null, [[0, 10]]);
     }));
     return function fetchFavorites() {
       return _ref3.apply(this, arguments);
