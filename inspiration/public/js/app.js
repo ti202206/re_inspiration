@@ -10307,6 +10307,87 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // const root = createRoot(container);
 // root.render(<App />);
 
+// import './bootstrap';
+// import Alpine from 'alpinejs';
+// import React, { useState, useEffect } from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+// import AuthenticatedApp from './pages/AuthenticatedApp';
+// import UnauthenticatedApp from './pages/UnauthenticatedApp';
+// import TopPage from './pages/TopPage';
+// import Login from './pages/Login';
+// import Register from './pages/Register';
+// import MyPage from './pages/MyPage';
+// import axios from './axiosConfig';
+
+// window.Alpine = Alpine;
+// Alpine.start();
+
+// const App = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+//     const location = useLocation();
+
+//     useEffect(() => {
+//         const checkAuth = async () => {
+//             try {
+//                 // 新規登録画面やログイン画面では認証チェックをスキップする
+//                 if (location.pathname === '/register' || location.pathname === '/login') {
+//                     setIsCheckingAuth(false);
+//                     return;
+//                 }
+
+//                 await axios.get('/sanctum/csrf-cookie');
+//                 const response = await axios.get('/api/user');
+//                 if (response.status === 200) {
+//                     setIsAuthenticated(true);
+//                 } else {
+//                     setIsAuthenticated(false);
+//                 }
+//             } catch (error) {
+//                 if (error.response && error.response.status === 401) {
+//                     // 認証されていない場合は認証状態を false に設定する
+//                     setIsAuthenticated(false);
+//                 } else {
+//                     console.error('Authentication check failed:', error);
+//                 }
+//             } finally {
+//                 setIsCheckingAuth(false);
+//             }
+//         };
+//         if (location.pathname !== '/login' && location.pathname !== '/register') {
+//             checkAuth();
+//         } else {
+//             setIsCheckingAuth(false);
+//         }
+//         // checkAuth();
+//     }, [location.pathname]);
+
+//     if (isCheckingAuth) {
+//         return <div>Loading...</div>; // 認証チェック中のローディング表示
+//     }
+
+//     return (
+//         <Routes>
+//             <Route path="/" element={isAuthenticated ? <MyPage /> : <TopPage />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+//             <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
+//             <Route path="*" element={<Navigate to="/" />} /> {/* 未定義のルートにアクセスした場合のリダイレクト */}
+//         </Routes>
+//     );
+// };
+
+// const RootApp = () => (
+//     <Router>
+//         <App />
+//     </Router>
+// );
+
+// const container = document.getElementById('app');
+// const root = createRoot(container);
+// root.render(<RootApp />);
+
 
 
 
@@ -10332,6 +10413,9 @@ var App = function App() {
     isCheckingAuth = _useState4[0],
     setIsCheckingAuth = _useState4[1];
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useLocation)();
+
+  // 認証チェックをスキップするパス
+  var authFreePaths = ['/', '/register', '/login'];
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -10339,14 +10423,14 @@ var App = function App() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              if (!(location.pathname === '/register' || location.pathname === '/login')) {
-                _context.next = 4;
+              if (!authFreePaths.includes(location.pathname)) {
+                _context.next = 3;
                 break;
               }
               setIsCheckingAuth(false);
               return _context.abrupt("return");
-            case 4:
+            case 3:
+              _context.prev = 3;
               _context.next = 6;
               return _axiosConfig__WEBPACK_IMPORTED_MODULE_10__["default"].get('/sanctum/csrf-cookie');
             case 6:
@@ -10363,7 +10447,7 @@ var App = function App() {
               break;
             case 12:
               _context.prev = 12;
-              _context.t0 = _context["catch"](0);
+              _context.t0 = _context["catch"](3);
               if (_context.t0.response && _context.t0.response.status === 401) {
                 // 認証されていない場合は認証状態を false に設定する
                 setIsAuthenticated(false);
@@ -10378,7 +10462,7 @@ var App = function App() {
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 12, 15, 18]]);
+        }, _callee, null, [[3, 12, 15, 18]]);
       }));
       return function checkAuth() {
         return _ref.apply(this, arguments);
@@ -10386,7 +10470,7 @@ var App = function App() {
     }();
     checkAuth();
   }, [location.pathname]);
-  if (isCheckingAuth) {
+  if (isCheckingAuth && !authFreePaths.includes(location.pathname)) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
       children: "Loading..."
     }); // 認証チェック中のローディング表示
@@ -10394,13 +10478,18 @@ var App = function App() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Routes, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/",
-      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_MyPage__WEBPACK_IMPORTED_MODULE_9__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_TopPage__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_TopPage__WEBPACK_IMPORTED_MODULE_6__["default"], {})
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/login",
       element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {})
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/register",
       element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_Register__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      path: "/mypage",
+      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_MyPage__WEBPACK_IMPORTED_MODULE_9__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Navigate, {
+        to: "/login"
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/*",
       element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_AuthenticatedApp__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_UnauthenticatedApp__WEBPACK_IMPORTED_MODULE_5__["default"], {})
@@ -12393,10 +12482,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 var Register = function Register() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      name: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
       icon: null
     }),
     _useState2 = _slicedToArray(_useState, 2),
@@ -12423,11 +12512,11 @@ var Register = function Register() {
 
     var csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     if (csrfTokenMeta) {
-      var csrfToken = csrfTokenMeta.getAttribute('content');
-      (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common['X-CSRF-TOKEN'] = csrfToken;
-      console.log(csrfToken);
+      var csrfToken = csrfTokenMeta.getAttribute("content");
+      (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common["X-CSRF-TOKEN"] = csrfToken;
+      // console.log(csrfToken);
     } else {
-      console.error('CSRF token not found');
+      console.error("CSRF token not found");
     }
   }, []);
   var handleChange = function handleChange(event) {
@@ -12453,12 +12542,12 @@ var Register = function Register() {
           case 0:
             event.preventDefault();
             data = new FormData();
-            data.append('name', formData.name);
-            data.append('email', formData.email);
-            data.append('password', formData.password);
-            data.append('password_confirmation', formData.passwordConfirmation);
+            data.append("name", formData.name);
+            data.append("email", formData.email);
+            data.append("password", formData.password);
+            data.append("password_confirmation", formData.passwordConfirmation);
             if (formData.icon) {
-              data.append('icon', formData.icon);
+              data.append("icon", formData.icon);
             }
 
             // try {
@@ -12493,10 +12582,10 @@ var Register = function Register() {
             // }
             _context.prev = 7;
             _context.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/register', data);
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
           case 10:
-            alert('登録が完了しました。');
-            window.location.href = '/mypage';
+            alert("登録が完了しました。");
+            window.location.href = "/mypage";
             _context.next = 17;
             break;
           case 14:
@@ -12504,10 +12593,10 @@ var Register = function Register() {
             _context.t0 = _context["catch"](7);
             if (_context.t0.response) {
               setErrors(_context.t0.response.data.errors || {});
-              alert('エラーが発生しました。入力内容を確認してください。');
+              alert("エラーが発生しました。入力内容を確認してください。");
             } else {
-              console.error('Error:', _context.t0);
-              alert('エラーが発生しました。');
+              console.error("Error:", _context.t0);
+              alert("エラーが発生しました。");
             }
           case 17:
           case "end":
@@ -12536,7 +12625,8 @@ var Register = function Register() {
             type: "text",
             name: "name",
             value: formData.name,
-            onChange: handleChange
+            onChange: handleChange,
+            autoComplete: "name"
           }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "error",
             children: errors.name
@@ -12549,7 +12639,8 @@ var Register = function Register() {
             type: "email",
             name: "email",
             value: formData.email,
-            onChange: handleChange
+            onChange: handleChange,
+            autoComplete: "email"
           }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "error",
             children: errors.email
@@ -12562,7 +12653,8 @@ var Register = function Register() {
             type: "password",
             name: "password",
             value: formData.password,
-            onChange: handleChange
+            onChange: handleChange,
+            autoComplete: "new-password"
           }), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "error",
             children: errors.password
@@ -12575,7 +12667,8 @@ var Register = function Register() {
             type: "password",
             name: "passwordConfirmation",
             value: formData.passwordConfirmation,
-            onChange: handleChange
+            onChange: handleChange,
+            autoComplete: "new-password"
           }), errors.password_confirmation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "error",
             children: errors.password_confirmation
