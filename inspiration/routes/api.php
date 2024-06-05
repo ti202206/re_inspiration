@@ -2,11 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\Auth\LoginController;
+// use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,11 +29,18 @@ use App\Http\Controllers\RegisterController;
 //     return $request->user();
 // })->name('user');
 
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout']);
-Route::post('/register', [RegisterController::class, 'register']);
-//userへのルート
-// Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
+// 認証ルート
+// Route::post('/register', [RegisterController::class, 'register']);
+// Route::post('login', [LoginController::class, 'login']);
+// Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');;
+
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:sanctum');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+    //userへのルート
+    // Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
 Route::group(['middleware'=>'auth:sanctum'],function(){
     // Ideaへのルート
     Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
@@ -51,7 +61,8 @@ Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
     Route::patch('/purchases/{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
     
-    Route::get('user', function (Request $request) {
+    //認証されたユーザー情報の取得
+    Route::get('/user', function (Request $request) {
         return $request->user();
     });
 });

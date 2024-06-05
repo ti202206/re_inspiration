@@ -1,72 +1,287 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+// import './bootstrap';
+// import Alpine from 'alpinejs';
+// import React from 'react';
+// import { createRoot } from 'react-dom/client';
+// // import ReactDOM from 'react-dom';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import AuthenticatedApp from './pages/AuthenticatedApp';
+// import UnauthenticatedApp from './pages/UnauthenticatedApp';
+// import axios from 'axios';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AuthenticatedApp from "./pages/AuthenticatedApp";
-import UnauthenticatedApp from "./pages/UnauthenticatedApp";
-// import TopPage from "../js/pages/TopPage";
-// import MyPage from '../js/pages/MyPage';
-// import FavoriteList from '../js/pages/FavoriteList';
-// import IdeaCatalog from '../js/pages/IdeaCatalog';
-// import IdeaSubmission from '../js/pages/IdeaSubmission';
-// import MyIdeaHistory from '../js/pages/MyIdeaHistory';
-// import MyReviewHistory from '../js/pages/MyReviewHistory';
-// import PurchaseList from '../js/pages/PurchaseList';
-// import ReviewList from '../js/pages/ReviewList';
-// import NotFound from '../js/pages/NotFound';
-
+// window.Alpine = Alpine;
+// Alpine.start();
 
 // const App = () => {
-//     const token = localStorage.getItem('auth_token');
+//     const isAuthenticated = !!localStorage.getItem('auth_token');
 
-//     return token ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+//     if (isAuthenticated) {
+//         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('auth_token')}`;
+//     }
+
+//     return (
+//         <Router>
+//             <Routes>
+//                 <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
+//             </Routes>
+//         </Router>
+//     );
 // };
 
+// const container = document.getElementById('app');
+// const root = createRoot(container);
+// root.render(<App />);
+
+
+// import './bootstrap';
+// import Alpine from 'alpinejs';
+// import React, { useState, useEffect } from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import AuthenticatedApp from './pages/AuthenticatedApp';
+// import UnauthenticatedApp from './pages/UnauthenticatedApp';
+// import TopPage from './pages/TopPage';
+// import MyPage from './pages/MyPage';
+// import Login from './pages/Login';
+// import Register from './pages/Register';
+// import axios from './axiosConfig';
+
+// window.Alpine = Alpine;
+// Alpine.start();
+
+// const App = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+//     // useEffect(() => {
+//     //     const checkAuth = async () => {
+//     //         try {
+//     //             const token = localStorage.getItem('auth_token');
+//     //             if (token) {
+//     //                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//     //                 await axios.get('/api/user');
+//     //                 setIsAuthenticated(true);
+//     //             } else {
+//     //                 setIsAuthenticated(false);
+//     //             }
+//     //         } catch (error) {
+//     //             setIsAuthenticated(false);
+//     //         } finally {
+//     //             setIsCheckingAuth(false);
+//     //         }
+//     //     };
+
+//     //     checkAuth();
+//     // }, []);
+
+//     // useEffect(() => {
+//     //     const checkAuth = async () => {
+//     //         try {
+//     //             await axios.get('/api/user');
+//     //             setIsAuthenticated(true);
+//     //         } catch (error) {
+//     //             console.error('Authentication check failed:', error);
+//     //             setIsAuthenticated(false);
+//     //         } finally {
+//     //             setIsCheckingAuth(false);
+//     //         }
+//     //     };
+
+//     //     checkAuth();
+//     // }, []);
+
+
+
+//     useEffect(() => {
+//         const checkAuth = async () => {
+//             try {
+//                 await axios.get('/sanctum/csrf-cookie');
+//                 const response = await axios.get('/api/user');
+//                 if (response.status === 200) {
+//                     setIsAuthenticated(true);
+//                 } else {
+//                     setIsAuthenticated(false);
+//                 }
+//             } catch (error) {
+//                 setIsAuthenticated(false);
+//             } finally {
+//                 setIsCheckingAuth(false);
+//             }
+//         };
+
+//         checkAuth();
+//     }, []);
+
+//     if (isCheckingAuth) {
+//         return <div>Loading...</div>; // 認証チェック中のローディング表示
+//     }
+
+//     return (
+//         <Router>
+//             <Routes>
+//                 {/* <Route path="/" element={<TopPage />} /> */}
+//                 <Route path="/" element={isAuthenticated ? <MyPage /> : <TopPage />} />
+//                 <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
+//             </Routes>
+//         </Router>
+//     );
+// };
+
+// const container = document.getElementById('app');
+// const root = createRoot(container);
+// root.render(<App />);
+
+
+
+
+// import './bootstrap';
+// import Alpine from 'alpinejs';
+// import React, { useState, useEffect } from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+// import AuthenticatedApp from './pages/AuthenticatedApp';
+// import UnauthenticatedApp from './pages/UnauthenticatedApp';
+// import TopPage from './pages/TopPage';
+// import Login from './pages/Login';
+// import Register from './pages/Register';
+// import MyPage from './pages/MyPage'; // 必要に応じて追加
+// import axios from './axiosConfig';
+
+// window.Alpine = Alpine;
+// Alpine.start();
+
+// const App = () => {
+//     return (
+//         <Router>
+//             <AppWithRouter />
+//         </Router>
+//     );
+// };
+
+// const AppWithRouter = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+//     const location = useLocation();
+
+//     useEffect(() => {
+//         const checkAuth = async () => {
+//             try {
+//                 // 新規登録画面やログイン画面では認証チェックをスキップする
+//                 if (location.pathname === '/register' || location.pathname === '/login') {
+//                     setIsCheckingAuth(false);
+//                     return;
+//                 }
+
+//                 await axios.get('/sanctum/csrf-cookie');
+//                 const response = await axios.get('/api/user');
+//                 if (response.status === 200) {
+//                     setIsAuthenticated(true);
+//                 } else {
+//                     setIsAuthenticated(false);
+//                 }
+//             } catch (error) {
+//                 setIsAuthenticated(false);
+//             } finally {
+//                 setIsCheckingAuth(false);
+//             }
+//         };
+
+//         checkAuth();
+//     }, [location.pathname]);
+
+//     if (isCheckingAuth) {
+//         return <div>Loading...</div>; // 認証チェック中のローディング表示
+//     }
+
+//     return (
+//         <Routes>
+//             <Route path="/" element={isAuthenticated ? <MyPage /> : <TopPage />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+//             <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
+//         </Routes>
+//     );
+// };
+
+// const container = document.getElementById('app');
+// const root = createRoot(container);
+// root.render(<App />);
+
+
+
+
+import './bootstrap';
+import Alpine from 'alpinejs';
+import React, { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import AuthenticatedApp from './pages/AuthenticatedApp';
+import UnauthenticatedApp from './pages/UnauthenticatedApp';
+import TopPage from './pages/TopPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MyPage from './pages/MyPage';
+import axios from './axiosConfig';
+
+window.Alpine = Alpine;
+Alpine.start();
+
 const App = () => {
-    const token = localStorage.getItem('auth_token');
-    // return token ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const location = useLocation();
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                // 新規登録画面やログイン画面では認証チェックをスキップする
+                if (location.pathname === '/register' || location.pathname === '/login') {
+                    setIsCheckingAuth(false);
+                    return;
+                }
+
+                await axios.get('/sanctum/csrf-cookie');
+                const response = await axios.get('/api/user');
+                if (response.status === 200) {
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    // 認証されていない場合は認証状態を false に設定する
+                    setIsAuthenticated(false);
+                } else {
+                    console.error('Authentication check failed:', error);
+                }
+            } finally {
+                setIsCheckingAuth(false);
+            }
+        };
+
+        checkAuth();
+    }, [location.pathname]);
+
+    if (isCheckingAuth) {
+        return <div>Loading...</div>; // 認証チェック中のローディング表示
+    }
 
     return (
-        <Router>
-            <Routes>
-                {token ? (
-                    <Route path="*" element={<AuthenticatedApp />} />
-                ) : (
-                    <Route path="*" element={<UnauthenticatedApp />} />
-                )}
-            </Routes>
-        </Router>
+        <Routes>
+            <Route path="/" element={isAuthenticated ? <MyPage /> : <TopPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
+            <Route path="*" element={<Navigate to="/" />} /> {/* 未定義のルートにアクセスした場合のリダイレクト */}
+        </Routes>
     );
-
-
-    // const token = localStorage.getItem('auth_token');
-
-    // 開発中の一時的な措置: 常にAuthenticatedAppを表示
-    // return <AuthenticatedApp />;
-    // 本来は以下のように認証状態をチェック
-    // return token? <AuthenticatedApp /> : <UnauthenticatedApp />;
-
-    // return <h1>Laravel　！</h1>;
-
-    // return(
-    //     <Router>
-    //         <Routes>
-    //             {/* すべてのルートをリストアップ */}
-    //             <Route path="/" element={<TopPage />} />
-    //             <Route path="/mypage" element={<MyPage />} />
-    //             <Route path="/favorites" element={<FavoriteList />} />
-    //             <Route path="/ideas" element={<IdeaCatalog />} />
-    //             <Route path="/idea-submission" element={<IdeaSubmission />} />
-    //             <Route path="/my-ideas" element={<MyIdeaHistory />} />
-    //             <Route path="/my-reviews" element={<MyReviewHistory />} />
-    //             <Route path="/purchases" element={<PurchaseList />} />
-    //         <Route path="/reviews" element={<ReviewList />} />
-    //         <Route path="*" element={<NotFound />} />
-    //         </Routes>
-    //     </Router>
-    // )
 };
 
-const container = document.getElementById("app");
+const RootApp = () => (
+    <Router>
+        <App />
+    </Router>
+);
+
+const container = document.getElementById('app');
 const root = createRoot(container);
-root.render(<App />);
+root.render(<RootApp />);

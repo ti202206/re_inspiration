@@ -62,9 +62,9 @@ const AuthenticatedApp = () => {
             <Routes>
                 {/* すべてのルートをリストアップ */}
                 {/* <Route path="/" element={<TopPage />} /> */}
-                {/* <Route path="/mypage" element={<MyPage />} /> */}
+                <Route path="/mypage" element={<MyPage />} />
                 {/* <Route path="/favorites" element={<FavoriteList />} /> */}
-                {/* <Route path="/ideas" element={<IdeaCatalog />} /> */}
+                <Route path="/ideas" element={<IdeaCatalog />} />
                 {/* <Route path="/idea-submission" element={<IdeaSubmission />} /> */}
                 {/* <Route path="/my-ideas" element={<MyIdeaHistory />} /> */}
                 {/* <Route path="/my-reviews" element={<MyReviewHistory />} /> */}
