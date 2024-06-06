@@ -23,10 +23,10 @@ class FavoriteController extends Controller
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 
-        //お気に入り登録する．（ない場合はfalseとして作成する）
+        //お気に入り登録する．（ない場合はtrueとして作成する）
         $favorite = Favorite::firstOrCreate(
             ['user_id' => auth()->id(), 'idea_id' => $idea->id],
-            ['is_favorite' => false]
+            ['is_favorite' => true]  // 初期値をtrueに設定
         );
 
         //お気に入りを反転させて，保存
@@ -35,8 +35,35 @@ class FavoriteController extends Controller
 
         //レスポンスを表示
         return response()->json(['message' => 'Favorite toggled successfully.', 'is_favorite' => $favorite->is_favorite]);
-
     }
+
+    // public function toggleFavorite(Request $request)
+    // {
+    //     $idea = Idea::findOrFail($request->idea_id);
+
+    //     if ($idea->user_id == auth()->id()) {
+    //         return response()->json(['message' => 'Unauthorized'], 403);
+    //     }
+
+    //     $favorite = Favorite::where('user_id', auth()->id())->where('idea_id', $idea->id)->first();
+
+    //     if ($favorite) {
+    //         // お気に入りの状態を反転
+    //         $favorite->is_favorite = !$favorite->is_favorite;
+    //         $favorite->save();
+    //     } else {
+    //         // レコードがない場合は新規作成してtrueに設定
+    //         $favorite = Favorite::create([
+    //             'user_id' => auth()->id(),
+    //             'idea_id' => $idea->id,
+    //             'is_favorite' => true
+    //         ]);
+    //     }
+
+    //     return response()->json(['message' => 'Favorite toggled successfully.', 'is_favorite' => $favorite->is_favorite]);
+    // }
+
+
 
     /**
      * ログインユーザーのお気に入り一覧を表示
@@ -46,7 +73,11 @@ class FavoriteController extends Controller
     public function index()
     {
         //一覧を表示する（アイディアのデータも取得）
-        $favorites = Favorite::where('user_id',Auth::id())->with('idea')->get();
+        $favorites = Favorite::where('user_id', Auth::id())
+        ->where('is_favorite', 1) // is_favoriteがtrueのものだけを取得
+        ->with('idea')
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return response()->json($favorites);
     }

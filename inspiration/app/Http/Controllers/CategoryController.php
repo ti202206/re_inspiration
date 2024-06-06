@@ -16,8 +16,10 @@ class CategoryController extends Controller
     public function index()
     {
         //全てのカテゴリーを表示
-        $category = Category::orderBy('name')->get();
-        return response()->json($category);
+        // $category = Category::orderBy('name')->get();
+        // return response()->json($category);
+        $categories = Category::orderBy('name')->get(['id', 'name']); // idとnameのみを取得
+        return response()->json($categories);
     }
 
     // /**

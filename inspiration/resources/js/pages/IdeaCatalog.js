@@ -3,7 +3,7 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-function Ideas() {
+function IdeaCatalog() {
     const [ideas, setIdeas] = useState([]);
 
     useEffect(() => {
@@ -75,4 +75,4 @@ function Ideas() {
     );
 }
 
-export default Ideas;
+export default IdeaCatalog;
