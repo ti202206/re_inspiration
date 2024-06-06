@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 // import { brainstormImage } from "../assets";
 import brainstormImage from '../../assets/images/brainstorm-idea.png'; // 適切なパスに変更
+// import "../../sass/app.scss";
 
 function TopPage() {
     const handleRegisterClick = () => {

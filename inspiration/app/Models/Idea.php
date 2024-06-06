@@ -29,12 +29,25 @@ class Idea extends Model
         return $this->hasMany(Purchase::class);
     }
 
+    
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     // 平均評価を取得
     public function getAverageRatingAttribute()
     {
-        return $this->purchases()->whereNotNull('rating')->avg('rating') ?: 'No ratings yet';
+        $average = $this->purchases()->whereNotNull('rating')->avg('rating');
+        return $average ? number_format($average, 1) : '-';
     }
 
+    // お気に入り数を取得
+    public function getFavoriteCountAttribute()
+    {
+        return $this->favorites()->count();
+    }
+    
     // purchasedがtrueの場合，編集できない
     public function updateIdea(array $attributes)
     {

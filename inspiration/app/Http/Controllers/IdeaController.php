@@ -29,6 +29,12 @@ class IdeaController extends Controller
         //ideaテーブルの全てのデータを取得
         $ideas = Idea::orderByDesc('created_at')->get();
 
+        // 各アイディアに平均評価とお気に入り数を追加
+        $ideas->each(function ($idea) {
+            $idea->average_rating = $idea->average_rating;
+            $idea->favorite_count = $idea->favorite_count;
+        });
+
         //json形式でデータを返す
         return response()->json($ideas);
     }
@@ -45,6 +51,12 @@ class IdeaController extends Controller
 
         // ユーザーが投稿したアイディアを取得
         $ideas = Idea::where('user_id', $user->id)->orderByDesc('created_at')->get();
+
+        // 各アイディアに平均評価とお気に入り数を追加
+        $ideas->each(function ($idea) {
+            $idea->average_rating = $idea->average_rating;
+            $idea->favorite_count = $idea->favorite_count;
+        });
 
         // JSON形式で返す
         return response()->json($ideas);

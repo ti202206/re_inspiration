@@ -9,6 +9,7 @@ use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:sanctum');
 Route::post('/register', [RegisteredUserController::class, 'store']);
-
+Route::get('/categories', [CategoryController::class, 'index']); //カテゴリー情報を取得
     //userへのルート
     // Route::get('/user', [LoginController::class, 'user'])->middleware('auth:sanctum');
 Route::group(['middleware'=>'auth:sanctum'],function(){

@@ -23,7 +23,7 @@ const UnauthenticatedApp = () => (
             <Route path="/favorites" element={<FavoriteList />} /> {/* ページ確認用 */}
             {/* <Route path="/ideas" element={<IdeaCatalog />} /> ページ確認用 */}
             <Route path="/idea-submission" element={<IdeaSubmission />} /> {/* ページ確認用 */}
-            <Route path="/idea-update" element={<IdeaUpdate />} /> {/* ページ確認用 */}
+            {/* <Route path="/idea-update" element={<IdeaUpdate />} /> ページ確認用 */}
         </Routes>
     // </Router>
 );
