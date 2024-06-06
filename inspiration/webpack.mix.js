@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+require('laravel-mix-tailwind');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,9 +12,24 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/App.js", "public/js/app.js")
+// mix.js("resources/js/app.js", "public/js/app.js")
+//     .react()
+//     .sass("resources/sass/app.scss", "public/css");
+//     tailwind(''); // 後で削除
+
+// if (mix.inProduction()) {
+//     mix.version();
+// }
+
+mix.js('resources/js/app.js', 'public/js')
     .react()
-    .sass("resources/sass/app.scss", "public/css");
+    .sass('resources/sass/app.scss', 'public/css')
+    .options({
+        postCss: [
+            require('tailwindcss'),
+            require('autoprefixer'),
+        ],
+    });
 
 if (mix.inProduction()) {
     mix.version();

@@ -30,7 +30,7 @@ class PurchaseController extends Controller
         $purchases = Purchase::where('buyer_id', $user->id)
             //ideasテーブルからデータを取得
             ->with(['idea' => function($query) {
-                $query->select('id', 'category_id', 'title');
+                $query->select('id', 'category_id', 'title','overview');
             }])
             //purchasesテーブルからデータを取得
             ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']); // 購入情報とレビューの詳細を取得

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +17,12 @@ use App\Http\Controllers\LoginController;
 //     return view('welcome');
 // });
 
-// ログインルート
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
-// その他のwebルート
+// require __DIR__.'/auth.php';
+
 Route::get('/{any}', function () {
-    // return view('app'); // ここでapp.blade.phpを返します
-    return view('index'); //index.blade.phpを返す
+    return view('app');
 })->where('any', '.*');

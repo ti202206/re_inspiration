@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+// import axios from "axios";
 import "../../sass/object/project/_top.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { brainstormImage } from "../assets";
+// import { brainstormImage } from "../assets";
+import brainstormImage from '../../assets/images/brainstorm-idea.png'; // 適切なパスに変更
+// import "../../sass/app.scss";
 
 function TopPage() {
     const handleRegisterClick = () => {
@@ -13,6 +15,14 @@ function TopPage() {
     const handleLoginClick = () => {
         window.location.href = "/login";
     };
+
+    // useEffect(() => {
+    //     try {
+    //         // コンポーネントのレンダリング中に発生するエラーをキャッチ
+    //     } catch (error) {
+    //         console.error("Error in TopPage:", error);
+    //     }
+    // }, []);
 
     return (
         <div>
