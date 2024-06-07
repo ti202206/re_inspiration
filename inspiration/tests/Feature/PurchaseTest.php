@@ -410,3 +410,6 @@ class PurchaseTest extends TestCase
         $response->assertJsonCount(0);
     }
 }
+
+
+//同じアイディアは購入できない

@@ -5,8 +5,8 @@ import FavoriteList from './FavoriteList';
 import IdeaCatalog from "./IdeaCatalog";
 // import IdeaSubmission from './IdeaSubmission';
 import MyIdeaHistory from './MyIdeaHistory';
-// import MyReviewHistory from './MyReviewHistory';
-// import PurchaseList from './PurchaseList';
+import MyReviewHistory from './MyReviewHistory';
+import PurchaseList from './PurchaseList';
 import ReviewList from "./ReviewList";
 // import NotFound from './NotFound';
 import TopPage from "../pages/TopPage";
@@ -68,8 +68,8 @@ const AuthenticatedApp = () => {
                 <Route path="/ideas" element={<IdeaCatalog />} />
                 {/* <Route path="/idea-submission" element={<IdeaSubmission />} /> */}
                 <Route path="/my-ideas" element={<MyIdeaHistory />} />
-                {/* <Route path="/my-reviews" element={<MyReviewHistory />} /> */}
-                {/* <Route path="/purchases" element={<PurchaseList />} /> */}
+                <Route path="/my-reviews" element={<MyReviewHistory />} />
+                <Route path="/purchases" element={<PurchaseList />} />
                 <Route path="/reviews/:id" element={<ReviewList />} />
                 {/* <Route path="*" element={<NotFound />} /> */}
                 {/* <Route path="/register" element={<Register />} /> */}

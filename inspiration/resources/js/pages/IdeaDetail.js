@@ -120,11 +120,10 @@ const IdeaDetail = () => {
                     <span>平均評価: {idea.averageRating}</span>
                 </div>
                 <div className="idea-card__buttons">
-                    <button className="idea-card__button" >購入する</button>
+                    <button className="idea-card__button" >購入する　購入済みの場合はレビューを書くor更新する</button>
                     <button className="idea-card__button" ><i className="fa-regular fa-thumbs-up"></i>解除</button>
-                    <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button>
                 </div>
-
+                <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button>
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </main>
             <Footer />
