@@ -101,8 +101,8 @@ const IdeaDetail = () => {
             <main className="container">
             <br /><br /><br /><br /><br />
                 <div>
-                    <h2>Fetched Idea (State)</h2>
-                    <pre>{JSON.stringify(idea, null, 2)}</pre> {/* 取得したデータを表示 */}
+                    {/* <h2>Fetched Idea (State)</h2>
+                    <pre>{JSON.stringify(idea, null, 2)}</pre> */}
                 </div>
               {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
                 <h2>{idea.title}</h2>
@@ -120,7 +120,7 @@ const IdeaDetail = () => {
                     <span>平均評価: {idea.averageRating}</span>
                 </div>
                 <div className="idea-card__buttons">
-                    <button className="idea-card__button" >購入する　購入済みの場合はレビューを書くor更新する</button>
+                    <button className="idea-card__button" onClick={() => navigate(`/reviews/${id}`)}>購入する　購入済みの場合はレビューを書くor更新する</button>
                     <button className="idea-card__button" ><i className="fa-regular fa-thumbs-up"></i>解除</button>
                 </div>
                 <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button>

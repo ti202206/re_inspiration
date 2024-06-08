@@ -124,7 +124,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {validateIdeaForm} from '../utils/validationUtils';
+import {validateIdeaForm} from '../utils/validation';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function IdeaUpdate() {
