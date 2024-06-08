@@ -16,6 +16,7 @@ import { login } from "../api/auth";
 import axios from "axios";
 import IdeaUpdate from "./IdeaUpdate";
 import IdeaDetail from "./IdeaDetail";
+import ReviewSubmission from "./ReviewSubmission";
 // const AuthenticatedApp = () => {
 //     return (
 //         <Router>
@@ -68,9 +69,10 @@ const AuthenticatedApp = () => {
                 <Route path="/ideas" element={<IdeaCatalog />} />
                 <Route path="/idea-submission" element={<IdeaSubmission />} />
                 <Route path="/my-ideas" element={<MyIdeaHistory />} />
-                <Route path="/my-reviews" element={<MyReviewHistory />} />
                 <Route path="/purchases" element={<PurchaseList />} />
-                <Route path="/reviews/:id" element={<ReviewList />} />
+                <Route path="/reviews" element={<ReviewList />} />
+                <Route path="/my-reviews" element={<MyReviewHistory />} />
+                <Route path="/reviews/:id" element={<ReviewSubmission />} />
                 {/* <Route path="*" element={<NotFound />} /> */}
                 {/* <Route path="/register" element={<Register />} /> */}
                 {/* <Route path="/login" element={<LoginForm />} /> */}
