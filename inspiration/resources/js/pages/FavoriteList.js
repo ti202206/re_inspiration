@@ -2,64 +2,149 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import IdeaCard from "../components/IdeaCard";
+import { useNavigate } from "react-router-dom";
 
 function FavoritesList() {
-    const [favorites, setFavorites] = useState([]);
+    const [user, setUser] = useState(null); // ユーザー情報の状態管理
+    const [favorites, setFavorites] = useState([]); // お気に入りの状態管理
+    const [categories, setCategories] = useState({}); // カテゴリ名のステート
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        axios
-            .get("/api/favorites", {
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get("/api/user", {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`, // 認証トークンを設定
                 },
-            })
-            .then((response) => {
-                const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                setFavorites(sortedFavorites);
-            })
-            .catch((error) =>
-                console.error("Error fetching favorites:", error)
-            );
-    }, []);
+            });
+            setUser(response.data);
+            console.log("Fetched user:", response.data);
+        } catch (error) {
+            console.error("Error fetching user:", error);
+        }
+    };
+
+            // お気に入り情報を取得
+            const fetchFavorites = async () => {
+                try {
+                    const response = await axios.get('/api/favorites', {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                        }
+                    });
+                    const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    const recentFavorites = sortedFavorites.slice(0, 5);
+                    setFavorites(recentFavorites);
+                    console.log('Fetched favorites:', recentFavorites);
+                } catch (error) {
+                    console.error('Error fetching favorites:', error);
+                }
+            };
+
+                    // カテゴリ情報を取得
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/categories');
+                const categoriesMap = response.data.reduce((map, category) => {
+                    map[category.id] = category.name;
+                    return map;
+                }, {});
+                setCategories(categoriesMap);
+                console.log('Fetched categories:', categoriesMap);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        useEffect(() => {
+            fetchUser();
+            fetchFavorites();
+            fetchCategories();
+        }, []);
+
+        const handleDetailClick = (id) => {
+            navigate(`/idea-detail/${id}`);
+        };
+    
+        // const handleToggleFavorite = (ideaId) => {
+        //     navigate(`/review-edit/${ideaId}`);
+        // };
+        const handleToggleFavorite = async (id) => {
+            try {
+                const response = await axios.post('/api/favorites/toggle', { idea_id: id }, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                    }
+                });
+                fetchFavorites(); // トグル後にお気に入り情報を再取得
+            } catch (error) {
+                console.error('お気に入りの解除に失敗しました', error);
+            }
+        };
+
+    // useEffect(() => {
+    //     axios
+    //         .get("/api/favorites", {
+    //             headers: {
+    //                 Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+    //             },
+    //         })
+    //         .then((response) => {
+    //             const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    //             setFavorites(sortedFavorites);
+    //         })
+    //         .catch((error) =>
+    //             console.error("Error fetching favorites:", error)
+    //         );
+    // }, []);
 
     return (
         <div>
             <Header />
             <main className="container">
-                <section className="section-container">
-                    <h2>お気に入り一覧</h2>
+            <br /><br /><br /><br /><br /><br /><br /><br />
 
-                    {favorites.length > 0 ? (
-                        favorites.map((favorite) => (
-                            <div className="favorite-card" key={favorite.id}>
-                                <div className="favorite-card__content">
-                                    <div className="favorite-card__title-category">
-                                        <h3 className="favorite-card__title">
-                                            {favorite.idea.title}
-                                        </h3>
-                                    </div>
-                                    <p className="favorite-card__summary">{favorite.idea.overview}</p>
-                                    <div className="favorite-card__meta">
-                                        <p className="favorite-card__created_date">
-                                            <i className="fa-regular fa-clock"></i>
-                                            {new Date(favorite.created_at).toLocaleDateString()}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="favorite-card__buttons">
-                                    <button className="favorite-card__button">
-                                        詳細
-                                    </button>
-                                    <button className="favorite-card__button">
-                                        削除
-                                    </button>
-                                </div>
-                            </div>
-                        ))
+                <h2>気になる一覧</h2>
+                <section className="section-container">
+
+                {favorites.length > 0 ? (
+                        favorites.map((favorite, index) => {
+                            const {idea} = favorite;
+                            return (
+                            <IdeaCard
+                                key={index}
+                                idea={idea}
+                                categories={categories}
+                                isPlaceholder={false} // データがある場合は false
+                                buttons={[
+                                    {
+                                        label: "詳細",
+                                        onClick: () => handleDetailClick(idea.id),
+                                    },
+                                    {
+                                        label: "お気に入りから削除",
+                                        onClick: () => handleToggleFavorite(idea.id),
+                                    },
+                                ]}
+                                // handleDetailClick={handleDetailClick}
+                                // handleEditReviewClick={handleEditReviewClick}
+                            />
+                        );})
                     ) : (
-                        <p>お気に入りはまだありません。</p>
+                        <IdeaCard isPlaceholder={true} /> // データがない場合は true
                     )}
+
+
                 </section>
+                <button
+                    className="idea-card__button"
+                    onClick={() => navigate(-1)}
+                >
+                    戻る
+                </button>
             </main>
             <Footer />
         </div>

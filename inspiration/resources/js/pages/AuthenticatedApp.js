@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MyPage from "./MyPage";
 import FavoriteList from './FavoriteList';
 import IdeaCatalog from "./IdeaCatalog";
-// import IdeaSubmission from './IdeaSubmission';
+import IdeaSubmission from './IdeaSubmission';
 import MyIdeaHistory from './MyIdeaHistory';
 import MyReviewHistory from './MyReviewHistory';
 import PurchaseList from './PurchaseList';
@@ -66,7 +66,7 @@ const AuthenticatedApp = () => {
                 <Route path="/my-page" element={<MyPage />} />
                 <Route path="/favorites" element={<FavoriteList />} />
                 <Route path="/ideas" element={<IdeaCatalog />} />
-                {/* <Route path="/idea-submission" element={<IdeaSubmission />} /> */}
+                <Route path="/idea-submission" element={<IdeaSubmission />} />
                 <Route path="/my-ideas" element={<MyIdeaHistory />} />
                 <Route path="/my-reviews" element={<MyReviewHistory />} />
                 <Route path="/purchases" element={<PurchaseList />} />

@@ -31,8 +31,10 @@ class IdeaController extends Controller
 
         // 各アイディアに平均評価とお気に入り数を追加
         $ideas->each(function ($idea) {
-            $idea->average_rating = $idea->average_rating;
-            $idea->favorite_count = $idea->favorite_count;
+            $idea->average_rating = $idea->averageRating;
+            $idea->favorite_count = $idea->favoriteCount;
+            $idea->purchase_count = $idea->purchaseCount;
+            $idea->review_count = $idea->reviewCount;
         });
 
         //json形式でデータを返す
@@ -54,8 +56,10 @@ class IdeaController extends Controller
 
         // 各アイディアに平均評価とお気に入り数を追加
         $ideas->each(function ($idea) {
-            $idea->average_rating = $idea->average_rating;
-            $idea->favorite_count = $idea->favorite_count;
+            $idea->average_rating = $idea->averageRating;
+            $idea->favorite_count = $idea->favoriteCount;
+            $idea->purchase_count = $idea->purchaseCount;
+            $idea->review_count = $idea->reviewCount;
         });
 
         // JSON形式で返す
@@ -80,12 +84,28 @@ class IdeaController extends Controller
      */
     public function store(StoreIdeaRequest $request)  //storeIdeaRequestのauthorizeをtrueに変更中
     {
-        //ポストされたデータを取得して登録する
-        $idea = Idea::create($request->all());
+        // //ポストされたデータを取得して登録する
+        // $idea = Idea::create($request->all());
 
-        //データがあればjsonで返す（ステータスコード２０１）
-        //アイディアがなければ，エラーレスポンス（ステータスコード５００）
-        return $idea ? response()->json($idea, 201) : response()->json([], 500);
+        // //データがあればjsonで返す（ステータスコード２０１）
+        // //アイディアがなければ，エラーレスポンス（ステータスコード５００）
+        // return $idea ? response()->json($idea, 201) : response()->json([], 500);
+
+
+                // 修正点: バリデーション済みのデータを使用してアイデアを作成
+                $validatedData = $request->validated(); // バリデーション済みデータを取得
+                $idea = new Idea();
+                $idea->user_id = Auth::id();
+                $idea->category_id = $validatedData['category_id'];
+                $idea->title = $validatedData['title'];
+                $idea->overview = $validatedData['overview'];
+                $idea->content = $validatedData['content'];
+                $idea->price = $validatedData['price'];
+                $idea->save();
+
+                // データがあればjsonで返す（ステータスコード201）
+                return response()->json($idea, 201);
+
     }
 
     /**
@@ -115,7 +135,9 @@ class IdeaController extends Controller
         return response()->json([
             'idea' => $idea,
             'average_rating' => $idea->averageRating,
-            'reviews' => $idea->purchases
+            'reviews' => $idea->purchases,
+            'purchase_count' => $idea->purchaseCount,
+            'review_count' => $idea->reviewCount,
         ]);
     }
 

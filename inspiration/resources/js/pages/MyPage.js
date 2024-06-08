@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import IdeaCard from '../components/IdeaCard';
 import { useNavigate } from 'react-router-dom';
 
     const MyPage = () => {
@@ -155,8 +156,8 @@ import { useNavigate } from 'react-router-dom';
                 <pre>{JSON.stringify(ideas, null, 2)}</pre> */}
             </div>
             <div>
-                {/* <h2>Fetched favorites (State)</h2> */}
-                {/* <pre>{JSON.stringify(favorites, null, 2)}</pre> */}
+                {/* <h2>Fetched favorites (State)</h2>
+                <pre>{JSON.stringify(favorites, null, 2)}</pre> */}
             </div>
             <div>
                 {/* <h2>Fetched purchase (State)</h2>
@@ -180,31 +181,31 @@ import { useNavigate } from 'react-router-dom';
                             <a href="/favorites">全てを表示</a>
                         </div>
 
-                        {favorites.map((favorite, index) => {
-                            const { idea } = favorite;
-                            return (
-                                <div className="idea-card" key={index}>
-                                    <div className="idea-card__content">
-                                        <div className="idea-card__title-category">
-                                            <h3 className="idea-card__title">{idea.title}</h3>
-                                        </div>
-                                        <p className="idea-card__summary">{idea.overview}</p>
-                                        <div className="idea-card__mate">
-                                            <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>{idea.favorite_count || 0}</span>
-                                            <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>{idea.average_rating || 0}</span>
-                                            <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{categories[idea.category_id]}</p>
-                                        </div>
-                                    </div>
-                                    <div className="idea-card__buttons">
-                                        <button className="idea-card__button" onClick={() => handleDetailClick(idea.id)}>詳細</button>
-                                        <button className="idea-card__button" onClick={() => handleToggleFavorite(idea.id)}><i className="fa-regular fa-thumbs-up"></i>解除</button>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        {favorites.length > 0 ? (
+                            favorites.map((favorite, index) => (
+                                // 変更点: favoritesのデータ構造に基づいて idea を取得
+                                <IdeaCard
+                                    key={index}
+                                    idea={favorite.idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(favorite.idea.id),
+                                        },
+                                        {
+                                            label: "お気に入りから削除",
+                                            onClick: () => handleToggleFavorite(favorite.idea.id),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
+                        )}
 
                     </section>
-
 
                     <section className="mypage__section">
                         <div className="mypage__title">
@@ -212,28 +213,30 @@ import { useNavigate } from 'react-router-dom';
                             <a href="/purchases">全てを表示</a>
                         </div>
 
-                        {purchases.map((purchase, index) => {
-                            const { idea } = purchase;
-                            return (
-                                <div className="idea-card" key={index}>
-                                    <div className="idea-card__content">
-                                        <div className="idea-card__title-category">
-                                            <h3 className="idea-card__title">{idea.title}</h3>
-                                        </div>
-                                        <p className="idea-card__summary">{idea.overview}</p>
-                                        <div className="idea-card__mate">
-                                            <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>{idea.favorite_count || 0}</span>
-                                            <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>{idea.average_rating || 0}</span>
-                                            <p className="idea-card__category"><i className="fa-solid fa-tags "></i>{categories[idea.category_id]}</p>
-                                        </div>
-                                    </div>
-                                    <div className="idea-card__buttons">
-                                        <button className="idea-card__button" onClick={() => handleDetailClick(idea.id)} >詳細</button>
-                                        {/* <button className="idea-card__button" onClick={() => handleToggleFavorite(idea.id)} >レビューを編集</button> */}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        {purchases.length > 0 ? (
+                            purchases.map((purchase, index) => (
+                                // 変更点: purchasesのデータ構造に基づいて idea を取得
+                                <IdeaCard
+                                    key={index}
+                                    idea={purchase.idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(purchase.idea.id),
+                                        },
+                                        {
+                                            label: "評価を変更",
+                                            onClick: () => handleDetailClick(purchase.idea.id),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
+                        )}
+
                     </section>
 
 
@@ -242,27 +245,33 @@ import { useNavigate } from 'react-router-dom';
                             <h2>投稿したアイディア（最新５件）</h2>
                             <a href="/my-ideas">全てを表示</a>
                         </div>
-                        {ideas.map((idea, index) => (
-                            <div className="idea-card" key={index}>
-                                <div className="idea-card__content">
-                                    <div className="idea-card__title-category">
-                                        <h3 className="idea-card__title">{idea.title}</h3>
-                                    </div>
-                                    <p className="idea-card__summary">{idea.overview}</p>
-                                    <div className="idea-card__mate">
-                                        <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>{idea.favorite_count || 0}</span>  {/**Purchaseから */}
-                                        <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>{idea.average_rating || 0}</span> *Purchaseから
-                                        <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{categories[idea.category_id]}</p>
-                                    </div>
-                                </div>
-                                <div className="idea-card__buttons">
-                                    <button className="idea-card__button" onClick={() => handleDetailClick(idea.id)} >詳細</button>
-                                    <button className="idea-card__button">編集</button>
-                                </div>
-                            </div>
-                            )
+
+                        {ideas.length > 0 ? (
+                            ideas.map((idea, index) => (
+                                // 変更点: ideasデータ構造に基づいて idea をそのまま使用
+                                <IdeaCard
+                                    key={index}
+                                    idea={idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(idea.id),
+                                        },
+                                        {
+                                            label: "編集",
+                                            onClick: () => console.log(`Editing idea ${idea.id}`),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
                         )}
-                        </section>
+
+                    </section>
+
 
 
                     <section className="mypage__section">
@@ -270,29 +279,33 @@ import { useNavigate } from 'react-router-dom';
                             <h2>レビューしたアイディア（最新５件）</h2>
                             <a href="/my-reviews">全てを表示</a>
                         </div>
-                        {reviewed.map((review, index) =>{
-                            const {idea} = review;
-                            return(
-                                <div className="idea-card" key={index} >
-                                    <div className="idea-card__content">
-                                        <div className="idea-card__title-category">
-                                            <h3 className="idea-card__title">{idea.title}</h3>
-                                        </div>
-                                        <p className="idea-card__summary">{idea.overview}</p>
-                                        <div className="idea-card__mate">
-                                            <span className="idea-card__review-count"><i className="fa-regular fa-comment-dots"></i>{idea.favorite_count || 0}</span>
-                                            <span className="idea-card__average-rating"><i className="fa-regular fa-thumbs-up"></i>{idea.average_rating || 0}</span>
-                                            <p className="idea-card__category"><i className="fa-solid fa-tags"></i>{categories[idea.category_id]}</p>
-                                        </div>
-                                    </div>
-                                    <div className="idea-card__buttons">
-                                        <button className="idea-card__button" onClick={() => handleDetailClick(idea.id)} >詳細</button>
-                                        <button className="idea-card__button">編集</button>
-                                    </div>
-                                </div>
-                            );
-                        })}
+
+                        {reviewed.length > 0 ? (
+                            reviewed.map((review, index) => (
+                                // 変更点: reviewedのデータ構造に基づいて idea を取得
+                                <IdeaCard
+                                    key={index}
+                                    idea={review.idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(review.idea.id),
+                                        },
+                                        {
+                                            label: "レビューを編集",
+                                            onClick: () => console.log(`Editing review ${review.id}`),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
+                        )}
+
                     </section>
+
 
 
                 </div> 

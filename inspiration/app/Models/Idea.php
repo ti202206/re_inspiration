@@ -24,22 +24,29 @@ class Idea extends Model
         'purchased'
     ];
 
+    // リレーション: purchases
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
     }
 
-    
+    // 購入数を取得
+    public function getPurchaseCountAttribute()
+    {
+        return $this->purchases()->count();
+    }
+
+
+    // レビュー数を取得
+    public function getReviewCountAttribute()
+    {
+        return $this->purchases()->whereNotNull('review')->count();
+    }
+
+    // リレーション: favorites
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
-    }
-
-    // 平均評価を取得
-    public function getAverageRatingAttribute()
-    {
-        $average = $this->purchases()->whereNotNull('rating')->avg('rating');
-        return $average ? number_format($average, 1) : '-';
     }
 
     // お気に入り数を取得
@@ -47,7 +54,14 @@ class Idea extends Model
     {
         return $this->favorites()->count();
     }
-    
+
+    // 平均評価を取得
+    public function getAverageRatingAttribute()
+    {
+        $average = $this->purchases()->whereNotNull('rating')->avg('rating');
+        return $average && $average >0 ? number_format($average, 1) : '-';
+    }
+
     // purchasedがtrueの場合，編集できない
     public function updateIdea(array $attributes)
     {
