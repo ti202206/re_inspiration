@@ -380,8 +380,8 @@ class PurchaseController extends Controller
     {
         // 全てのレビューを持つ購入レコードを取得
         $reviews = Purchase::whereNotNull('review')
-            ->with(['idea:id,title']) // アイディアのIDとタイトルを取得
-            ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
+            ->with(['idea:id,title','buyer:id,name']) // アイディアのIDとタイトルを取得
+            ->get(['id', 'idea_id','buyer_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
 
         return response()->json($reviews);
     }
