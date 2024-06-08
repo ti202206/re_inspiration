@@ -49,7 +49,7 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [] }) =
         <div className="idea-card">
             <div className="idea-card__content">
                 <div className="idea-card__title-category">
-                    {/* 変更点: idea がない場合はデフォルトで "データがありません" を表示 */}
+                    {/* idea がない場合はデフォルトで "データがありません" を表示 */}
                     <h3 className="idea-card__title">{isPlaceholder ? 'データがありません' : idea.title}</h3>
                 </div>
                 <p className="idea-card__summary">{isPlaceholder ? '' : idea.overview}</p>
@@ -81,7 +81,7 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [] }) =
                     </p>
                 </div>
             </div>
-            {/* 変更点: データがない場合はボタンを表示しない */}
+            {/* データがない場合はボタンを表示しない */}
             {!isPlaceholder && (
                 <div className="idea-card__buttons">
                     {buttons.map((button, index) => (
