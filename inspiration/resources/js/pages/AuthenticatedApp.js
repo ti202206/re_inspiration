@@ -17,6 +17,7 @@ import axios from "axios";
 import IdeaUpdate from "./IdeaUpdate";
 import IdeaDetail from "./IdeaDetail";
 import ReviewSubmission from "./ReviewSubmission";
+import ReviewUpdate from "./ReviewUpdate";
 // const AuthenticatedApp = () => {
 //     return (
 //         <Router>
@@ -73,6 +74,7 @@ const AuthenticatedApp = () => {
                 <Route path="/reviews" element={<ReviewList />} />
                 <Route path="/my-reviews" element={<MyReviewHistory />} />
                 <Route path="/reviews/:id" element={<ReviewSubmission />} />
+                <Route path="/review-update/:id" element={<ReviewUpdate />} />
                 {/* <Route path="*" element={<NotFound />} /> */}
                 {/* <Route path="/register" element={<Register />} /> */}
                 {/* <Route path="/login" element={<LoginForm />} /> */}

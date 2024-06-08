@@ -125,8 +125,12 @@ import { useNavigate } from 'react-router-dom';
             navigate(`/idea-detail/${id}`);
         };
 
-        const handleUpdateClick = (id) => {
+        const handleIdeaUpdateClick = (id) => {
             navigate(`/idea-update/${id}`);
+        };
+
+        const handleReviewUpdateClick = (ideaId,reviewId) => {
+            navigate(`/review-update/${ideaId}`,{state:{reviewId} });
         };
 
         // const handleIdeaHistoryClick = (id) => {
@@ -265,7 +269,7 @@ import { useNavigate } from 'react-router-dom';
                                         },
                                         {
                                             label: "編集",
-                                            onClick: () => handleUpdateClick(idea.id),
+                                            onClick: () => handleIdeaUpdateClick(idea.id),
                                         },
                                     ]}
                                 />
@@ -299,7 +303,7 @@ import { useNavigate } from 'react-router-dom';
                                         },
                                         {
                                             label: "レビューを編集",
-                                            onClick: () => console.log(`Editing review ${review.id}`),
+                                            onClick: () => handleReviewUpdateClick(review.idea.id,review.id),
                                         },
                                     ]}
                                 />

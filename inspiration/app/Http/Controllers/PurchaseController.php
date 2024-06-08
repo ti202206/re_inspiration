@@ -460,4 +460,16 @@ class PurchaseController extends Controller
 
         return response()->json(['message' => 'レビューが投稿または更新されました', 'purchase' => $purchase], 201);
     }
+
+        /**
+     * 購入およびレビュー情報を取得する
+     *
+     * @param  \App\Models\Purchase  $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Purchase $purchase)
+    {
+        // 必要なデータを取得してレスポンス
+        return response()->json($purchase);
+    }
 }

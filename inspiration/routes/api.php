@@ -103,6 +103,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Purchase関連のルート
     Route::post('/purchases', [PurchaseController::class, 'store'])->name('purchases.store');
     Route::get('/mypurchases', [PurchaseController::class, 'myPurchases'])->name('purchases.index');
+    Route::get('/purchases/{id}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::get('/reviewed-purchases', [PurchaseController::class, 'myReviewedPurchases'])->name('purchases.reviewed');
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
     
