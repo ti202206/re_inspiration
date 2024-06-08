@@ -12143,8 +12143,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils_validationUtils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/validationUtils */ "./resources/js/utils/validationUtils.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -12288,17 +12289,27 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 function IdeaUpdate() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      title: '',
-      overview: '',
-      content: '',
-      price: ''
-    }),
+  var initialFormData = {
+    title: '',
+    overview: '',
+    content: '',
+    price: '',
+    category_id: ''
+  };
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialFormData),
     _useState2 = _slicedToArray(_useState, 2),
     formData = _useState2[0],
     setFormData = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    categories = _useState4[0],
+    setCategories = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState6 = _slicedToArray(_useState5, 2),
+    errors = _useState6[0],
+    setErrors = _useState6[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(),
     id = _useParams.id; // URLパラメータからIDを取得
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -12317,20 +12328,22 @@ function IdeaUpdate() {
               });
             case 3:
               response = _context.sent;
-              idea = response.data.idea; // 'idea'プロパティを使用してデータを取得
+              idea = response.data.idea;
               setFormData({
-                title: idea.title,
-                overview: idea.overview,
-                content: idea.content,
-                price: idea.price
+                title: idea.title || '',
+                overview: idea.overview || '',
+                content: idea.content || '',
+                price: idea.price || '',
+                category_id: idea.category_id || ''
               });
-              _context.next = 11;
+              _context.next = 12;
               break;
             case 8:
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
               console.error('Error fetching idea:', _context.t0);
-            case 11:
+              alert('アイディアの取得に失敗しました。');
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -12340,97 +12353,175 @@ function IdeaUpdate() {
         return _ref.apply(this, arguments);
       };
     }();
+    var fetchCategories = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+            case 3:
+              response = _context2.sent;
+              setCategories(response.data);
+              _context2.next = 11;
+              break;
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.error('Error fetching categories:', _context2.t0);
+              alert('カテゴリの取得に失敗しました。');
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 7]]);
+      }));
+      return function fetchCategories() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
     fetchIdea();
+    fetchCategories();
   }, [id]);
   var handleChange = function handleChange(e) {
     setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
   var handleSubmit = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var response;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+      var newErrors, response;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
             e.preventDefault();
-            _context2.prev = 1;
-            _context2.next = 4;
+
+            // ユーティリティ関数でバリデーション
+            newErrors = (0,_utils_validationUtils__WEBPACK_IMPORTED_MODULE_4__.validateIdeaForm)(formData); // バリデーションエラーメッセージのセット
+            setErrors(newErrors);
+            if (!(Object.keys(newErrors).length > 0)) {
+              _context3.next = 5;
+              break;
+            }
+            return _context3.abrupt("return");
+          case 5:
+            _context3.prev = 5;
+            _context3.next = 8;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/ideas/".concat(id), formData, {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
               }
             });
-          case 4:
-            response = _context2.sent;
+          case 8:
+            response = _context3.sent;
             console.log('Idea Updated: ', response.data);
             alert('アイディアが更新されました。');
             navigate('/mypage');
-            _context2.next = 14;
+            _context3.next = 18;
             break;
-          case 10:
-            _context2.prev = 10;
-            _context2.t0 = _context2["catch"](1);
-            console.error('Error updating idea:', _context2.t0);
-            alert('アイディアの更新中にエラーが発生しました。');
           case 14:
+            _context3.prev = 14;
+            _context3.t0 = _context3["catch"](5);
+            console.error('Error updating idea:', _context3.t0);
+            if (_context3.t0.response && _context3.t0.response.data.errors) {
+              setErrors(_context3.t0.response.data.errors);
+            } else {
+              alert('アイディアの更新中にエラーが発生しました。');
+            }
+          case 18:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
-      }, _callee2, null, [[1, 10]]);
+      }, _callee3, null, [[5, 14]]);
     }));
     return function handleSubmit(_x) {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("main", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("main", {
       className: "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "submission-form",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
           children: "\u30A2\u30A4\u30C7\u30A2\u3092\u7DE8\u96C6\u3059\u308B"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
           onSubmit: handleSubmit,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "title",
             children: "\u30BF\u30A4\u30C8\u30EB:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "text",
             id: "title",
             name: "title",
             value: formData.title,
             onChange: handleChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          }), errors.title && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            className: "error",
+            children: errors.title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "overview",
             children: "\u6982\u8981:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
             id: "overview",
             name: "overview",
             value: formData.overview,
             onChange: handleChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          }), errors.overview && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            className: "error",
+            children: errors.overview
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "content",
             children: "\u8A73\u7D30:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
             id: "content",
             name: "content",
             value: formData.content,
             onChange: handleChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          }), errors.content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            className: "error",
+            children: errors.content
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             htmlFor: "price",
-            children: "\u4FA1\u683C:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-            type: "text",
+            children: "\u4FA1\u683C (\u5186):"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+            type: "number",
             id: "price",
             name: "price",
             value: formData.price,
-            onChange: handleChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            onChange: handleChange,
+            min: "1",
+            step: "1"
+          }), errors.price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            className: "error",
+            children: errors.price
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+            htmlFor: "category_id",
+            children: "\u30AB\u30C6\u30B4\u30EA:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+            id: "category_id",
+            name: "category_id",
+            value: formData.category_id,
+            onChange: handleChange,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: "",
+              children: "\u30AB\u30C6\u30B4\u30EA\u3092\u9078\u629E"
+            }), categories.map(function (category) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                value: category.id,
+                children: category.name
+              }, category.id);
+            })]
+          }), errors.category_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            className: "error",
+            children: errors.category_id
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
             type: "submit",
             children: "\u66F4\u65B0\u3059\u308B"
           })]
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IdeaUpdate);
@@ -13270,6 +13361,9 @@ var MyPage = function MyPage() {
   var handleDetailClick = function handleDetailClick(id) {
     navigate("/idea-detail/".concat(id));
   };
+  var handleUpdateClick = function handleUpdateClick(id) {
+    navigate("/idea-update/".concat(id));
+  };
 
   // const handleIdeaHistoryClick = (id) => {
   //     navigate(`/my-ideas`);
@@ -13410,7 +13504,7 @@ var MyPage = function MyPage() {
                 }, {
                   label: "編集",
                   onClick: function onClick() {
-                    return console.log("Editing idea ".concat(idea.id));
+                    return handleUpdateClick(idea.id);
                   }
                 }]
               }, index)
@@ -14575,6 +14669,32 @@ var UnauthenticatedApp = function UnauthenticatedApp() {
   );
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UnauthenticatedApp);
+
+/***/ }),
+
+/***/ "./resources/js/utils/validationUtils.js":
+/*!***********************************************!*\
+  !*** ./resources/js/utils/validationUtils.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   validateIdeaForm: () => (/* binding */ validateIdeaForm)
+/* harmony export */ });
+// バリデーション関数
+var validateIdeaForm = function validateIdeaForm(formData) {
+  var errors = {};
+  if (formData.title.length > 30) errors.title = 'タイトルは30文字以内である必要があります。';
+  if (formData.overview.length > 90) errors.overview = '概要は90文字以内である必要があります。';
+  if (formData.content.length > 255) errors.content = '詳細は255文字以内である必要があります。';
+  if (formData.price < 1 || formData.price > 1000000) {
+    errors.price = '価格は1から1000000の範囲である必要があります。';
+  }
+  if (!formData.category_id) errors.category_id = 'カテゴリを選択してください。';
+  return errors;
+};
 
 /***/ }),
 

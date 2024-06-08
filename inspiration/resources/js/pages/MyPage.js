@@ -125,6 +125,10 @@ import { useNavigate } from 'react-router-dom';
             navigate(`/idea-detail/${id}`);
         };
 
+        const handleUpdateClick = (id) => {
+            navigate(`/idea-update/${id}`);
+        };
+
         // const handleIdeaHistoryClick = (id) => {
         //     navigate(`/my-ideas`);
         // };
@@ -261,7 +265,7 @@ import { useNavigate } from 'react-router-dom';
                                         },
                                         {
                                             label: "編集",
-                                            onClick: () => console.log(`Editing idea ${idea.id}`),
+                                            onClick: () => handleUpdateClick(idea.id),
                                         },
                                     ]}
                                 />
