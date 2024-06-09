@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IdeaCard from '../components/IdeaCard';
+import ReviewCard from '../components/ReviewCard';
 import { useNavigate } from 'react-router-dom';
 
     const MyPage = () => {
@@ -37,7 +38,7 @@ import { useNavigate } from 'react-router-dom';
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
                 });
-                const sortedIdeas = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const sortedIdeas = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentIdeas = sortedIdeas.slice(0, 5);
                 setIdeas(recentIdeas);
                 console.log('Fetched ideas:', recentIdeas);
@@ -54,7 +55,7 @@ import { useNavigate } from 'react-router-dom';
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
                 });
-                const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const sortedFavorites = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentFavorites = sortedFavorites.slice(0, 5);
                 setFavorites(recentFavorites);
                 console.log('Fetched favorites:', recentFavorites);
@@ -88,7 +89,7 @@ import { useNavigate } from 'react-router-dom';
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
                 });
-                const sortedReviewed = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const sortedReviewed = response.data.sort((a, b) => new Date(b.reviewid_at) - new Date(a.reviewid_at));
                 const recentReviewed = sortedReviewed.slice(0, 5);
                 setReviewed(recentReviewed);
                 console.log('Fetched Reviewed:', recentReviewed);
@@ -172,8 +173,8 @@ import { useNavigate } from 'react-router-dom';
                 <pre>{JSON.stringify(purchases, null, 2)}</pre> */}
             </div>
             <div>
-                {/* <h2>Fetched reviewed (State)</h2>
-                <pre>{JSON.stringify(reviewed, null, 2)}</pre> */}
+                <h2>Fetched reviewed (State)</h2>
+                <pre>{JSON.stringify(reviewed, null, 2)}</pre>
             </div>
 
             <div>
@@ -197,6 +198,7 @@ import { useNavigate } from 'react-router-dom';
                                     idea={favorite.idea}
                                     categories={categories}
                                     isPlaceholder={false}
+                                    updatedAt={favorite.idea.updated_at}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -228,6 +230,7 @@ import { useNavigate } from 'react-router-dom';
                                     idea={purchase.idea}
                                     categories={categories}
                                     isPlaceholder={false}
+                                    updatedAt={purchase.idea.updated_at}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -252,14 +255,38 @@ import { useNavigate } from 'react-router-dom';
                             <h2>投稿したアイディア（最新５件）</h2>
                             <a href="/my-ideas">全てを表示</a>
                         </div>
+                        {reviewed.length > 0 ? (
+                            reviewed.map((review, index) => (
+                                // reviewedのデータ構造に基づいて idea を取得
+                                <ReviewCard // 変更：ReviewCard を使用
+                                    key={index}
+                                    idea={review.idea}
+                                    review={review}
+                                    user={user}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(review.idea.id),
+                                        },
+                                        {
+                                            label: "レビューを編集",
+                                            onClick: () => handleReviewUpdateClick(review.idea.id, review.id),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <ReviewCard isPlaceholder={true} />
+                        )}
 
-                        {ideas.length > 0 ? (
+                        {/* {ideas.length > 0 ? (
                             ideas.map((idea, index) => (
                                 <IdeaCard
                                     key={index}
                                     idea={idea}
                                     categories={categories}
                                     isPlaceholder={false}
+                                    updatedAt={idea.updated_at}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -274,7 +301,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
-                        )}
+                        )} */}
 
                     </section>
 
@@ -287,6 +314,31 @@ import { useNavigate } from 'react-router-dom';
                         </div>
 
                         {reviewed.length > 0 ? (
+                            reviewed.map((review, index) => (
+                                // reviewedのデータ構造に基づいて idea を取得
+                                <ReviewCard
+                                    key={index}
+                                    idea={review.idea}
+                                    review={review}
+                                    user={user}
+                                    isPlaceholder={false} //＊＊＊＊＊＊変更：isPlaceholderの追加＊＊＊＊＊＊
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(review.idea.id),
+                                        },
+                                        {
+                                            label: "レビューを編集",
+                                            onClick: () => handleReviewUpdateClick(review.idea.id, review.id),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <ReviewCard isPlaceholder={true} />
+                        )}
+
+                        {/* {reviewed.length > 0 ? (
                             reviewed.map((review, index) => (
                                 // reviewedのデータ構造に基づいて idea を取得
                                 <IdeaCard
@@ -308,7 +360,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
-                        )}
+                        )} */}
 
                     </section>
 

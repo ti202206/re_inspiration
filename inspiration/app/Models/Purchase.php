@@ -16,6 +16,8 @@ class Purchase extends Model
         'review',
     ];
 
+    public $timestamps = true;
+
     public function buyer()
     {
         return $this->belongsTo(User::class, 'buyer_id');

@@ -365,7 +365,7 @@ class PurchaseController extends Controller
         $user = Auth::user();
         // ユーザーの購入履歴を取得
         $purchases = Purchase::where('buyer_id', $user->id)
-            ->with(['idea:id,category_id,title,overview']) // ideas テーブルからデータを取得
+            ->with(['idea:id,category_id,title,overview,updated_at']) // ideas テーブルからデータを取得
             ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']); // 購入情報とレビューの詳細を取得
 
         return response()->json($purchases);
@@ -380,7 +380,7 @@ class PurchaseController extends Controller
     {
         // 全てのレビューを持つ購入レコードを取得
         $reviews = Purchase::whereNotNull('review')
-            ->with(['idea:id,title','buyer:id,name']) // アイディアのIDとタイトルを取得
+            ->with(['idea:id,title,updated_at','buyer:id,name',]) // アイディアのIDとタイトルを取得
             ->get(['id', 'idea_id','buyer_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
 
         return response()->json($reviews);
@@ -397,7 +397,7 @@ class PurchaseController extends Controller
         // レビュー履歴のみを取得
         $reviewedPurchases = Purchase::where('buyer_id', $user->id)
             ->whereNotNull('review')
-            ->with(['idea:id,category_id,title,overview'])
+            ->with(['idea:id,category_id,title,overview,updated_at'])
             ->get(['id', 'idea_id', 'review', 'rating', 'reviewed_at','created_at', 'updated_at']);
 
         return response()->json($reviewedPurchases);
