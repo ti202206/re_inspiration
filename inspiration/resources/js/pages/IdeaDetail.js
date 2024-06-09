@@ -59,10 +59,13 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useParams, useNavigate } from 'react-router-dom';
+import IdeaCard from '../components/IdeaCard';
 
 const IdeaDetail = () => {
     const { id } = useParams(); // URLパラメータからIDを取得
     const [idea, setIdea] = useState(null);
+    const [categories, setCategories] = useState({}); // カテゴリの状態管理
+    const [loadingCategories, setLoadingCategories] = useState(true); // カテゴリのロード状態を管理
     const [error, setError] = useState(null); // エラーメッセージの状態を管理
     const navigate = useNavigate();
 
@@ -81,8 +84,27 @@ const IdeaDetail = () => {
             }
         };
 
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/categories');
+                const categoriesMap = response.data.reduce((map, category) => {
+                    map[category.id] = category.name;
+                    return map;
+                }, {});
+                setCategories(categoriesMap);
+                setLoadingCategories(false); // カテゴリのロード状態を更新
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+                setError('カテゴリデータの取得に失敗しました。');
+                setLoadingCategories(false); // カテゴリのロード状態を更新
+            }
+        };
+
         fetchIdea();
+        fetchCategories();
     }, [id]);
+
+    
 
 
     // エラーメッセージを表示
@@ -100,12 +122,32 @@ const IdeaDetail = () => {
             <Header />
             <main className="container">
             <br /><br /><br /><br /><br />
+            <IdeaCard
+                    idea={idea}
+                    categories={categories}
+                    isPlaceholder={false}
+                    updatedAt={idea.updated_at}
+                    buttons={[
+                        {
+                            label: idea.purchased ? "レビューを書く" : "購入する",
+                            onClick: () => navigate(`/reviews/${id}`),
+                        },
+                        {
+                            label: "お気に入りから削除　お気に入りになっていたら",
+                            onClick: () => console.log('お気に入り解除') // トグル処理をここに追加
+                        },
+                        {
+                            label: "戻る",
+                            onClick: () => navigate(-1),
+                        }
+                    ]}
+                />
                 <div>
                     {/* <h2>Fetched Idea (State)</h2>
                     <pre>{JSON.stringify(idea, null, 2)}</pre> */}
                 </div>
               {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
-                <h2>{idea.title}</h2>
+                {/* <h2>{idea.title}</h2>
                 <p>{idea.overview}</p>
                 <p>{idea.content}</p>
                 {idea.purchased ? (
@@ -123,7 +165,7 @@ const IdeaDetail = () => {
                     <button className="idea-card__button" onClick={() => navigate(`/reviews/${id}`)}>購入する　購入済みの場合はレビューを書くor更新する</button>
                     <button className="idea-card__button" ><i className="fa-regular fa-thumbs-up"></i>解除</button>
                 </div>
-                <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button>
+                <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button> */}
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </main>
             <Footer />
