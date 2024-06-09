@@ -65,7 +65,9 @@
 // src/components/ReviewCard.js
 import React from 'react';
 
-const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [] }) => {
+const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [], isPlaceholder = false }) => {
+    const updatedDate = idea.updated_at ? new Date(idea.updated_at).toLocaleDateString() : '';
+    
     return (
         <div className="idea-card">
             <div className="idea-card__content">
@@ -85,6 +87,9 @@ const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [] }) => {
                     <span className="idea-card__favorite_count">
                         <i className="fa-regular fa-thumbs-up"></i>{idea.favorite_count || 0}
                     </span>
+                    <p className="idea-card__updated-at">
+                        <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : new Date(idea.updated_at).toLocaleDateString()}
+                    </p>
                 </div>
                 <p className="idea-card__user">
                     <i className="fa-regular fa-user"></i> {user.name}
@@ -92,7 +97,7 @@ const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [] }) => {
                 <p className="idea-card__summary">{review.review}</p>
                 <div className="review-card__extra-content">
                     <span>評価: {review.rating}</span>
-                    <p>投稿日: {new Date(review.created_at).toLocaleDateString()}</p>
+                    <p>投稿日: {new Date(review.updated_at).toLocaleDateString()}</p>
                 </div>
             </div>
             <div className="idea-card__buttons">
