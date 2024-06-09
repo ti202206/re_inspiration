@@ -71,7 +71,7 @@ import { useNavigate } from 'react-router-dom';
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
                 });
-                const sortedPurchases = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const sortedPurchases = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentPurchases = sortedPurchases.slice(0, 5);
                 setPurchases(recentPurchases);
                 console.log('Fetched purchases:', recentPurchases);
@@ -172,8 +172,8 @@ import { useNavigate } from 'react-router-dom';
                 <pre>{JSON.stringify(purchases, null, 2)}</pre> */}
             </div>
             <div>
-                <h2>Fetched reviewed (State)</h2>
-                <pre>{JSON.stringify(reviewed, null, 2)}</pre>
+                {/* <h2>Fetched reviewed (State)</h2>
+                <pre>{JSON.stringify(reviewed, null, 2)}</pre> */}
             </div>
 
             <div>
@@ -223,7 +223,6 @@ import { useNavigate } from 'react-router-dom';
 
                         {purchases.length > 0 ? (
                             purchases.map((purchase, index) => (
-                                // 変更点: purchasesのデータ構造に基づいて idea を取得
                                 <IdeaCard
                                     key={index}
                                     idea={purchase.idea}
@@ -256,7 +255,6 @@ import { useNavigate } from 'react-router-dom';
 
                         {ideas.length > 0 ? (
                             ideas.map((idea, index) => (
-                                // 変更点: ideasデータ構造に基づいて idea をそのまま使用
                                 <IdeaCard
                                     key={index}
                                     idea={idea}

@@ -44,7 +44,7 @@
 import React from 'react';
 
 // IdeaCard コンポーネント定義
-const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [] }) => {
+const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], updatedAt = '' }) => {
     return (
         <div className="idea-card">
             <div className="idea-card__content">
@@ -79,6 +79,12 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [] }) =
                     <p className="idea-card__category">
                         <i className="fa-solid fa-tags"></i>{isPlaceholder ? '' : categories[idea.category_id]}
                     </p>
+
+                    {/* 投稿日を表示（更新日時を使用） */}
+                    <p className="idea-card__updated-at">
+                        <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : new Date(updatedAt).toLocaleDateString()}
+                    </p>
+
                 </div>
             </div>
             {/* データがない場合はボタンを表示しない */}

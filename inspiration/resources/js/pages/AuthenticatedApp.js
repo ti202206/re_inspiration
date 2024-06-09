@@ -18,6 +18,7 @@ import IdeaUpdate from "./IdeaUpdate";
 import IdeaDetail from "./IdeaDetail";
 import ReviewSubmission from "./ReviewSubmission";
 import ReviewUpdate from "./ReviewUpdate";
+import Profile from "./profile";
 // const AuthenticatedApp = () => {
 //     return (
 //         <Router>
@@ -80,6 +81,7 @@ const AuthenticatedApp = () => {
                 {/* <Route path="/login" element={<LoginForm />} /> */}
                 <Route path="/idea-update/:id" element={<IdeaUpdate />} />
                 <Route path="/idea-detail/:id" element={<IdeaDetail />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         // </Router>
     );
