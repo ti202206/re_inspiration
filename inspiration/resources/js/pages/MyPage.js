@@ -191,7 +191,7 @@ import { useNavigate } from 'react-router-dom';
 
                         {favorites.length > 0 ? (
                             favorites.map((favorite, index) => (
-                                // 変更点: favoritesのデータ構造に基づいて idea を取得
+                                // favoritesのデータ構造に基づいて idea を取得
                                 <IdeaCard
                                     key={index}
                                     idea={favorite.idea}

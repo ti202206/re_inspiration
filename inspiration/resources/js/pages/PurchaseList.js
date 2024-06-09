@@ -50,7 +50,7 @@ function PurchasesList() {
             console.error("Error fetching purchases:", error);
             if (error.response && error.response.status === 401) {
                 setIsAuthenticated(false); // 認証エラーの場合、認証状態を false に設定
-                navigate('/login'); // 追加: 認証エラーの場合、ログインページへリダイレクト
+                navigate('/login'); // 認証エラーの場合、ログインページへリダイレクト
             }
         }
     };

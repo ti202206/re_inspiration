@@ -19,6 +19,7 @@ import IdeaDetail from "./IdeaDetail";
 import ReviewSubmission from "./ReviewSubmission";
 import ReviewUpdate from "./ReviewUpdate";
 import Profile from "./profile";
+import ProfileEdit from "./ProfileEdit";
 // const AuthenticatedApp = () => {
 //     return (
 //         <Router>
@@ -82,6 +83,7 @@ const AuthenticatedApp = () => {
                 <Route path="/idea-update/:id" element={<IdeaUpdate />} />
                 <Route path="/idea-detail/:id" element={<IdeaDetail />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/profile-edit" element={<ProfileEdit />} />
             </Routes>
         // </Router>
     );

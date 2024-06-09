@@ -122,7 +122,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom'; // `useNavigate` を追加して遷移を管理
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -131,7 +131,7 @@ const ReviewSubmission = () => {
     const [idea, setIdea] = useState(null);
     const [reviewText, setReviewText] = useState('');
     const [rating, setRating] = useState(0);
-    const [error, setError] = useState(null); // エラーメッセージの状態を追加
+    const [error, setError] = useState(null); // エラーメッセージの状態管理
     const navigate = useNavigate(); // ページ遷移に使用
 
     useEffect(() => {

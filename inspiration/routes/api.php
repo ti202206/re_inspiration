@@ -81,6 +81,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfileController;
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:sanctum');
@@ -106,12 +107,18 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/purchases/{id}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::get('/reviewed-purchases', [PurchaseController::class, 'myReviewedPurchases'])->name('purchases.reviewed');
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
-    
-    // レビューを投稿および更新するルート
     Route::post('/reviews/{purchase}', [PurchaseController::class, 'storeOrUpdateReview'])->name('reviews.storeOrUpdate');
     
+        // profile関連のルート
+        Route::get('/user', [ProfileController::class, 'getUser']);
+        Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
+
+
     // 認証されたユーザー情報の取得
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    // Route::get('/user', function (Request $request) {
+    //     return $request->user();
+    // });
+
+
+
 });

@@ -77,15 +77,62 @@ axios.defaults.baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.withCredentials = true;
 
+// axios.interceptors.request.use(config => {
+//     const token = Cookies.get('auth_token');
+//     if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+// }, error => {
+//     return Promise.reject(error);
+// });
+
+// 認証が不要なパスのリスト
+const authFreePaths = [
+    '/', // トップページのルート
+    '/api/auth/login', // ログインAPI
+    '/api/auth/register', // 登録API
+];
+
+// 認証トークンの設定
+// axios.interceptors.request.use(config => {
+//     const token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
+//     if (token) {
+//         config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
+//     }
+//     return config;
+// }, error => {
+//     return Promise.reject(error);
+// });
+// axios.interceptors.request.use(config => {
+//     const token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
+//     // 認証が不要なパスの完全一致でチェック
+//     const isAuthFree = authFreePaths.some(path => config.url.startsWith(axios.defaults.baseURL + path));
+//     // 認証が不要なパスの場合はトークンをヘッダーに追加しない
+//     if (!isAuthFree && token) {
+//         config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
+//     }
+//     return config;
+// }, error => {
+//     return Promise.reject(error);
+// });
+
+// axiosConfig.js
+
+// 認証トークンの設定
 axios.interceptors.request.use(config => {
-    const token = Cookies.get('auth_token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    const token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
+    // [修正] 認証が不要なパスの完全一致でチェック
+    const isAuthFree = authFreePaths.some(path => config.url.startsWith(path) || config.url.startsWith(axios.defaults.baseURL + path));
+    // 認証が不要なパスの場合はトークンをヘッダーに追加しない
+    if (!isAuthFree && token) {
+        config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
     }
     return config;
 }, error => {
     return Promise.reject(error);
 });
+
 
 export default axios;
 

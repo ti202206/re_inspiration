@@ -12,6 +12,7 @@ const Register = () => {
         passwordConfirmation: "",
         icon: null,
     });
+    const [iconPreview, setIconPreview] = useState(null);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -39,15 +40,46 @@ const Register = () => {
         }
     }, []);
 
-    const handleChange = (event) => {
-        const { name, value, files } = event.target;
-        if (name === "icon") {
-            setFormData((prevState) => ({ ...prevState, [name]: files[0] }));
-        } else {
-            setFormData((prevState) => ({ ...prevState, [name]: value }));
-        }
-    };
+    // const handleChange = (event) => {
+    //     const { name, value, files } = event.target;
+    //     if (name === "icon") {
+    //         setFormData((prevState) => ({ ...prevState, [name]: files[0] }));
+    //     } else {
+    //         setFormData((prevState) => ({ ...prevState, [name]: value }));
+    //     }
+    // };
 
+        // フォームデータの変更ハンドラ
+        const handleChange = (event) => {
+            const { name, value, files } = event.target;
+            if (name === "icon") {
+                const file = files[0];
+                setFormData((prevState) => ({ ...prevState, [name]: file }));
+    
+                // 追加: アイコンのプレビューを更新
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setIconPreview(reader.result);
+                };
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    setIconPreview(null);
+                }
+            } else {
+                setFormData((prevState) => ({ ...prevState, [name]: value }));
+            }
+        };
+        // const handleChange = (event) => {
+        //     const { name, value, files } = event.target;
+        //     if (name === "icon") {
+        //         setFormData((prevState) => ({ ...prevState, [name]: files[0] })); // アイコンファイルの処理
+        //     } else {
+        //         setFormData((prevState) => ({ ...prevState, [name]: value }));
+        //     }
+        // };
+
+        //フォーム送信
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData();

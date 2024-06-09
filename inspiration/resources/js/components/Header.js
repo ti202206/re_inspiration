@@ -115,7 +115,7 @@ const Header = () => {
                         <>
                         {user && (
                             <div className="header__user">
-                                <img src="/path/to/user-icon.png" alt="User Icon" className="header__user-icon" onClick={handleProfileClick} />
+                                <img src={user.profile_image_url || '/images/default-user-icon.png'} alt="User Icon" className="header__user-icon" onClick={handleProfileClick} style={{ width: '40px', height: '40px' }}/>
                                 <span className="header__user-name" onClick={handleProfileClick}>{user.name}</span>
                             </div>
                         )}

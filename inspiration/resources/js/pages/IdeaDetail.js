@@ -63,8 +63,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 const IdeaDetail = () => {
     const { id } = useParams(); // URLパラメータからIDを取得
     const [idea, setIdea] = useState(null);
-    const [error, setError] = useState(null); // エラーメッセージの状態を追加
-    const navigate = useNavigate(); // navigateを追加
+    const [error, setError] = useState(null); // エラーメッセージの状態を管理
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchIdea = async () => {

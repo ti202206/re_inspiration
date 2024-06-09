@@ -130,7 +130,7 @@ const ReviewUpdate = () => {
     const { reviewId } = location.state || {}; // 以前の画面からのreviewIdを受け取る
     const [review, setReview] = useState(''); // 空文字列で初期化
     const [rating, setRating] = useState(0); // 0で初期化
-    const [error, setError] = useState(null); // エラーメッセージの状態を追加
+    const [error, setError] = useState(null); // エラーメッセージの状態管理
 
     useEffect(() => {
         const fetchReviewAndIdea = async () => {

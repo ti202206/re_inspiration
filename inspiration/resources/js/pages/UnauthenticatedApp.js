@@ -14,10 +14,10 @@ import IdeaUpdate from "./IdeaUpdate"; //ページ確認用
 const UnauthenticatedApp = () => (
     // <Router>
         <Routes>
-            {/* <Route path="/" element={<TopPage />} /> */}
+            <Route path="/" element={<TopPage />} />
             {/* <Route path="/login" element={<LoginForm />} /> */}
-            {/* <Route path="/register" element={<Register />} /> */}
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<NotFound />} />
             {/* <Route path="/mypage" element={<MyPage />} /> */}
             {/* <Route path="/purchases" element={<PurchaseList />} /> ページ確認用 */}
             {/* <Route path="/favorites" element={<FavoriteList />} /> ページ確認用 */}

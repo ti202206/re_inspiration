@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_image_path',
     ];
 
     /**
@@ -41,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        // プロフィール画像のURLを返すアクセサ
+        public function getProfileImageUrlAttribute()
+        {
+            return $this->profile_image 
+                ? asset('storage/' . $this->profile_image) 
+                : asset('images/default-user-icon.png'); // デフォルトのアイコンパス
+        }
 }

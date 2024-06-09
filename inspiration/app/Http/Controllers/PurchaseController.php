@@ -398,7 +398,7 @@ class PurchaseController extends Controller
         $reviewedPurchases = Purchase::where('buyer_id', $user->id)
             ->whereNotNull('review')
             ->with(['idea:id,category_id,title,overview'])
-            ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']);
+            ->get(['id', 'idea_id', 'review', 'rating', 'reviewed_at','created_at', 'updated_at']);
 
         return response()->json($reviewedPurchases);
     }
