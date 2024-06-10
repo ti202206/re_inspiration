@@ -40,19 +40,8 @@ import { useNavigate } from 'react-router-dom';
                 });
                 const sortedIdeas = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentIdeas = sortedIdeas.slice(0, 5);
-                // setIdeas(recentIdeas);
-                // console.log('Fetched ideas:', recentIdeas);
-
-                const ideasWithUser = await Promise.all(recentIdeas.map(async (idea) => {
-                    const userResponse = await axios.get(`/api/users/${idea.user_id}`);
-                    return {
-                        ...idea,
-                        user: userResponse.data
-                    };
-                }));
-    
-                setIdeas(ideasWithUser);
-                console.log('Fetched ideas with user:', ideasWithUser);
+                setIdeas(recentIdeas);
+                console.log('Fetched ideas:', recentIdeas);
             } catch (error) {
                 console.error('Error fetching ideas:', error);
             }
@@ -68,27 +57,12 @@ import { useNavigate } from 'react-router-dom';
                 });
                 const sortedFavorites = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentFavorites = sortedFavorites.slice(0, 5);
-                // setFavorites(recentFavorites);
-                // console.log('Fetched favorites:', recentFavorites);
-                const favoritesWithUser = await Promise.all(recentFavorites.map(async (favorite) => {
-                    const userResponse = await axios.get(`/api/users/${favorite.idea.user_id}`);
-                    return {
-                        ...favorite,
-                        idea: {
-                            ...favorite.idea,
-                            user: userResponse.data
-                        }
-                    };
-                }));
-    
-                setFavorites(favoritesWithUser);
-                console.log('Fetched favorites with user:', favoritesWithUser);
-
+                setFavorites(recentFavorites);
+                console.log('Fetched favorites:', recentFavorites);
             } catch (error) {
                 console.error('Error fetching favorites:', error);
             }
         };
-        
 
         // 購入済み情報を取得
         const fetchMyPurchases = async () => {
@@ -102,25 +76,10 @@ import { useNavigate } from 'react-router-dom';
                 const recentPurchases = sortedPurchases.slice(0, 5);
                 setPurchases(recentPurchases);
                 console.log('Fetched purchases:', recentPurchases);
-                // const purchasesWithUser = await Promise.all(recentPurchases.map(async (purchase) => {
-                //     const userResponse = await axios.get(`/api/users/${purchase.idea.user_id}`);
-                //     return {
-                //         ...purchase,
-                //         idea: {
-                //             ...purchase.idea,
-                //             user: userResponse.data
-                //         }
-                //     };
-                // }));
-    
-                setPurchases(purchasesWithUser);
-                console.log('Fetched purchases with user:', purchasesWithUser);
-
             } catch (error) {
                 console.error('Error fetching purchases:', error);
             }
         };
-
 
         // レビュー情報を取得
         const fetchMyReviewed = async () => {
@@ -134,25 +93,10 @@ import { useNavigate } from 'react-router-dom';
                 const recentReviewed = sortedReviewed.slice(0, 5);
                 setReviewed(recentReviewed);
                 console.log('Fetched Reviewed:', recentReviewed);
-                // const reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
-                //     const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
-                //     return {
-                //         ...review,
-                //         idea: {
-                //             ...review.idea,
-                //             user: userResponse.data
-                //         }
-                //     };
-                // }));
-    
-                setReviewed(reviewedWithUser);
-                console.log('Fetched Reviewed with user:', reviewedWithUser);
-
             } catch (error) {
                 console.error('Error fetching Reviewed:', error);
             }
         };
-        
 
         // カテゴリ情報を取得
         const fetchCategories = async () => {
@@ -221,16 +165,16 @@ import { useNavigate } from 'react-router-dom';
                 <pre>{JSON.stringify(ideas, null, 2)}</pre> */}
             </div>
             <div>
-                <h2>Fetched favorites (State)</h2>
-                <pre>{JSON.stringify(favorites, null, 2)}</pre>
+                {/* <h2>Fetched favorites (State)</h2>
+                <pre>{JSON.stringify(favorites, null, 2)}</pre> */}
             </div>
             <div>
                 {/* <h2>Fetched purchase (State)</h2>
                 <pre>{JSON.stringify(purchases, null, 2)}</pre> */}
             </div>
             <div>
-                {/* <h2>Fetched reviewed (State)</h2>
-                <pre>{JSON.stringify(reviewed, null, 2)}</pre> */}
+                <h2>Fetched reviewed (State)</h2>
+                <pre>{JSON.stringify(reviewed, null, 2)}</pre>
             </div>
 
             <div>
@@ -255,7 +199,6 @@ import { useNavigate } from 'react-router-dom';
                                     categories={categories}
                                     isPlaceholder={false}
                                     updatedAt={favorite.idea.updated_at}
-                                    // user={favorite.idea.user}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -288,7 +231,6 @@ import { useNavigate } from 'react-router-dom';
                                     categories={categories}
                                     isPlaceholder={false}
                                     updatedAt={purchase.idea.updated_at}
-                                    // user={purchase.idea.user}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -313,32 +255,7 @@ import { useNavigate } from 'react-router-dom';
                             <h2>投稿したアイディア（最新５件）</h2>
                             <a href="/my-ideas">全てを表示</a>
                         </div>
-
-                        {ideas.length > 0 ? (
-        ideas.map((idea, index) => (
-            <IdeaCard
-                key={index}
-                idea={idea}
-                categories={categories}
-                isPlaceholder={false}
-                updatedAt={idea.updated_at}
-                // user={user}
-                buttons={[
-                    {
-                        label: "詳細",
-                        onClick: () => handleDetailClick(idea.id),
-                    },
-                    {
-                        label: "編集",
-                        onClick: () => handleIdeaUpdateClick(idea.id),
-                    },
-                ]}
-            />
-        ))
-    ) : (
-        <IdeaCard isPlaceholder={true} />
-    )}
-                        {/* {reviewed.length > 0 ? (
+                        {reviewed.length > 0 ? (
                             reviewed.map((review, index) => (
                                 // reviewedのデータ構造に基づいて idea を取得
                                 <ReviewCard // 変更：ReviewCard を使用
@@ -360,7 +277,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <ReviewCard isPlaceholder={true} />
-                        )} */}
+                        )}
 
                         {/* {ideas.length > 0 ? (
                             ideas.map((idea, index) => (

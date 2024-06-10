@@ -24,12 +24,6 @@ class Idea extends Model
         'purchased'
     ];
 
-    // リレーション： user
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     // リレーション: purchases
     public function purchases()
     {
