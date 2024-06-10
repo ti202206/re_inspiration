@@ -11252,7 +11252,7 @@ var ReviewCard = function ReviewCard(_ref) {
           className: "idea-card__updated-at",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-clock"
-          }), isPlaceholder ? '' : updatedDate]
+          }), isPlaceholder ? '' : new Date(idea.updated_at).toLocaleDateString()]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         className: "idea-card__user",
@@ -15379,10 +15379,6 @@ function ReviewsList() {
     _useState2 = _slicedToArray(_useState, 2),
     reviews = _useState2[0],
     setReviews = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    currentUser = _useState4[0],
-    setCurrentUser = _useState4[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
 
   // レビュー情報を取得
@@ -15421,41 +15417,8 @@ function ReviewsList() {
       return _ref.apply(this, arguments);
     };
   }();
-  var fetchCurrentUser = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var response;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
-              headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
-              }
-            });
-          case 3:
-            response = _context2.sent;
-            setCurrentUser(response.data);
-            _context2.next = 10;
-            break;
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            console.error('Error fetching current user:', _context2.t0);
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 7]]);
-    }));
-    return function fetchCurrentUser() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchReviews();
-    fetchCurrentUser();
   }, []);
   var handleDetailClick = function handleDetailClick(id) {
     navigate("/idea-detail/".concat(id));
@@ -15472,7 +15435,6 @@ function ReviewsList() {
         className: "section-container",
         children: reviews.length > 0 ? reviews.map(function (review, index) {
           var _review$buyer;
-          var isOwner = currentUser && review.buyer_id === currentUser.id;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             idea: review.idea,
             review: review,
@@ -15480,18 +15442,17 @@ function ReviewsList() {
               name: ((_review$buyer = review.buyer) === null || _review$buyer === void 0 ? void 0 : _review$buyer.name) || '匿名ユーザー'
             } // buyer の名前を表示
             ,
-            isOwner: isOwner,
             buttons: [{
               label: "詳細",
               onClick: function onClick() {
                 return handleDetailClick(review.idea.id);
               }
-            }, isOwner && {
+            }, {
               label: "レビューを編集",
               onClick: function onClick() {
                 return handleEditReviewClick(review.id);
               }
-            }].filter(Boolean) // undefinedを除去
+            }]
           }, index);
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
           isPlaceholder: true

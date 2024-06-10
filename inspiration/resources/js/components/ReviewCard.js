@@ -67,7 +67,7 @@ import React from 'react';
 
 const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [], isPlaceholder = false }) => {
     const updatedDate = idea.updated_at ? new Date(idea.updated_at).toLocaleDateString() : '';
-
+    
     return (
         <div className="idea-card">
             <div className="idea-card__content">
@@ -88,7 +88,7 @@ const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [], isPlaceho
                         <i className="fa-regular fa-thumbs-up"></i>{idea.favorite_count || 0}
                     </span>
                     <p className="idea-card__updated-at">
-                        <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : updatedDate}
+                        <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : new Date(idea.updated_at).toLocaleDateString()}
                     </p>
                 </div>
                 <p className="idea-card__user">
