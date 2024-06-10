@@ -109,10 +109,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
     Route::post('/reviews/{purchase}', [PurchaseController::class, 'storeOrUpdateReview'])->name('reviews.storeOrUpdate');
     
-        // profile関連のルート
-        Route::get('/user', [ProfileController::class, 'getUser']);
-        Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
-
+    // profile関連のルート
+    Route::get('/user', [ProfileController::class, 'getUser']);
+    Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
+    Route::get('/users/{id}', [ProfileController::class, 'getUserById']);
 
     // 認証されたユーザー情報の取得
     // Route::get('/user', function (Request $request) {

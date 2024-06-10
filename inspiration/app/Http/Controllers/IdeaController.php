@@ -27,7 +27,7 @@ class IdeaController extends Controller
     public function index()
     {
         //ideaテーブルの全てのデータを取得
-        $ideas = Idea::orderByDesc('created_at')->get();
+        $ideas = Idea::with('user')->orderByDesc('created_at')->get();
 
         // 各アイディアに平均評価とお気に入り数を追加
         $ideas->each(function ($idea) {
@@ -52,8 +52,8 @@ class IdeaController extends Controller
         $user = Auth::user();
 
         // ユーザーが投稿したアイディアを取得
-        $ideas = Idea::where('user_id', $user->id)->orderByDesc('created_at')->get();
-
+        // $ideas = Idea::where('user_id', $user->id)->orderByDesc('created_at')->get();
+        $ideas = Idea::with('user')->where('user_id', $user->id)->orderByDesc('created_at')->get();
         // 各アイディアに平均評価とお気に入り数を追加
         $ideas->each(function ($idea) {
             $idea->average_rating = $idea->averageRating;
@@ -92,8 +92,8 @@ class IdeaController extends Controller
         // return $idea ? response()->json($idea, 201) : response()->json([], 500);
 
 
-                // 修正点: バリデーション済みのデータを使用してアイデアを作成
-                $validatedData = $request->validated(); // バリデーション済みデータを取得
+                // バリデーション済みのデータを使用してアイデアを作成
+                $validatedData = $request->validated();
                 $idea = new Idea();
                 $idea->user_id = Auth::id();
                 $idea->category_id = $validatedData['category_id'];

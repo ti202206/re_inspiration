@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +33,25 @@ class ProfileController extends Controller
 
         return response()->json(['message' => 'プロフィール画像が更新されました', 'path' => $path]);
     }
+
+        //＊＊＊＊＊＊変更：特定のユーザー情報の取得メソッド＊＊＊＊＊＊
+        public function getUserById($id)
+        {
+            $user = User::find($id);
+    
+            if (!$user) {
+                return response()->json(['error' => 'ユーザーが見つかりません'], 404);
+            }
+    
+            return response()->json([
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'profile_image_url' => $user->profile_image_path
+                    ? asset('storage/' . $user->profile_image_path)
+                    : asset('images/default-user-icon.png'),
+            ]);
+        }
 
 
     // 認証されたユーザー情報の取得
