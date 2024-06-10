@@ -13660,51 +13660,78 @@ var MyPage = function MyPage() {
   }();
 
   // 購入済み情報を取得
+  // const fetchMyPurchases = async () => {
+  //     try {
+  //         const response = await axios.get('/api/mypurchases', {
+  //             headers: {
+  //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+  //             }
+  //         });
+  //         const sortedPurchases = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  //         const recentPurchases = sortedPurchases.slice(0, 5);
+  //         setPurchases(recentPurchases);
+  //         console.log('Fetched purchases:', recentPurchases);
+  //         // const purchasesWithUser = await Promise.all(recentPurchases.map(async (purchase) => {
+  //         //     const userResponse = await axios.get(`/api/users/${purchase.idea.user_id}`);
+  //         //     return {
+  //         //         ...purchase,
+  //         //         idea: {
+  //         //             ...purchase.idea,
+  //         //             user: userResponse.data
+  //         //         }
+  //         //     };
+  //         // }));
+
+  //         setPurchases(purchasesWithUser);
+  //         console.log('Fetched purchases with user:', purchasesWithUser);
+
+  //     } catch (error) {
+  //         console.error('Error fetching purchases:', error);
+  //     }
+  // };
+
   var fetchMyPurchases = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-      var response, sortedPurchases, recentPurchases;
+      var purchasesWithUser, response, sortedPurchases, recentPurchases;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.prev = 0;
-            _context6.next = 3;
+            purchasesWithUser = []; // 変数を try ブロックの外で宣言
+            _context6.prev = 1;
+            _context6.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/mypurchases', {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
               }
             });
-          case 3:
+          case 4:
             response = _context6.sent;
             sortedPurchases = response.data.sort(function (a, b) {
               return new Date(b.updated_at) - new Date(a.updated_at);
             });
             recentPurchases = sortedPurchases.slice(0, 5);
-            setPurchases(recentPurchases);
-            console.log('Fetched purchases:', recentPurchases);
-            // const purchasesWithUser = await Promise.all(recentPurchases.map(async (purchase) => {
-            //     const userResponse = await axios.get(`/api/users/${purchase.idea.user_id}`);
-            //     return {
-            //         ...purchase,
-            //         idea: {
-            //             ...purchase.idea,
-            //             user: userResponse.data
-            //         }
-            //     };
-            // }));
-
+            console.log('Recent purchases:', recentPurchases);
+            purchasesWithUser = recentPurchases.map(function (purchase) {
+              return _objectSpread(_objectSpread({}, purchase), {}, {
+                idea: _objectSpread(_objectSpread({}, purchase.idea), {}, {
+                  user: purchase.idea.user // すでに user 情報が含まれている場合
+                })
+              });
+            });
             setPurchases(purchasesWithUser);
             console.log('Fetched purchases with user:', purchasesWithUser);
-            _context6.next = 15;
+            _context6.next = 17;
             break;
-          case 12:
-            _context6.prev = 12;
-            _context6.t0 = _context6["catch"](0);
+          case 13:
+            _context6.prev = 13;
+            _context6.t0 = _context6["catch"](1);
             console.error('Error fetching purchases:', _context6.t0);
-          case 15:
+            console.error('Purchases with user:', purchasesWithUser); // エラー時でも値を確認できるようにする
+          case 17:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[0, 12]]);
+      }, _callee6, null, [[1, 13]]);
     }));
     return function fetchMyPurchases() {
       return _ref6.apply(this, arguments);
@@ -13712,51 +13739,98 @@ var MyPage = function MyPage() {
   }();
 
   // レビュー情報を取得
+  // const fetchMyReviewed = async () => {
+  //     try {
+  //         const response = await axios.get('/api/reviewed-purchases', {
+  //             headers: {
+  //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+  //             }
+  //         });
+  //         const sortedReviewed = response.data.sort((a, b) => new Date(b.reviewid_at) - new Date(a.reviewid_at));
+  //         const recentReviewed = sortedReviewed.slice(0, 5);
+  //         setReviewed(recentReviewed);
+  //         console.log('Fetched Reviewed:', recentReviewed);
+  //         // const reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
+  //         //     const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
+  //         //     return {
+  //         //         ...review,
+  //         //         idea: {
+  //         //             ...review.idea,
+  //         //             user: userResponse.data
+  //         //         }
+  //         //     };
+  //         // }));
+
+  //         setReviewed(reviewedWithUser);
+  //         console.log('Fetched Reviewed with user:', reviewedWithUser);
+
+  //     } catch (error) {
+  //         console.error('Error fetching Reviewed:', error);
+  //     }
+  // };
+
   var fetchMyReviewed = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-      var response, sortedReviewed, recentReviewed;
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+      var reviewedWithUser, response, sortedReviewed, recentReviewed;
+      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        while (1) switch (_context8.prev = _context8.next) {
           case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
+            reviewedWithUser = []; // 変数を try ブロックの外で宣言
+            _context8.prev = 1;
+            _context8.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviewed-purchases', {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
               }
             });
-          case 3:
-            response = _context7.sent;
+          case 4:
+            response = _context8.sent;
             sortedReviewed = response.data.sort(function (a, b) {
               return new Date(b.reviewid_at) - new Date(a.reviewid_at);
             });
             recentReviewed = sortedReviewed.slice(0, 5);
-            setReviewed(recentReviewed);
-            console.log('Fetched Reviewed:', recentReviewed);
-            // const reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
-            //     const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
-            //     return {
-            //         ...review,
-            //         idea: {
-            //             ...review.idea,
-            //             user: userResponse.data
-            //         }
-            //     };
-            // }));
-
+            _context8.next = 9;
+            return Promise.all(recentReviewed.map( /*#__PURE__*/function () {
+              var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(review) {
+                var userResponse;
+                return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+                  while (1) switch (_context7.prev = _context7.next) {
+                    case 0:
+                      _context7.next = 2;
+                      return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(review.idea.user_id));
+                    case 2:
+                      userResponse = _context7.sent;
+                      return _context7.abrupt("return", _objectSpread(_objectSpread({}, review), {}, {
+                        idea: _objectSpread(_objectSpread({}, review.idea), {}, {
+                          user: userResponse.data
+                        })
+                      }));
+                    case 4:
+                    case "end":
+                      return _context7.stop();
+                  }
+                }, _callee7);
+              }));
+              return function (_x3) {
+                return _ref8.apply(this, arguments);
+              };
+            }()));
+          case 9:
+            reviewedWithUser = _context8.sent;
             setReviewed(reviewedWithUser);
             console.log('Fetched Reviewed with user:', reviewedWithUser);
-            _context7.next = 15;
+            _context8.next = 18;
             break;
-          case 12:
-            _context7.prev = 12;
-            _context7.t0 = _context7["catch"](0);
-            console.error('Error fetching Reviewed:', _context7.t0);
-          case 15:
+          case 14:
+            _context8.prev = 14;
+            _context8.t0 = _context8["catch"](1);
+            console.error('Error fetching Reviewed:', _context8.t0);
+            console.error('Reviewed with user:', reviewedWithUser); // エラー時でも値を確認できるようにする
+          case 18:
           case "end":
-            return _context7.stop();
+            return _context8.stop();
         }
-      }, _callee7, null, [[0, 12]]);
+      }, _callee8, null, [[1, 14]]);
     }));
     return function fetchMyReviewed() {
       return _ref7.apply(this, arguments);
@@ -13765,36 +13839,36 @@ var MyPage = function MyPage() {
 
   // カテゴリ情報を取得
   var fetchCategories = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
       var response, categoriesMap;
-      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-        while (1) switch (_context8.prev = _context8.next) {
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) switch (_context9.prev = _context9.next) {
           case 0:
-            _context8.prev = 0;
-            _context8.next = 3;
+            _context9.prev = 0;
+            _context9.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
           case 3:
-            response = _context8.sent;
+            response = _context9.sent;
             categoriesMap = response.data.reduce(function (map, category) {
               map[category.id] = category.name;
               return map;
             }, {});
             setCategories(categoriesMap);
             console.log('Fetched categories:', categoriesMap);
-            _context8.next = 12;
+            _context9.next = 12;
             break;
           case 9:
-            _context8.prev = 9;
-            _context8.t0 = _context8["catch"](0);
-            console.error('Error fetching categories:', _context8.t0);
+            _context9.prev = 9;
+            _context9.t0 = _context9["catch"](0);
+            console.error('Error fetching categories:', _context9.t0);
           case 12:
           case "end":
-            return _context8.stop();
+            return _context9.stop();
         }
-      }, _callee8, null, [[0, 9]]);
+      }, _callee9, null, [[0, 9]]);
     }));
     return function fetchCategories() {
-      return _ref8.apply(this, arguments);
+      return _ref9.apply(this, arguments);
     };
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -13824,13 +13898,13 @@ var MyPage = function MyPage() {
   // };
 
   var handleToggleFavorite = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(id) {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(id) {
       var response;
-      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-        while (1) switch (_context9.prev = _context9.next) {
+      return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+        while (1) switch (_context10.prev = _context10.next) {
           case 0:
-            _context9.prev = 0;
-            _context9.next = 3;
+            _context10.prev = 0;
+            _context10.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
               idea_id: id
             }, {
@@ -13839,22 +13913,22 @@ var MyPage = function MyPage() {
               }
             });
           case 3:
-            response = _context9.sent;
+            response = _context10.sent;
             fetchFavorites(); // トグル後にお気に入り情報を再取得
-            _context9.next = 10;
+            _context10.next = 10;
             break;
           case 7:
-            _context9.prev = 7;
-            _context9.t0 = _context9["catch"](0);
-            console.error('お気に入りの解除に失敗しました', _context9.t0);
+            _context10.prev = 7;
+            _context10.t0 = _context10["catch"](0);
+            console.error('お気に入りの解除に失敗しました', _context10.t0);
           case 10:
           case "end":
-            return _context9.stop();
+            return _context10.stop();
         }
-      }, _callee9, null, [[0, 7]]);
+      }, _callee10, null, [[0, 7]]);
     }));
-    return function handleToggleFavorite(_x3) {
-      return _ref9.apply(this, arguments);
+    return function handleToggleFavorite(_x4) {
+      return _ref10.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -13956,7 +14030,7 @@ var MyPage = function MyPage() {
               categories: categories,
               isPlaceholder: false,
               updatedAt: idea.updated_at
-              // user={user}
+              // user={idea.user}
               ,
               buttons: [{
                 label: "詳細",
