@@ -91,38 +91,7 @@ import { useNavigate } from 'react-router-dom';
         
 
         // 購入済み情報を取得
-        // const fetchMyPurchases = async () => {
-        //     try {
-        //         const response = await axios.get('/api/mypurchases', {
-        //             headers: {
-        //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-        //             }
-        //         });
-        //         const sortedPurchases = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-        //         const recentPurchases = sortedPurchases.slice(0, 5);
-        //         setPurchases(recentPurchases);
-        //         console.log('Fetched purchases:', recentPurchases);
-        //         // const purchasesWithUser = await Promise.all(recentPurchases.map(async (purchase) => {
-        //         //     const userResponse = await axios.get(`/api/users/${purchase.idea.user_id}`);
-        //         //     return {
-        //         //         ...purchase,
-        //         //         idea: {
-        //         //             ...purchase.idea,
-        //         //             user: userResponse.data
-        //         //         }
-        //         //     };
-        //         // }));
-    
-        //         setPurchases(purchasesWithUser);
-        //         console.log('Fetched purchases with user:', purchasesWithUser);
-
-        //     } catch (error) {
-        //         console.error('Error fetching purchases:', error);
-        //     }
-        // };
-
         const fetchMyPurchases = async () => {
-            let purchasesWithUser = []; // 変数を try ブロックの外で宣言
             try {
                 const response = await axios.get('/api/mypurchases', {
                     headers: {
@@ -131,60 +100,30 @@ import { useNavigate } from 'react-router-dom';
                 });
                 const sortedPurchases = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
                 const recentPurchases = sortedPurchases.slice(0, 5);
-    
-                console.log('Recent purchases:', recentPurchases);
-    
-                purchasesWithUser = recentPurchases.map(purchase => ({
-                    ...purchase,
-                    idea: {
-                        ...purchase.idea,
-                        user: purchase.idea.user // すでに user 情報が含まれている場合
-                    }
-                }));
+                setPurchases(recentPurchases);
+                console.log('Fetched purchases:', recentPurchases);
+                // const purchasesWithUser = await Promise.all(recentPurchases.map(async (purchase) => {
+                //     const userResponse = await axios.get(`/api/users/${purchase.idea.user_id}`);
+                //     return {
+                //         ...purchase,
+                //         idea: {
+                //             ...purchase.idea,
+                //             user: userResponse.data
+                //         }
+                //     };
+                // }));
     
                 setPurchases(purchasesWithUser);
                 console.log('Fetched purchases with user:', purchasesWithUser);
+
             } catch (error) {
                 console.error('Error fetching purchases:', error);
-                console.error('Purchases with user:', purchasesWithUser); // エラー時でも値を確認できるようにする
             }
         };
 
 
         // レビュー情報を取得
-        // const fetchMyReviewed = async () => {
-        //     try {
-        //         const response = await axios.get('/api/reviewed-purchases', {
-        //             headers: {
-        //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-        //             }
-        //         });
-        //         const sortedReviewed = response.data.sort((a, b) => new Date(b.reviewid_at) - new Date(a.reviewid_at));
-        //         const recentReviewed = sortedReviewed.slice(0, 5);
-        //         setReviewed(recentReviewed);
-        //         console.log('Fetched Reviewed:', recentReviewed);
-        //         // const reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
-        //         //     const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
-        //         //     return {
-        //         //         ...review,
-        //         //         idea: {
-        //         //             ...review.idea,
-        //         //             user: userResponse.data
-        //         //         }
-        //         //     };
-        //         // }));
-    
-        //         setReviewed(reviewedWithUser);
-        //         console.log('Fetched Reviewed with user:', reviewedWithUser);
-
-        //     } catch (error) {
-        //         console.error('Error fetching Reviewed:', error);
-        //     }
-        // };
-        
-
         const fetchMyReviewed = async () => {
-            let reviewedWithUser = []; // 変数を try ブロックの外で宣言
             try {
                 const response = await axios.get('/api/reviewed-purchases', {
                     headers: {
@@ -193,25 +132,27 @@ import { useNavigate } from 'react-router-dom';
                 });
                 const sortedReviewed = response.data.sort((a, b) => new Date(b.reviewid_at) - new Date(a.reviewid_at));
                 const recentReviewed = sortedReviewed.slice(0, 5);
-    
-                reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
-                    const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
-                    return {
-                        ...review,
-                        idea: {
-                            ...review.idea,
-                            user: userResponse.data
-                        }
-                    };
-                }));
+                setReviewed(recentReviewed);
+                console.log('Fetched Reviewed:', recentReviewed);
+                // const reviewedWithUser = await Promise.all(recentReviewed.map(async (review) => {
+                //     const userResponse = await axios.get(`/api/users/${review.idea.user_id}`);
+                //     return {
+                //         ...review,
+                //         idea: {
+                //             ...review.idea,
+                //             user: userResponse.data
+                //         }
+                //     };
+                // }));
     
                 setReviewed(reviewedWithUser);
                 console.log('Fetched Reviewed with user:', reviewedWithUser);
+
             } catch (error) {
                 console.error('Error fetching Reviewed:', error);
-                console.error('Reviewed with user:', reviewedWithUser); // エラー時でも値を確認できるようにする
             }
         };
+        
 
         // カテゴリ情報を取得
         const fetchCategories = async () => {
@@ -381,7 +322,7 @@ import { useNavigate } from 'react-router-dom';
                 categories={categories}
                 isPlaceholder={false}
                 updatedAt={idea.updated_at}
-                // user={idea.user}
+                // user={user}
                 buttons={[
                     {
                         label: "詳細",
