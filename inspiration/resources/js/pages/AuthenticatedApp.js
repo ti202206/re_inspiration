@@ -16,6 +16,7 @@ import { login } from "../api/auth";
 import axios from "axios";
 import IdeaUpdate from "./IdeaUpdate";
 import IdeaDetail from "./IdeaDetail";
+import PurchaseDetail from "./PurchaseDetail";
 import ReviewSubmission from "./ReviewSubmission";
 import ReviewUpdate from "./ReviewUpdate";
 import Profile from "./profile";
@@ -82,6 +83,7 @@ const AuthenticatedApp = () => {
                 {/* <Route path="/login" element={<LoginForm />} /> */}
                 <Route path="/idea-update/:id" element={<IdeaUpdate />} />
                 <Route path="/idea-detail/:id" element={<IdeaDetail />} />
+                <Route path="/purchase-detail/:id" element={<PurchaseDetail />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile-edit" element={<ProfileEdit />} />
             </Routes>
