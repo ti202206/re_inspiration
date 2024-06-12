@@ -151,6 +151,11 @@ import { useNavigate } from 'react-router-dom';
             }
         };
 
+            // 購入済みかどうかを確認
+    const isPurchased = (ideaId) => {
+        return purchases.some((purchase) => purchase.idea.id === ideaId);
+    };
+
 
     return (
         <div>
@@ -191,18 +196,20 @@ import { useNavigate } from 'react-router-dom';
                         </div>
 
                         {favorites.length > 0 ? (
-                            favorites.map((favorite, index) => (
+                            favorites.map((favorite) => (
                                 // favoritesのデータ構造に基づいて idea を取得
                                 <IdeaCard
-                                    key={index}
+                                    key={`favorite-${favorite.idea.id}`}
                                     idea={favorite.idea}
                                     categories={categories}
                                     isPlaceholder={false}
                                     updatedAt={favorite.idea.updated_at}
                                     buttons={[
                                         {
-                                            label: "詳細",
-                                            onClick: () => handleDetailClick(favorite.idea.id),
+                                            // label: "詳細",
+                                            // onClick: () => handleDetailClick(favorite.idea.id),
+                                            label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
+                                            onClick: () => isPurchased(favorite.idea.id) ? handleDetailClick(favorite.idea.id) : handleOverviewClick(favorite.idea.id),
                                         },
                                         {
                                             label: "お気に入りから削除",
@@ -224,13 +231,14 @@ import { useNavigate } from 'react-router-dom';
                         </div>
 
                         {purchases.length > 0 ? (
-                            purchases.map((purchase, index) => (
+                            purchases.map((purchase) => (
                                 <IdeaCard
-                                    key={index}
+                                    key={`purchase-${purchase.id}`}
                                     idea={purchase.idea}
                                     categories={categories}
                                     isPlaceholder={false}
                                     updatedAt={purchase.idea.updated_at}
+                                    price={purchase.price}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -255,34 +263,35 @@ import { useNavigate } from 'react-router-dom';
                             <h2>投稿したアイディア（最新５件）</h2>
                             <a href="/my-ideas">全てを表示</a>
                         </div>
-                        {reviewed.length > 0 ? (
-                            reviewed.map((review, index) => (
-                                // reviewedのデータ構造に基づいて idea を取得
-                                <ReviewCard // 変更：ReviewCard を使用
-                                    key={index}
-                                    idea={review.idea}
-                                    review={review}
-                                    user={user}
+
+                        {ideas.length > 0 ? (
+                            ideas.map((idea) => (
+                                <IdeaCard
+                                    key={`idea-${idea.id}`}
+                                    idea={idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    updatedAt={idea.updated_at}
                                     buttons={[
                                         {
                                             label: "詳細",
-                                            onClick: () => handleDetailClick(review.idea.id),
+                                            onClick: () => handleDetailClick(idea.id),
                                         },
                                         {
-                                            label: "レビューを編集",
-                                            onClick: () => handleReviewUpdateClick(review.idea.id, review.id),
+                                            label: "編集",
+                                            onClick: () => handleIdeaUpdateClick(idea.id),
                                         },
                                     ]}
                                 />
                             ))
                         ) : (
-                            <ReviewCard isPlaceholder={true} />
+                            <IdeaCard isPlaceholder={true} />
                         )}
 
                         {/* {ideas.length > 0 ? (
-                            ideas.map((idea, index) => (
+                            ideas.map((idea) => (
                                 <IdeaCard
-                                    key={index}
+                                    key={idea.id}
                                     idea={idea}
                                     categories={categories}
                                     isPlaceholder={false}
@@ -314,14 +323,14 @@ import { useNavigate } from 'react-router-dom';
                         </div>
 
                         {reviewed.length > 0 ? (
-                            reviewed.map((review, index) => (
+                            reviewed.map((review) => (
                                 // reviewedのデータ構造に基づいて idea を取得
                                 <ReviewCard
-                                    key={index}
+                                    key={review.id}
                                     idea={review.idea}
                                     review={review}
                                     user={user}
-                                    isPlaceholder={false} //＊＊＊＊＊＊変更：isPlaceholderの追加＊＊＊＊＊＊
+                                    isPlaceholder={false}
                                     buttons={[
                                         {
                                             label: "詳細",
@@ -339,10 +348,10 @@ import { useNavigate } from 'react-router-dom';
                         )}
 
                         {/* {reviewed.length > 0 ? (
-                            reviewed.map((review, index) => (
+                            reviewed.map((review) => (
                                 // reviewedのデータ構造に基づいて idea を取得
                                 <IdeaCard
-                                    key={index}
+                                    key={review.id}
                                     idea={review.idea}
                                     categories={categories}
                                     isPlaceholder={false}

@@ -9,6 +9,7 @@ function FavoritesList() {
     const [user, setUser] = useState(null); // ユーザー情報の状態管理
     const [favorites, setFavorites] = useState([]); // お気に入りの状態管理
     const [categories, setCategories] = useState({}); // カテゴリ名のステート
+    const [purchases, setPurchases] = useState([]); // 購入履歴の状態管理
     const navigate = useNavigate();
 
     const fetchUser = async () => {
@@ -44,6 +45,21 @@ function FavoritesList() {
                 }
             };
 
+                // 購入済み情報を取得
+    const fetchMyPurchases = async () => {
+        try {
+            const response = await axios.get("/api/mypurchases", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
+                },
+            });
+            setPurchases(response.data);
+            console.log("Fetched purchases:", response.data);
+        } catch (error) {
+            console.error("Error fetching purchases:", error);
+        }
+    };
+
                     // カテゴリ情報を取得
         const fetchCategories = async () => {
             try {
@@ -59,9 +75,16 @@ function FavoritesList() {
             }
         };
 
+        const isPurchased = (ideaId) => {
+            return purchases.some((purchase) => purchase.idea.id === ideaId);
+        };
+
+
+
         useEffect(() => {
             fetchUser();
             fetchFavorites();
+            fetchMyPurchases();
             fetchCategories();
         }, []);
 
@@ -111,18 +134,21 @@ function FavoritesList() {
                 <section className="section-container">
 
                 {favorites.length > 0 ? (
-                        favorites.map((favorite, index) => {
+                        favorites.map((favorite) => {
                             const {idea} = favorite;
                             return (
                             <IdeaCard
-                                key={index}
+                                key={`favorite-${idea.id}`}
                                 idea={idea}
                                 categories={categories}
                                 isPlaceholder={false} // データがある場合は false
+                                updatedAt={idea.updated_at}
                                 buttons={[
                                     {
-                                        label: "詳細",
-                                        onClick: () => handleDetailClick(idea.id),
+                                        // label: "詳細",
+                                        // onClick: () => handleDetailClick(idea.id),
+                                        label: isPurchased(idea.id) ? "詳細" : "概要",
+                                        onClick: () => isPurchased(idea.id) ? handleDetailClick(idea.id) : handleOverviewClick(idea.id),
                                     },
                                     {
                                         label: "お気に入りから削除",
