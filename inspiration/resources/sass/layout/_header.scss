@@ -98,6 +98,29 @@
         // }
     }
 
+    &__center-button{
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    &__user{
+        display: flex;
+        align-items: center;
+
+        &-icon{
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
+        &_name{
+            cursor: pointer;
+        }
+    }
+
     /* Responsive Styles */
     @media only screen and (max-width: 1200px) {
         &__title{

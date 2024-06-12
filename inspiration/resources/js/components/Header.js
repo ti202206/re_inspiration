@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../axiosConfig';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     // useEffect(() => {
     //     const checkAuth = async () => {
@@ -84,11 +85,29 @@ const Header = () => {
         }
     };
 
+    const handleIdeaSubmissionClick = () => {
+        navigate('/idea-submission');
+    };
+
     return (
         <header className='header'>
             <h1 className="header__title" onClick={handleTitleClick} >Inspiration</h1>
             <nav className="header__nav">
-            {isAuthenticated ? (
+            <ul className="header__menu">
+                    {isAuthenticated ? (
+                        <>
+                            <li className="header__menu--item"><a href="/ideas">アイディア一覧</a></li>
+                            <li className="header__menu--item"><a href="/reviews">レビュー一覧</a></li>
+                        </>
+                    ) : (
+                        <>
+                            <li className="header__menu--item"><a href="#concept">コンセプト</a></li>
+                            <li className="header__menu--item"><a href="#feature">特徴</a></li>
+                            <li className="header__menu--item"><a href="#column">コラム</a></li>
+                        </>
+                    )}
+                </ul>
+            {/* {isAuthenticated ? (
                 <ul className="header__menu">
                     <li className="header__menu--item"><a href="/ideas">アイディア一覧</a></li>
                     <li className="header__menu--item"><a href="/reviews">レビュー一覧</a></li>
@@ -99,12 +118,17 @@ const Header = () => {
                     <li className="header__menu--item"><a href="#feature">特徴</a></li>
                     <li className="header__menu--item"><a href="#column">コラム</a></li>
                 </ul>
-            )}
-                <div className="header__buttons">
-                    <button className="header__button header__buttons--register" onClick={handleRegisterClick}>新規登録</button>
-                    <button className="header__button header__buttons--login" onClick={handleLoginClick}>ログイン</button>
-                    <button className="header__button header__buttons--logout" onClick={handleLogoutClick}>ログアウト</button>
+            )} */}
+                <div className="header__center-button">
+                    {isAuthenticated && location.pathname !== '/idea-submission' && (
+                        <button className="header__button header__buttons--submit" onClick={handleIdeaSubmissionClick}>アイディアを投稿する</button>
+                    )}
                 </div>
+                {/* <div className="header__buttons"> */}
+                    {/* <button className="header__button header__buttons--register" onClick={handleRegisterClick}>新規登録</button> */}
+                    {/* <button className="header__button header__buttons--login" onClick={handleLoginClick}>ログイン</button> */}
+                    {/* <button className="header__button header__buttons--logout" onClick={handleLogoutClick}>ログアウト</button> */}
+                {/* </div> */}
                 <div className="header__buttons">
                     {!isAuthenticated ? (
                         <>
@@ -115,7 +139,7 @@ const Header = () => {
                         <>
                         {user && (
                             <div className="header__user">
-                                <img src={user.profile_image_url || '/images/default-user-icon.png'} alt="User Icon" className="header__user-icon" onClick={handleProfileClick} style={{ width: '40px', height: '40px' }}/>
+                                <img src={user.profile_image_url || '/images/default-user-icon.png'} alt="User Icon" className="header__user-icon" onClick={handleProfileClick} />
                                 <span className="header__user-name" onClick={handleProfileClick}>{user.name}</span>
                             </div>
                         )}

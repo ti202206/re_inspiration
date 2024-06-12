@@ -92,8 +92,8 @@ class IdeaController extends Controller
         // return $idea ? response()->json($idea, 201) : response()->json([], 500);
 
 
-                // 修正点: バリデーション済みのデータを使用してアイデアを作成
-                $validatedData = $request->validated(); // バリデーション済みデータを取得
+                // バリデーション済みのデータを使用してアイデアを作成
+                $validatedData = $request->validated();
                 $idea = new Idea();
                 $idea->user_id = Auth::id();
                 $idea->category_id = $validatedData['category_id'];

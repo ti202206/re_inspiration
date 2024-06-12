@@ -173,8 +173,8 @@ import { useNavigate } from 'react-router-dom';
                 <pre>{JSON.stringify(purchases, null, 2)}</pre> */}
             </div>
             <div>
-                <h2>Fetched reviewed (State)</h2>
-                <pre>{JSON.stringify(reviewed, null, 2)}</pre>
+                {/* <h2>Fetched reviewed (State)</h2>
+                <pre>{JSON.stringify(reviewed, null, 2)}</pre> */}
             </div>
 
             <div>

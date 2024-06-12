@@ -10814,6 +10814,7 @@ var Header = function Header() {
     user = _useState4[0],
     setUser = _useState4[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
 
   // useEffect(() => {
   //     const checkAuth = async () => {
@@ -10924,6 +10925,9 @@ var Header = function Header() {
       window.scrollTo(0, 0);
     }
   };
+  var handleIdeaSubmissionClick = function handleIdeaSubmissionClick() {
+    navigate('/idea-submission');
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
     className: "header",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
@@ -10932,57 +10936,50 @@ var Header = function Header() {
       children: "Inspiration"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
       className: "header__nav",
-      children: [isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
         className: "header__menu",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "header__menu--item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "/ideas",
-            children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u4E00\u89A7"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "header__menu--item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "/reviews",
-            children: "\u30EC\u30D3\u30E5\u30FC\u4E00\u89A7"
-          })
-        })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
-        className: "header__menu",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "header__menu--item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "#concept",
-            children: "\u30B3\u30F3\u30BB\u30D7\u30C8"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "header__menu--item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "#feature",
-            children: "\u7279\u5FB4"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          className: "header__menu--item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "#column",
-            children: "\u30B3\u30E9\u30E0"
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "header__buttons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "header__button header__buttons--register",
-          onClick: handleRegisterClick,
-          children: "\u65B0\u898F\u767B\u9332"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "header__button header__buttons--login",
-          onClick: handleLoginClick,
-          children: "\u30ED\u30B0\u30A4\u30F3"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "header__button header__buttons--logout",
-          onClick: handleLogoutClick,
-          children: "\u30ED\u30B0\u30A2\u30A6\u30C8"
-        })]
+        children: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "/ideas",
+              children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u4E00\u89A7"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "/reviews",
+              children: "\u30EC\u30D3\u30E5\u30FC\u4E00\u89A7"
+            })
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#concept",
+              children: "\u30B3\u30F3\u30BB\u30D7\u30C8"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#feature",
+              children: "\u7279\u5FB4"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#column",
+              children: "\u30B3\u30E9\u30E0"
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "header__center-button",
+        children: isAuthenticated && location.pathname !== '/idea-submission' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "header__button header__buttons--submit",
+          onClick: handleIdeaSubmissionClick,
+          children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u6295\u7A3F\u3059\u308B"
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "header__buttons",
         children: !isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -11002,11 +10999,7 @@ var Header = function Header() {
               src: user.profile_image_url || '/images/default-user-icon.png',
               alt: "User Icon",
               className: "header__user-icon",
-              onClick: handleProfileClick,
-              style: {
-                width: '40px',
-                height: '40px'
-              }
+              onClick: handleProfileClick
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
               className: "header__user-name",
               onClick: handleProfileClick,
@@ -11738,200 +11731,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import IdeaCard from "../components/IdeaCard";
-// import { useNavigate } from "react-router-dom";
-
-// function IdeaCatalog() {
-//     const [ideas, setIdeas] = useState([]);
-//     const [categories,setCategories] = useState({}); // カテゴリーの状態管理
-//     const [user, setUser] = useState(null); // ユーザー情報の状態管理
-//     const [userPurchases, setUserPurchases] = useState([]); // ユーザーの購入情報の状態管理
-//     const navigate = useNavigate();
-
-//         // ユーザー情報の取得
-//         const fetchUser = async () => {
-//             try {
-//                 const response = await axios.get("/api/user", {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`
-//                     }
-//                 });
-//                 setUser(response.data);
-//             } catch (error) {
-//                 console.error("Error fetching user:", error);
-//             }
-//         };
-
-//             // アイディア一覧の取得
-//             const fetchIdeas = async () => {
-//                 try {
-//                     const response = await axios.get("/api/ideas");
-//                     setIdeas(response.data);
-//                 } catch (error) {
-//                     console.error("Error fetching ideas:", error);
-//                 }
-//             };
-
-//                     // カテゴリ情報の取得
-//         const fetchCategories = async () => {
-//             try {
-//                 const response = await axios.get("/api/categories");
-//                 const categoriesMap = response.data.reduce((map, category) => {
-//                     map[category.id] = category.name;
-//                     return map;
-//                 }, {});
-//                 setCategories(categoriesMap);
-//             } catch (error) {
-//                 console.error("Error fetching categories:", error);
-//             }
-//         };
-
-//             // ユーザーの購入情報の取得
-//     const fetchPurchases = async () => {
-//         try {
-//             const response = await axios.get("/api/user/purchases", {
-//                 headers: {
-//                     Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`
-//                 }
-//             });
-//             console.log('Fetched purchases:', response.data);
-//             setUserPurchases(response.data);
-//         } catch (error) {
-//             console.error("Error fetching purchases:", error);
-//         }
-//     };
-
-//     useEffect(() => {
-//         // axios
-//             // .get("/api/ideas")
-//             // .then((response) => setIdeas(response.data))
-//             // .catch((error) => console.error("Error fetching ideas:", error));
-//         fetchUser();
-//         fetchIdeas();
-//         fetchCategories();
-//         fetchPurchases();
-//     }, []);
-
-//     // const handleDetailClick = (id) => {
-//     //     navigate(`/idea-detail/${id}`);
-//     // };
-//     const handleDetailClick = (id) => {
-//         // アイディアの購入状況に応じて、詳細ページまたは概要ページに遷移
-//         const isPurchased = userPurchases.some(purchase => purchase.idea_id === id);
-//         if (isPurchased) {
-//             navigate(`/purchase-detail/${id}`);
-//         } else {
-//             navigate(`/idea-detail/${id}`);
-//         }
-//     };
-
-//     const handleEditClick = (id) => {
-//         navigate(`/idea-update/${id}`);
-//     };
-
-//     return (
-//       <div>
-
-//         {/* <div>
-//            <h1>アイディア一覧</h1>
-//            {ideas.map(idea => (
-//             <div key={idea.id}>{idea.title}</div>
-//           ))}
-//         </div> */}
-
-//         <Header />
-//         <main className="container">
-//             <section className="section-container">
-//                 <h2>アイディア一覧</h2>
-
-//                 {ideas.length > 0 ? (
-//                         ideas.map((idea) => (
-//                             <IdeaCard
-//                                 key={idea.id}
-//                                 idea={idea}
-//                                 categories={categories}
-//                                 isPlaceholder={false}
-//                                 updatedAt={idea.updated_at}
-//                                 buttons={[
-//                                     {
-//                                         label: userPurchases.some(purchase => purchase.idea_id === idea.id)
-//                                             ? "詳細"
-//                                             : "概要",
-//                                         onClick: () => handleDetailClick(idea.id),
-//                                     },
-//                                     //ユーザーIDと一緒の場合表示
-//                                     ...(user && idea.user_id === user.id
-//                                     ? [
-//                                         {
-//                                             label: "編集",
-//                                             onClick: () => handleEditClick(idea.id),
-//                                         },
-//                                     ]
-//                                     : [])
-//                                     // {
-//                                     //     label: "編集",
-//                                     //     onClick: () => handleEditClick(idea.id),
-//                                     // },
-//                                 ]}
-//                             />
-//                         ))
-//                     ) : (
-//                         <IdeaCard isPlaceholder={true} />
-//                     )}
-//                 {/* {ideas.map((idea) => ( //投稿はまだないを出す
-//                     <div className="idea-card" key={idea.id}>
-//                         <div className="idea-card__content">
-//                             <div className="idea-card__title-category">
-//                                 <h3 className="idea-card__title">
-//                                     {idea.title}
-//                                 </h3>
-//                             </div>
-//                             <p className="idea-card__summary">{idea.overview}</p>
-//                             <div className="idea-card__meta">
-//                                 <span className="idea-card__review-count">
-//                                     <i className="fa-regular fa-comment-dots"></i>
-//                                     {idea.reviewCount}
-//                                 </span>
-//                                 <span className="idea-card__average-rating">
-//                                     <i className="fa-regular fa-thumbs-up"></i>
-//                                     {idea.averageRating}
-//                                 </span>
-//                                 <p className="idea-card__category">
-//                                     <i className="fa-solid fa-tags"></i>
-//                                     {idea.category}
-//                                 </p>
-//                                 <p className="idea-card__created_date">
-//                                     <i className="fa-regular fa-clock"></i>
-//                                     {idea.created_date}
-//                                 </p>
-//                             </div>
-//                         </div>
-//                         <div className="idea-card__buttons">
-//                             <button className="idea-card__button">
-//                                 詳細
-//                             </button>
-//                             <button className="idea-card__button">
-//                                 編集
-//                             </button>
-//                         </div>
-//                     </div>
-//                 ))} */}
-
-//             </section>
-//         </main>
-//         <Footer />
-//     </div>
-//     );
-// }
-
-// export default IdeaCatalog;
-
-// ファイル名: IdeaCatalog.js
-
 
 
 
@@ -12498,6 +12297,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -12514,122 +12314,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useState } from "react";
-// import axios from "axios";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-
-// function IdeaSubmission() {
-//     // 初期フォームデータの状態
-//     const initialFormData = {
-//         title: '',
-//         overview: '',
-//         content: '',
-//         price: ''
-//     };
-
-//     const [formData, setFormData] = useState(initialFormData);
-
-//     const handleChange = (e) => {
-//         setFormData({ ...formData, [e.target.name]: e.target.value });
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             const response = await axios.post('/api/ideas', formData);
-//             console.log('Idea Submitted: ', response.data);
-//             // フォームの内容をクリアする
-//             setFormData(initialFormData);
-//         } catch (error) {
-//             console.error('Error submitting idea:', error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <Header />
-//             <main className="container">
-//                 <div className="submission-form">
-//                     <h2>アイデアを投稿する</h2>
-//                     <form onSubmit={handleSubmit}>
-//                         <label htmlFor="title">タイトル:</label>
-//                         <input
-//                             type="text"
-//                             id="title"
-//                             name="title"
-//                             value={formData.title}
-//                             onChange={handleChange}
-//                         /><br />
-//                         <label htmlFor="overview">概要:</label>
-//                         <textarea
-//                             id="overview"
-//                             name="overview"
-//                             value={formData.overview}
-//                             onChange={handleChange}
-//                         /><br />
-//                         <label htmlFor="content">詳細:</label>
-//                         <textarea
-//                             id="content"
-//                             name="content"
-//                             value={formData.content}
-//                             onChange={handleChange}
-//                         /><br />
-//                         <label htmlFor="price">価格:</label>
-//                         <input
-//                             type="text"
-//                             id="price"
-//                             name="price"
-//                             value={formData.price}
-//                             onChange={handleChange}
-//                         /><br />
-//                         <button type="submit">投稿する</button>
-//                     </form>
-//                 </div>
-//             </main>
-//             <Footer />
-//         </div>
-//     );
-// }
-
-// export default IdeaSubmission;
-
-// // styles
-
-// // .submission-form {
-// //   max-width: 600px;
-// //   margin: 20px auto;
-// //   padding: 20px;
-// //   border: 1px solid #ccc;
-// //   border-radius: 8px;
-
-// //   label {
-// //       display: block;
-// //       margin: 10px 0;
-// //   }
-
-// //   input[type="text"],
-// //   textarea {
-// //       width: 100%;
-// //       padding: 8px;
-// //       border: 1px solid #ccc;
-// //       border-radius: 4px;
-// //   }
-
-// //   button {
-// //       background-color: #007bff;
-// //       color: white;
-// //       padding: 10px 15px;
-// //       border: none;
-// //       border-radius: 5px;
-// //       cursor: pointer;
-// //       margin-top: 10px;
-
-// //       &:hover {
-// //           background-color: #0056b3;
-// //       }
-// //   }
-// // }
 
 
 
@@ -12642,7 +12326,8 @@ function IdeaSubmission() {
     overview: '',
     content: '',
     price: '',
-    category_id: ''
+    category_id: '',
+    purchased: false
   };
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialFormData),
     _useState2 = _slicedToArray(_useState, 2),
@@ -12656,6 +12341,7 @@ function IdeaSubmission() {
     _useState6 = _slicedToArray(_useState5, 2),
     errors = _useState6[0],
     setErrors = _useState6[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // カテゴリデータの取得
     var fetchCategories = /*#__PURE__*/function () {
@@ -12691,6 +12377,19 @@ function IdeaSubmission() {
   var handleChange = function handleChange(e) {
     setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
+
+  // const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     try {
+  //         const response = await axios.post('/api/ideas', formData);
+  //         console.log('Idea Submitted: ', response.data);
+  //         setFormData(initialFormData);
+  //         setErrors({});
+  //     } catch (error) {
+  //         console.error('Error submitting idea:', error);
+  //         setErrors(error.response.data.errors || {});
+  //     }
+  // };
   var handleSubmit = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
       var response;
@@ -12700,24 +12399,27 @@ function IdeaSubmission() {
             e.preventDefault();
             _context2.prev = 1;
             _context2.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/ideas', formData);
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/ideas', formData, {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
           case 4:
             response = _context2.sent;
             console.log('Idea Submitted: ', response.data);
-            setFormData(initialFormData);
-            setErrors({});
-            _context2.next = 14;
+            navigate('/my-page'); // ＊＊＊＊＊＊変更：提出後に /my-page にリダイレクト＊＊＊＊＊＊
+            _context2.next = 13;
             break;
-          case 10:
-            _context2.prev = 10;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](1);
             console.error('Error submitting idea:', _context2.t0);
             setErrors(_context2.t0.response.data.errors || {});
-          case 14:
+          case 13:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 10]]);
+      }, _callee2, null, [[1, 9]]);
     }));
     return function handleSubmit(_x) {
       return _ref2.apply(this, arguments);
@@ -14044,13 +13746,7 @@ var MyPage = function MyPage() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-          children: "Fetched reviewed (State)"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("pre", {
-          children: JSON.stringify(reviewed, null, 2)
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
         children: "MyPage"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "section-container",
