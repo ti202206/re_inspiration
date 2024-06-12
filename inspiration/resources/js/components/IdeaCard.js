@@ -2,6 +2,10 @@ import React from 'react';
 
 // IdeaCard コンポーネント定義
 const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], updatedAt = '' }) => {
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(price);
+    };
+
     return (
         <div className="idea-card">
             <div className="idea-card__content">
@@ -40,6 +44,11 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], upd
                     {/* 投稿日を表示（更新日時を使用） */}
                     <p className="idea-card__updated-at">
                         <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : new Date(updatedAt).toLocaleDateString()}
+                    </p>
+
+                    {/* 価格を表示 */}
+                    <p className="idea-card__price">
+                        <i className="fa-solid fa-yen-sign"></i>{isPlaceholder ? '' : formatPrice(idea.price)}
                     </p>
 
                 </div>
