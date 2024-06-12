@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IdeaCard コンポーネント定義
-const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], updatedAt = '' }) => {
+const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], updatedAt = '',price='' }) => {
     const formatPrice = (price) => {
-        return new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(price);
+        return new Intl.NumberFormat('ja-JP', { style: 'decimal' }).format(price);
     };
 
     return (
@@ -48,7 +48,7 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], upd
 
                     {/* 価格を表示 */}
                     <p className="idea-card__price">
-                        <i className="fa-solid fa-yen-sign"></i>{isPlaceholder ? '' : formatPrice(idea.price)}
+                    <i className="fa-solid fa-yen-sign"></i>{isPlaceholder ? '' : formatPrice(price || idea.price)} 
                     </p>
 
                 </div>

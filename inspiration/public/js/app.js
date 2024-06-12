@@ -11046,11 +11046,12 @@ var IdeaCard = function IdeaCard(_ref) {
     _ref$buttons = _ref.buttons,
     buttons = _ref$buttons === void 0 ? [] : _ref$buttons,
     _ref$updatedAt = _ref.updatedAt,
-    updatedAt = _ref$updatedAt === void 0 ? '' : _ref$updatedAt;
+    updatedAt = _ref$updatedAt === void 0 ? '' : _ref$updatedAt,
+    _ref$price = _ref.price,
+    price = _ref$price === void 0 ? '' : _ref$price;
   var formatPrice = function formatPrice(price) {
     return new Intl.NumberFormat('ja-JP', {
-      style: 'currency',
-      currency: 'JPY'
+      style: 'decimal'
     }).format(price);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -11102,7 +11103,7 @@ var IdeaCard = function IdeaCard(_ref) {
           className: "idea-card__price",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-yen-sign"
-          }), isPlaceholder ? '' : formatPrice(idea.price)]
+          }), isPlaceholder ? '' : formatPrice(price || idea.price)]
         })]
       })]
     }), !isPlaceholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -11213,6 +11214,7 @@ var ReviewCard = function ReviewCard(_ref) {
     _ref$isPlaceholder = _ref.isPlaceholder,
     isPlaceholder = _ref$isPlaceholder === void 0 ? false : _ref$isPlaceholder;
   var updatedDate = idea.updated_at ? new Date(idea.updated_at).toLocaleDateString() : '';
+  var userName = user ? user.name : 'ユーザー情報なし';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "idea-card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -11492,6 +11494,10 @@ function FavoritesList() {
     _useState6 = _slicedToArray(_useState5, 2),
     categories = _useState6[0],
     setCategories = _useState6[1]; // カテゴリ名のステート
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    purchases = _useState8[0],
+    setPurchases = _useState8[1]; // 購入履歴の状態管理
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -11566,43 +11572,84 @@ function FavoritesList() {
     };
   }();
 
-  // カテゴリ情報を取得
-  var fetchCategories = /*#__PURE__*/function () {
+  // 購入済み情報を取得
+  var fetchMyPurchases = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var response, categoriesMap;
+      var response;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/mypurchases", {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
+              }
+            });
           case 3:
             response = _context3.sent;
+            setPurchases(response.data);
+            console.log("Fetched purchases:", response.data);
+            _context3.next = 11;
+            break;
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](0);
+            console.error("Error fetching purchases:", _context3.t0);
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 8]]);
+    }));
+    return function fetchMyPurchases() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  // カテゴリ情報を取得
+  var fetchCategories = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response, categoriesMap;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+          case 3:
+            response = _context4.sent;
             categoriesMap = response.data.reduce(function (map, category) {
               map[category.id] = category.name;
               return map;
             }, {});
             setCategories(categoriesMap);
             console.log('Fetched categories:', categoriesMap);
-            _context3.next = 12;
+            _context4.next = 12;
             break;
           case 9:
-            _context3.prev = 9;
-            _context3.t0 = _context3["catch"](0);
-            console.error('Error fetching categories:', _context3.t0);
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](0);
+            console.error('Error fetching categories:', _context4.t0);
           case 12:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee4, null, [[0, 9]]);
     }));
     return function fetchCategories() {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
+  var isPurchased = function isPurchased(ideaId) {
+    return purchases.some(function (purchase) {
+      return purchase.idea.id === ideaId;
+    });
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchUser();
     fetchFavorites();
+    fetchMyPurchases();
     fetchCategories();
   }, []);
   var handleDetailClick = function handleDetailClick(id) {
@@ -11613,13 +11660,13 @@ function FavoritesList() {
   //     navigate(`/review-edit/${ideaId}`);
   // };
   var handleToggleFavorite = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
       var response;
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
+            _context5.prev = 0;
+            _context5.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
               idea_id: id
             }, {
@@ -11628,22 +11675,22 @@ function FavoritesList() {
               }
             });
           case 3:
-            response = _context4.sent;
+            response = _context5.sent;
             fetchFavorites(); // トグル後にお気に入り情報を再取得
-            _context4.next = 10;
+            _context5.next = 10;
             break;
           case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.error('お気に入りの解除に失敗しました', _context4.t0);
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](0);
+            console.error('お気に入りの解除に失敗しました', _context5.t0);
           case 10:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
-      }, _callee4, null, [[0, 7]]);
+      }, _callee5, null, [[0, 7]]);
     }));
     return function handleToggleFavorite(_x) {
-      return _ref4.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -11670,17 +11717,20 @@ function FavoritesList() {
         children: "\u6C17\u306B\u306A\u308B\u4E00\u89A7"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
         className: "section-container",
-        children: favorites.length > 0 ? favorites.map(function (favorite, index) {
+        children: favorites.length > 0 ? favorites.map(function (favorite) {
           var idea = favorite.idea;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             idea: idea,
             categories: categories,
             isPlaceholder: false // データがある場合は false
             ,
+            updatedAt: idea.updated_at,
             buttons: [{
-              label: "詳細",
+              // label: "詳細",
+              // onClick: () => handleDetailClick(idea.id),
+              label: isPurchased(idea.id) ? "詳細" : "概要",
               onClick: function onClick() {
-                return handleDetailClick(idea.id);
+                return isPurchased(idea.id) ? handleDetailClick(idea.id) : handleOverviewClick(idea.id);
               }
             }, {
               label: "お気に入りから削除",
@@ -11690,7 +11740,7 @@ function FavoritesList() {
             }]
             // handleDetailClick={handleDetailClick}
             // handleEditReviewClick={handleEditReviewClick}
-          }, index);
+          }, "favorite-".concat(idea.id));
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
           isPlaceholder: true
         }) // データがない場合は true
@@ -13821,6 +13871,13 @@ var MyPage = function MyPage() {
       return _ref7.apply(this, arguments);
     };
   }();
+
+  // 購入済みかどうかを確認
+  var isPurchased = function isPurchased(ideaId) {
+    return purchases.some(function (purchase) {
+      return purchase.idea.id === ideaId;
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
       className: "container",
@@ -13838,7 +13895,7 @@ var MyPage = function MyPage() {
               href: "/favorites",
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
-          }), favorites.length > 0 ? favorites.map(function (favorite, index) {
+          }), favorites.length > 0 ? favorites.map(function (favorite) {
             return (
               /*#__PURE__*/
               // favoritesのデータ構造に基づいて idea を取得
@@ -13848,9 +13905,11 @@ var MyPage = function MyPage() {
                 isPlaceholder: false,
                 updatedAt: favorite.idea.updated_at,
                 buttons: [{
-                  label: "詳細",
+                  // label: "詳細",
+                  // onClick: () => handleDetailClick(favorite.idea.id),
+                  label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
                   onClick: function onClick() {
-                    return handleDetailClick(favorite.idea.id);
+                    return isPurchased(favorite.idea.id) ? handleDetailClick(favorite.idea.id) : handleOverviewClick(favorite.idea.id);
                   }
                 }, {
                   label: "お気に入りから削除",
@@ -13858,7 +13917,7 @@ var MyPage = function MyPage() {
                     return handleToggleFavorite(favorite.idea.id);
                   }
                 }]
-              }, index)
+              }, "favorite-".concat(favorite.idea.id))
             );
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isPlaceholder: true
@@ -13873,12 +13932,13 @@ var MyPage = function MyPage() {
               href: "/purchases",
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
-          }), purchases.length > 0 ? purchases.map(function (purchase, index) {
+          }), purchases.length > 0 ? purchases.map(function (purchase) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
               idea: purchase.idea,
               categories: categories,
               isPlaceholder: false,
               updatedAt: purchase.idea.updated_at,
+              price: purchase.price,
               buttons: [{
                 label: "詳細",
                 onClick: function onClick() {
@@ -13890,7 +13950,7 @@ var MyPage = function MyPage() {
                   return handleDetailClick(purchase.idea.id);
                 }
               }]
-            }, index);
+            }, "purchase-".concat(purchase.id));
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isPlaceholder: true
           })]
@@ -13904,29 +13964,25 @@ var MyPage = function MyPage() {
               href: "/my-ideas",
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
-          }), reviewed.length > 0 ? reviewed.map(function (review, index) {
-            return (
-              /*#__PURE__*/
-              // reviewedのデータ構造に基づいて idea を取得
-              (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"] // 変更：ReviewCard を使用
-              , {
-                idea: review.idea,
-                review: review,
-                user: user,
-                buttons: [{
-                  label: "詳細",
-                  onClick: function onClick() {
-                    return handleDetailClick(review.idea.id);
-                  }
-                }, {
-                  label: "レビューを編集",
-                  onClick: function onClick() {
-                    return handleReviewUpdateClick(review.idea.id, review.id);
-                  }
-                }]
-              }, index)
-            );
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }), ideas.length > 0 ? ideas.map(function (idea) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              idea: idea,
+              categories: categories,
+              isPlaceholder: false,
+              updatedAt: idea.updated_at,
+              buttons: [{
+                label: "詳細",
+                onClick: function onClick() {
+                  return handleDetailClick(idea.id);
+                }
+              }, {
+                label: "編集",
+                onClick: function onClick() {
+                  return handleIdeaUpdateClick(idea.id);
+                }
+              }]
+            }, "idea-".concat(idea.id));
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isPlaceholder: true
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("section", {
@@ -13939,7 +13995,7 @@ var MyPage = function MyPage() {
               href: "/my-reviews",
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
-          }), reviewed.length > 0 ? reviewed.map(function (review, index) {
+          }), reviewed.length > 0 ? reviewed.map(function (review) {
             return (
               /*#__PURE__*/
               // reviewedのデータ構造に基づいて idea を取得
@@ -13947,8 +14003,7 @@ var MyPage = function MyPage() {
                 idea: review.idea,
                 review: review,
                 user: user,
-                isPlaceholder: false //＊＊＊＊＊＊変更：isPlaceholderの追加＊＊＊＊＊＊
-                ,
+                isPlaceholder: false,
                 buttons: [{
                   label: "詳細",
                   onClick: function onClick() {
@@ -13960,7 +14015,7 @@ var MyPage = function MyPage() {
                     return handleReviewUpdateClick(review.idea.id, review.id);
                   }
                 }]
-              }, index)
+              }, review.id)
             );
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
             isPlaceholder: true

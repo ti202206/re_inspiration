@@ -367,7 +367,7 @@ class PurchaseController extends Controller
         // ユーザーの購入履歴を取得
         $purchases = Cache::remember("user_purchases_{$user->id}", 60, function () use ($user) {
             return Purchase::where('buyer_id', $user->id)
-            ->with(['idea:id,category_id,title,overview,updated_at']) // ideas テーブルからデータを取得
+            ->with(['idea:id,category_id,title,overview,updated_at,price']) // ideas テーブルからデータを取得
             ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at']); // 購入情報とレビューの詳細を取得
         });
         return response()->json($purchases);

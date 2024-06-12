@@ -67,6 +67,7 @@ import React from 'react';
 
 const ReviewCard = ({ idea = {}, review = {}, user = {}, buttons = [], isPlaceholder = false }) => {
     const updatedDate = idea.updated_at ? new Date(idea.updated_at).toLocaleDateString() : '';
+    const userName = user ? user.name : 'ユーザー情報なし';
 
     return (
         <div className="idea-card">
