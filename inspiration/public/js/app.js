@@ -12146,124 +12146,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-// import { useParams, useNavigate } from 'react-router-dom';
-// import IdeaCard from '../components/IdeaCard';
-
-// const IdeaDetail = () => {
-//     const { id } = useParams(); // URLパラメータからIDを取得
-//     const [idea, setIdea] = useState(null);
-//     const [categories, setCategories] = useState({}); // カテゴリの状態管理
-//     const [loadingCategories, setLoadingCategories] = useState(true); // カテゴリのロード状態を管理
-//     const [error, setError] = useState(null); // エラーメッセージの状態を管理
-//     const navigate = useNavigate();
-
-//     useEffect(() => {
-//         const fetchIdea = async () => {
-//             try {
-//                 const response = await axios.get(`/api/ideas/${id}`, {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 setIdea(response.data.idea);
-//             } catch (error) {
-//                 console.error('Error fetching idea:', error);
-//                 setError('データの取得に失敗しました。');
-//             }
-//         };
-
-//         const fetchCategories = async () => {
-//             try {
-//                 const response = await axios.get('/api/categories');
-//                 const categoriesMap = response.data.reduce((map, category) => {
-//                     map[category.id] = category.name;
-//                     return map;
-//                 }, {});
-//                 setCategories(categoriesMap);
-//                 setLoadingCategories(false); // カテゴリのロード状態を更新
-//             } catch (error) {
-//                 console.error('Error fetching categories:', error);
-//                 setError('カテゴリデータの取得に失敗しました。');
-//                 setLoadingCategories(false); // カテゴリのロード状態を更新
-//             }
-//         };
-
-//         fetchIdea();
-//         fetchCategories();
-//     }, [id]);
-
-//     // エラーメッセージを表示
-//     if (error) {
-//       return <div>{error}</div>;
-//   }
-
-//   // データロード中の表示
-//   if (!idea) {
-//       return <div>Loading...</div>;
-//   }
-
-//     return (
-//         <div>
-//             <Header />
-//             <main className="container">
-//             <br /><br /><br /><br /><br />
-//             <IdeaCard
-//                     idea={idea}
-//                     categories={categories}
-//                     isPlaceholder={false}
-//                     updatedAt={idea.updated_at}
-//                     buttons={[
-//                         {
-//                             label: idea.purchased ? "レビューを書く" : "購入する",
-//                             onClick: () => navigate(`/reviews/${id}`),
-//                         },
-//                         {
-//                             label: "お気に入りから削除　お気に入りになっていたら",
-//                             onClick: () => console.log('お気に入り解除') // トグル処理をここに追加
-//                         },
-//                         {
-//                             label: "戻る",
-//                             onClick: () => navigate(-1),
-//                         }
-//                     ]}
-//                 />
-//                 <div>
-//                     {/* <h2>Fetched Idea (State)</h2>
-//                     <pre>{JSON.stringify(idea, null, 2)}</pre> */}
-//                 </div>
-//               {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
-//                 {/* <h2>{idea.title}</h2>
-//                 <p>{idea.overview}</p>
-//                 <p>{idea.content}</p>
-//                 {idea.purchased ? (
-//                     <p>詳細: {idea.content}</p>
-//                 ) : (
-//                     <p>詳細は購入後に見ることができます。</p>
-//                 )}
-//                 <p>価格: {idea.price}</p>
-//                 <div>
-//                     <span>カテゴリ: {idea.category}</span>
-//                     <span>レビュー数: {idea.reviewCount}</span>
-//                     <span>平均評価: {idea.averageRating}</span>
-//                 </div>
-//                 <div className="idea-card__buttons">
-//                     <button className="idea-card__button" onClick={() => navigate(`/reviews/${id}`)}>購入する　購入済みの場合はレビューを書くor更新する</button>
-//                     <button className="idea-card__button" ><i className="fa-regular fa-thumbs-up"></i>解除</button>
-//                 </div>
-//                 <button className="idea-card__button" onClick={() => navigate(-1)}>戻る</button> */}
-//                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-//             </main>
-//             <Footer />
-//         </div>
-//     );
-// };
-
-// export default IdeaDetail;
-
 
 
 
@@ -12281,10 +12163,14 @@ var IdeaDetail = function IdeaDetail() {
     _useState4 = _slicedToArray(_useState3, 2),
     categories = _useState4[0],
     setCategories = _useState4[1]; // カテゴリの状態管理
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    error = _useState6[0],
-    setError = _useState6[1]; // エラーメッセージの状態を管理
+    reviews = _useState6[0],
+    setReviews = _useState6[1]; // レビューの状態管理
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    error = _useState8[0],
+    setError = _useState8[1]; // エラーメッセージの状態を管理
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchIdea = /*#__PURE__*/function () {
@@ -12304,18 +12190,20 @@ var IdeaDetail = function IdeaDetail() {
               response = _context.sent;
               console.log('Fetched idea:', response.data); // デバッグ用
               setIdea(response.data.idea); // アイデアデータを設定
-              _context.next = 12;
+
+              setReviews(response.data.reviews || []);
+              _context.next = 13;
               break;
-            case 8:
-              _context.prev = 8;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](0);
               console.error('Error fetching idea:', _context.t0);
               setError('データの取得に失敗しました。');
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 9]]);
       }));
       return function fetchIdea() {
         return _ref.apply(this, arguments);
@@ -12372,6 +12260,9 @@ var IdeaDetail = function IdeaDetail() {
       children: "Loading..."
     });
   }
+  var sortedReviews = reviews.sort(function (a, b) {
+    return new Date(b.created_at) - new Date(a.created_at);
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("main", {
       className: "container",
@@ -12426,6 +12317,28 @@ var IdeaDetail = function IdeaDetail() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
             children: new Date(idea.updated_at).toLocaleString()
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "review-section",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+            children: "\u30EC\u30D3\u30E5\u30FC"
+          }), sortedReviews.length > 0 ? sortedReviews.map(function (review) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "review",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                  children: review.rating
+                }), " / 5"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                children: review.review
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                  children: new Date(review.created_at).toLocaleString()
+                })
+              })]
+            }, review.id);
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: "\u30EC\u30D3\u30E5\u30FC\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093\u3002"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "idea-card__buttons",
