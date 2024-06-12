@@ -11047,6 +11047,12 @@ var IdeaCard = function IdeaCard(_ref) {
     buttons = _ref$buttons === void 0 ? [] : _ref$buttons,
     _ref$updatedAt = _ref.updatedAt,
     updatedAt = _ref$updatedAt === void 0 ? '' : _ref$updatedAt;
+  var formatPrice = function formatPrice(price) {
+    return new Intl.NumberFormat('ja-JP', {
+      style: 'currency',
+      currency: 'JPY'
+    }).format(price);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "idea-card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -11092,6 +11098,11 @@ var IdeaCard = function IdeaCard(_ref) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-clock"
           }), isPlaceholder ? '' : new Date(updatedAt).toLocaleDateString()]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+          className: "idea-card__price",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fa-solid fa-yen-sign"
+          }), isPlaceholder ? '' : formatPrice(idea.price)]
         })]
       })]
     }), !isPlaceholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -11755,6 +11766,26 @@ function IdeaCatalog() {
     _useState8 = _slicedToArray(_useState7, 2),
     userPurchases = _useState8[0],
     setUserPurchases = _useState8[1]; // 購入情報を空の配列で初期化
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    filteredIdeas = _useState10[0],
+    setFilteredIdeas = _useState10[1]; // フィルタリングされたアイディアの状態
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    filterCategory = _useState12[0],
+    setFilterCategory = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState14 = _slicedToArray(_useState13, 2),
+    filterPrice = _useState14[0],
+    setFilterPrice = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState16 = _slicedToArray(_useState15, 2),
+    filterStartDate = _useState16[0],
+    setFilterStartDate = _useState16[1]; // 開始日
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState18 = _slicedToArray(_useState17, 2),
+    filterEndDate = _useState18[0],
+    setFilterEndDate = _useState18[1]; // 終了日
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
 
   // ユーザー情報の取得
@@ -11804,17 +11835,18 @@ function IdeaCatalog() {
           case 3:
             response = _context2.sent;
             setIdeas(response.data);
-            _context2.next = 10;
+            filterIdeas(response.data);
+            _context2.next = 11;
             break;
-          case 7:
-            _context2.prev = 7;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching ideas:", _context2.t0);
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 7]]);
+      }, _callee2, null, [[0, 8]]);
     }));
     return function fetchIdeas() {
       return _ref2.apply(this, arguments);
@@ -11873,7 +11905,7 @@ function IdeaCatalog() {
             response = _context4.sent;
             console.log('Fetched purchases:', response); // デバッグ用
 
-            //＊＊＊＊＊＊変更：レスポンスが配列かどうか確認し、配列でない場合エラーを表示＊＊＊＊＊＊
+            // レスポンスが配列かどうか確認し、配列でない場合エラーを表示
             if (response.status === 200 && Array.isArray(response.data)) {
               setUserPurchases(response.data); // 購入情報を設定
             } else {
@@ -11901,6 +11933,40 @@ function IdeaCatalog() {
     fetchCategories();
     fetchPurchases();
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    filterIdeas(ideas);
+  }, [filterCategory, filterPrice, filterStartDate, filterEndDate, ideas]);
+
+  // フィルタリングロジック
+  var filterIdeas = function filterIdeas() {
+    var filtered = ideas;
+    if (filterCategory) {
+      filtered = filtered.filter(function (idea) {
+        return idea.category_id === parseInt(filterCategory);
+      });
+    }
+    if (filterPrice) {
+      filtered = filtered.filter(function (idea) {
+        return idea.price <= parseFloat(filterPrice);
+      });
+    }
+    if (filterStartDate) {
+      var startDate = new Date(filterStartDate);
+      filtered = filtered.filter(function (idea) {
+        return new Date(idea.created_at) >= startDate;
+      });
+    }
+    if (filterEndDate) {
+      // 終了日の前日まで
+      // const endDate = new Date(filterEndDate);
+      // filtered = filtered.filter(idea => new Date(idea.created_at) <= endDate);
+      var endDate = new Date(new Date(filterEndDate).setDate(new Date(filterEndDate).getDate() + 1));
+      filtered = filtered.filter(function (idea) {
+        return new Date(idea.created_at) < endDate;
+      });
+    }
+    setFilteredIdeas(filtered);
+  };
   var handleDetailClick = function handleDetailClick(id) {
     var isPurchased = userPurchases.some(function (purchase) {
       return purchase.idea_id === id;
@@ -11921,7 +11987,74 @@ function IdeaCatalog() {
         className: "section-container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
           children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u4E00\u89A7"
-        }), ideas.length > 0 ? ideas.map(function (idea) {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "filters",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "filter-item",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+              htmlFor: "filterCategory",
+              children: "\u30AB\u30C6\u30B4\u30EA:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+              id: "filterCategory",
+              value: filterCategory,
+              onChange: function onChange(e) {
+                return setFilterCategory(e.target.value);
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                value: "",
+                children: "\u3059\u3079\u3066"
+              }), Object.entries(categories).map(function (_ref5) {
+                var _ref6 = _slicedToArray(_ref5, 2),
+                  id = _ref6[0],
+                  name = _ref6[1];
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+                  value: id,
+                  children: name
+                }, id);
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "filter-item",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+              htmlFor: "filterPrice",
+              children: "\u4FA1\u683C (\u4E0A\u9650):"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+              type: "number",
+              id: "filterPrice",
+              value: filterPrice,
+              onChange: function onChange(e) {
+                return setFilterPrice(e.target.value);
+              },
+              min: "0"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "filter-item",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+              htmlFor: "filterStartDate",
+              children: "\u958B\u59CB\u65E5:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+              type: "date",
+              id: "filterStartDate",
+              value: filterStartDate,
+              onChange: function onChange(e) {
+                return setFilterStartDate(e.target.value);
+              }
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "filter-item",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+              htmlFor: "filterEndDate",
+              children: "\u7D42\u4E86\u65E5:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+              type: "date",
+              id: "filterEndDate",
+              value: filterEndDate,
+              onChange: function onChange(e) {
+                return setFilterEndDate(e.target.value);
+              }
+            })]
+          })]
+        }), filteredIdeas.length > 0 ? filteredIdeas.map(function (idea) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             idea: idea,
             categories: categories,
@@ -11949,6 +12082,38 @@ function IdeaCatalog() {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IdeaCatalog);
+
+/* src/components/IdeaCatalog.css */
+
+// .filters {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-bottom: 20px;
+// }
+
+// .filter-item {
+//     flex: 1;
+//     margin-right: 10px;
+// }
+
+// .filter-item:last-child {
+//     margin-right: 0;
+// }
+
+// .filter-item label {
+//     display: block;
+//     margin-bottom: 5px;
+//     font-weight: bold;
+// }
+
+// .filter-item select,
+// .filter-item input {
+//     width: 100%;
+//     padding: 8px;
+//     border: 1px solid #ccc;
+//     border-radius: 4px;
+//     box-sizing: border-box;
+// }
 
 /***/ }),
 
