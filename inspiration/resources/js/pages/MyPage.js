@@ -198,6 +198,29 @@ import { useNavigate } from 'react-router-dom';
 
                         {favorites.length > 0 ? (
                             favorites.map((favorite) => (
+                                //＊＊＊＊＊＊変更：　IdeaCard コンポーネントの buttons 設定の修正　＊＊＊＊＊＊
+                                <IdeaCard
+                                    key={`favorite-${favorite.idea.id}`}
+                                    idea={favorite.idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    updatedAt={favorite.idea.updated_at}
+                                    buttons={[
+                                        {
+                                            label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
+                                            onClick: () => handleDetailClick(favorite.idea.id, isPurchased(favorite.idea.id)),
+                                        },
+                                    ]}
+                                />
+                                //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
+                        )}
+
+{/* 
+                        {favorites.length > 0 ? (
+                            favorites.map((favorite) => (
                                 // favoritesのデータ構造に基づいて idea を取得
                                 <IdeaCard
                                     key={`favorite-${favorite.idea.id}`}
@@ -219,7 +242,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
-                        )}
+                        )} */}
 
                     </section>
 
@@ -265,6 +288,31 @@ import { useNavigate } from 'react-router-dom';
 
                         {ideas.length > 0 ? (
                             ideas.map((idea) => (
+                                //＊＊＊＊＊＊変更：　投稿したアイディアのボタンはそのまま　＊＊＊＊＊＊
+                                <IdeaCard
+                                    key={`idea-${idea.id}`}
+                                    idea={idea}
+                                    categories={categories}
+                                    isPlaceholder={false}
+                                    updatedAt={idea.updated_at}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
+                                            onClick: () => handleDetailClick(idea.id, true),
+                                        },
+                                    ]}
+                                />
+                                //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
+                            ))
+                        ) : (
+                            <IdeaCard isPlaceholder={true} />
+                        )}
+
+
+
+{/* 
+                        {ideas.length > 0 ? (
+                            ideas.map((idea) => (
                                 <IdeaCard
                                     key={`idea-${idea.id}`}
                                     idea={idea}
@@ -285,7 +333,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
-                        )}
+                        )} */}
 
                     </section>
 
@@ -309,6 +357,28 @@ import { useNavigate } from 'react-router-dom';
                                     buttons={[
                                         {
                                             label: "詳細",
+                                            onClick: () => handleDetailClick(review.idea.id, isPurchased(review.idea.id)),
+                                        },
+                                    ]}
+                                />
+                            ))
+                        ) : (
+                            <ReviewCard isPlaceholder={true} />
+                        )}
+                        
+
+                        {/* {reviewed.length > 0 ? (
+                            reviewed.map((review) => (
+                                // reviewedのデータ構造に基づいて idea を取得
+                                <ReviewCard
+                                    key={`review-${review.id}`}
+                                    idea={review.idea}
+                                    review={review}
+                                    user={user}
+                                    isPlaceholder={false}
+                                    buttons={[
+                                        {
+                                            label: "詳細",
                                             onClick: () => handleDetailClick(review.idea.id),
                                         },
                                         // {
@@ -320,7 +390,7 @@ import { useNavigate } from 'react-router-dom';
                             ))
                         ) : (
                             <ReviewCard isPlaceholder={true} />
-                        )}
+                        )} */}
 
                     </section>
 
