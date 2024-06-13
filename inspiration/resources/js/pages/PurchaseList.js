@@ -92,7 +92,7 @@ function PurchasesList() {
 
     const handleDetailClick = (ideaId) => {
         // 詳細ボタンがクリックされたときの処理
-        navigate(`/idea-detail/${ideaId}`); // `/idea-detail/:ideaId` のパスに遷移
+        navigate(`/purchase-detail/${ideaId}`); // `/idea-detail/:ideaId` のパスに遷移
     };
 
     const handleEditReviewClick = (purchaseId) => {
