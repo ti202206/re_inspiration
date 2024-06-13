@@ -150,10 +150,10 @@ function FavoritesList() {
                                         label: isPurchased(idea.id) ? "詳細" : "概要",
                                         onClick: () => isPurchased(idea.id) ? handleDetailClick(idea.id) : handleOverviewClick(idea.id),
                                     },
-                                    {
-                                        label: "お気に入りから削除",
-                                        onClick: () => handleToggleFavorite(idea.id),
-                                    },
+                                    // {
+                                    //     label: "お気に入りから削除",
+                                    //     onClick: () => handleToggleFavorite(idea.id),
+                                    // },
                                 ]}
                                 // handleDetailClick={handleDetailClick}
                                 // handleEditReviewClick={handleEditReviewClick}

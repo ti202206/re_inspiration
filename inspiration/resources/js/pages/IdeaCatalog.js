@@ -196,14 +196,14 @@ function IdeaCatalog() {
                                             : "概要",
                                         onClick: () => handleDetailClick(idea.id),
                                     },
-                                    ...(user && idea.user_id === user.id
-                                        ? [
-                                            {
-                                                label: "編集",
-                                                onClick: () => handleEditClick(idea.id),
-                                            },
-                                        ]
-                                        : [])
+                                    // ...(user && idea.user_id === user.id
+                                    //     ? [
+                                    //         {
+                                    //             label: "編集",
+                                    //             onClick: () => handleEditClick(idea.id),
+                                    //         },
+                                    //     ]
+                                    //     : [])
                                 ]}
                             />
                         ))

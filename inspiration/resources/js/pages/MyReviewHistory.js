@@ -255,10 +255,10 @@ function MyReviewsList() {
                                         label: "詳細",
                                         onClick: () => handleDetailClick(review.idea.id),
                                     },
-                                    {
-                                        label: "レビューを編集",
-                                        onClick: () => handleEditReviewClick(review.id),
-                                    },
+                                    // {
+                                    //     label: "レビューを編集",
+                                    //     onClick: () => handleEditReviewClick(review.id),
+                                    // },
                                 ]}
                             />
                         ))

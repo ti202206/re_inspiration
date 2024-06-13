@@ -122,10 +122,10 @@ function PurchasesList() {
                                         label: "詳細",
                                         onClick: () => handleDetailClick(idea.id),
                                     },
-                                    {
-                                        label: "レビューを編集",
-                                        onClick: () => handleEditReviewClick(purchase.id),
-                                    },
+                                    // {
+                                    //     label: "レビューを編集",
+                                    //     onClick: () => handleEditReviewClick(purchase.id),
+                                    // },
                                 ]}
                             />
                         );
