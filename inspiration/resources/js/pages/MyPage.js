@@ -122,9 +122,17 @@ import { useNavigate } from 'react-router-dom';
             fetchCategories();
         }, []);
 
-        const handleDetailClick = (id) => {
-            navigate(`/idea-detail/${id}`);
-        };
+        // const handleDetailClick = (id) => {
+        //     navigate(`/idea-detail/${id}`);
+        // };
+            // アイディアの詳細ページに遷移する関数
+    const handleDetailClick = (id, purchased) => {
+        if (purchased) {
+            navigate(`/purchase-detail/${id}`); // 購入したアイディアの詳細ページに遷移
+        } else {
+            navigate(`/idea-detail/${id}`); // 購入していないアイディアの詳細ページに遷移
+        }
+    };
 
         const handleIdeaUpdateClick = (id) => {
             navigate(`/idea-update/${id}`);
@@ -140,7 +148,7 @@ import { useNavigate } from 'react-router-dom';
 
         const handleToggleFavorite = async (id) => {
             try {
-                const response = await axios.post('/api/favorites/toggle', { idea_id: id }, {
+                await axios.post('/api/favorites/toggle', { idea_id: id }, {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
@@ -209,7 +217,7 @@ import { useNavigate } from 'react-router-dom';
                                             // label: "詳細",
                                             // onClick: () => handleDetailClick(favorite.idea.id),
                                             label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
-                                            onClick: () => isPurchased(favorite.idea.id) ? handleDetailClick(favorite.idea.id) : handleOverviewClick(favorite.idea.id),
+                                            onClick: () => handleDetailClick(favorite.idea.id),
                                         },
                                         {
                                             label: "お気に入りから削除",
@@ -242,11 +250,11 @@ import { useNavigate } from 'react-router-dom';
                                     buttons={[
                                         {
                                             label: "詳細",
-                                            onClick: () => handleDetailClick(purchase.idea.id),
+                                            onClick: () => handleDetailClick(purchase.idea.id,true),
                                         },
                                         {
                                             label: "評価を変更",
-                                            onClick: () => handleDetailClick(purchase.idea.id),
+                                            onClick: () => handleReviewUpdateClick(purchase.idea.id),
                                         },
                                     ]}
                                 />
@@ -326,7 +334,7 @@ import { useNavigate } from 'react-router-dom';
                             reviewed.map((review) => (
                                 // reviewedのデータ構造に基づいて idea を取得
                                 <ReviewCard
-                                    key={review.id}
+                                    key={`review-${review.id}`}
                                     idea={review.idea}
                                     review={review}
                                     user={user}
