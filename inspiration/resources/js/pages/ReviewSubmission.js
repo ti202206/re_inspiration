@@ -354,17 +354,44 @@ import Footer from '../components/Footer';
 
 const ReviewSubmission = () => {
     const { id } = useParams(); // アイディアIDをURLパラメータから取得
+    const [user, setUser] = useState(null);
     const [idea, setIdea] = useState(null);
+    const [categories, setCategories] = useState({}); // カテゴリの状態管理
+    // const [favorite, setFavorite] = useState({}); // お気に入りの状態管理
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
-    const [error, setError] = useState(null);
     const [averageRating, setAverageRating] = useState(0); // 平均評価
     const [reviewCount, setReviewCount] = useState(0); // レビュー数
     const [favoriteCount, setFavoriteCount] = useState(0); // 気になる数
     const [purchaseCount, setPurchaseCount] = useState(0); // 購入数
+    const [purchases, setPurchases] = useState([]); // ユーザーの購入情報
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get('/api/user', {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}` // 認証トークンを設定
+                }
+            });
+            setUser(response.data);
+            console.log('Fetched user:', response.data);
+
+            // 購入情報を取得
+            const purchaseResponse = await axios.get('/api/mypurchases', {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                }
+            });
+            setPurchases(purchaseResponse.data);
+            console.log('Fetched purchases:', purchaseResponse.data);
+
+        } catch (error) {
+            console.error('Error fetching user:', error);
+        }
+    };
+
         // アイディア情報を取得
         const fetchIdea = async () => {
             try {
@@ -373,19 +400,50 @@ const ReviewSubmission = () => {
                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                     }
                 });
-                const ideaData = response.data.idea;
-                setIdea(ideaData);
-                setAverageRating(response.data.average_rating || 0);
-                setReviewCount(response.data.review_count || 0);
-                setFavoriteCount(response.data.favorite_count || 0);
-                setPurchaseCount(response.data.purchase_count || 0);
+                // const ideaData = response.data.idea;
+                // setIdea(ideaData);
+                // setAverageRating(response.data.average_rating || 0);
+                // setReviewCount(response.data.review_count || 0);
+                // setFavoriteCount(response.data.favorite_count || 0);
+                // setPurchaseCount(response.data.purchase_count || 0);
+                setIdea(response.data.idea); // アイデアデータを設定
+
+                setAverageRating(response.data.average_rating || 0); // 平均評価を設定
+                setReviewCount(response.data.review_count || 0); // レビュー数を設定
+                setFavoriteCount(response.data.favorite_count || 0); // 気になる数を設定
+                setPurchaseCount(response.data.purchase_count || 0); // 購入数を設定
             } catch (error) {
+                // console.error('Error fetching idea:', error);
                 console.error('Error fetching idea:', error);
+
+                if (error.response && error.response.status === 403) {
+                    setError('アクセス権限がありません。');
+                } else {
+                    setError('アイディアの取得に失敗しました。');
+                }
                 setError('アイディアの取得に失敗しました。');
             }
         };
 
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/categories');
+                console.log('Fetched categories:', response.data); // デバッグ用
+                const categoriesMap = response.data.reduce((map, category) => {
+                    map[category.id] = category.name;
+                    return map;
+                }, {});
+                setCategories(categoriesMap);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+                setError('カテゴリデータの取得に失敗しました。');
+            }
+        };
+
+    useEffect(() => {
+        fetchUser();
         fetchIdea();
+        fetchCategories();
     }, [id]);
 
     const handleSubmit = async (event) => {
@@ -397,15 +455,72 @@ const ReviewSubmission = () => {
                 }
             });
             if (response.status === 201) {
-                navigate(`/purchases/${id}`);
+                // navigate(`/purchases/${id}`);
+                navigate(-1);
             } else {
                 throw new Error('レビューの送信に失敗しました。');
             }
         } catch (error) {
             console.error('Error submitting review:', error);
+            // setError('レビューの送信に失敗しました。');
+
+        if (error.response && error.response.status === 403) {
+            setError('アクセス権限がありません。');
+        } else {
             setError('レビューの送信に失敗しました。');
         }
+
+        }
     };
+    //＊＊＊＊＊＊変更：handleSubmit関数の修正＊＊＊＊＊＊
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         // 購入情報を取得
+    //         const purchasesResponse = await axios.get('/api/mypurchases', {
+    //             headers: {
+    //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+    //             }
+    //         });
+    //         const purchases = purchasesResponse.data;
+
+    //         // 対応するpurchaseレコードを検索
+    //         const purchase = purchases.find(p => p.idea_id === Number(ideaId));
+
+    //         let response;
+    //         if (purchase) {
+    //             // 購入レコードが存在する場合は更新
+    //             response = await axios.post(`/api/reviews/${purchase.id}`, { review, rating }, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+    //                 }
+    //             });
+    //         } else {
+    //             // 購入レコードが存在しない場合は新規作成
+    //             response = await axios.post(`/api/purchases`, { idea_id: ideaId, review, rating }, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+    //                 }
+    //             });
+    //         }
+
+    //         if (response.status === 201) {
+    //             navigate(-1);
+    //         } else {
+    //             throw new Error('レビューの送信に失敗しました。');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error submitting review:', error);
+
+    //         if (error.response && error.response.status === 403) {
+    //             setError('アクセス権限がありません。');
+    //         } else {
+    //             setError('レビューの送信に失敗しました。');
+    //         }
+    //     }
+    // };
+    //＊＊＊＊＊＊変更終了＊＊＊＊＊＊
+
 
     // エラーメッセージを表示
     if (error) {
@@ -439,10 +554,13 @@ const ReviewSubmission = () => {
                         <div className="form-value">{idea.content}</div>
                     </div>
 
-                    {/* 追加情報の表示 */}
+
                     <div className="form-group">
                         <label>平均評価:</label>
-                        <div className="form-value">{Number(averageRating).toFixed(1)} / 5</div>
+                        {/* <div className="form-value">{Number(averageRating).toFixed(1)} / 5</div> */}
+                        <div className="form-value">
+                            {averageRating > 0 ? `${Number(averageRating).toFixed(1)} / 5` : '－'}
+                        </div>
                     </div>
 
                     <div className="form-group">

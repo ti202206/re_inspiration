@@ -12445,7 +12445,7 @@ var IdeaDetail = function IdeaDetail() {
     _useState2 = _slicedToArray(_useState, 2),
     user = _useState2[0],
     setUser = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState4 = _slicedToArray(_useState3, 2),
     idea = _useState4[0],
     setIdea = _useState4[1];
@@ -12477,14 +12477,18 @@ var IdeaDetail = function IdeaDetail() {
     _useState18 = _slicedToArray(_useState17, 2),
     purchaseCount = _useState18[0],
     setPurchaseCount = _useState18[1]; // 購入数の状態管理
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState20 = _slicedToArray(_useState19, 2),
-    error = _useState20[0],
-    setError = _useState20[1]; // エラーメッセージの状態を管理
+    purchases = _useState20[0],
+    setPurchases = _useState20[1]; // ユーザーの購入情報
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState22 = _slicedToArray(_useState21, 2),
+    error = _useState22[0],
+    setError = _useState22[1]; // エラーメッセージの状態を管理
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var response;
+      var response, purchaseResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -12499,17 +12503,29 @@ var IdeaDetail = function IdeaDetail() {
             response = _context.sent;
             setUser(response.data);
             console.log('Fetched user:', response.data);
-            _context.next = 11;
-            break;
+
+            // 購入情報を取得
+            _context.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/mypurchases', {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
           case 8:
-            _context.prev = 8;
+            purchaseResponse = _context.sent;
+            setPurchases(purchaseResponse.data);
+            console.log('Fetched purchases:', purchaseResponse.data);
+            _context.next = 16;
+            break;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching user:', _context.t0);
-          case 11:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 13]]);
     }));
     return function fetchUser() {
       return _ref.apply(this, arguments);
@@ -12532,8 +12548,9 @@ var IdeaDetail = function IdeaDetail() {
             });
           case 3:
             response = _context2.sent;
-            setFavorite(response.data);
-            console.log('Fetched favorite:', response.data);
+            // setFavorite(response.data);
+            setFavorite(response.data.favorite || {});
+            console.log('Fetched favorite:', response.data.favorite);
             _context2.next = 11;
             break;
           case 8:
@@ -12679,20 +12696,29 @@ var IdeaDetail = function IdeaDetail() {
     }
   }, [user, id]);
 
-  // エラーメッセージを表示
+  // // エラーメッセージを表示
   if (error) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: error
     });
   }
 
-  // データロード中の表示
+  // // データロード中の表示
   if (!idea) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: "Loading..."
     });
   }
-  var handleToggleFavorite = /*#__PURE__*/function () {
+
+  // 現在のユーザーが特定のアイデアを購入しているかを確認
+  var hasPurchased = function hasPurchased(ideaId) {
+    return purchases.some(function (purchase) {
+      return purchase.idea_id === ideaId;
+    });
+  };
+
+  // 購入処理を実行する関数
+  var handlePurchase = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(ideaId) {
       var response;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -12700,7 +12726,7 @@ var IdeaDetail = function IdeaDetail() {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/purchases', {
               idea_id: ideaId
             }, {
               headers: {
@@ -12709,8 +12735,53 @@ var IdeaDetail = function IdeaDetail() {
             });
           case 3:
             response = _context6.sent;
+            if (!(response.status === 201)) {
+              _context6.next = 9;
+              break;
+            }
+            alert('購入が完了しました。');
+            navigate("/purchase-detail/".concat(ideaId));
+            _context6.next = 10;
+            break;
+          case 9:
+            throw new Error('購入に失敗しました。');
+          case 10:
+            _context6.next = 16;
+            break;
+          case 12:
+            _context6.prev = 12;
+            _context6.t0 = _context6["catch"](0);
+            console.error('Error during purchase:', _context6.t0);
+            alert('購入処理に失敗しました。');
+          case 16:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee6, null, [[0, 12]]);
+    }));
+    return function handlePurchase(_x) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  var handleToggleFavorite = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(ideaId) {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
+              idea_id: ideaId
+            }, {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context7.sent;
             if (!(response.status === 200)) {
-              _context6.next = 8;
+              _context7.next = 8;
               break;
             }
             setFavorite(function (prevFavorite) {
@@ -12718,25 +12789,25 @@ var IdeaDetail = function IdeaDetail() {
                 is_favorite: !prevFavorite.is_favorite // お気に入りの状態を反転
               });
             });
-            _context6.next = 9;
+            _context7.next = 9;
             break;
           case 8:
             throw new Error('サーバーエラー: ' + response.status);
           case 9:
-            _context6.next = 14;
+            _context7.next = 14;
             break;
           case 11:
-            _context6.prev = 11;
-            _context6.t0 = _context6["catch"](0);
-            console.error('お気に入りの解除に失敗しました', _context6.t0);
+            _context7.prev = 11;
+            _context7.t0 = _context7["catch"](0);
+            console.error('お気に入りの解除に失敗しました', _context7.t0);
           case 14:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
-      }, _callee6, null, [[0, 11]]);
+      }, _callee7, null, [[0, 11]]);
     }));
-    return function handleToggleFavorite(_x) {
-      return _ref6.apply(this, arguments);
+    return function handleToggleFavorite(_x2) {
+      return _ref7.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -12798,9 +12869,9 @@ var IdeaDetail = function IdeaDetail() {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             children: "\u5E73\u5747\u8A55\u4FA1:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
-            children: [Number(averageRating).toFixed(1), " / 5"]
+            children: averageRating > 0 ? "".concat(Number(averageRating).toFixed(1), " / 5") : '－'
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",
@@ -12828,12 +12899,20 @@ var IdeaDetail = function IdeaDetail() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "idea-card__buttons",
-          children: [user && idea.user_id !== user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: [user && idea.user_id !== user.id && !hasPurchased(idea.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              className: "btn",
+              onClick: function onClick() {
+                return handlePurchase(idea.id);
+              },
+              children: "\u8CFC\u5165\u3059\u308B"
+            })
+          }), user && idea.user_id !== user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             className: "btn",
             onClick: function onClick() {
               return handleToggleFavorite(idea.id);
             },
-            children: favorite.is_favorite ? '気になる' : 'お気に入りから削除'
+            children: favorite.is_favorite ? '気になるを削除' : '気になる'
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             className: "btn",
             onClick: function onClick() {
@@ -16741,7 +16820,7 @@ function ReviewsList() {
     navigate("/idea-detail/".concat(id));
   };
   var handleEditReviewClick = function handleEditReviewClick(reviewId) {
-    navigate("/review-edit/".concat(reviewId));
+    navigate("/review-update/".concat(reviewId));
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
@@ -17173,88 +17252,195 @@ var ReviewSubmission = function ReviewSubmission() {
     id = _useParams.id; // アイディアIDをURLパラメータから取得
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    idea = _useState2[0],
-    setIdea = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    user = _useState2[0],
+    setUser = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
-    review = _useState4[0],
-    setReview = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    idea = _useState4[0],
+    setIdea = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState6 = _slicedToArray(_useState5, 2),
-    rating = _useState6[0],
-    setRating = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    categories = _useState6[0],
+    setCategories = _useState6[1]; // カテゴリの状態管理
+  // const [favorite, setFavorite] = useState({}); // お気に入りの状態管理
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState8 = _slicedToArray(_useState7, 2),
-    error = _useState8[0],
-    setError = _useState8[1];
+    review = _useState8[0],
+    setReview = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState10 = _slicedToArray(_useState9, 2),
-    averageRating = _useState10[0],
-    setAverageRating = _useState10[1]; // 平均評価
+    rating = _useState10[0],
+    setRating = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
-    reviewCount = _useState12[0],
-    setReviewCount = _useState12[1]; // レビュー数
+    averageRating = _useState12[0],
+    setAverageRating = _useState12[1]; // 平均評価
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState14 = _slicedToArray(_useState13, 2),
-    favoriteCount = _useState14[0],
-    setFavoriteCount = _useState14[1]; // 気になる数
+    reviewCount = _useState14[0],
+    setReviewCount = _useState14[1]; // レビュー数
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState16 = _slicedToArray(_useState15, 2),
-    purchaseCount = _useState16[0],
-    setPurchaseCount = _useState16[1]; // 購入数
+    favoriteCount = _useState16[0],
+    setFavoriteCount = _useState16[1]; // 気になる数
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState18 = _slicedToArray(_useState17, 2),
+    purchaseCount = _useState18[0],
+    setPurchaseCount = _useState18[1]; // 購入数
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    purchases = _useState20[0],
+    setPurchases = _useState20[1]; // ユーザーの購入情報
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState22 = _slicedToArray(_useState21, 2),
+    error = _useState22[0],
+    setError = _useState22[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // アイディア情報を取得
-    var fetchIdea = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response, ideaData;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
-                headers: {
-                  Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
-                }
-              });
-            case 3:
-              response = _context.sent;
-              ideaData = response.data.idea;
-              setIdea(ideaData);
-              setAverageRating(response.data.average_rating || 0);
-              setReviewCount(response.data.review_count || 0);
-              setFavoriteCount(response.data.favorite_count || 0);
-              setPurchaseCount(response.data.purchase_count || 0);
-              _context.next = 16;
-              break;
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](0);
-              console.error('Error fetching idea:', _context.t0);
-              setError('アイディアの取得に失敗しました。');
-            case 16:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[0, 12]]);
-      }));
-      return function fetchIdea() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-    fetchIdea();
-  }, [id]);
-  var handleSubmit = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {
+  var fetchUser = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var response, purchaseResponse;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token')) // 認証トークンを設定
+              }
+            });
+          case 3:
+            response = _context.sent;
+            setUser(response.data);
+            console.log('Fetched user:', response.data);
+
+            // 購入情報を取得
+            _context.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/mypurchases', {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 8:
+            purchaseResponse = _context.sent;
+            setPurchases(purchaseResponse.data);
+            console.log('Fetched purchases:', purchaseResponse.data);
+            _context.next = 16;
+            break;
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](0);
+            console.error('Error fetching user:', _context.t0);
+          case 16:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 13]]);
+    }));
+    return function fetchUser() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  // アイディア情報を取得
+  var fetchIdea = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context2.sent;
+            // const ideaData = response.data.idea;
+            // setIdea(ideaData);
+            // setAverageRating(response.data.average_rating || 0);
+            // setReviewCount(response.data.review_count || 0);
+            // setFavoriteCount(response.data.favorite_count || 0);
+            // setPurchaseCount(response.data.purchase_count || 0);
+            setIdea(response.data.idea); // アイデアデータを設定
+
+            setAverageRating(response.data.average_rating || 0); // 平均評価を設定
+            setReviewCount(response.data.review_count || 0); // レビュー数を設定
+            setFavoriteCount(response.data.favorite_count || 0); // 気になる数を設定
+            setPurchaseCount(response.data.purchase_count || 0); // 購入数を設定
+            _context2.next = 16;
+            break;
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](0);
+            // console.error('Error fetching idea:', error);
+            console.error('Error fetching idea:', _context2.t0);
+            if (_context2.t0.response && _context2.t0.response.status === 403) {
+              setError('アクセス権限がありません。');
+            } else {
+              setError('アイディアの取得に失敗しました。');
+            }
+            setError('アイディアの取得に失敗しました。');
+          case 16:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 11]]);
+    }));
+    return function fetchIdea() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var fetchCategories = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response, categoriesMap;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+          case 3:
+            response = _context3.sent;
+            console.log('Fetched categories:', response.data); // デバッグ用
+            categoriesMap = response.data.reduce(function (map, category) {
+              map[category.id] = category.name;
+              return map;
+            }, {});
+            setCategories(categoriesMap);
+            _context3.next = 13;
+            break;
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](0);
+            console.error('Error fetching categories:', _context3.t0);
+            setError('カテゴリデータの取得に失敗しました。');
+          case 13:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 9]]);
+    }));
+    return function fetchCategories() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchUser();
+    fetchIdea();
+    fetchCategories();
+  }, [id]);
+  var handleSubmit = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(event) {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
             event.preventDefault();
-            _context2.prev = 1;
-            _context2.next = 4;
+            _context4.prev = 1;
+            _context4.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/reviews/".concat(id), {
               review: review,
               rating: rating
@@ -17264,34 +17450,89 @@ var ReviewSubmission = function ReviewSubmission() {
               }
             });
           case 4:
-            response = _context2.sent;
+            response = _context4.sent;
             if (!(response.status === 201)) {
-              _context2.next = 9;
+              _context4.next = 9;
               break;
             }
-            navigate("/purchases/".concat(id));
-            _context2.next = 10;
+            // navigate(`/purchases/${id}`);
+            navigate(-1);
+            _context4.next = 10;
             break;
           case 9:
             throw new Error('レビューの送信に失敗しました。');
           case 10:
-            _context2.next = 16;
+            _context4.next = 16;
             break;
           case 12:
-            _context2.prev = 12;
-            _context2.t0 = _context2["catch"](1);
-            console.error('Error submitting review:', _context2.t0);
-            setError('レビューの送信に失敗しました。');
+            _context4.prev = 12;
+            _context4.t0 = _context4["catch"](1);
+            console.error('Error submitting review:', _context4.t0);
+            // setError('レビューの送信に失敗しました。');
+
+            if (_context4.t0.response && _context4.t0.response.status === 403) {
+              setError('アクセス権限がありません。');
+            } else {
+              setError('レビューの送信に失敗しました。');
+            }
           case 16:
           case "end":
-            return _context2.stop();
+            return _context4.stop();
         }
-      }, _callee2, null, [[1, 12]]);
+      }, _callee4, null, [[1, 12]]);
     }));
     return function handleSubmit(_x) {
-      return _ref2.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
+  //＊＊＊＊＊＊変更：handleSubmit関数の修正＊＊＊＊＊＊
+  // const handleSubmit = async (event) => {
+  //     event.preventDefault();
+  //     try {
+  //         // 購入情報を取得
+  //         const purchasesResponse = await axios.get('/api/mypurchases', {
+  //             headers: {
+  //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+  //             }
+  //         });
+  //         const purchases = purchasesResponse.data;
+
+  //         // 対応するpurchaseレコードを検索
+  //         const purchase = purchases.find(p => p.idea_id === Number(ideaId));
+
+  //         let response;
+  //         if (purchase) {
+  //             // 購入レコードが存在する場合は更新
+  //             response = await axios.post(`/api/reviews/${purchase.id}`, { review, rating }, {
+  //                 headers: {
+  //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+  //                 }
+  //             });
+  //         } else {
+  //             // 購入レコードが存在しない場合は新規作成
+  //             response = await axios.post(`/api/purchases`, { idea_id: ideaId, review, rating }, {
+  //                 headers: {
+  //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+  //                 }
+  //             });
+  //         }
+
+  //         if (response.status === 201) {
+  //             navigate(-1);
+  //         } else {
+  //             throw new Error('レビューの送信に失敗しました。');
+  //         }
+  //     } catch (error) {
+  //         console.error('Error submitting review:', error);
+
+  //         if (error.response && error.response.status === 403) {
+  //             setError('アクセス権限がありません。');
+  //         } else {
+  //             setError('レビューの送信に失敗しました。');
+  //         }
+  //     }
+  // };
+  //＊＊＊＊＊＊変更終了＊＊＊＊＊＊
 
   // エラーメッセージを表示
   if (error) {
@@ -17341,9 +17582,9 @@ var ReviewSubmission = function ReviewSubmission() {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             children: "\u5E73\u5747\u8A55\u4FA1:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
-            children: [Number(averageRating).toFixed(1), " / 5"]
+            children: averageRating > 0 ? "".concat(Number(averageRating).toFixed(1), " / 5") : '－'
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",
@@ -17443,65 +17684,173 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// // // src/pages/ReviewUpdate.js
+// // // // src/pages/ReviewUpdate.js
 
-// // import React, { useEffect, useState } from 'react';
+// // // import React, { useEffect, useState } from 'react';
+// // // import axios from 'axios';
+// // // import { useParams, useNavigate } from 'react-router-dom'; // `useNavigate` を追加して遷移を管理
+// // // import Header from '../components/Header';
+// // // import Footer from '../components/Footer';
+
+// // // const ReviewUpdate = () => {
+// // //     const { id } = useParams(); // URLパラメータからIDを取得
+// // //     const [idea, setIdea] = useState(null);
+// // //     const [reviewText, setReviewText] = useState('');
+// // //     const [rating, setRating] = useState(0);
+// // //     const [error, setError] = useState(null); // エラーメッセージの状態を追加
+// // //     const navigate = useNavigate(); // ページ遷移に使用
+
+// // //     useEffect(() => {
+// // //         const fetchReviewAndIdea = async () => {
+// // //             try {
+// // //                 // レビューの取得
+// // //                 const reviewResponse = await axios.get(`/api/purchases/${id}`, {
+// // //                     headers: {
+// // //                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+// // //                     }
+// // //                 });
+// // //                 const review = reviewResponse.data;
+// // //                 setReviewText(review.review);
+// // //                 setRating(review.rating);
+
+// // //                 // アイディアの取得
+// // //                 const ideaResponse = await axios.get(`/api/ideas/${review.idea_id}`, {
+// // //                     headers: {
+// // //                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+// // //                     }
+// // //                 });
+// // //                 setIdea(ideaResponse.data.idea);
+// // //             } catch (error) {
+// // //                 console.error('Error fetching review or idea:', error);
+// // //                 setError('データの取得に失敗しました。');
+// // //             }
+// // //         };
+
+// // //         fetchReviewAndIdea();
+// // //     }, [id]);
+
+// // //     const handleReviewSubmit = async (e) => {
+// // //         e.preventDefault();
+// // //         try {
+// // //             // レビューの更新
+// // //             await axios.put(`/api/purchases/${id}`, {
+// // //                 review: reviewText,
+// // //                 rating: rating
+// // //             }, {
+// // //                 headers: {
+// // //                     Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+// // //                 }
+// // //             });
+// // //             // 更新成功時の処理
+// // //             navigate(`/idea-detail/${idea.id}`); // レビュー編集後にアイディア詳細ページに戻る
+// // //         } catch (error) {
+// // //             console.error('Error updating review:', error);
+// // //             setError('レビューの更新に失敗しました。');
+// // //         }
+// // //     };
+
+// // //     // エラーメッセージを表示
+// // //     if (error) {
+// // //         return <div>{error}</div>;
+// // //     }
+
+// // //     // データロード中の表示
+// // //     if (!idea) {
+// // //         return <div>Loading...</div>;
+// // //     }
+
+// // //     return (
+// // //         <div>
+// // //             <Header />
+// // //             <main className="container">
+// // //                 <h2>レビューを編集する</h2>
+// // //                 <form onSubmit={handleReviewSubmit}>
+// // //                     <label htmlFor="reviewText">レビュー</label>
+// // //                     <textarea
+// // //                         id="reviewText"
+// // //                         value={reviewText}
+// // //                         onChange={(e) => setReviewText(e.target.value)}
+// // //                     />
+// // //                     <label htmlFor="rating">評価</label>
+// // //                     <input
+// // //                         id="rating"
+// // //                         type="number"
+// // //                         min="1"
+// // //                         max="5"
+// // //                         value={rating}
+// // //                         onChange={(e) => setRating(parseInt(e.target.value, 10))}
+// // //                     />
+// // //                     <button type="submit">更新する</button>
+// // //                 </form>
+// // //                 <br />
+// // //                 <hr />
+// // //                 <br />
+// // //                 <h2>アイディア詳細</h2>
+// // //                 <h3>{idea.title}</h3>
+// // //                 <p>{idea.overview}</p>
+// // //                 <p>{idea.content}</p>
+// // //                 <p>価格: {idea.price}</p>
+// // //                 <div>
+// // //                     <span>カテゴリ: {idea.category}</span>
+// // //                     <span>レビュー数: {idea.reviewCount}</span>
+// // //                     <span>平均評価: {idea.averageRating}</span>
+// // //                 </div>
+// // //             </main>
+// // //             <Footer />
+// // //         </div>
+// // //     );
+// // // };
+
+// // // export default ReviewUpdate;
+
+// // import React, { useState, useEffect } from 'react';
 // // import axios from 'axios';
-// // import { useParams, useNavigate } from 'react-router-dom'; // `useNavigate` を追加して遷移を管理
 // // import Header from '../components/Header';
 // // import Footer from '../components/Footer';
+// // import { useParams, useLocation } from 'react-router-dom';
 
 // // const ReviewUpdate = () => {
 // //     const { id } = useParams(); // URLパラメータからIDを取得
-// //     const [idea, setIdea] = useState(null);
-// //     const [reviewText, setReviewText] = useState('');
-// //     const [rating, setRating] = useState(0);
-// //     const [error, setError] = useState(null); // エラーメッセージの状態を追加
-// //     const navigate = useNavigate(); // ページ遷移に使用
+// //     const location = useLocation();
+// //     const { reviewId } = location.state || {}; // 以前の画面からのreviewIdを受け取る
+// //     const [review, setReview] = useState(''); // 空文字列で初期化
+// //     const [rating, setRating] = useState(0); // 0で初期化
+// //     const [error, setError] = useState(null); // エラーメッセージの状態管理
 
 // //     useEffect(() => {
 // //         const fetchReviewAndIdea = async () => {
 // //             try {
-// //                 // レビューの取得
-// //                 const reviewResponse = await axios.get(`/api/purchases/${id}`, {
+// //                 const response = await axios.get(`/api/purchases/${reviewId}`, {
 // //                     headers: {
-// //                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+// //                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
 // //                     }
 // //                 });
-// //                 const review = reviewResponse.data;
-// //                 setReviewText(review.review);
-// //                 setRating(review.rating);
-
-// //                 // アイディアの取得
-// //                 const ideaResponse = await axios.get(`/api/ideas/${review.idea_id}`, {
-// //                     headers: {
-// //                         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-// //                     }
-// //                 });
-// //                 setIdea(ideaResponse.data.idea);
+// //                 setReview(response.data.review || ''); // デフォルトで空文字列
+// //                 setRating(response.data.rating || 0); // デフォルトで0
 // //             } catch (error) {
 // //                 console.error('Error fetching review or idea:', error);
 // //                 setError('データの取得に失敗しました。');
 // //             }
 // //         };
 
-// //         fetchReviewAndIdea();
-// //     }, [id]);
+// //         if (reviewId) {
+// //             fetchReviewAndIdea();
+// //         }
+// //     }, [reviewId]);
 
-// //     const handleReviewSubmit = async (e) => {
+// //     const handleSubmit = async (e) => {
 // //         e.preventDefault();
 // //         try {
-// //             // レビューの更新
-// //             await axios.put(`/api/purchases/${id}`, {
-// //                 review: reviewText,
+// //             await axios.post(`/api/reviews/${reviewId}`, {
+// //                 review: review,
 // //                 rating: rating
 // //             }, {
 // //                 headers: {
-// //                     Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+// //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
 // //                 }
 // //             });
-// //             // 更新成功時の処理
-// //             navigate(`/idea-detail/${idea.id}`); // レビュー編集後にアイディア詳細ページに戻る
+// //             // レビューが成功した場合の処理
+// //             alert('レビューが更新されました');
 // //         } catch (error) {
 // //             console.error('Error updating review:', error);
 // //             setError('レビューの更新に失敗しました。');
@@ -17513,22 +17862,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // //         return <div>{error}</div>;
 // //     }
 
-// //     // データロード中の表示
-// //     if (!idea) {
-// //         return <div>Loading...</div>;
-// //     }
-
 // //     return (
 // //         <div>
 // //             <Header />
+
+// //             <br /><br /><br /><br /><br />
 // //             <main className="container">
-// //                 <h2>レビューを編集する</h2>
-// //                 <form onSubmit={handleReviewSubmit}>
-// //                     <label htmlFor="reviewText">レビュー</label>
+// //                 <h2>レビューを更新する</h2>
+// //                 <form onSubmit={handleSubmit}>
+// //                     <label htmlFor="review">レビュー</label>
 // //                     <textarea
-// //                         id="reviewText"
-// //                         value={reviewText}
-// //                         onChange={(e) => setReviewText(e.target.value)}
+// //                         id="review"
+// //                         value={review}
+// //                         onChange={(e) => setReview(e.target.value)}
 // //                     />
 // //                     <label htmlFor="rating">評価</label>
 // //                     <input
@@ -17541,19 +17887,6 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // //                     />
 // //                     <button type="submit">更新する</button>
 // //                 </form>
-// //                 <br />
-// //                 <hr />
-// //                 <br />
-// //                 <h2>アイディア詳細</h2>
-// //                 <h3>{idea.title}</h3>
-// //                 <p>{idea.overview}</p>
-// //                 <p>{idea.content}</p>
-// //                 <p>価格: {idea.price}</p>
-// //                 <div>
-// //                     <span>カテゴリ: {idea.category}</span>
-// //                     <span>レビュー数: {idea.reviewCount}</span>
-// //                     <span>平均評価: {idea.averageRating}</span>
-// //                 </div>
 // //             </main>
 // //             <Footer />
 // //         </div>
@@ -17561,55 +17894,156 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // // };
 
 // // export default ReviewUpdate;
-
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
+// import { useParams, useNavigate } from 'react-router-dom';
 // import Header from '../components/Header';
 // import Footer from '../components/Footer';
-// import { useParams, useLocation } from 'react-router-dom';
 
 // const ReviewUpdate = () => {
-//     const { id } = useParams(); // URLパラメータからIDを取得
-//     const location = useLocation();
-//     const { reviewId } = location.state || {}; // 以前の画面からのreviewIdを受け取る
-//     const [review, setReview] = useState(''); // 空文字列で初期化
-//     const [rating, setRating] = useState(0); // 0で初期化
-//     const [error, setError] = useState(null); // エラーメッセージの状態管理
+//     // const { id } = useParams(); // アイディアIDをURLパラメータから取得
+//     // const [idea, setIdea] = useState(null);
+//     // const [review, setReview] = useState('');
+//     // const [rating, setRating] = useState(0);
+//     // const [error, setError] = useState(null);
+//     // const navigate = useNavigate();
+//     const { id } = useParams(); // アイディアIDをURLパラメータから取得
+//     const [user, setUser] = useState(null);
+//     const [idea, setIdea] = useState(null);
+//     const [categories, setCategories] = useState({}); // カテゴリの状態管理
+//     // const [favorite, setFavorite] = useState({}); // お気に入りの状態管理
+//     const [review, setReview] = useState('');
+//     const [rating, setRating] = useState(0);
+//     const [averageRating, setAverageRating] = useState(0); // 平均評価
+//     const [reviewCount, setReviewCount] = useState(0); // レビュー数
+//     const [favoriteCount, setFavoriteCount] = useState(0); // 気になる数
+//     const [purchaseCount, setPurchaseCount] = useState(0); // 購入数
+//     const [purchases, setPurchases] = useState([]); // ユーザーの購入情報
+//     const [error, setError] = useState(null);
+//     const navigate = useNavigate();
 
-//     useEffect(() => {
-//         const fetchReviewAndIdea = async () => {
-//             try {
-//                 const response = await axios.get(`/api/purchases/${reviewId}`, {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 setReview(response.data.review || ''); // デフォルトで空文字列
-//                 setRating(response.data.rating || 0); // デフォルトで0
-//             } catch (error) {
-//                 console.error('Error fetching review or idea:', error);
-//                 setError('データの取得に失敗しました。');
-//             }
-//         };
-
-//         if (reviewId) {
-//             fetchReviewAndIdea();
-//         }
-//     }, [reviewId]);
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
+//     const fetchUser = async () => {
 //         try {
-//             await axios.post(`/api/reviews/${reviewId}`, {
-//                 review: review,
-//                 rating: rating
-//             }, {
+//             const response = await axios.get('/api/user', {
+//                 headers: {
+//                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}` // 認証トークンを設定
+//                 }
+//             });
+//             setUser(response.data);
+//             console.log('Fetched user:', response.data);
+
+//             // 購入情報を取得
+//             const purchaseResponse = await axios.get('/api/mypurchases', {
 //                 headers: {
 //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
 //                 }
 //             });
-//             // レビューが成功した場合の処理
-//             alert('レビューが更新されました');
+//             setPurchases(purchaseResponse.data);
+//             console.log('Fetched purchases:', purchaseResponse.data);
+
+//         } catch (error) {
+//             console.error('Error fetching user:', error);
+//         }
+//     };
+
+//         // アイディア情報を取得
+//         const fetchIdea = async () => {
+//             try {
+//                 const response = await axios.get(`/api/ideas/${id}`, {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+//                     }
+//                 });
+//                 // const ideaData = response.data.idea;
+//                 // setIdea(ideaData);
+//                 // setAverageRating(response.data.average_rating || 0);
+//                 // setReviewCount(response.data.review_count || 0);
+//                 // setFavoriteCount(response.data.favorite_count || 0);
+//                 // setPurchaseCount(response.data.purchase_count || 0);
+//                 setIdea(response.data.idea); // アイデアデータを設定
+
+//                 setAverageRating(response.data.average_rating || 0); // 平均評価を設定
+//                 setReviewCount(response.data.review_count || 0); // レビュー数を設定
+//                 setFavoriteCount(response.data.favorite_count || 0); // 気になる数を設定
+//                 setPurchaseCount(response.data.purchase_count || 0); // 購入数を設定
+//             } catch (error) {
+//                 // console.error('Error fetching idea:', error);
+//                 console.error('Error fetching idea:', error);
+
+//                 if (error.response && error.response.status === 403) {
+//                     setError('アクセス権限がありません。');
+//                 } else {
+//                     setError('アイディアの取得に失敗しました。');
+//                 }
+//                 setError('アイディアの取得に失敗しました。');
+//             }
+//         };
+
+//         const fetchCategories = async () => {
+//             try {
+//                 const response = await axios.get('/api/categories');
+//                 console.log('Fetched categories:', response.data); // デバッグ用
+//                 const categoriesMap = response.data.reduce((map, category) => {
+//                     map[category.id] = category.name;
+//                     return map;
+//                 }, {});
+//                 setCategories(categoriesMap);
+//             } catch (error) {
+//                 console.error('Error fetching categories:', error);
+//                 setError('カテゴリデータの取得に失敗しました。');
+//             }
+//         };
+
+//         // アイディア情報とレビュー情報を取得
+//         const fetchIdeaAndReview = async () => {
+//             try {
+//                 // アイディア情報を取得
+//                 // const ideaResponse = await axios.get(`/api/ideas/${id}`, {
+//                 //     headers: {
+//                 //         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+//                 //     }
+//                 // });
+//                 // const ideaData = ideaResponse.data.idea;
+//                 // setIdea(ideaData);
+
+//                 // 自身のレビュー情報を取得
+//                 const reviewResponse = await axios.get(`/api/reviews?idea_id=${id}`, {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+//                     }
+//                 });
+
+//                 const userReview = reviewResponse.data.find(r => r.buyer_id === ideaData.user_id);
+//                 if (userReview) {
+//                     setReview(userReview.review);
+//                     setRating(userReview.rating);
+//                 }
+//             } catch (error) {
+//                 console.error('Error fetching idea or review:', error);
+//                 setError('データの取得に失敗しました。');
+//             }
+//         };
+
+//     useEffect(() => {
+//         fetchUser();
+//         fetchIdea();
+//         fetchCategories();
+//         fetchIdeaAndReview();
+//     }, [id]);
+
+//     const handleSubmit = async (event) => {
+//         event.preventDefault();
+//         try {
+//             const response = await axios.put(`/api/reviews/${id}`, { review, rating }, {
+//                 headers: {
+//                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+//                 }
+//             });
+//             if (response.status === 200) {
+//                 navigate(`/purchases/${id}`);
+//             } else {
+//                 throw new Error('レビューの更新に失敗しました。');
+//             }
 //         } catch (error) {
 //             console.error('Error updating review:', error);
 //             setError('レビューの更新に失敗しました。');
@@ -17621,31 +18055,83 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 //         return <div>{error}</div>;
 //     }
 
+//     // データロード中の表示
+//     if (!idea) {
+//         return <div>Loading...</div>;
+//     }
+
 //     return (
 //         <div>
 //             <Header />
-
-//             <br /><br /><br /><br /><br />
 //             <main className="container">
-//                 <h2>レビューを更新する</h2>
-//                 <form onSubmit={handleSubmit}>
-//                     <label htmlFor="review">レビュー</label>
-//                     <textarea
-//                         id="review"
-//                         value={review}
-//                         onChange={(e) => setReview(e.target.value)}
-//                     />
-//                     <label htmlFor="rating">評価</label>
-//                     <input
-//                         id="rating"
-//                         type="number"
-//                         min="1"
-//                         max="5"
-//                         value={rating}
-//                         onChange={(e) => setRating(parseInt(e.target.value, 10))}
-//                     />
-//                     <button type="submit">更新する</button>
-//                 </form>
+//                 <div className="submission-form">
+//                     <h2>レビューの編集</h2>
+
+//                     <div className="form-group">
+//                         <label>タイトル:</label>
+//                         <div className="form-value">{idea.title}</div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>概要:</label>
+//                         <div className="form-value">{idea.overview}</div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>詳細:</label>
+//                         <div className="form-value">{idea.content}</div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>平均評価:</label>
+//                         {/* <div className="form-value">{Number(averageRating).toFixed(1)} / 5</div> */}
+//                         <div className="form-value">
+//                             {averageRating > 0 ? `${Number(averageRating).toFixed(1)} / 5` : '－'}
+//                         </div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>レビュー数:</label>
+//                         <div className="form-value">{reviewCount}</div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>気になる数:</label>
+//                         <div className="form-value">{favoriteCount}</div>
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>購入数:</label>
+//                         <div className="form-value">{purchaseCount}</div>
+//                     </div>
+
+//                     <form onSubmit={handleSubmit}>
+//                         <div className="form-group">
+//                             <label htmlFor="rating">評価 (1-5):</label>
+//                             <input
+//                                 type="number"
+//                                 id="rating"
+//                                 min="1"
+//                                 max="5"
+//                                 value={rating}
+//                                 onChange={(e) => setRating(Number(e.target.value))}
+//                                 required
+//                             />
+//                         </div>
+
+//                         <div className="form-group">
+//                             <label htmlFor="review">レビュー内容:</label>
+//                             <textarea
+//                                 id="review"
+//                                 value={review}
+//                                 onChange={(e) => setReview(e.target.value)}
+//                                 required
+//                             />
+//                         </div>
+
+//                         <button type="submit" className="btn">更新</button>
+//                     </form>
+//                 </div>
 //             </main>
 //             <Footer />
 //         </div>
@@ -17653,6 +18139,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // };
 
 // export default ReviewUpdate;
+
+// src/components/ReviewUpdate.js
+
 
 
 
@@ -17664,85 +18153,210 @@ var ReviewUpdate = function ReviewUpdate() {
     id = _useParams.id; // アイディアIDをURLパラメータから取得
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    idea = _useState2[0],
-    setIdea = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    user = _useState2[0],
+    setUser = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState4 = _slicedToArray(_useState3, 2),
-    review = _useState4[0],
-    setReview = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    idea = _useState4[0],
+    setIdea = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState6 = _slicedToArray(_useState5, 2),
-    rating = _useState6[0],
-    setRating = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    categories = _useState6[0],
+    setCategories = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState8 = _slicedToArray(_useState7, 2),
-    error = _useState8[0],
-    setError = _useState8[1];
+    review = _useState8[0],
+    setReview = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState10 = _slicedToArray(_useState9, 2),
+    rating = _useState10[0],
+    setRating = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState12 = _slicedToArray(_useState11, 2),
+    averageRating = _useState12[0],
+    setAverageRating = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState14 = _slicedToArray(_useState13, 2),
+    reviewCount = _useState14[0],
+    setReviewCount = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState16 = _slicedToArray(_useState15, 2),
+    favoriteCount = _useState16[0],
+    setFavoriteCount = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState18 = _slicedToArray(_useState17, 2),
+    purchaseCount = _useState18[0],
+    setPurchaseCount = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    purchases = _useState20[0],
+    setPurchases = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState22 = _slicedToArray(_useState21, 2),
+    error = _useState22[0],
+    setError = _useState22[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // アイディア情報とレビュー情報を取得
-    var fetchIdeaAndReview = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var ideaResponse, ideaData, reviewResponse, userReview;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
-                headers: {
-                  Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
-                }
-              });
-            case 3:
-              ideaResponse = _context.sent;
-              ideaData = ideaResponse.data.idea;
-              setIdea(ideaData);
-
-              // 自身のレビュー情報を取得
-              _context.next = 8;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/reviews?idea_id=".concat(id), {
-                headers: {
-                  Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
-                }
-              });
-            case 8:
-              reviewResponse = _context.sent;
-              userReview = reviewResponse.data.find(function (r) {
-                return r.buyer_id === ideaData.user_id;
-              });
-              if (userReview) {
-                setReview(userReview.review);
-                setRating(userReview.rating);
+  var fetchUser = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
               }
-              _context.next = 17;
-              break;
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](0);
-              console.error('Error fetching idea or review:', _context.t0);
-              setError('データの取得に失敗しました。');
-            case 17:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[0, 13]]);
-      }));
-      return function fetchIdeaAndReview() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-    fetchIdeaAndReview();
-  }, [id]);
-  var handleSubmit = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {
+            });
+          case 3:
+            response = _context.sent;
+            setUser(response.data);
+            _context.next = 10;
+            break;
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.error('Error fetching user:', _context.t0);
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+    return function fetchUser() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  var fetchIdea = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context2.sent;
+            setIdea(response.data.idea);
+            setAverageRating(response.data.average_rating || 0);
+            setReviewCount(response.data.review_count || 0);
+            setFavoriteCount(response.data.favorite_count || 0);
+            setPurchaseCount(response.data.purchase_count || 0);
+            _context2.next = 15;
+            break;
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](0);
+            console.error('Error fetching idea:', _context2.t0);
+            if (_context2.t0.response && _context2.t0.response.status === 403) {
+              setError('アクセス権限がありません。');
+            } else {
+              setError('アイディアの取得に失敗しました。');
+            }
+          case 15:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 11]]);
+    }));
+    return function fetchIdea() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var fetchCategories = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response, categoriesMap;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+          case 3:
+            response = _context3.sent;
+            categoriesMap = response.data.reduce(function (map, category) {
+              map[category.id] = category.name;
+              return map;
+            }, {});
+            setCategories(categoriesMap);
+            _context3.next = 12;
+            break;
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](0);
+            console.error('Error fetching categories:', _context3.t0);
+            setError('カテゴリデータの取得に失敗しました。');
+          case 12:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[0, 8]]);
+    }));
+    return function fetchCategories() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  //＊＊＊＊＊＊変更：ユーザーのレビュー情報を取得＊＊＊＊＊＊
+  var fetchReview = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/reviews/".concat(id, "/my-review"), {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 3:
+            response = _context4.sent;
+            if (response.data.review) {
+              setReview(response.data.review.review);
+              setRating(response.data.review.rating);
+            }
+            _context4.next = 11;
+            break;
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.error('Error fetching review:', _context4.t0);
+            setError('レビューの取得に失敗しました。');
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 7]]);
+    }));
+    return function fetchReview() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  //＊＊＊＊＊＊変更：ユーザーのレビュー情報を取得＊＊＊＊＊＊
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchUser();
+    fetchIdea();
+    fetchCategories();
+    fetchReview();
+  }, [id]);
+  var handleSubmit = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(event) {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
             event.preventDefault();
-            _context2.prev = 1;
-            _context2.next = 4;
+            _context5.prev = 1;
+            _context5.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/reviews/".concat(id), {
               review: review,
               rating: rating
@@ -17752,43 +18366,39 @@ var ReviewUpdate = function ReviewUpdate() {
               }
             });
           case 4:
-            response = _context2.sent;
+            response = _context5.sent;
             if (!(response.status === 200)) {
-              _context2.next = 9;
+              _context5.next = 9;
               break;
             }
-            navigate("/purchases/".concat(id));
-            _context2.next = 10;
+            navigate(-1); // 直前のページに戻る
+            _context5.next = 10;
             break;
           case 9:
             throw new Error('レビューの更新に失敗しました。');
           case 10:
-            _context2.next = 16;
+            _context5.next = 16;
             break;
           case 12:
-            _context2.prev = 12;
-            _context2.t0 = _context2["catch"](1);
-            console.error('Error updating review:', _context2.t0);
+            _context5.prev = 12;
+            _context5.t0 = _context5["catch"](1);
+            console.error('Error updating review:', _context5.t0);
             setError('レビューの更新に失敗しました。');
           case 16:
           case "end":
-            return _context2.stop();
+            return _context5.stop();
         }
-      }, _callee2, null, [[1, 12]]);
+      }, _callee5, null, [[1, 12]]);
     }));
     return function handleSubmit(_x) {
-      return _ref2.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
-
-  // エラーメッセージを表示
   if (error) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: error
     });
   }
-
-  // データロード中の表示
   if (!idea) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: "Loading..."
@@ -17824,6 +18434,38 @@ var ReviewUpdate = function ReviewUpdate() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
             children: idea.content
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "\u5E73\u5747\u8A55\u4FA1:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "form-value",
+            children: averageRating > 0 ? "".concat(Number(averageRating).toFixed(1), " / 5") : '－'
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "\u30EC\u30D3\u30E5\u30FC\u6570:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "form-value",
+            children: reviewCount
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "\u6C17\u306B\u306A\u308B\u6570:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "form-value",
+            children: favoriteCount
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+            children: "\u8CFC\u5165\u6570:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "form-value",
+            children: purchaseCount
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
           onSubmit: handleSubmit,

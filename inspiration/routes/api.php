@@ -34,8 +34,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/purchases/{id}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::get('/reviewed-purchases', [PurchaseController::class, 'myReviewedPurchases'])->name('purchases.reviewed');
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
-    Route::post('/reviews/{purchase}', [PurchaseController::class, 'storeOrUpdateReview'])->name('reviews.storeOrUpdate');
-    
+    Route::put('/reviews/{ideaId}', [PurchaseController::class, 'storeOrUpdateReview'])->name('reviews.storeOrUpdate');
+    Route::get('/reviews/{ideaId}/my-review', [PurchaseController::class, 'getMyReview'])->name('reviews.MyReview');
         // profile関連のルート
         Route::get('/user', [ProfileController::class, 'getUser']);
         Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);

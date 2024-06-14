@@ -49,7 +49,7 @@ function ReviewsList() {
     };
 
     const handleEditReviewClick = (reviewId) => {
-        navigate(`/review-edit/${reviewId}`);
+        navigate(`/review-update/${reviewId}`);
     };
 
     return (

@@ -240,7 +240,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 const IdeaDetail = () => {
     const { id } = useParams(); // URLパラメータからIDを取得
     const [user, setUser] = useState(null);
-    const [idea, setIdea] = useState(null);
+    const [idea, setIdea] = useState({});
     const [categories, setCategories] = useState({}); // カテゴリの状態管理
     const [favorite, setFavorite] = useState({}); // お気に入りの状態管理
     const [reviews, setReviews] = useState([]); // レビューの状態管理
@@ -248,6 +248,7 @@ const IdeaDetail = () => {
     const [reviewCount, setReviewCount] = useState(0); // レビュー数
     const [favoriteCount, setFavoriteCount] = useState(0); // 気になる数
     const [purchaseCount, setPurchaseCount] = useState(0); // 購入数の状態管理
+    const [purchases, setPurchases] = useState([]); // ユーザーの購入情報
     const [error, setError] = useState(null); // エラーメッセージの状態を管理
     const navigate = useNavigate();
 
@@ -260,6 +261,16 @@ const IdeaDetail = () => {
             });
             setUser(response.data);
             console.log('Fetched user:', response.data);
+
+            // 購入情報を取得
+            const purchaseResponse = await axios.get('/api/mypurchases', {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                }
+            });
+            setPurchases(purchaseResponse.data);
+            console.log('Fetched purchases:', purchaseResponse.data);
+
         } catch (error) {
             console.error('Error fetching user:', error);
         }
@@ -273,8 +284,9 @@ const IdeaDetail = () => {
                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                 }
             });
-            setFavorite(response.data);
-            console.log('Fetched favorite:', response.data);
+            // setFavorite(response.data);
+            setFavorite(response.data.favorite || {});
+            console.log('Fetched favorite:', response.data.favorite);
         } catch (error) {
             console.error('Error fetching favorite:', error);
         }
@@ -348,15 +360,41 @@ const IdeaDetail = () => {
         }
     }, [user, id]);
 
-    // エラーメッセージを表示
+    // // エラーメッセージを表示
     if (error) {
         return <div>{error}</div>;
     }
 
-    // データロード中の表示
+    // // データロード中の表示
     if (!idea) {
         return <div>Loading...</div>;
     }
+
+        // 現在のユーザーが特定のアイデアを購入しているかを確認
+        const hasPurchased = (ideaId) => {
+            return purchases.some(purchase => purchase.idea_id === ideaId);
+        };
+
+        // 購入処理を実行する関数
+        const handlePurchase = async (ideaId) => {
+            try {
+                const response = await axios.post('/api/purchases', { idea_id: ideaId }, {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                    }
+                });
+    
+                if (response.status === 201) {
+                    alert('購入が完了しました。');
+                    navigate(`/purchase-detail/${ideaId}`);
+                } else {
+                    throw new Error('購入に失敗しました。');
+                }
+            } catch (error) {
+                console.error('Error during purchase:', error);
+                alert('購入処理に失敗しました。');
+            }
+        };
 
     const handleToggleFavorite = async (ideaId) => {
         try {
@@ -423,7 +461,10 @@ const IdeaDetail = () => {
                     {/* Display average rating, review count, favorite count, and purchase count */}
                     <div className="form-group">
                         <label>平均評価:</label>
-                        <div className="form-value">{Number(averageRating).toFixed(1)} / 5</div>
+                        <div className="form-value">
+                            {/* {Number(averageRating).toFixed(1)} / 5 */}
+                            {averageRating > 0 ? `${Number(averageRating).toFixed(1)} / 5` : '－'}
+                            </div>
                     </div>
 
                     <div className="form-group">
@@ -441,18 +482,30 @@ const IdeaDetail = () => {
                         <div className="form-value">{purchaseCount}</div>
                     </div>
 
-
                     <div className="idea-card__buttons">
-                        {/* 自身の投稿でない場合に「気になる」ボタンを表示 */}
+
+                        {/* 自身の投稿でない場合に「購入」ボタンを表示 */}
+                        {user && idea.user_id !== user.id && !hasPurchased(idea.id) && (
+                            <>
+                                <button
+                                    className='btn'
+                                    onClick={() => handlePurchase(idea.id)}
+                                >
+                                    購入する
+                                </button>
+                            </>
+                        )}
+
+                        {/* 「気になる」ボタンを表示 */}
                         {user && idea.user_id !== user.id && (
                             <button
                                 className='btn'
                                 onClick={() => handleToggleFavorite(idea.id)}
                             >
-                                {favorite.is_favorite ? '気になる' : 'お気に入りから削除'}
+                                {favorite.is_favorite ? '気になるを削除' : '気になる'}
                             </button>
                         )}
-                        {/* 購入するボタンを作成 */}
+
                         <button
                             className="btn"
                             onClick={() => navigate(-1)}
@@ -460,6 +513,7 @@ const IdeaDetail = () => {
                             戻る
                         </button>
                     </div>
+
 
                     <div className="review-section">
                         <h3>レビュー</h3>
