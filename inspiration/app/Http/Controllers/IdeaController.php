@@ -159,23 +159,57 @@ class IdeaController extends Controller
      * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateIdeaRequest $request, Idea $idea)
-    {
-        // 更新は投稿者のみ許可、かつ purchased が false であることが条件
-        if ($idea->user_id !== Auth::id() || $idea->purchased) {
-            return response()->json(['error' => 'Unauthorized'], 403);
-        }
+    // public function update(UpdateIdeaRequest $request, Idea $idea)
+    // {
+    //     // 更新は投稿者のみ許可、かつ purchased が false であることが条件
+    //     if ($idea->user_id !== Auth::id() || $idea->purchased) {
+    //         return response()->json(['error' => 'すでに販売済みのため，変更できません'], 403);
+    //     }
 
-        // アイデアを更新
-        try {
-            $idea->updateIdea($request->all());
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 403);
-        }
+    //     // アイデアを更新
+    //     try {
+    //         $idea->updateIdea($request->all());
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 403);
+    //     }
 
-        //データがあればjsonで返す（ステータスコード２０１）
-        return response()->json($idea,200);
+    //     //データがあればjsonで返す（ステータスコード２０１）
+    //     return response()->json($idea,200);
+    // }
+    public function update(Request $request, $id)
+{
+    //＊＊＊＊＊＊変更： update メソッドの修正＊＊＊＊＊＊
+    $idea = Idea::find($id);
+    if (!$idea) {
+        return response()->json(['message' => 'Idea not found'], 404);
     }
+
+    // 更新は投稿者のみ許可、かつ purchased が false であることが条件
+    if ($idea->user_id !== Auth::id() || $idea->purchased) {
+        return response()->json(['error' => 'すでに販売済みのため，変更できません'], 403);
+    }
+
+    // バリデーション済みのデータを使用してアイデアを更新
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'overview' => 'nullable|string',
+        'content' => 'nullable|string',
+        'price' => 'nullable|numeric|min:0',
+        'category_id' => 'nullable|exists:categories,id',
+    ]);
+
+    // 更新処理
+    try {
+        $idea->update($validatedData);
+    } catch (\Exception $e) {
+        Log::error('Error updating idea: ' . $e->getMessage());
+        return response()->json(['error' => '更新中にエラーが発生しました'], 500);
+    }
+
+    return response()->json(['message' => 'Idea updated successfully', 'idea' => $idea], 200);
+    //＊＊＊＊＊＊変更： update メソッドの修正＊＊＊＊＊＊
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -191,10 +225,19 @@ class IdeaController extends Controller
         }
 
         //削除する前にデータを保持
-        $deletedIdea = $idea;
+        // $deletedIdea = $idea;
 
         //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
         //削除が失敗した場合はからのjsonレスポンスを返す（ステータスコード５００）
-        return $idea->delete() ? response()->json($deletedIdea) : response()->json([],500);
+        // return $idea->delete() ? response()->json($deletedIdea) : response()->json([],500);
+            //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
+    //削除が失敗した場合は空のjsonレスポンスを返す（ステータスコード５００）
+    try {
+        $idea->delete();
+        return response()->json(['message' => 'Idea deleted successfully'], 200);
+    } catch (\Exception $e) {
+        Log::error('Error deleting idea: ' . $e->getMessage());
+        return response()->json(['error' => '削除中にエラーが発生しました'], 500);
+    }
     }
 }

@@ -18,7 +18,8 @@ class Idea extends Model
     protected $fillable = [
         'user_id',
         'category_id',
-        'title', 'overview',
+        'title',
+        'overview',
         'content',
         'price',
         'purchased'

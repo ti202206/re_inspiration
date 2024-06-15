@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Favorite関連のルート
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites/toggle', [FavoriteController::class, 'toggleFavorite'])->name('favorites.toggle');
+    Route::get('/favorites/idea/{idea_id}', [FavoriteController::class, 'getFavoriteByIdeaId']);
 
     // Purchase関連のルート
     Route::post('/purchases', [PurchaseController::class, 'store'])->name('purchases.store');
@@ -36,9 +37,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/reviews', [PurchaseController::class, 'allReviews'])->name('reviews.index');
     Route::put('/reviews/{ideaId}', [PurchaseController::class, 'storeOrUpdateReview'])->name('reviews.storeOrUpdate');
     Route::get('/reviews/{ideaId}/my-review', [PurchaseController::class, 'getMyReview'])->name('reviews.MyReview');
-        // profile関連のルート
-        Route::get('/user', [ProfileController::class, 'getUser']);
-        Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
+
+    // profile関連のルート
+    Route::get('/user', [ProfileController::class, 'getUser']);
+    Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
 
 
     // 認証されたユーザー情報の取得
