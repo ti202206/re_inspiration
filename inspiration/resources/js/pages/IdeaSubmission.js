@@ -128,6 +128,9 @@ function IdeaSubmission() {
 
                         <button type="submit">投稿する</button>
                     </form>
+                    <button className="btn" onClick={() => navigate(-1)} style={{ marginTop: '10px' }}>
+                        戻る
+                    </button>
                 </div>
             </main>
             <Footer />

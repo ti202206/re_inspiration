@@ -656,6 +656,9 @@ const ReviewUpdate = () => {
 
                         <button type="submit" className="btn">更新</button>
                     </form>
+                    <button className="btn" onClick={() => navigate(-1)} style={{ marginTop: '10px' }}>
+                        戻る
+                    </button>
                 </div>
             </main>
             <Footer />
