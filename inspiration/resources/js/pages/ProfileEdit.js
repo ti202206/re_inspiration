@@ -1,4 +1,3 @@
-// pages/ProfileEdit.js
 import React, { useState, useEffect } from "react";
 import axios from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +7,7 @@ const ProfileEdit = () => {
     const [currentProfileImage, setCurrentProfileImage] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const ProfileEdit = () => {
                 });
                 setName(response.data.name);
                 setEmail(response.data.email);
+                setBio(response.data.bio || "");
                 setCurrentProfileImage(response.data.profile_image_url);
             } catch (error) {
                 console.error("Error fetching user data", error);
@@ -44,6 +45,7 @@ const ProfileEdit = () => {
         }
         formData.append("name", name);
         formData.append("email", email);
+        formData.append("bio", bio);
 
         try {
             const response = await axios.post("/api/profile/image", formData, {
@@ -88,6 +90,12 @@ const ProfileEdit = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="メールアドレスを入力"
             />
+            <textarea
+                value={bio} 
+                onChange={(e) => setBio(e.target.value)}
+                placeholder="自己紹介を入力"
+            />
+            
             <button onClick={handleUpload}>更新</button>
             {message && <p>{message}</p>}
             <button onClick={handleBackToProfile}>戻る</button>{" "}

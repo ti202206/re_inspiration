@@ -9,28 +9,55 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     /**
-     * プロフィール画像の更新
+     * プロフィール情報と画像の更新
      */
     public function updateProfileImage(Request $request)
     {
+        // $request->validate([
+        //     'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        // ]);
+
+        // $user = Auth::user();
+
+        // // 古い画像を削除
+        // if ($user->profile_image_path) {
+        //     Storage::disk('public')->delete($user->profile_image_path);
+        // }
+
+        // // 新しい画像を保存
+        // $path = $request->file('profile_image')->store('profile_images', 'public');
+
+        // // ユーザーレコードを更新
+        // $user->update(['profile_image_path' => $path]);
+
+        // return response()->json(['message' => 'プロフィール画像が更新されました', 'path' => $path]);
+        $user = Auth::user();
+        
         $request->validate([
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'bio' => 'nullable|string|max;255',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像バリデーションの変更
         ]);
 
-        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
 
-        // 古い画像を削除
-        if ($user->profile_image_path) {
-            Storage::disk('public')->delete($user->profile_image_path);
+        // プロフィール画像の更新
+        if ($request->hasFile('profile_image')) {
+            // 古い画像を削除
+            if ($user->profile_image_path) {
+                Storage::disk('public')->delete($user->profile_image_path);
+            }
+
+            // 新しい画像を保存
+            $user->profile_image_path = $request->file('profile_image')->store('profile_images', 'public');
         }
 
-        // 新しい画像を保存
-        $path = $request->file('profile_image')->store('profile_images', 'public');
+        $user->save();
 
-        // ユーザーレコードを更新
-        $user->update(['profile_image_path' => $path]);
-
-        return response()->json(['message' => 'プロフィール画像が更新されました', 'path' => $path]);
+        return response()->json(['message' => 'プロフィールが更新されました。', 'user' => $user]);
     }
 
 
@@ -42,10 +69,15 @@ class ProfileController extends Controller
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'profile_image_url' => $user->profile_image_url,
+            'bio' => $user->bio,
             'profile_image_url' => $user->profile_image_path
             ? asset('storage/' . $user->profile_image_path)
             : asset('images/default-user-icon.png'),
+            // 'profile_image_url' => $user->profile_image_url,
+            // 'profile_image_url' => $user->profile_image_path
+            // ? asset('storage/' . $user->profile_image_path)
+            // : asset('images/default-user-icon.png'),
+
         ]);
     }
 }

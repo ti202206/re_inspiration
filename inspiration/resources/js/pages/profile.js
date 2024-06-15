@@ -107,7 +107,9 @@ const Profile = () => {
                         style={{ width: '100px', height: '100px' }}
                     />
                     <p>名前: {user.name}</p>
-                    <p>メール: {user.email}</p>
+                    {/* <p>メール: {user.email}</p> */}
+                    <p>自己紹介: {user.bio || "自己紹介がありません"}</p>
+
                     {/* 変更: プロフィール編集ボタン */}
                     <button onClick={handleEditProfile}>プロフィールを編集</button>
                 </div>

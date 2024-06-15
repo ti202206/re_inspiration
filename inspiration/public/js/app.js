@@ -15981,7 +15981,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// pages/ProfileEdit.js
 
 
 
@@ -16005,8 +16004,12 @@ var ProfileEdit = function ProfileEdit() {
     setEmail = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    message = _useState10[0],
-    setMessage = _useState10[1];
+    bio = _useState10[0],
+    setBio = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    message = _useState12[0],
+    setMessage = _useState12[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // ユーザー情報を取得
@@ -16027,18 +16030,19 @@ var ProfileEdit = function ProfileEdit() {
               response = _context.sent;
               setName(response.data.name);
               setEmail(response.data.email);
+              setBio(response.data.bio || "");
               setCurrentProfileImage(response.data.profile_image_url);
-              _context.next = 12;
+              _context.next = 13;
               break;
-            case 9:
-              _context.prev = 9;
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](0);
               console.error("Error fetching user data", _context.t0);
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[0, 10]]);
       }));
       return function fetchUser() {
         return _ref.apply(this, arguments);
@@ -16061,32 +16065,33 @@ var ProfileEdit = function ProfileEdit() {
             }
             formData.append("name", name);
             formData.append("email", email);
-            _context2.prev = 4;
-            _context2.next = 7;
+            formData.append("bio", bio);
+            _context2.prev = 5;
+            _context2.next = 8;
             return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/profile/image", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
-          case 7:
+          case 8:
             response = _context2.sent;
             setMessage(response.data.message);
             setTimeout(function () {
               navigate("/profile"); // プロフィールページにリダイレクト
             }, 1000); // メッセージ表示後1秒待ってリダイレクト
-            _context2.next = 16;
+            _context2.next = 17;
             break;
-          case 12:
-            _context2.prev = 12;
-            _context2.t0 = _context2["catch"](4);
+          case 13:
+            _context2.prev = 13;
+            _context2.t0 = _context2["catch"](5);
             console.error("Error updating profile", _context2.t0);
             setMessage("プロフィールの更新に失敗しました。");
-          case 16:
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[4, 12]]);
+      }, _callee2, null, [[5, 13]]);
     }));
     return function handleUpload() {
       return _ref2.apply(this, arguments);
@@ -16121,6 +16126,12 @@ var ProfileEdit = function ProfileEdit() {
         return setEmail(e.target.value);
       },
       placeholder: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092\u5165\u529B"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+      value: bio,
+      onChange: function onChange(e) {
+        return setBio(e.target.value);
+      },
+      placeholder: "\u81EA\u5DF1\u7D39\u4ECB\u3092\u5165\u529B"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: handleUpload,
       children: "\u66F4\u65B0"
@@ -19940,7 +19951,7 @@ var Profile = function Profile() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
         children: ["\u540D\u524D: ", user.name]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-        children: ["\u30E1\u30FC\u30EB: ", user.email]
+        children: ["\u81EA\u5DF1\u7D39\u4ECB: ", user.bio || "自己紹介がありません"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
         onClick: handleEditProfile,
         children: "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u7DE8\u96C6"
