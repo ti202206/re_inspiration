@@ -449,12 +449,12 @@ const ReviewSubmission = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`/api/reviews/${id}`, { review, rating }, {
+            const response = await axios.put(`/api/reviews/${id}`, { review, rating, }, {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                 }
             });
-            if (response.status === 201) {
+            if (response.status === 200) {
                 // navigate(`/purchases/${id}`);
                 navigate(-1);
             } else {
@@ -604,6 +604,9 @@ const ReviewSubmission = () => {
 
                         <button type="submit" className="btn">送信</button>
                     </form>
+                    <button className="btn" onClick={() => navigate(-1)} style={{ marginTop: '10px' }}>
+                        戻る
+                    </button>
                 </div>
             </main>
             <Footer />
