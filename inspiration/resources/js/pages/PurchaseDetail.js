@@ -467,7 +467,7 @@ const PurchaseDetail = () => {
     // お気に入り情報を取得する関数
     const fetchFavorite = async () => {
         try {
-            const response = await axios.get(`/api/favorites/${id}`, {
+            const response = await axios.get(`/api/favorites/idea/${id}`, {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
                 }
@@ -622,10 +622,11 @@ const PurchaseDetail = () => {
                 }
             });
             if (response.status === 200) {
-                setFavorite(prevFavorite => ({
-                    ...prevFavorite,
-                    is_favorite: !prevFavorite.is_favorite // お気に入りの状態を反転
-                }));
+                // setFavorite(prevFavorite => ({
+                //     ...prevFavorite,
+                //     is_favorite: !prevFavorite.is_favorite // お気に入りの状態を反転
+                fetchFavorite();
+                // }));
             } else {
                 throw new Error('サーバーエラー: ' + response.status);
             }
