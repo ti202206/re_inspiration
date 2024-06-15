@@ -16100,6 +16100,43 @@ var ProfileEdit = function ProfileEdit() {
   var handleBackToProfile = function handleBackToProfile() {
     navigate("/profile"); // プロフィール確認ページに戻る
   };
+  var handleDeleteAccount = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (!window.confirm('本当にアカウントを削除しますか？この操作は元に戻せません。')) {
+              _context3.next = 13;
+              break;
+            }
+            _context3.prev = 1;
+            _context3.next = 4;
+            return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]('/api/profile', {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+              }
+            });
+          case 4:
+            alert('アカウントが削除されました。');
+            sessionStorage.removeItem('auth_token');
+            navigate('/'); // topページにリダイレクト
+            _context3.next = 13;
+            break;
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](1);
+            console.error('Error deleting account', _context3.t0);
+            alert('アカウントの削除に失敗しました。');
+          case 13:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[1, 9]]);
+    }));
+    return function handleDeleteAccount() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
       children: "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u7DE8\u96C6"
@@ -16137,6 +16174,9 @@ var ProfileEdit = function ProfileEdit() {
       children: "\u66F4\u65B0"
     }), message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
       children: message
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: handleDeleteAccount,
+      children: "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u524A\u9664"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: handleBackToProfile,
       children: "\u623B\u308B"

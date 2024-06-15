@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // profile関連のルート
     Route::get('/user', [ProfileController::class, 'getUser']);
     Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
-
+    Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
 
     // 認証されたユーザー情報の取得
     // Route::get('/user', function (Request $request) {

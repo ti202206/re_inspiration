@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * 可変項目の定義
      *
      * @var array<int, string>
      */
@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     *シリアル化時に隠す属性
      *
      * @var array<int, string>
      */
@@ -36,7 +36,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * キャストする属性
      *
      * @var array<string, string>
      */
@@ -51,4 +51,10 @@ class User extends Authenticatable
                 ? asset('storage/' . $this->profile_image) 
                 : asset('images/default-user-icon.png'); // デフォルトのアイコンパス
         }
+
+           // ユーザーが持つアイディア
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
 }

@@ -70,6 +70,24 @@ const ProfileEdit = () => {
         navigate("/profile"); // プロフィール確認ページに戻る
     };
 
+    const handleDeleteAccount = async () => {
+        if (window.confirm('本当にアカウントを削除しますか？この操作は元に戻せません。')) {
+            try {
+                await axios.delete('/api/profile', {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+                    }
+                });
+                alert('アカウントが削除されました。');
+                sessionStorage.removeItem('auth_token');
+                navigate('/'); // topページにリダイレクト
+            } catch (error) {
+                console.error('Error deleting account', error);
+                alert('アカウントの削除に失敗しました。');
+            }
+        }
+    };
+
     return (
         <div>
             <h2>プロフィールを編集</h2>
@@ -98,6 +116,9 @@ const ProfileEdit = () => {
             
             <button onClick={handleUpload}>更新</button>
             {message && <p>{message}</p>}
+
+            <button onClick={handleDeleteAccount}>アカウントを削除</button> 
+
             <button onClick={handleBackToProfile}>戻る</button>{" "}
             {/* プロフィール確認ページに戻るボタン */}
         </div>

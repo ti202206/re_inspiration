@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Idea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -79,5 +80,33 @@ class ProfileController extends Controller
             // : asset('images/default-user-icon.png'),
 
         ]);
+    }
+
+        /**
+     * アカウント削除
+     */
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user();
+
+        // 未購入アイディアの削除
+        // $user->ideas()->where('purchased', false)->delete();
+        Idea::where('user_id', $user->id)
+            ->where('purchased', false)
+            ->delete();
+
+            // 購入済みアイディアの更新
+            Idea::where('user_id', $user->id)
+            ->where('purchased', true)
+            ->update(['user_id' => null]);
+        // プロフィール画像の削除
+        if ($user->profile_image_path) {
+            Storage::disk('public')->delete($user->profile_image_path);
+        }
+
+        // ユーザーの削除
+        $user->delete();
+
+        return response()->json(['message' => 'アカウントが削除されました。']);
     }
 }
