@@ -13009,8 +13009,15 @@ var IdeaDetail = function IdeaDetail() {
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.prev = 0;
-            _context6.next = 3;
+            if (!(idea.user_id === null)) {
+              _context6.next = 3;
+              break;
+            }
+            alert('このアイディアの投稿者は退会済みのため、購入できません。');
+            return _context6.abrupt("return");
+          case 3:
+            _context6.prev = 3;
+            _context6.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/purchases', {
               idea_id: ideaId
             }, {
@@ -13018,31 +13025,31 @@ var IdeaDetail = function IdeaDetail() {
                 Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
               }
             });
-          case 3:
+          case 6:
             response = _context6.sent;
             if (!(response.status === 201)) {
-              _context6.next = 9;
+              _context6.next = 12;
               break;
             }
             alert('購入が完了しました。');
             navigate("/purchase-detail/".concat(ideaId));
-            _context6.next = 10;
-            break;
-          case 9:
-            throw new Error('購入に失敗しました。');
-          case 10:
-            _context6.next = 16;
+            _context6.next = 13;
             break;
           case 12:
-            _context6.prev = 12;
-            _context6.t0 = _context6["catch"](0);
+            throw new Error('購入に失敗しました。');
+          case 13:
+            _context6.next = 19;
+            break;
+          case 15:
+            _context6.prev = 15;
+            _context6.t0 = _context6["catch"](3);
             console.error('Error during purchase:', _context6.t0);
             alert('購入処理に失敗しました。');
-          case 16:
+          case 19:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[0, 12]]);
+      }, _callee6, null, [[3, 15]]);
     }));
     return function handlePurchase(_x) {
       return _ref6.apply(this, arguments);
@@ -13194,7 +13201,7 @@ var IdeaDetail = function IdeaDetail() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "idea-card__buttons",
-          children: [user && idea.user_id !== user.id && !hasPurchased(idea.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: [user && idea.user_id !== user.id && idea.user_id !== null && !hasPurchased(idea.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             className: "btn",
             onClick: function onClick() {
               return handlePurchase(idea.id);
@@ -13409,7 +13416,7 @@ function IdeaSubmission() {
           onSubmit: handleSubmit,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             htmlFor: "title",
-            children: "\u30BF\u30A4\u30C8\u30EB:"
+            children: "\u30BF\u30A4\u30C8\u30EB:\u516C\u958B\u60C5\u5831\u3067\u3059"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
             type: "text",
             id: "title",
@@ -13421,7 +13428,7 @@ function IdeaSubmission() {
             children: errors.title
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             htmlFor: "overview",
-            children: "\u6982\u8981:"
+            children: "\u6982\u8981:\u516C\u958B\u60C5\u5831\u3067\u3059"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
             id: "overview",
             name: "overview",
@@ -13432,7 +13439,7 @@ function IdeaSubmission() {
             children: errors.overview
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             htmlFor: "content",
-            children: "\u8A73\u7D30:"
+            children: "\u8A73\u7D30:\u8CFC\u5165\u8005\u306E\u307F\u898B\u308C\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3059"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
             id: "content",
             name: "content",

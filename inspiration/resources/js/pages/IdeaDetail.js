@@ -673,6 +673,12 @@ const IdeaDetail = () => {
 
     // 購入処理を実行する関数
     const handlePurchase = async (ideaId) => {
+        // user_idがnullでないことを確認
+        if (idea.user_id === null) {
+            alert('このアイディアの投稿者は退会済みのため、購入できません。');
+            return;
+        }
+        
         try {
             const response = await axios.post('/api/purchases', { idea_id: ideaId }, {
                 headers: {
@@ -785,7 +791,8 @@ const IdeaDetail = () => {
 
                     <div className="idea-card__buttons">
                         {/* 自身の投稿でない場合に「購入」ボタンを表示 */}
-                        {user && idea.user_id !== user.id && !hasPurchased(idea.id) && (
+                        {/* {user && idea.user_id !== user.id && !hasPurchased(idea.id) && ( */}
+                        {user && idea.user_id !== user.id && idea.user_id !== null && !hasPurchased(idea.id) && (
                             <button
                                 className='btn'
                                 onClick={() => handlePurchase(idea.id)}
