@@ -72,7 +72,7 @@ function IdeaSubmission() {
                 <div className="submission-form">
                     <h2>アイデアを投稿する</h2>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="title">タイトル:</label>
+                        <label htmlFor="title">タイトル:公開情報です</label>
                         <input
                             type="text"
                             id="title"
@@ -82,7 +82,7 @@ function IdeaSubmission() {
                         />
                         {errors.title && <p className="error">{errors.title}</p>}
 
-                        <label htmlFor="overview">概要:</label>
+                        <label htmlFor="overview">概要:公開情報です</label>
                         <textarea
                             id="overview"
                             name="overview"
@@ -91,7 +91,7 @@ function IdeaSubmission() {
                         />
                         {errors.overview && <p className="error">{errors.overview}</p>}
 
-                        <label htmlFor="content">詳細:</label>
+                        <label htmlFor="content">詳細:購入者のみ見れるようになります</label>
                         <textarea
                             id="content"
                             name="content"
