@@ -26,7 +26,7 @@ class FavoriteController extends Controller
         //お気に入り登録する．（ない場合はtrueとして作成する）
         $favorite = Favorite::firstOrCreate(
             ['user_id' => auth()->id(), 'idea_id' => $idea->id],
-            ['is_favorite' => true]  // 初期値をtrueに設定
+            ['is_favorite' => 0]
         );
 
         //お気に入りを反転させて，保存
@@ -36,6 +36,19 @@ class FavoriteController extends Controller
         //レスポンスを表示
         return response()->json(['message' => 'Favorite toggled successfully.', 'is_favorite' => $favorite->is_favorite]);
     }
+
+    public function getFavoriteByIdeaId($idea_id)
+{
+    $favorite = Favorite::where('user_id', Auth::id())
+        ->where('idea_id', $idea_id)
+        ->first();
+
+    if (!$favorite) {
+        return response()->json(['is_favorite' => false], 200);
+    }
+
+    return response()->json($favorite);
+}
 
     // public function toggleFavorite(Request $request)
     // {
