@@ -139,9 +139,9 @@ import { useNavigate } from 'react-router-dom';
             navigate(`/review-update/${ideaId}`,{state:{reviewId} });
         };
 
-        const handleEditClick = (id) => {
-            navigate(`/idea-update/${id}`);
-        };
+            const handleEditClick = (id) => {
+        navigate(`/idea-update/${id}`);
+    };
 
         const handleToggleFavorite = async (id) => {
             try {
