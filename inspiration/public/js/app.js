@@ -15408,6 +15408,9 @@ var MyPage = function MyPage() {
       }
     });
   };
+  var handleEditClick = function handleEditClick(id) {
+    navigate("/idea-update/".concat(id));
+  };
   var handleToggleFavorite = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id) {
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -15539,7 +15542,7 @@ var MyPage = function MyPage() {
                 buttons: [{
                   label: "詳細",
                   onClick: function onClick() {
-                    return handleDetailClick(idea.id, true);
+                    return handleEditClick(idea.id);
                   }
                 }]
               }, "idea-".concat(idea.id))

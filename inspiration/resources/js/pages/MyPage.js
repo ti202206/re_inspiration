@@ -139,6 +139,10 @@ import { useNavigate } from 'react-router-dom';
             navigate(`/review-update/${ideaId}`,{state:{reviewId} });
         };
 
+        const handleEditClick = (id) => {
+            navigate(`/idea-update/${id}`);
+        };
+
         const handleToggleFavorite = async (id) => {
             try {
                 await axios.post('/api/favorites/toggle', { idea_id: id }, {
@@ -298,7 +302,7 @@ import { useNavigate } from 'react-router-dom';
                                     buttons={[
                                         {
                                             label: "詳細",
-                                            onClick: () => handleDetailClick(idea.id, true),
+                                            onClick: () => handleEditClick(idea.id),
                                         },
                                     ]}
                                 />
@@ -365,7 +369,7 @@ import { useNavigate } from 'react-router-dom';
                         ) : (
                             <ReviewCard isPlaceholder={true} />
                         )}
-                        
+
 
                         {/* {reviewed.length > 0 ? (
                             reviewed.map((review) => (
