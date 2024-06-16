@@ -85,14 +85,46 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //一覧を表示する（アイディアのデータも取得）
+        // お気に入りリストの取得とアイディアデータのフォーマット
+        // 変更開始
         $favorites = Favorite::where('user_id', Auth::id())
-        ->where('is_favorite', 1) // is_favoriteがtrueのものだけを取得
-        ->with('idea')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->where('is_favorite', 1) // is_favoriteがtrueのものだけを取得
+            ->with(['idea'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        return response()->json($favorites);
+        $formattedFavorites = $favorites->map(function ($favorite) {
+            $idea = $favorite->idea;
+
+            return [
+                'id' => $favorite->id,
+                'user_id' => $favorite->user_id,
+                'idea_id' => $favorite->idea_id,
+                'is_favorite' => $favorite->is_favorite,
+                'created_at' => $favorite->created_at,
+                'updated_at' => $favorite->updated_at,
+                'idea' => [
+                    'id' => $idea->id,
+                    'user_id' => $idea->user_id,
+                    'category_id' => $idea->category_id,
+                    'title' => $idea->title,
+                    'overview' => $idea->overview,
+                    'content' => $idea->content,
+                    'price' => $idea->price,
+                    'purchased' => $idea->purchased,
+                    'created_at' => $idea->created_at,
+                    'updated_at' => $idea->updated_at,
+                    // 必要なラベルデータを追加
+                    'average_rating' => $idea->average_rating ?? '-',
+                    'favorite_count' => $idea->favorite_count ?? 0,
+                    'purchase_count' => $idea->purchase_count ?? 0,
+                    'review_count' => $idea->review_count ?? 0,
+                ]
+            ];
+        });
+
+        return response()->json($formattedFavorites);
+        // 変更終了
     }
 
     // /**

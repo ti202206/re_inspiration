@@ -6,10 +6,13 @@ use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use App\Models\Idea;
 use App\Models\Purchase;
+use App\Models\User;
+use App\Mail\IdeaPurchased;
 use Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PurchaseController extends Controller
 {
@@ -24,8 +27,30 @@ class PurchaseController extends Controller
         // ユーザーの購入履歴を取得
         $purchases = Cache::remember("user_purchases_{$user->id}", 60, function () use ($user) {
             return Purchase::where('buyer_id', $user->id)
-            ->with(['idea:id,category_id,title,overview,updated_at,price']) // ideas テーブルからデータを取得
-            ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at','buyer_id']); // 購入情報とレビューの詳細を取得
+            ->with(['idea:id,category_id,title,overview,updated_at,price',]) // ideas テーブルからデータを取得
+            ->get(['id', 'idea_id', 'review', 'rating', 'created_at', 'updated_at','buyer_id']) // 購入情報とレビューの詳細を取得
+            ->map(function ($purchase) {
+                // 関連する Idea のデータを整形
+                $idea = $purchase->idea;
+
+                // 必要なラベルデータを追加
+                $ideaData = $idea->only(['id', 'category_id', 'title', 'overview', 'updated_at', 'price']);
+                $ideaData['average_rating'] = $idea->average_rating;
+                $ideaData['favorite_count'] = $idea->favorite_count;
+                $ideaData['purchase_count'] = $idea->purchase_count;
+                $ideaData['review_count'] = $idea->review_count;
+
+                return [
+                    'id' => $purchase->id,
+                    'idea_id' => $purchase->idea_id,
+                    'review' => $purchase->review,
+                    'rating' => $purchase->rating,
+                    'created_at' => $purchase->created_at,
+                    'updated_at' => $purchase->updated_at,
+                    'buyer_id' => $purchase->buyer_id,
+                    'idea' => $ideaData,
+                ];
+            });
         });
         return response()->json($purchases);
     }
@@ -35,14 +60,56 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    // public function allReviews()
+    // {
+    //     // 全てのレビューを持つ購入レコードを取得
+    //     $reviews = Purchase::whereNotNull('review')
+    //         ->with(['idea:id,title,updated_at','buyer:id,name',]) // アイディアのIDとタイトルを取得
+    //         ->get(['id', 'idea_id','buyer_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
+
+    //     return response()->json($reviews);
+    // }
     public function allReviews()
     {
         // 全てのレビューを持つ購入レコードを取得
         $reviews = Purchase::whereNotNull('review')
-            ->with(['idea:id,title,updated_at','buyer:id,name',]) // アイディアのIDとタイトルを取得
-            ->get(['id', 'idea_id','buyer_id', 'review', 'rating', 'created_at', 'updated_at']); // 必要な購入情報を取得
+            ->with([
+                'idea:id,title,updated_at,category_id,overview,content,price,purchased', // 必要なフィールドを取得
+                'buyer:id,name'
+            ])
+            ->get(['id', 'idea_id', 'buyer_id', 'review', 'rating', 'created_at', 'updated_at']);
 
-        return response()->json($reviews);
+        // リレーションとアクセサを使って整形されたデータを返す
+        $formattedReviews = $reviews->map(function ($review) {
+            $idea = $review->idea;
+
+            return [
+                'id' => $review->id,
+                'idea_id' => $review->idea_id,
+                'buyer_id' => $review->buyer_id,
+                'review' => $review->review,
+                'rating' => $review->rating,
+                'created_at' => $review->created_at,
+                'updated_at' => $review->updated_at,
+                'idea' => [
+                    'id' => $idea->id,
+                    'category_id' => $idea->category_id,
+                    'title' => $idea->title,
+                    'overview' => $idea->overview,
+                    'content' => $idea->content,
+                    'price' => $idea->price,
+                    'purchased' => $idea->purchased,
+                    'created_at' => $idea->created_at,
+                    'updated_at' => $idea->updated_at,
+                    'average_rating' => $idea->average_rating,
+                    'favorite_count' => $idea->favorite_count,
+                    'purchase_count' => $idea->purchase_count,
+                    'review_count' => $idea->review_count,
+                ]
+            ];
+        });
+
+        return response()->json($formattedReviews);
     }
 
     /**
@@ -50,17 +117,60 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    // public function myReviewedPurchases()
+    // {
+    //     $user = Auth::user();
+    //     // レビュー履歴のみを取得
+    //     $reviewedPurchases = Purchase::where('buyer_id', $user->id)
+    //         ->whereNotNull('review')
+    //         ->with(['idea:id,category_id,title,overview,updated_at'])
+    //         ->get(['id', 'idea_id', 'review', 'rating', 'reviewed_at','created_at', 'updated_at','buyer_id']);
+
+    //     return response()->json($reviewedPurchases);
+    // }
     public function myReviewedPurchases()
     {
         $user = Auth::user();
         // レビュー履歴のみを取得
         $reviewedPurchases = Purchase::where('buyer_id', $user->id)
             ->whereNotNull('review')
-            ->with(['idea:id,category_id,title,overview,updated_at'])
-            ->get(['id', 'idea_id', 'review', 'rating', 'reviewed_at','created_at', 'updated_at','buyer_id']);
+            ->with(['idea:id,category_id,title,overview,content,price,purchased,updated_at']) // 必要なフィールドを取得
+            ->get(['id', 'idea_id', 'review', 'rating', 'reviewed_at', 'created_at', 'updated_at', 'buyer_id']);
 
-        return response()->json($reviewedPurchases);
+        // リレーションとアクセサを使って整形されたデータを返す
+        $formattedReviewedPurchases = $reviewedPurchases->map(function ($purchase) {
+            $idea = $purchase->idea;
+
+            return [
+                'id' => $purchase->id,
+                'idea_id' => $purchase->idea_id,
+                'review' => $purchase->review,
+                'rating' => $purchase->rating,
+                'reviewed_at' => $purchase->reviewed_at,
+                'created_at' => $purchase->created_at,
+                'updated_at' => $purchase->updated_at,
+                'buyer_id' => $purchase->buyer_id,
+                'idea' => [
+                    'id' => $idea->id,
+                    'category_id' => $idea->category_id,
+                    'title' => $idea->title,
+                    'overview' => $idea->overview,
+                    'content' => $idea->content,
+                    'price' => $idea->price,
+                    'purchased' => $idea->purchased,
+                    'created_at' => $idea->created_at,
+                    'updated_at' => $idea->updated_at,
+                    'average_rating' => $idea->average_rating,
+                    'favorite_count' => $idea->favorite_count,
+                    'purchase_count' => $idea->purchase_count,
+                    'review_count' => $idea->review_count,
+                ]
+            ];
+        });
+
+        return response()->json($formattedReviewedPurchases);
     }
+
 
     /**
      * 購入を登録する
@@ -99,6 +209,12 @@ class PurchaseController extends Controller
 
             // アイディアの purchased を true に変更
             $idea->update(['purchased' => true]);
+
+            // 購入後に投稿者へ通知
+            $ideaOwner = User::find($idea->user_id);
+            if ($ideaOwner) {
+                Mail::to($ideaOwner->email)->send(new IdeaPurchased($idea, $user));
+            }
 
             DB::commit();
             return response()->json($purchase, 201);
