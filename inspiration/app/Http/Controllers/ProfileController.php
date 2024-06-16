@@ -3,12 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+
+
+    /**
+     * 指定したユーザーのプロフィールを表示
+     */
+    public function showUserProfile($userId)
+    {
+        $user = User::findOrFail($userId);
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'bio' => $user->bio,
+            'profile_image_url' => $user->profile_image_path
+                ? asset('storage/' . $user->profile_image_path)
+                : asset('images/default-user-icon.png'),
+        ]);
+    }
+
+
     /**
      * プロフィール情報と画像の更新
      */
