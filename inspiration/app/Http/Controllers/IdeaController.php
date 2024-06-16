@@ -127,7 +127,10 @@ class IdeaController extends Controller
         }
 
         //レビューがある購入の詳細情報をロードする
-        $idea->load(['purchases' => function($query) {
+        // $idea->load(['purchases' => function($query) {
+        //     $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
+        // }]);
+        $idea->load(['user:id,name', 'purchases' => function($query) {
             $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
         }]);
 
@@ -178,7 +181,7 @@ class IdeaController extends Controller
     // }
     public function update(Request $request, $id)
 {
-    //＊＊＊＊＊＊変更： update メソッドの修正＊＊＊＊＊＊
+
     $idea = Idea::find($id);
     if (!$idea) {
         return response()->json(['message' => 'Idea not found'], 404);
@@ -207,7 +210,7 @@ class IdeaController extends Controller
     }
 
     return response()->json(['message' => 'Idea updated successfully', 'idea' => $idea], 200);
-    //＊＊＊＊＊＊変更： update メソッドの修正＊＊＊＊＊＊
+
 }
 
 

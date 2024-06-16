@@ -542,7 +542,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 const IdeaDetail = () => {
     const { id } = useParams(); // URLパラメータからIDを取得
@@ -748,6 +748,12 @@ const IdeaDetail = () => {
                     </div>
 
                     <div className="form-group">
+                        <label>投稿者:</label>
+                        {/* <div className="form-value">{idea.user?.name || '投稿者不明'}</div> */}
+                        {idea.user?.name ? <Link to={`/user/${idea.user.id}`}>{idea.user.name}</Link> : '投稿者不明'}
+                    </div>
+
+                    <div className="form-group">
                         <label>価格 (円):</label>
                         <div className="form-value">{idea.price}</div>
                     </div>
@@ -819,7 +825,7 @@ const IdeaDetail = () => {
                         </button>
                     </div>
 
-                    <div className="review-section">
+                    {/* <div className="review-section">
                         <h3>レビュー</h3>
                         {reviews.length > 0 ? (
                             reviews.map((review, index) => (
@@ -833,7 +839,28 @@ const IdeaDetail = () => {
                         ) : (
                             <p>レビューはまだありません。</p>
                         )}
+                    </div> */}
+
+<div className="review-section">
+                        <h3>レビュー</h3>
+                        {reviews.length > 0 ? (
+                            reviews.map((review, index) => (
+                                <div key={index} className="review">
+                                    <p><strong>{review.rating}</strong> / 5</p>
+                                    <p>{review.review}</p>
+                                    {/* <p><strong>投稿者:</strong> {review.buyer_name}</p> */}
+                                    <p><strong>投稿者:</strong>
+                                        {/* レビュアー名にリンクを追加 */}
+                                        {review.buyer_id ? <Link to={`/user/${review.buyer_id}`}>{review.buyer_name}</Link> : review.buyer_name || '投稿者不明'}
+                                    </p>
+                                    <p><small>{new Date(review.updated_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}</small></p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>レビューはまだありません。</p>
+                        )}
                     </div>
+
                 </div>
             </main>
             <Footer />

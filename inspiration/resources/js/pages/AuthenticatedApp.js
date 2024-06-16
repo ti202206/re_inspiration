@@ -21,6 +21,7 @@ import ReviewSubmission from "./ReviewSubmission";
 import ReviewUpdate from "./ReviewUpdate";
 import Profile from "./profile";
 import ProfileEdit from "./ProfileEdit";
+import UserProfile from "./UserProfile";
 // const AuthenticatedApp = () => {
 //     return (
 //         <Router>
@@ -86,6 +87,7 @@ const AuthenticatedApp = () => {
                 <Route path="/purchase-detail/:id" element={<PurchaseDetail />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile-edit" element={<ProfileEdit />} />
+                <Route path="/user/:userId" element={<UserProfile />} /> {/* 他のユーザーのプロフィール */}
             </Routes>
         // </Router>
     );

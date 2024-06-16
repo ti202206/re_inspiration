@@ -75,14 +75,15 @@ class PurchaseController extends Controller
         $reviews = Purchase::whereNotNull('review')
             ->with([
                 'idea:id,title,updated_at,category_id,overview,content,price,purchased', // 必要なフィールドを取得
-                'buyer:id,name'
+                'buyer:id,name',
             ])
             ->get(['id', 'idea_id', 'buyer_id', 'review', 'rating', 'created_at', 'updated_at']);
 
         // リレーションとアクセサを使って整形されたデータを返す
         $formattedReviews = $reviews->map(function ($review) {
             $idea = $review->idea;
-
+            $buyer = $review->buyer;
+            
             return [
                 'id' => $review->id,
                 'idea_id' => $review->idea_id,
@@ -91,6 +92,7 @@ class PurchaseController extends Controller
                 'rating' => $review->rating,
                 'created_at' => $review->created_at,
                 'updated_at' => $review->updated_at,
+                'buyer_name' => $buyer ? $buyer->name : '不明',
                 'idea' => [
                     'id' => $idea->id,
                     'category_id' => $idea->category_id,
@@ -150,6 +152,7 @@ class PurchaseController extends Controller
                 'created_at' => $purchase->created_at,
                 'updated_at' => $purchase->updated_at,
                 'buyer_id' => $purchase->buyer_id,
+                'buyer_name' => $purchase->buyer->name,
                 'idea' => [
                     'id' => $idea->id,
                     'category_id' => $idea->category_id,

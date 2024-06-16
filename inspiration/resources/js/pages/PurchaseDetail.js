@@ -432,7 +432,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 const PurchaseDetail = () => {
     const { id } = useParams(); // URLパラメータからIDを取得
@@ -668,6 +668,13 @@ const PurchaseDetail = () => {
                     </div>
 
                     <div className="form-group">
+                        <label>投稿者:</label>
+                        <div className="form-value">
+                            {idea.user ? <Link to={`/user/${idea.user.id}`}>{idea.user.name}</Link> : '投稿者不明'}
+                        </div>
+                    </div>
+
+                    <div className="form-group">
                         <label>価格 (円):</label>
                         <div className="form-value">{idea.price}</div>
                     </div>
@@ -774,7 +781,11 @@ const PurchaseDetail = () => {
                                 <div key={index} className="review">
                                     <p><strong>評価:</strong> {review.rating} / 5</p>
                                     <p><strong>レビュー:</strong> {review.review}</p>
-                                    <p><strong>投稿者:</strong> {review.buyer?.name}</p>
+                                    {/* <p><strong>投稿者:</strong> {review.buyer?.name}</p> */}
+                                    <p><strong>投稿者:</strong>
+                                        {/* 投稿者名にリンクを追加 */}
+                                        {review.buyer_id ? <Link to={`/user/${review.buyer_id}`}>{review.buyer_name}</Link> : review.buyer_name || '投稿者不明'}
+                                    </p>
                                     <p><small>投稿日: {new Date(review.updated_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}</small></p>
                                 </div>
                             ))
