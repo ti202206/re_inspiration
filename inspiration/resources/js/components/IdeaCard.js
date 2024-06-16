@@ -6,6 +6,13 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], upd
         return new Intl.NumberFormat('ja-JP', { style: 'decimal' }).format(price);
     };
 
+    //＊＊＊＊＊＊変更：Xでシェア機能の追加＊＊＊＊＊＊
+const generateTweetLink = (idea) => {
+    const tweetText = `Inspirationをみんなでシェア\nアイディア: \n${idea.title}\n詳細はこちら: ${window.location.origin}/idea-detail/${idea.id}`;
+    const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    return tweetURL;
+};
+
     return (
         <div className="idea-card">
             <div className="idea-card__content">
@@ -51,6 +58,20 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], upd
                     <i className="fa-solid fa-yen-sign"></i>{isPlaceholder ? '' : formatPrice(price || idea.price)} 
                     </p>
 
+                                        {/* Xでシェアリンク */}
+                                        <a
+                        href={generateTweetLink(idea)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="idea-card__share-link"
+                    >
+                        {/* Xぽいアイコン */}
+                        <span className="idea-card__share-icon">
+                            <i className="fa-brands fa-x-twitter"></i>
+                        </span>
+                        でシェア
+                    </a>
+
                 </div>
             </div>
             {/* データがない場合はボタンを表示しない */}
@@ -65,6 +86,17 @@ const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], upd
                             {button.label}
                         </button>
                     ))}
+
+                                        {/* Xでシェアボタン */}
+                                        {/* <a
+                        href={generateTweetLink(idea)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="idea-card__button idea-card__share-button"
+                    >
+                        Xでシェア
+                    </a> */}
+
                 </div>
             )}
         </div>
