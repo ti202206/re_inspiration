@@ -63,6 +63,37 @@ import { useNavigate } from 'react-router-dom';
                 console.error('Error fetching favorites:', error);
             }
         };
+        // const fetchFavorites = async () => {
+        //     try {
+        //         const response = await axios.get('/api/favorites', {
+        //             headers: {
+        //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+        //             }
+        //         });
+        //         const sortedFavorites = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        //         const recentFavorites = sortedFavorites.slice(0, 5);
+    
+        //         // フォーマットに合わせて変換する
+        //         const formattedFavorites = recentFavorites.map(favorite => {
+        //             return {
+        //                 ...favorite,
+        //                 idea: {
+        //                     ...favorite.idea,
+        //                     average_rating: favorite.idea.average_rating || '-',
+        //                     favorite_count: favorite.idea.favorite_count || 0,
+        //                     purchase_count: favorite.idea.purchase_count || 0,
+        //                     review_count: favorite.idea.review_count || 0
+        //                 }
+        //             };
+        //         });
+    
+        //         setFavorites(formattedFavorites);
+        //         console.log('Fetched favorites:', formattedFavorites);
+    
+        //     } catch (error) {
+        //         console.error('Error fetching favorites:', error);
+        //     }
+        // };
 
         // 購入済み情報を取得
         const fetchMyPurchases = async () => {
