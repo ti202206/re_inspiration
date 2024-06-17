@@ -201,50 +201,50 @@ class PurchaseController extends Controller
             return response()->json(['error' => '自分の投稿したアイディアは購入できません。'], 400);
         }
 
-        DB::beginTransaction();
-
-        try {
-            // 購入レコードの作成
-            $purchase = Purchase::create([
-                'idea_id' => $ideaId,
-                'buyer_id' => $user->id,
-            ]);
-
-            // アイディアの purchased を true に変更
-            $idea->update(['purchased' => true]);
-
-            // 購入後に投稿者へ通知
-            $ideaOwner = User::find($idea->user_id);
-            if ($ideaOwner) {
-                Mail::to($ideaOwner->email)->send(new IdeaPurchased($idea, $user));
-            }
-
-            DB::commit();
-            return response()->json($purchase, 201);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json(['error' => '購入処理に失敗しました。', 'message' => $e->getMessage()], 500);
-        }
-
         // DB::beginTransaction();
 
         // try {
         //     // 購入レコードの作成
         //     $purchase = Purchase::create([
-        //         'idea_id' => $request->idea_id,
-        //         'buyer_id' => $request->user()->id,
+        //         'idea_id' => $ideaId,
+        //         'buyer_id' => $user->id,
         //     ]);
 
         //     // アイディアの purchased を true に変更
-        //     $idea = Idea::findOrFail($request->idea_id);
         //     $idea->update(['purchased' => true]);
+
+        //     // 購入後に投稿者へ通知
+        //     $ideaOwner = User::find($idea->user_id);
+        //     if ($ideaOwner) {
+        //         Mail::to($ideaOwner->email)->send(new IdeaPurchased($idea, $user));
+        //     }
 
         //     DB::commit();
         //     return response()->json($purchase, 201);
         // } catch (\Exception $e) {
         //     DB::rollback();
-        //     return response()->json(['error' => 'Failed to process purchase', 'message' => $e->getMessage()], 500);
+        //     return response()->json(['error' => '購入処理に失敗しました。', 'message' => $e->getMessage()], 500);
         // }
+
+        DB::beginTransaction();
+
+        try {
+            // 購入レコードの作成
+            $purchase = Purchase::create([
+                'idea_id' => $request->idea_id,
+                'buyer_id' => $request->user()->id,
+            ]);
+
+            // アイディアの purchased を true に変更
+            $idea = Idea::findOrFail($request->idea_id);
+            $idea->update(['purchased' => true]);
+
+            DB::commit();
+            return response()->json($purchase, 201);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => 'Failed to process purchase', 'message' => $e->getMessage()], 500);
+        }
     }
 
     /**
