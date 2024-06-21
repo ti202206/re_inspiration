@@ -1,0 +1,128 @@
+.idea-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    // @media only screen and (max-width: 1200px){
+    //     width: calc(50% - 10px);
+    // }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__title-category {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__title {
+        // margin: 0 10px 0 0;
+        margin: 0;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    &__summary {
+        margin: 0;
+        margin-bottom: 5px;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+
+        @media only screen and (max-width: 1200px) {
+            flex-wrap: wrap;
+        }
+
+        > * {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    &__review-count,
+    &__average-rating,
+    &__purchase-count,
+    &__favorite-count,
+    &__category,
+    &__updated-at,
+    &__price {
+        margin: 0 5px 0 0;
+    }
+
+    &__price{
+        width: 85px;
+    }
+
+    &__x-link {
+        display: inline-flex;
+        align-items: center;
+        color: #000; /* リンクテキストの色を黒に設定 */
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #555; /* ホバー時に少し明るく */
+        }
+    }
+
+    &__x-icon {
+        background-color: #000; /* アイコン部分の背景を黒に設定 */
+        color: #fff; /* アイコンの色を白に設定 */
+        padding: 5px;
+        border-radius: 50%; /* 円形にするための設定 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5px; /* アイコンとテキストの間にスペースを追加 */
+        width: 15px;
+        height: 15px;
+
+        i {
+            font-size: 15px; /* アイコンのフォントサイズを調整 */
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        @media screen and (max-width: 600px) {
+            margin: 0;
+            flex-direction: row;
+        }
+    }
+
+    &__button {
+        padding: 8px 15px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+
+        @media screen and (max-width: 600px) {
+            flex: 1;
+            margin: 0 5px;
+        }
+    }
+}

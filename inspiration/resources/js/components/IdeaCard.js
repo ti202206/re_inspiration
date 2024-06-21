@@ -1,77 +1,99 @@
-import React from 'react';
+import React from "react";
 
 // IdeaCard コンポーネント定義
-const IdeaCard = ({ idea = {}, categories = {}, isPlaceholder, buttons = [], updatedAt = '',price='' }) => {
+const IdeaCard = ({
+    idea = {},
+    categories = {},
+    isPlaceholder,
+    buttons = [],
+    updatedAt = "",
+    price = "",
+}) => {
     const formatPrice = (price) => {
-        return new Intl.NumberFormat('ja-JP', { style: 'decimal' }).format(price);
+        return new Intl.NumberFormat("ja-JP", { style: "decimal" }).format(
+            price
+        );
     };
 
-    //＊＊＊＊＊＊変更：Xでシェア機能の追加＊＊＊＊＊＊
-const generateTweetLink = (idea) => {
-    const tweetText = `Inspirationをみんなでシェア\nアイディア: \n${idea.title}\n詳細はこちら: ${window.location.origin}/idea-detail/${idea.id}`;
-    const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-    return tweetURL;
-};
+    const generateTweetLink = (idea) => {
+        const tweetText = `Inspirationをみんなでシェア\nアイディア: \n${idea.title}\n詳細はこちら: ${window.location.origin}/idea-detail/${idea.id}`;
+        const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            tweetText
+        )}`;
+        return tweetURL;
+    };
 
     return (
         <div className="idea-card">
             <div className="idea-card__content">
                 <div className="idea-card__title-category">
                     {/* idea がない場合はデフォルトで "データがありません" を表示 */}
-                    <h3 className="idea-card__title">{isPlaceholder ? 'データがありません' : idea.title}</h3>
+                    <h3 className="idea-card__title">
+                        {isPlaceholder ? "データがありません" : idea.title}
+                    </h3>
                 </div>
-                <p className="idea-card__summary">{isPlaceholder ? '' : idea.overview}</p>
+                <p className="idea-card__summary">
+                    {isPlaceholder ? "" : idea.overview}
+                </p>
                 <div className="idea-card__meta">
-
                     {/* 平均値を表示 */}
                     <span className="idea-card__average-rating">
-                        <i className="fa-solid fa-star-half-stroke"></i>{isPlaceholder || idea.average_rating === 0 ? '-' : idea.average_rating || '-'}
+                        <i className="fa-solid fa-star-half-stroke"></i>
+                        {isPlaceholder || idea.average_rating === 0
+                            ? "-"
+                            : idea.average_rating || "-"}
                     </span>
 
                     {/* レビューの数を表示 */}
                     <span className="idea-card__review-count">
-                        <i className="fa-regular fa-comment-dots"></i>{isPlaceholder ? 0 : idea.review_count || 0}
+                        <i className="fa-regular fa-comment-dots"></i>
+                        {isPlaceholder ? 0 : idea.review_count || 0}
                     </span>
 
                     {/* 購入数を表示 */}
                     <span className="idea-card__purchase-count">
-                        <i className="fa-solid fa-cart-arrow-down"></i>{isPlaceholder ? 0 : idea.purchase_count || 0}
+                        <i className="fa-solid fa-cart-arrow-down"></i>
+                        {isPlaceholder ? 0 : idea.purchase_count || 0}
                     </span>
 
                     {/* 気になる数を表示 */}
                     <span className="idea-card__favorite_count">
-                        <i className="fa-regular fa-thumbs-up"></i>{isPlaceholder ? 0 : idea.favorite_count || 0}
+                        <i className="fa-regular fa-thumbs-up"></i>
+                        {isPlaceholder ? 0 : idea.favorite_count || 0}
                     </span>
 
                     {/* カテゴリーを表示 */}
                     <p className="idea-card__category">
-                        <i className="fa-solid fa-tags"></i>{isPlaceholder ? '' : categories[idea.category_id]}
+                        <i className="fa-solid fa-tags"></i>
+                        {isPlaceholder ? "" : categories[idea.category_id]}
                     </p>
 
                     {/* 投稿日を表示（更新日時を使用） */}
                     <p className="idea-card__updated-at">
-                        <i className="fa-regular fa-clock"></i>{isPlaceholder ? '' : new Date(updatedAt).toLocaleDateString()}
+                        <i className="fa-regular fa-clock"></i>
+                        {isPlaceholder
+                            ? ""
+                            : new Date(updatedAt).toLocaleDateString()}
                     </p>
 
                     {/* 価格を表示 */}
                     <p className="idea-card__price">
-                    <i className="fa-solid fa-yen-sign"></i>{isPlaceholder ? '' : formatPrice(price || idea.price)} 
+                        <i className="fa-solid fa-yen-sign"></i>
+                        {isPlaceholder ? "" : formatPrice(price || idea.price)}
                     </p>
 
-                                        {/* Xでシェアリンク */}
-                                        <a
+                    {/* Xでシェアリンク */}
+                    <a
                         href={generateTweetLink(idea)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="idea-card__share-link"
+                        className="idea-card__x-link"
                     >
-                        {/* Xぽいアイコン */}
-                        <span className="idea-card__share-icon">
+                        <span className="idea-card__x-icon">
                             <i className="fa-brands fa-x-twitter"></i>
                         </span>
                         でシェア
                     </a>
-
                 </div>
             </div>
             {/* データがない場合はボタンを表示しない */}
@@ -86,17 +108,6 @@ const generateTweetLink = (idea) => {
                             {button.label}
                         </button>
                     ))}
-
-                                        {/* Xでシェアボタン */}
-                                        {/* <a
-                        href={generateTweetLink(idea)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="idea-card__button idea-card__share-button"
-                    >
-                        Xでシェア
-                    </a> */}
-
                 </div>
             )}
         </div>
