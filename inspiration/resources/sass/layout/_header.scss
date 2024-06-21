@@ -3,9 +3,11 @@
     color: $prim-bright;
     text-align: center;
     position: fixed;
+    z-index: 1000;
     top: 0;
     width: 100%;
     border-bottom: 2px solid $prim-bright;
+
     // padding-bottom: 2px; /* ボーダーがコンテンツと接触しないようにする */
 
     &__title {

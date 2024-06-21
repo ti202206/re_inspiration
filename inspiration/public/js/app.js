@@ -11119,7 +11119,9 @@ var IdeaCard = function IdeaCard(_ref) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               className: "fa-brands fa-x-twitter"
             })
-          }), "\u3067\u30B7\u30A7\u30A2"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            children: "\u3067\u30B7\u30A7\u30A2"
+          })]
         })]
       })]
     }), !isPlaceholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {

@@ -1,12 +1,14 @@
+@import "../../sass/foundation/variables";
+
 .review-card {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid $bd-default;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px $shdw-default;
 
     @media screen and (max-width: 600px) {
         flex-direction: column;

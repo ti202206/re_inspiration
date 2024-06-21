@@ -1,12 +1,14 @@
+@import "../../sass/foundation/variables";
+
 .idea-card {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid $bd-default;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px $shdw-default;
 
     @media screen and (max-width: 600px) {
         flex-direction: column;
@@ -74,25 +76,55 @@
     &__x-link {
         display: inline-flex;
         align-items: center;
-        color: #000; /* リンクテキストの色を黒に設定 */
-        text-decoration: none;
+        text-decoration: none !important;
         font-size: 14px;
         transition: color 0.3s ease;
 
-        &:hover {
-            color: #555; /* ホバー時に少し明るく */
+        position: relative;
+        transition: color 0.3s;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: transparent;
+            transition: width 0.3s;
+        }
+
+        &:hover::before {
+            width: 100%;
+            background-color: $txt-link-hover;
+        }
+
+        &:active{
+            background-color: $txt-link-bg;
+            color: $txt-nav-active;
+            transition: none;
+        }
+
+        p{
+            color: $txt-nav-bright;
+            margin: 0;
+
+            &:active{
+                background-color: $txt-link-bg;
+                color: $txt-nav-active;
+                transition: none;
+            }
         }
     }
 
     &__x-icon {
-        background-color: #000; /* アイコン部分の背景を黒に設定 */
-        color: #fff; /* アイコンの色を白に設定 */
+        background-color: $x-bg;
+        color: $x-txt;
         padding: 5px;
-        border-radius: 50%; /* 円形にするための設定 */
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 5px; /* アイコンとテキストの間にスペースを追加 */
         width: 15px;
         height: 15px;
 

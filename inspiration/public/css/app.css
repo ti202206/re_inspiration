@@ -1205,6 +1205,7 @@ body {
   color: #ff8c00;
   text-align: center;
   position: fixed;
+  z-index: 1000;
   top: 0;
   width: 100%;
   border-bottom: 2px solid #ff8c00;
@@ -1418,23 +1419,48 @@ body {
 .idea-card__x-link {
   display: inline-flex;
   align-items: center;
-  color: #000; /* リンクテキストの色を黒に設定 */
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 14px;
   transition: color 0.3s ease;
+  position: relative;
+  transition: color 0.3s;
 }
-.idea-card__x-link:hover {
-  color: #555; /* ホバー時に少し明るく */
+.idea-card__x-link::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: width 0.3s;
+}
+.idea-card__x-link:hover::before {
+  width: 100%;
+  background-color: #ff8c00;
+}
+.idea-card__x-link:active {
+  background-color: #ff8c00;
+  color: white;
+  transition: none;
+}
+.idea-card__x-link p {
+  color: #ff8c00;
+  margin: 0;
+}
+.idea-card__x-link p:active {
+  background-color: #ff8c00;
+  color: white;
+  transition: none;
 }
 .idea-card__x-icon {
-  background-color: #000; /* アイコン部分の背景を黒に設定 */
-  color: #fff; /* アイコンの色を白に設定 */
+  background-color: #000;
+  color: #fff;
   padding: 5px;
-  border-radius: 50%; /* 円形にするための設定 */
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px; /* アイコンとテキストの間にスペースを追加 */
   width: 15px;
   height: 15px;
 }

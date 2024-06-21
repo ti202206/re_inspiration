@@ -92,7 +92,7 @@ const IdeaCard = ({
                         <span className="idea-card__x-icon">
                             <i className="fa-brands fa-x-twitter"></i>
                         </span>
-                        でシェア
+                        <p>でシェア</p>
                     </a>
                 </div>
             </div>
