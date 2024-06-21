@@ -2,6 +2,7 @@ import React from "react";
 
 // IdeaCard コンポーネント定義
 const IdeaCard = ({
+    className,
     idea = {},
     categories = {},
     isPlaceholder,
@@ -24,7 +25,7 @@ const IdeaCard = ({
     };
 
     return (
-        <div className="idea-card">
+        <div className={`idea-card ${className}`}>
             <div className="idea-card__content">
                 <div className="idea-card__title-category">
                     {/* idea がない場合はデフォルトで "データがありません" を表示 */}
