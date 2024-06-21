@@ -1,0 +1,85 @@
+@import "../../foundation/variables";
+
+// ページ全体のスタイル
+.register {
+    &-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: $bg-page-margin; // ページ背景色
+    }
+
+    // フォームのコンテナ
+    &-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 40px;
+    }
+    // フォームスタイル
+    &-form {
+        margin-top: 5em;
+        background-color: $form-bg;
+        padding: 20px 40px;
+        border: 1px solid $form-border;
+        box-shadow: 0 2px 4px $shdw-default;
+        border-radius: 8px; // 角丸
+        width: 100%;
+        max-width: 400px;
+        text-align: center; // テキスト中央揃え
+    }
+    // タイトルスタイル
+    &-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: $prim-bright;
+        text-align: center; // タイトルを中央に揃える
+    }
+    // 入力フィールド
+    &-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid $form-border;
+        border-radius: 4px; // 角丸
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    // ファイル入力フィールド
+    &-input-file {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+    // ボタンスタイル
+    &-button {
+        width: 100%;
+        padding: 10px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+        border: none;
+        border-radius: 4px; // 角丸
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $prim-med; // ホバー時の背景色
+        }
+    }
+    // エラーメッセージ
+    &-error {
+        color: $error-red;
+        margin-bottom: 15px;
+    }
+    // アイコンプレビュー
+    &-icon-preview {
+        display: block;
+        max-width: 50px; // アイコンプレビューの幅を制限
+        max-height: 50px; // アイコンプレビューの高さを制限
+        margin: 10px auto;
+        border-radius: 50%; // 円形にする
+        object-fit: cover; // 画像を切り抜いてアイコンとして表示
+    }
+}
