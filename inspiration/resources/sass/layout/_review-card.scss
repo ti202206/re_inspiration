@@ -1,0 +1,121 @@
+.review-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__title-category {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__title {
+        margin: 0 10px 0 0;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        // margin-top: 10px;
+
+        @media only screen and (max-width: 1200px) {
+            flex-wrap: wrap;
+        }
+
+        > * {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    &__review-count,
+    &__average-rating,
+    &__purchase-count,
+    &__favorite-count,
+    &__updated-at {
+        margin: 0 5px 0 0;
+    }
+
+    &__summary {
+        margin: 0;
+        margin: 5px;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    &__extra-content{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0;
+
+        > * {
+            padding: 0 10px 0 0;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        @media screen and (max-width: 600px) {
+            margin: 0;
+            flex-direction: row;
+        }
+    }
+
+    &__button {
+        padding: 8px 15px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+
+        @media screen and (max-width: 600px) {
+            flex: 1;
+            margin: 0 5px;
+        }
+    }
+
+
+
+    // &__category,
+    // &__summary,
+    // &__review,
+    // &__rating {
+    //     margin: 0;
+    //     margin-bottom: 5px;
+    // }
+
+
+
+    // &__review-count,
+    // &__average-rating {
+    //     margin: 0 10px 0 0;
+    // }
+}
