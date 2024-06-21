@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Log;
 
 class PurchaseController extends Controller
 {
@@ -238,6 +239,28 @@ class PurchaseController extends Controller
             // アイディアの purchased を true に変更
             $idea = Idea::findOrFail($request->idea_id);
             $idea->update(['purchased' => true]);
+
+            // 購入後に投稿者へ通知
+            $ideaOwner = User::find($idea->user_id);
+
+                        //＊＊＊＊＊＊変更：ideaOwnerの情報をログに出力＊＊＊＊＊＊
+                        Log::info('Idea Owner Details:', [
+                            'id' => $ideaOwner->id,
+                            'name' => $ideaOwner->name,
+                            'email' => $ideaOwner->email,
+                        ]);
+
+            // if ($ideaOwner) {
+            //     Mail::to($ideaOwner->email)->send(new IdeaPurchased($idea, $user));
+            // }
+
+            if ($ideaOwner) {
+                try {
+                    Mail::to($ideaOwner->email)->send(new IdeaPurchased($idea));
+                } catch (\Exception $e) {
+                    Log::error('Error sending email:', ['error' => $e->getMessage()]);
+                }
+            }
 
             DB::commit();
             return response()->json($purchase, 201);
