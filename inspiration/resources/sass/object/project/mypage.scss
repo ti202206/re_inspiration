@@ -14,13 +14,14 @@
         align-items: center;
         justify-content: space-between;
 
-        @media screen and (max-width: 600px) {
-            flex-direction: column;
-        }
-
         h2 {
             margin: 5px;
             white-space: nowrap;
+
+            @media screen and (max-width: 400px) {
+                margin: 5px;
+                white-space: normal;
+            }
         }
 
         a {
@@ -59,78 +60,3 @@
         }
     }
 }
-
-// .idea-card{
-//     display: flex;
-//     align-items: flex-start;
-//     justify-content: space-between;
-//     padding: 15px;
-//     margin-bottom: 20px;
-//     border: 1px solid #ddd;
-//     border-radius: 5px;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-//     @media screen and (max-width: 600px) {
-//         flex-direction: column;
-//         align-items: stretch;
-//     }
-
-//     &__content{
-//         flex: 1;
-//     }
-
-//     &__buttons{
-//         display: flex;
-//         flex-direction: column;
-//         margin: auto;
-
-//         @media screen and (max-width: 600px){
-//             margin: 0;
-//             flex-direction: row;
-//         }
-//     }
-
-//     &__button{
-//         padding: 8px 15px;
-//         margin-top: 5px;
-//         border: none;
-//         border-radius: 5px;
-//         background-color: $btn-bg-bright;
-//         color: $btn-txt-bright;
-
-//         @media screen and (max-width: 600px){
-//             flex: 1;
-//             margin: 0 5px;
-//         }
-//     }
-
-//     &__title{
-//         margin: 0 10px 0 0;
-//     }
-
-//     &__title-category{
-//         display: flex;
-//         justify-content: flex-start;
-//         align-items: center;
-//     }
-
-//     &__summary, &__review, &__rating{
-//         margin: 0;
-//         margin-bottom: 5px;
-//     }
-
-//     &__meta{
-//         display: flex;
-//         justify-content: flex-start;
-//         align-items: center;
-//         margin-top: 10px;
-
-//         @media only screen and (max-width: 1200px) {
-//             flex-wrap: wrap;
-//         }
-//     }
-
-//     &__review-count, &__average-rating{
-//         margin: 0 10px 0 0;
-//     }
-// }
