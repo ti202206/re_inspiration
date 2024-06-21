@@ -66,7 +66,7 @@ function ReviewsList() {
                                     key={index}
                                     idea={review.idea}
                                     review={review}
-                                    user={{ name: review.buyer?.name || '匿名ユーザー' }} // buyer の名前を表示
+                                    user={{ name: review.buyer_id || '匿名ユーザー' }}
                                     isOwner={isOwner}
                                     buttons={[
                                         {
@@ -74,7 +74,7 @@ function ReviewsList() {
                                             onClick: () => handleDetailClick(review.idea.id),
                                         },
                                         isOwner && {
-                                            label: "レビューを編集",
+                                            label: "編集",
                                             onClick: () => handleEditReviewClick(review.id),
                                         },
                                     ].filter(Boolean)} // undefinedを除去
