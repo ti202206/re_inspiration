@@ -1,7 +1,7 @@
 // Primary Colors
 $prim-bright: #ff8c00; // 明るいオレンジ
 $prim-med: #ffa500; // ミドルオレンジ
-$prim-light: #f9cc9f;  // ライトオレンジ
+$prim-light: #f9cc9f; // ライトオレンジ
 
 // Secondary Colors
 $sec-bg: #f9f9f9; // ページバックグラウンドカラー
@@ -12,7 +12,7 @@ $txt-nav-bright: #ff8c00; // ナビゲーションリンクの文字色
 $txt-nav-white: white; // ナビゲーションリンクの文字色（白）
 
 // Link Colors
-$txt-nav-active: white;// アクティブ時のナビゲーションリンクの文字色
+$txt-nav-active: white; // アクティブ時のナビゲーションリンクの文字色
 $txt-link-hover: #ff8c00; // リンクホバー時の下線の色
 $txt-link-bg: #ff8c00; // リンクアクティブ時のバックグラウンドカラー
 
@@ -49,8 +49,10 @@ $ftr-txt: white; //フッターのテキスト色
 $error-red: red;
 $success-green: green;
 
-
+//form Colors
+$form-bg: #ffffff;
+$form-border:#ddd;
 
 //フォントの定義
-$title-font-family:'title-logo', sans-serif;
-$txt-font-family:'Nunito',sans-serif;
+$title-font-family: "title-logo", sans-serif;
+$txt-font-family: "Nunito", sans-serif;

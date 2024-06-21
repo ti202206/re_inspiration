@@ -11046,16 +11046,14 @@ var IdeaCard = function IdeaCard(_ref) {
     _ref$buttons = _ref.buttons,
     buttons = _ref$buttons === void 0 ? [] : _ref$buttons,
     _ref$updatedAt = _ref.updatedAt,
-    updatedAt = _ref$updatedAt === void 0 ? '' : _ref$updatedAt,
+    updatedAt = _ref$updatedAt === void 0 ? "" : _ref$updatedAt,
     _ref$price = _ref.price,
-    price = _ref$price === void 0 ? '' : _ref$price;
+    price = _ref$price === void 0 ? "" : _ref$price;
   var formatPrice = function formatPrice(price) {
-    return new Intl.NumberFormat('ja-JP', {
-      style: 'decimal'
+    return new Intl.NumberFormat("ja-JP", {
+      style: "decimal"
     }).format(price);
   };
-
-  //＊＊＊＊＊＊変更：Xでシェア機能の追加＊＊＊＊＊＊
   var generateTweetLink = function generateTweetLink(idea) {
     var tweetText = "Inspiration\u3092\u307F\u3093\u306A\u3067\u30B7\u30A7\u30A2\n\u30A2\u30A4\u30C7\u30A3\u30A2: \n".concat(idea.title, "\n\u8A73\u7D30\u306F\u3053\u3061\u3089: ").concat(window.location.origin, "/idea-detail/").concat(idea.id);
     var tweetURL = "https://twitter.com/intent/tweet?text=".concat(encodeURIComponent(tweetText));
@@ -11069,18 +11067,18 @@ var IdeaCard = function IdeaCard(_ref) {
         className: "idea-card__title-category",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
           className: "idea-card__title",
-          children: isPlaceholder ? 'データがありません' : idea.title
+          children: isPlaceholder ? "データがありません" : idea.title
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         className: "idea-card__summary",
-        children: isPlaceholder ? '' : idea.overview
+        children: isPlaceholder ? "" : idea.overview
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "idea-card__meta",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "idea-card__average-rating",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-star-half-stroke"
-          }), isPlaceholder || idea.average_rating === 0 ? '-' : idea.average_rating || '-']
+          }), isPlaceholder || idea.average_rating === 0 ? "-" : idea.average_rating || "-"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "idea-card__review-count",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
@@ -11100,24 +11098,24 @@ var IdeaCard = function IdeaCard(_ref) {
           className: "idea-card__category",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-tags"
-          }), isPlaceholder ? '' : categories[idea.category_id]]
+          }), isPlaceholder ? "" : categories[idea.category_id]]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
           className: "idea-card__updated-at",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-clock"
-          }), isPlaceholder ? '' : new Date(updatedAt).toLocaleDateString()]
+          }), isPlaceholder ? "" : new Date(updatedAt).toLocaleDateString()]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
           className: "idea-card__price",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-yen-sign"
-          }), isPlaceholder ? '' : formatPrice(price || idea.price)]
+          }), isPlaceholder ? "" : formatPrice(price || idea.price)]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
           href: generateTweetLink(idea),
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "idea-card__share-link",
+          className: "idea-card__x-link",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "idea-card__share-icon",
+            className: "idea-card__x-icon",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               className: "fa-brands fa-x-twitter"
             })
@@ -11154,70 +11152,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-// 
-
-// import React from 'react';
-
-// // ReviewCard コンポーネント定義
-// const ReviewCard = ({ idea = {}, categories = {}, review = {}, user = {}, buttons = [] }) => {
-//     return (
-//         <div className="idea-card">
-//             <div className="idea-card__content">
-//                 <div className="idea-card__title-category">
-//                     {/* アイディアのタイトルを表示 */}
-//                     <h3 className="idea-card__title">{idea.title}</h3>
-//                 </div>
-
-//                 <div className="idea-card__meta">
-//                     <span className="idea-card__average-rating">
-//                         <i className="fa-solid fa-star-half-stroke"></i>{idea.average_rating === 0 ? '-' : idea.average_rating || '-'}
-//                     </span>
-//                     <span className="idea-card__review-count">
-//                         <i className="fa-regular fa-comment-dots"></i>{idea.review_count || 0}
-//                     </span>
-//                     <span className="idea-card__purchase-count">
-//                         <i className="fa-solid fa-cart-arrow-down"></i>{idea.purchase_count || 0}
-//                     </span>
-//                     <span className="idea-card__favorite_count">
-//                         <i className="fa-regular fa-thumbs-up"></i>{idea.favorite_count || 0}
-//                     </span>
-//                     <p className="idea-card__category">
-//                         <i className="fa-solid fa-tags"></i>{categories[idea.category_id]}
-//                     </p>
-//                 </div>
-
-//                 {/* ユーザー名を表示 */}
-//                 <p className="idea-card__user">
-//                     <i className="fa-regular fa-user"></i> {user.name}
-//                 </p>
-
-//                 {/* レビュー内容をサマリーに表示 */}
-//                 <p className="idea-card__summary">{review.review}</p>
-
-//                 {/* レビューの評価と投稿日を表示 */}
-//                 <div className="review-card__extra-content">
-//                     <span>評価: {review.rating}</span>
-//                     <p>投稿日: {new Date(review.created_at).toLocaleDateString()}</p>
-//                 </div>
-//             </div>
-//             <div className="idea-card__buttons">
-//                 {buttons.map((button, index) => (
-//                     <button
-//                         key={index}
-//                         className="idea-card__button"
-//                         onClick={button.onClick}
-//                     >
-//                         {button.label}
-//                     </button>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default ReviewCard;
-
-// src/components/ReviewCard.js
 
 
 var ReviewCard = function ReviewCard(_ref) {
@@ -11234,64 +11168,64 @@ var ReviewCard = function ReviewCard(_ref) {
   var updatedDate = idea.updated_at ? new Date(idea.updated_at).toLocaleDateString() : '';
   var userName = user ? user.name : 'ユーザー情報なし';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "idea-card",
+    className: "review-card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "idea-card__content",
+      className: "review-card__content",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "idea-card__title-category",
+        className: "review-card__title-category",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-          className: "idea-card__title",
+          className: "review-card__title",
           children: idea.title
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "idea-card__meta",
+        className: "review-card__meta",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "idea-card__average-rating",
+          className: "review-card__average-rating",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-star-half-stroke"
           }), idea.average_rating === 0 ? '-' : idea.average_rating || '-']
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "idea-card__review-count",
+          className: "review-card__review-count",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-comment-dots"
           }), idea.review_count || 0]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "idea-card__purchase-count",
+          className: "review-card__purchase-count",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-solid fa-cart-arrow-down"
           }), idea.purchase_count || 0]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "idea-card__favorite_count",
+          className: "review-card__favorite-count",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-thumbs-up"
           }), idea.favorite_count || 0]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-          className: "idea-card__updated-at",
+          className: "review-card__updated-at",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fa-regular fa-clock"
           }), isPlaceholder ? '' : updatedDate]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-        className: "idea-card__user",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-          className: "fa-regular fa-user"
-        }), " ", user.name]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        className: "idea-card__summary",
+        className: "review-card__summary",
         children: review.review
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "review-card__extra-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+          className: "review-card__user",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fa-regular fa-user"
+          }), " ", user.name]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           children: ["\u8A55\u4FA1: ", review.rating]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
           children: ["\u6295\u7A3F\u65E5: ", new Date(review.updated_at).toLocaleDateString()]
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "idea-card__buttons",
+      className: "review-card__buttons",
       children: buttons.map(function (button, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "idea-card__button",
+          className: "review-card__button",
           onClick: button.onClick,
           children: button.label
         }, index);
@@ -14495,8 +14429,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _axiosConfig__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../axiosConfig */ "./resources/js/axiosConfig.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
-/* harmony import */ var _sass_object_project_login_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../sass/object/project/_login.scss */ "./resources/sass/object/project/_login.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _sass_object_project_login_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../sass/object/project/login.scss */ "./resources/sass/object/project/login.scss");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -14507,153 +14443,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "../../sass/object/project/_login.scss";
 
-// const Login = () => {
-//     // const [email, setEmail] = useState("");
-//     // const [password, setPassword] = useState("");
-//     const [email, setEmail] = useState("test@example.com");
-//     const [password, setPassword] = useState("12345678");
-//     const [error, setError] = useState("");
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         try {
-//             await axios.post("/api/login", { email, password });
-//             alert("ログイン成功");
-//             window.location.href = "/mypage";
-//         } catch (error) {
-//             setError("ログインに失敗しました");
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     placeholder="Email"
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     placeholder="Password"
-//                     required
-//                 />
-//                 <button type="submit">ログイン</button>
-//             </form>
-//             {error && <p>{error}</p>}
-//         </div>
-//     );
-// };
-
-// export default Login;
-
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "../../sass/object/project/_login.scss";
-
-// const Login = () => {
-//     const [email, setEmail] = useState("test@example.com");
-//     const [password, setPassword] = useState("12345678");
-//     const [error, setError] = useState("");
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         try {
-//             const response = await axios.post("/api/login", { email, password }, {
-//                 headers: {
-//                     'X-Requested-With': 'XMLHttpRequest',
-//                 }
-//             });
-//             if (response.data.token) {
-//                 localStorage.setItem('auth_token', response.data.token);
-//             }
-//             alert("ログイン成功");
-//             window.location.href = "/mypage";
-//         } catch (error) {
-//             setError("ログインに失敗しました");
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     placeholder="Email"
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     placeholder="Password"
-//                     required
-//                 />
-//                 <button type="submit">ログイン</button>
-//             </form>
-//             {error && <p>{error}</p>}
-//         </div>
-//     );
-// };
-
-// export default Login;
-
-// import React, { useState } from "react";
-// import axios from "../axiosConfig";
-// import "../../sass/object/project/_login.scss";
-
-// const Login = () => {
-//     const [email, setEmail] = useState("test@example.com");
-//     const [password, setPassword] = useState("12345678");
-//     const [error, setError] = useState("");
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         try {
-//             await axios.post("/api/login", { email, password });
-//             Cookies.set('auth_token', response.data.token);
-//             alert("ログイン成功");
-//             window.location.href = "/mypage";
-//         } catch (error) {
-//             setError("ログインに失敗しました");
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     placeholder="Email"
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     placeholder="Password"
-//                     required
-//                 />
-//                 <button type="submit">ログイン</button>
-//             </form>
-//             {error && <p>{error}</p>}
-//         </div>
-//     );
-// };
-
-// export default Login;
 
 
 
@@ -14661,8 +14451,6 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var Login = function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("test@example.com"),
     _useState2 = _slicedToArray(_useState, 2),
     email = _useState2[0],
@@ -14712,151 +14500,49 @@ var Login = function Login() {
       return _ref.apply(this, arguments);
     };
   }();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
-      onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-        type: "email",
-        value: email,
-        onChange: function onChange(e) {
-          return setEmail(e.target.value);
-        },
-        placeholder: "Email",
-        required: true,
-        autoComplete: "email"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-        type: "password",
-        value: password,
-        onChange: function onChange(e) {
-          return setPassword(e.target.value);
-        },
-        placeholder: "Password",
-        required: true,
-        autoComplete: "current-password"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-        type: "submit",
-        children: "\u30ED\u30B0\u30A4\u30F3"
-      })]
-    }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      children: error
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "login-page",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "login-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+        onSubmit: handleSubmit,
+        className: "login-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+          className: "login-title",
+          children: "\u30ED\u30B0\u30A4\u30F3"
+        }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+          className: "login-error",
+          children: error
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+          type: "email",
+          value: email,
+          onChange: function onChange(e) {
+            return setEmail(e.target.value);
+          },
+          placeholder: "Email",
+          className: "login-input",
+          required: true,
+          autoComplete: "email"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+          type: "password",
+          value: password,
+          onChange: function onChange(e) {
+            return setPassword(e.target.value);
+          },
+          placeholder: "Password",
+          className: "login-input",
+          required: true,
+          autoComplete: "current-password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          type: "submit",
+          className: "login-button",
+          children: "\u30ED\u30B0\u30A4\u30F3"
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
-
-// import React, { useState } from "react";
-// import axios from "../axiosConfig";
-// import Cookies from "js-cookie";
-// import "../../sass/object/project/_login.scss";
-
-// const Login = () => {
-//     const [email, setEmail] = useState("test@example.com");
-//     const [password, setPassword] = useState("12345678");
-//     const [error, setError] = useState("");
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         // try {
-//         //     const response = await axios.post("/api/login", { email, password });
-//         //     Cookies.set('auth_token', response.data.token);
-//         //     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-//         //     alert("ログイン成功");
-//         //     window.location.href = "/mypage";
-//         // } catch (error) {
-//         //     setError("ログインに失敗しました");
-//         // }
-
-//         try {
-//             // CSRFトークンを取得
-//             await axios.get('/sanctum/csrf-cookie'); // この行が追加されました
-//             const response = await axios.post("/api/login", { email, password });
-//             Cookies.set('auth_token', response.data.token);
-//             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-//             alert("ログイン成功");
-//             window.location.href = "/mypage";
-//         } catch (error) {
-//             setError("ログインに失敗しました");
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     placeholder="Email"
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     placeholder="Password"
-//                     required
-//                 />
-//                 <button type="submit">ログイン</button>
-//             </form>
-//             {error && <p>{error}</p>}
-//         </div>
-//     );
-// };
-
-// export default Login;
-
-// import React, { useState } from "react";
-// import axios from "../axiosConfig"; // カスタムaxiosインスタンスを使用
-// import Cookies from "js-cookie";
-// import "../../sass/object/project/_login.scss";
-
-// const Login = () => {
-//     const [email, setEmail] = useState("test@example.com");
-//     const [password, setPassword] = useState("12345678");
-//     const [error, setError] = useState("");
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         try {
-//             // CSRFトークンを取得
-//             await axios.get('/sanctum/csrf-cookie'); // この行が重要です
-//             const response = await axios.post("/api/login", { email, password });
-//             Cookies.set('auth_token', response.data.token);
-//             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-//             alert("ログイン成功");
-//             window.location.href = "/mypage";
-//         } catch (error) {
-//             setError("ログインに失敗しました");
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     placeholder="Email"
-//                     required
-//                     autoComplete="email"
-//                 />
-//                 <input
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     placeholder="Password"
-//                     required
-//                     autoComplete="current-password"
-//                 />
-//                 <button type="submit">ログイン</button>
-//             </form>
-//             {error && <p>{error}</p>}
-//         </div>
-//     );
-// };
-
-// export default Login;
 
 /***/ }),
 
@@ -15310,37 +14996,6 @@ var MyPage = function MyPage() {
       return _ref3.apply(this, arguments);
     };
   }();
-  // const fetchFavorites = async () => {
-  //     try {
-  //         const response = await axios.get('/api/favorites', {
-  //             headers: {
-  //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-  //             }
-  //         });
-  //         const sortedFavorites = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-  //         const recentFavorites = sortedFavorites.slice(0, 5);
-
-  //         // フォーマットに合わせて変換する
-  //         const formattedFavorites = recentFavorites.map(favorite => {
-  //             return {
-  //                 ...favorite,
-  //                 idea: {
-  //                     ...favorite.idea,
-  //                     average_rating: favorite.idea.average_rating || '-',
-  //                     favorite_count: favorite.idea.favorite_count || 0,
-  //                     purchase_count: favorite.idea.purchase_count || 0,
-  //                     review_count: favorite.idea.review_count || 0
-  //                 }
-  //             };
-  //         });
-
-  //         setFavorites(formattedFavorites);
-  //         console.log('Fetched favorites:', formattedFavorites);
-
-  //     } catch (error) {
-  //         console.error('Error fetching favorites:', error);
-  //     }
-  // };
 
   // 購入済み情報を取得
   var fetchMyPurchases = /*#__PURE__*/function () {
@@ -15526,10 +15181,8 @@ var MyPage = function MyPage() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-        children: "MyPage"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "section-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "section__container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("section", {
           className: "mypage__section",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -15541,23 +15194,18 @@ var MyPage = function MyPage() {
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
           }), favorites.length > 0 ? favorites.map(function (favorite) {
-            return (
-              /*#__PURE__*/
-              //＊＊＊＊＊＊変更：　IdeaCard コンポーネントの buttons 設定の修正　＊＊＊＊＊＊
-              (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                idea: favorite.idea,
-                categories: categories,
-                isPlaceholder: false,
-                updatedAt: favorite.idea.updated_at,
-                buttons: [{
-                  label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
-                  onClick: function onClick() {
-                    return handleDetailClick(favorite.idea.id, isPurchased(favorite.idea.id));
-                  }
-                }]
-              }, "favorite-".concat(favorite.idea.id))
-              //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
-            );
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              idea: favorite.idea,
+              categories: categories,
+              isPlaceholder: false,
+              updatedAt: favorite.idea.updated_at,
+              buttons: [{
+                label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
+                onClick: function onClick() {
+                  return handleDetailClick(favorite.idea.id, isPurchased(favorite.idea.id));
+                }
+              }]
+            }, "favorite-".concat(favorite.idea.id));
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isPlaceholder: true
           })]
@@ -15604,23 +15252,18 @@ var MyPage = function MyPage() {
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
           }), ideas.length > 0 ? ideas.map(function (idea) {
-            return (
-              /*#__PURE__*/
-              //＊＊＊＊＊＊変更：　投稿したアイディアのボタンはそのまま　＊＊＊＊＊＊
-              (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                idea: idea,
-                categories: categories,
-                isPlaceholder: false,
-                updatedAt: idea.updated_at,
-                buttons: [{
-                  label: "詳細",
-                  onClick: function onClick() {
-                    return handleEditClick(idea.id);
-                  }
-                }]
-              }, "idea-".concat(idea.id))
-              //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
-            );
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              idea: idea,
+              categories: categories,
+              isPlaceholder: false,
+              updatedAt: idea.updated_at,
+              buttons: [{
+                label: "詳細",
+                onClick: function onClick() {
+                  return handleEditClick(idea.id);
+                }
+              }]
+            }, "idea-".concat(idea.id));
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_IdeaCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isPlaceholder: true
           })]
@@ -17570,7 +17213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _sass_object_project_top_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../sass/object/project/_top.scss */ "./resources/sass/object/project/_top.scss");
+/* harmony import */ var _sass_object_project_register_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../sass/object/project/register.scss */ "./resources/sass/object/project/register.scss");
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -17589,6 +17232,170 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import "../../sass/object/project/top.scss";
+// import Header from "../components/Header";
+// import Footer from "../components/Footer";
+
+// const Register = () => {
+//     const [formData, setFormData] = useState({
+//         name: "",
+//         email: "",
+//         password: "",
+//         passwordConfirmation: "",
+//         icon: null,
+//     });
+//     const [iconPreview, setIconPreview] = useState(null);
+//     const [errors, setErrors] = useState({});
+
+//     useEffect(() => {
+
+//         const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+//         if (csrfTokenMeta) {
+//             const csrfToken = csrfTokenMeta.getAttribute("content");
+//             axios.defaults.headers.common["X-CSRF-TOKEN"] = csrfToken;
+//             // console.log(csrfToken);
+//         } else {
+//             console.error("CSRF token not found");
+//         }
+//     }, []);
+
+//         // フォームデータの変更ハンドラ
+//         const handleChange = (event) => {
+//             const { name, value, files } = event.target;
+//             if (name === "icon") {
+//                 const file = files[0];
+//                 setFormData((prevState) => ({ ...prevState, [name]: file }));
+
+//                 // 追加: アイコンのプレビューを更新
+//                 const reader = new FileReader();
+//                 reader.onloadend = () => {
+//                     setIconPreview(reader.result);
+//                 };
+//                 if (file) {
+//                     reader.readAsDataURL(file);
+//                 } else {
+//                     setIconPreview(null);
+//                 }
+//             } else {
+//                 setFormData((prevState) => ({ ...prevState, [name]: value }));
+//             }
+//         };
+
+//         //フォーム送信
+//     const handleSubmit = async (event) => {
+//         event.preventDefault();
+//         const data = new FormData();
+//         data.append("name", formData.name);
+//         data.append("email", formData.email);
+//         data.append("password", formData.password);
+//         data.append("password_confirmation", formData.passwordConfirmation);
+//         if (formData.icon) {
+//             data.append("icon", formData.icon);
+//         }
+
+//         try {
+//             await axios.post("/api/register", data);
+//             alert("登録が完了しました。");
+//             window.location.href = "/mypage";
+//         } catch (error) {
+//             if (error.response) {
+//                 setErrors(error.response.data.errors || {});
+//                 alert("エラーが発生しました。入力内容を確認してください。");
+//             } else {
+//                 console.error("Error:", error);
+//                 alert("エラーが発生しました。");
+//             }
+//         }
+//     };
+
+//     return (
+//         <div>
+//             <Header />
+//             <div className="container">
+//                 <h1 className="section__title">新規登録</h1>
+//                 <form onSubmit={handleSubmit} className="form-container">
+//                     <div className="form-group">
+//                         <label>名前:</label>
+//                         <input
+//                             type="text"
+//                             name="name"
+//                             value={formData.name}
+//                             onChange={handleChange}
+//                             autoComplete="name"
+//                         />
+//                         {errors.name && (
+//                             <div className="error">{errors.name}</div>
+//                         )}
+//                     </div>
+//                     <div className="form-group">
+//                         <label>メールアドレス:</label>
+//                         <input
+//                             type="email"
+//                             name="email"
+//                             value={formData.email}
+//                             onChange={handleChange}
+//                             autoComplete="email"
+//                         />
+//                         {errors.email && (
+//                             <div className="error">{errors.email}</div>
+//                         )}
+//                     </div>
+//                     <div className="form-group">
+//                         <label>パスワード:</label>
+//                         <input
+//                             type="password"
+//                             name="password"
+//                             value={formData.password}
+//                             onChange={handleChange}
+//                             autoComplete="new-password"
+//                         />
+//                         {errors.password && (
+//                             <div className="error">{errors.password}</div>
+//                         )}
+//                     </div>
+//                     <div className="form-group">
+//                         <label>パスワード確認:</label>
+//                         <input
+//                             type="password"
+//                             name="passwordConfirmation"
+//                             value={formData.passwordConfirmation}
+//                             onChange={handleChange}
+//                             autoComplete="new-password"
+//                         />
+//                         {errors.password_confirmation && (
+//                             <div className="error">
+//                                 {errors.password_confirmation}
+//                             </div>
+//                         )}
+//                     </div>
+
+//                     <div className="form-group">
+//                         <label>アイコン画像（任意）:</label>
+//                         <input
+//                             type="file"
+//                             name="icon"
+//                             onChange={handleChange}
+//                         />
+//                         {errors.icon && (
+//                             <div className="error">{errors.icon}</div>
+//                         )}
+//                     </div>
+
+//                     <button type="submit" className="button">
+//                         登録
+//                     </button>
+//                 </form>
+//             </div>
+
+//             <Footer />
+//         </div>
+//     );
+// };
+
+// export default Register;
+
 
 
 
@@ -17615,40 +17422,14 @@ var Register = function Register() {
     errors = _useState6[0],
     setErrors = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-    // console.log(csrfToken);
-    // }, []);
-
-    // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    // if (csrfToken) {
-    //         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-    //         console.log(csrfToken);
-    //     } else {
-    //         console.error('CSRF token not found');
-    //     }
-    // }, []);
-
     var csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     if (csrfTokenMeta) {
       var csrfToken = csrfTokenMeta.getAttribute("content");
       (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common["X-CSRF-TOKEN"] = csrfToken;
-      // console.log(csrfToken);
     } else {
       console.error("CSRF token not found");
     }
   }, []);
-
-  // const handleChange = (event) => {
-  //     const { name, value, files } = event.target;
-  //     if (name === "icon") {
-  //         setFormData((prevState) => ({ ...prevState, [name]: files[0] }));
-  //     } else {
-  //         setFormData((prevState) => ({ ...prevState, [name]: value }));
-  //     }
-  // };
-
-  // フォームデータの変更ハンドラ
   var handleChange = function handleChange(event) {
     var _event$target = event.target,
       name = _event$target.name,
@@ -17659,8 +17440,6 @@ var Register = function Register() {
       setFormData(function (prevState) {
         return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, file));
       });
-
-      // 追加: アイコンのプレビューを更新
       var reader = new FileReader();
       reader.onloadend = function () {
         setIconPreview(reader.result);
@@ -17676,16 +17455,6 @@ var Register = function Register() {
       });
     }
   };
-  // const handleChange = (event) => {
-  //     const { name, value, files } = event.target;
-  //     if (name === "icon") {
-  //         setFormData((prevState) => ({ ...prevState, [name]: files[0] })); // アイコンファイルの処理
-  //     } else {
-  //         setFormData((prevState) => ({ ...prevState, [name]: value }));
-  //     }
-  // };
-
-  //フォーム送信
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
       var data;
@@ -17701,37 +17470,6 @@ var Register = function Register() {
             if (formData.icon) {
               data.append("icon", formData.icon);
             }
-
-            // try {
-            //     await axios.post('/api/register', data);
-            //     alert('登録が完了しました。ログインしてください。');
-            // } catch (error) {
-            //     if (error.response) {
-            //         setErrors(error.response.data.errors);
-            //         alert('エラーが発生しました。入力内容を確認してください。');
-            //     }
-            // }
-
-            // try {
-            //     await axios.post('/api/register', data);
-            //     alert('登録が完了しました。ログインしてください。');
-            //     setFormData({
-            //         name: '',
-            //         email: '',
-            //         password: '',
-            //         passwordConfirmation: '',
-            //         icon: null,
-            //     });
-            //     setErrors({});
-            // } catch (error) {
-            //     if (error.response) {
-            //         setErrors(error.response.data.errors || {});
-            //         alert('エラーが発生しました。入力内容を確認してください。');
-            //     } else {
-            //         console.error('Error:', error);
-            //         alert('エラーが発生しました。');
-            //     }
-            // }
             _context.prev = 7;
             _context.next = 10;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
@@ -17761,15 +17499,16 @@ var Register = function Register() {
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-        className: "section__title",
-        children: "\u65B0\u898F\u767B\u9332"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+    className: "register-page",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "register-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
         onSubmit: handleSubmit,
-        className: "form-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "register-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+          className: "register-title",
+          children: "\u65B0\u898F\u767B\u9332"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             children: "\u540D\u524D:"
@@ -17778,9 +17517,10 @@ var Register = function Register() {
             name: "name",
             value: formData.name,
             onChange: handleChange,
-            autoComplete: "name"
+            autoComplete: "name",
+            className: "register-input"
           }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "error",
+            className: "register-error",
             children: errors.name
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -17792,9 +17532,10 @@ var Register = function Register() {
             name: "email",
             value: formData.email,
             onChange: handleChange,
-            autoComplete: "email"
+            autoComplete: "email",
+            className: "register-input"
           }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "error",
+            className: "register-error",
             children: errors.email
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -17806,9 +17547,10 @@ var Register = function Register() {
             name: "password",
             value: formData.password,
             onChange: handleChange,
-            autoComplete: "new-password"
+            autoComplete: "new-password",
+            className: "register-input"
           }), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "error",
+            className: "register-error",
             children: errors.password
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -17820,9 +17562,10 @@ var Register = function Register() {
             name: "passwordConfirmation",
             value: formData.passwordConfirmation,
             onChange: handleChange,
-            autoComplete: "new-password"
+            autoComplete: "new-password",
+            className: "register-input"
           }), errors.password_confirmation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "error",
+            className: "register-error",
             children: errors.password_confirmation
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -17832,17 +17575,22 @@ var Register = function Register() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
             type: "file",
             name: "icon",
-            onChange: handleChange
+            onChange: handleChange,
+            className: "register-input-file"
+          }), iconPreview && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            src: iconPreview,
+            alt: "Icon Preview",
+            className: "register-icon-preview"
           }), errors.icon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "error",
+            className: "register-error",
             children: errors.icon
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
           type: "submit",
-          className: "button",
+          className: "register-button",
           children: "\u767B\u9332"
         })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
   });
 };
@@ -19697,7 +19445,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _sass_object_project_top_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../sass/object/project/_top.scss */ "./resources/sass/object/project/_top.scss");
+/* harmony import */ var _sass_object_project_top_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../sass/object/project/top.scss */ "./resources/sass/object/project/top.scss");
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
 /* harmony import */ var _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/images/brainstorm-idea.png */ "./resources/assets/images/brainstorm-idea.png");
@@ -19718,15 +19466,6 @@ function TopPage() {
   var handleLoginClick = function handleLoginClick() {
     window.location.href = "/login";
   };
-
-  // useEffect(() => {
-  //     try {
-  //         // コンポーネントのレンダリング中に発生するエラーをキャッチ
-  //     } catch (error) {
-  //         console.error("Error in TopPage:", error);
-  //     }
-  // }, []);
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "container",
@@ -19830,29 +19569,6 @@ function TopPage() {
             className: "registration__button registration__button--login",
             onClick: handleLoginClick,
             children: "\u30ED\u30B0\u30A4\u30F3"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-          className: "registration__links",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-              href: "http://",
-              children: "\u5229\u7528\u898F\u7D04"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-              href: "http://",
-              children: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-              href: "http://",
-              children: "\u7279\u5B9A\u5546\u53D6\u5F15\u6CD5\u306B\u57FA\u3065\u304F\u8868\u793A"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-              href: "http://",
-              children: "\u304A\u554F\u3044\u5408\u308F\u305B"
-            })
           })]
         })]
       })]
@@ -20203,10 +19919,10 @@ var Profile = function Profile() {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_login.scss":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_login.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/login.scss":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/login.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20220,17 +19936,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".login-page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background-color: #f5f5f5;\n}\n.login-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex: 1;\n  padding: 40px;\n}\n.login-form {\n  background-color: #ffffff;\n  padding: 20px 40px;\n  border: 1px solid #ddd;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  width: 100%;\n  max-width: 400px;\n  text-align: center;\n}\n.login-title {\n  margin-bottom: 20px;\n  font-size: 24px;\n  color: #ff8c00;\n}\n.login-input {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  box-sizing: border-box;\n  font-size: 16px;\n}\n.login-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #ff8c00;\n  color: #ffffff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.login-button:hover {\n  background-color: #ffa500;\n}\n.login-error {\n  color: red;\n  margin-bottom: 15px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_top.scss":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_top.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/register.scss":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/register.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20244,7 +19960,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".concept {\n  display: flex;\n}\n.concept p {\n  margin: auto;\n  line-height: 1.5;\n}\n.concept > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.concept__description {\n  box-sizing: border-box;\n  flex: 1;\n  padding: 20px;\n  margin: 20px;\n}\n@media only screen and (max-width: 600px) {\n  .concept {\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n  }\n  .concept > img, .concept__description {\n    max-width: 100%;\n    margin: 10px 0;\n  }\n}\n\n.feature {\n  text-align: center;\n  padding: 20px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n.feature p {\n  margin: auto;\n  line-height: 2;\n}\n.feature__title {\n  margin: 0 0 10px;\n}\n.feature__description {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.feature__description > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.feature__description--text1, .feature__description--text2, .feature__description--text3 {\n  flex: 2;\n}\n.feature--reverse .feature__description--text2 {\n  order: -1;\n}\n@media only screen and (max-width: 600px) {\n  .feature__description {\n    flex-direction: column;\n    align-items: center;\n  }\n  .feature--reverse .feature__description--text2 {\n    order: 3;\n  }\n}\n\n.column__description {\n  text-align: center;\n  padding: 20px;\n  max-width: 1200px;\n  margin: auto;\n}\n\n.registration {\n  background-color: #ffa500;\n  width: 100%;\n  text-align: center;\n  box-sizing: border-box;\n}\n.registration p {\n  margin: auto;\n  line-height: 2;\n}\n.registration__message {\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.registration__links {\n  display: flex;\n  list-style: none;\n  padding: 0;\n  justify-content: center;\n}\n.registration__links li {\n  margin-right: 10px;\n}\n.registration__links li:last-child {\n  margin-right: 0;\n}\n.registration__links li a {\n  display: inline;\n  text-decoration: none;\n  color: white;\n}\n.registration__links li a:active {\n  color: #ff8c00;\n  background-color: white;\n}\n.registration__buttons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.registration__button {\n  padding: 4px 8px;\n  margin: 5px;\n  border: 2px solid #f9cc9f;\n  border-radius: 5px;\n  color: #ff8c00;\n  background-color: #ffffff;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  outline: none;\n}\n.registration__button:hover {\n  background-color: #ff8c00;\n  color: #ffffff;\n}\n.registration__button--register, .registration__button--login {\n  background-color: #ffffff;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".register-page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background-color: #f5f5f5;\n}\n.register-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex: 1;\n  padding: 40px;\n}\n.register-form {\n  margin-top: 5em;\n  background-color: #ffffff;\n  padding: 20px 40px;\n  border: 1px solid #ddd;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  width: 100%;\n  max-width: 400px;\n  text-align: center;\n}\n.register-title {\n  margin-bottom: 20px;\n  font-size: 24px;\n  color: #ff8c00;\n  text-align: center;\n}\n.register-input {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  box-sizing: border-box;\n  font-size: 16px;\n}\n.register-input-file {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  box-sizing: border-box;\n}\n.register-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #ff8c00;\n  color: #ffffff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.register-button:hover {\n  background-color: #ffa500;\n}\n.register-error {\n  color: red;\n  margin-bottom: 15px;\n}\n.register-icon-preview {\n  display: block;\n  max-width: 50px;\n  max-height: 50px;\n  margin: 10px auto;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/top.scss":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/top.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".concept {\n  display: flex;\n}\n.concept p {\n  margin: auto;\n  line-height: 1.5;\n}\n.concept > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.concept__description {\n  box-sizing: border-box;\n  flex: 1;\n  padding: 20px;\n  margin: 20px;\n}\n@media only screen and (max-width: 600px) {\n  .concept {\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n  }\n  .concept > img, .concept__description {\n    max-width: 100%;\n    margin: 10px 0;\n  }\n}\n\n.feature {\n  text-align: center;\n  padding: 20px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n.feature p {\n  margin: auto;\n  line-height: 2;\n}\n.feature__title {\n  margin: 0 0 10px;\n}\n.feature__description {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.feature__description > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.feature__description--text1, .feature__description--text2, .feature__description--text3 {\n  flex: 2;\n}\n.feature--reverse .feature__description--text2 {\n  order: -1;\n}\n@media only screen and (max-width: 600px) {\n  .feature__description {\n    flex-direction: column;\n    align-items: center;\n  }\n  .feature--reverse .feature__description--text2 {\n    order: 3;\n  }\n}\n\n.column__description {\n  text-align: center;\n  padding: 20px;\n  max-width: 1200px;\n  margin: auto;\n}\n\n.registration {\n  background-color: #ffa500;\n  width: 100%;\n  text-align: center;\n  box-sizing: border-box;\n  padding-bottom: 20px;\n}\n.registration p {\n  margin: auto;\n  line-height: 2;\n}\n.registration__message {\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.registration__links {\n  display: flex;\n  list-style: none;\n  padding: 0;\n  justify-content: center;\n}\n.registration__links li {\n  margin-right: 10px;\n}\n.registration__links li:last-child {\n  margin-right: 0;\n}\n.registration__links li a {\n  display: inline;\n  text-decoration: none;\n  color: white;\n}\n.registration__links li a:active {\n  color: #ff8c00;\n  background-color: white;\n}\n.registration__buttons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.registration__button {\n  padding: 4px 8px;\n  margin: 5px;\n  border: 2px solid #f9cc9f;\n  border-radius: 5px;\n  color: #ff8c00;\n  background-color: #ffffff;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  outline: none;\n}\n.registration__button:hover {\n  background-color: #ff8c00;\n  color: #ffffff;\n}\n.registration__button--register, .registration__button--login {\n  background-color: #ffffff;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58410,10 +58150,10 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./resources/sass/object/project/_login.scss":
-/*!***************************************************!*\
-  !*** ./resources/sass/object/project/_login.scss ***!
-  \***************************************************/
+/***/ "./resources/sass/object/project/login.scss":
+/*!**************************************************!*\
+  !*** ./resources/sass/object/project/login.scss ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -58423,7 +58163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_login_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_login.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_login.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_login_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./login.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/login.scss");
 
             
 
@@ -58440,10 +58180,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/sass/object/project/_top.scss":
-/*!*************************************************!*\
-  !*** ./resources/sass/object/project/_top.scss ***!
-  \*************************************************/
+/***/ "./resources/sass/object/project/register.scss":
+/*!*****************************************************!*\
+  !*** ./resources/sass/object/project/register.scss ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -58453,7 +58193,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_top_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./_top.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/_top.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_register_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./register.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/register.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_register_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_register_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/object/project/top.scss":
+/*!************************************************!*\
+  !*** ./resources/sass/object/project/top.scss ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_top_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./top.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/top.scss");
 
             
 
