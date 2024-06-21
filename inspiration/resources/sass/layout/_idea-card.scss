@@ -4,8 +4,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid $bd-default;
     border-radius: 5px;
     box-shadow: 0 2px 4px $shdw-default;
@@ -15,9 +15,11 @@
         align-items: stretch;
     }
 
-    // @media only screen and (max-width: 1200px){
-    //     width: calc(50% - 10px);
-    // }
+    &__max-width{
+        @media screen and (min-width: 1200px) {
+            width: 100% !important ;
+        }
+    }
 
     &__content {
         flex: 1;
@@ -37,8 +39,7 @@
     }
 
     &__summary {
-        margin: 0;
-        margin-bottom: 5px;
+        margin: 0 5px 5px 0;
         word-break: break-word;
         white-space: normal;
     }

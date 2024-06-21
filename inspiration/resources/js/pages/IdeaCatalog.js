@@ -107,9 +107,6 @@ function IdeaCatalog() {
         }
 
         if (filterEndDate) {
-            // 終了日の前日まで
-            // const endDate = new Date(filterEndDate);
-            // filtered = filtered.filter(idea => new Date(idea.created_at) <= endDate);
             const endDate = new Date(new Date(filterEndDate).setDate(new Date(filterEndDate).getDate() + 1));
             filtered = filtered.filter(idea => new Date(idea.created_at) < endDate);
         }
@@ -184,6 +181,7 @@ function IdeaCatalog() {
                     {filteredIdeas.length > 0 ? (
                         filteredIdeas.map((idea) => (
                             <IdeaCard
+                                className="idea-card__max-width"
                                 key={idea.id}
                                 idea={idea}
                                 categories={categories}
@@ -218,35 +216,3 @@ function IdeaCatalog() {
 }
 
 export default IdeaCatalog;
-
-/* src/components/IdeaCatalog.css */
-
-// .filters {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-bottom: 20px;
-// }
-
-// .filter-item {
-//     flex: 1;
-//     margin-right: 10px;
-// }
-
-// .filter-item:last-child {
-//     margin-right: 0;
-// }
-
-// .filter-item label {
-//     display: block;
-//     margin-bottom: 5px;
-//     font-weight: bold;
-// }
-
-// .filter-item select,
-// .filter-item input {
-//     width: 100%;
-//     padding: 8px;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     box-sizing: border-box;
-// }
