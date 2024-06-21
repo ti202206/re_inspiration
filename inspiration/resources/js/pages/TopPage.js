@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import axios from "axios";
-import "../../sass/object/project/_top.scss";
+import "../../sass/object/project/top.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 // import { brainstormImage } from "../assets";
@@ -16,13 +16,7 @@ function TopPage() {
         window.location.href = "/login";
     };
 
-    // useEffect(() => {
-    //     try {
-    //         // コンポーネントのレンダリング中に発生するエラーをキャッチ
-    //     } catch (error) {
-    //         console.error("Error in TopPage:", error);
-    //     }
-    // }, []);
+
 
     return (
         <div>
@@ -213,7 +207,7 @@ function TopPage() {
                             ログイン
                         </button>
                     </div>
-                    <ul className="registration__links">
+                    {/* <ul className="registration__links">// 必要なら作成
                         <li>
                             <a href="http://">利用規約</a>
                         </li>
@@ -226,7 +220,7 @@ function TopPage() {
                         <li>
                             <a href="http://">お問い合わせ</a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </section>
             </div>
             <Footer />
