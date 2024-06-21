@@ -63,37 +63,6 @@ import { useNavigate } from 'react-router-dom';
                 console.error('Error fetching favorites:', error);
             }
         };
-        // const fetchFavorites = async () => {
-        //     try {
-        //         const response = await axios.get('/api/favorites', {
-        //             headers: {
-        //                 Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-        //             }
-        //         });
-        //         const sortedFavorites = response.data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-        //         const recentFavorites = sortedFavorites.slice(0, 5);
-    
-        //         // フォーマットに合わせて変換する
-        //         const formattedFavorites = recentFavorites.map(favorite => {
-        //             return {
-        //                 ...favorite,
-        //                 idea: {
-        //                     ...favorite.idea,
-        //                     average_rating: favorite.idea.average_rating || '-',
-        //                     favorite_count: favorite.idea.favorite_count || 0,
-        //                     purchase_count: favorite.idea.purchase_count || 0,
-        //                     review_count: favorite.idea.review_count || 0
-        //                 }
-        //             };
-        //         });
-    
-        //         setFavorites(formattedFavorites);
-        //         console.log('Fetched favorites:', formattedFavorites);
-    
-        //     } catch (error) {
-        //         console.error('Error fetching favorites:', error);
-        //     }
-        // };
 
         // 購入済み情報を取得
         const fetchMyPurchases = async () => {
@@ -222,8 +191,8 @@ import { useNavigate } from 'react-router-dom';
                 {/* <h2>Fetched categories (State)</h2>
                 <pre>{JSON.stringify(categories, null, 2)}</pre> */}
             </div>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p>
-                <div className="section-container">
+            {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p> */}
+                <div className="section__container">
 
                     <section className="mypage__section">
                         <div className="mypage__title">
@@ -233,7 +202,6 @@ import { useNavigate } from 'react-router-dom';
 
                         {favorites.length > 0 ? (
                             favorites.map((favorite) => (
-                                //＊＊＊＊＊＊変更：　IdeaCard コンポーネントの buttons 設定の修正　＊＊＊＊＊＊
                                 <IdeaCard
                                     key={`favorite-${favorite.idea.id}`}
                                     idea={favorite.idea}
@@ -247,37 +215,10 @@ import { useNavigate } from 'react-router-dom';
                                         },
                                     ]}
                                 />
-                                //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
                         )}
-
-{/* 
-                        {favorites.length > 0 ? (
-                            favorites.map((favorite) => (
-                                // favoritesのデータ構造に基づいて idea を取得
-                                <IdeaCard
-                                    key={`favorite-${favorite.idea.id}`}
-                                    idea={favorite.idea}
-                                    categories={categories}
-                                    isPlaceholder={false}
-                                    updatedAt={favorite.idea.updated_at}
-                                    buttons={[
-                                        {
-                                            label: isPurchased(favorite.idea.id) ? "詳細" : "概要",
-                                            onClick: () => handleDetailClick(favorite.idea.id),
-                                        },
-                                        // {
-                                        //     label: "お気に入りから削除",
-                                        //     onClick: () => handleToggleFavorite(favorite.idea.id),
-                                        // },
-                                    ]}
-                                />
-                            ))
-                        ) : (
-                            <IdeaCard isPlaceholder={true} />
-                        )} */}
 
                     </section>
 
@@ -323,7 +264,6 @@ import { useNavigate } from 'react-router-dom';
 
                         {ideas.length > 0 ? (
                             ideas.map((idea) => (
-                                //＊＊＊＊＊＊変更：　投稿したアイディアのボタンはそのまま　＊＊＊＊＊＊
                                 <IdeaCard
                                     key={`idea-${idea.id}`}
                                     idea={idea}
@@ -337,38 +277,10 @@ import { useNavigate } from 'react-router-dom';
                                         },
                                     ]}
                                 />
-                                //＊＊＊＊＊＊変更ここまで＊＊＊＊＊＊
                             ))
                         ) : (
                             <IdeaCard isPlaceholder={true} />
                         )}
-
-
-
-{/* 
-                        {ideas.length > 0 ? (
-                            ideas.map((idea) => (
-                                <IdeaCard
-                                    key={`idea-${idea.id}`}
-                                    idea={idea}
-                                    categories={categories}
-                                    isPlaceholder={false}
-                                    updatedAt={idea.updated_at}
-                                    buttons={[
-                                        {
-                                            label: "詳細",
-                                            onClick: () => handleDetailClick(idea.id),
-                                        },
-                                        // {
-                                        //     label: "編集",
-                                        //     onClick: () => handleIdeaUpdateClick(idea.id),
-                                        // },
-                                    ]}
-                                />
-                            ))
-                        ) : (
-                            <IdeaCard isPlaceholder={true} />
-                        )} */}
 
                     </section>
 
@@ -401,37 +313,11 @@ import { useNavigate } from 'react-router-dom';
                             <ReviewCard isPlaceholder={true} />
                         )}
 
-
-                        {/* {reviewed.length > 0 ? (
-                            reviewed.map((review) => (
-                                // reviewedのデータ構造に基づいて idea を取得
-                                <ReviewCard
-                                    key={`review-${review.id}`}
-                                    idea={review.idea}
-                                    review={review}
-                                    user={user}
-                                    isPlaceholder={false}
-                                    buttons={[
-                                        {
-                                            label: "詳細",
-                                            onClick: () => handleDetailClick(review.idea.id),
-                                        },
-                                        // {
-                                        //     label: "レビューを編集",
-                                        //     onClick: () => handleReviewUpdateClick(review.idea.id, review.id),
-                                        // },
-                                    ]}
-                                />
-                            ))
-                        ) : (
-                            <ReviewCard isPlaceholder={true} />
-                        )} */}
-
                     </section>
 
 
 
-                </div> 
+                </div>
             </main>
 
             <Footer />
