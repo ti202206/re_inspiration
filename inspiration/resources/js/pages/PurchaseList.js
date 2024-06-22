@@ -45,7 +45,7 @@ function PurchasesList() {
             // setPurchases(recentPurchases);
             // console.log("Fetched purchases:", recentPurchases);
             setPurchases(sortedPurchases);
-            console.log("Fetched purchases:", sortedPurchases);
+            // console.log("Fetched purchases:", sortedPurchases);
         } catch (error) {
             console.error("Error fetching purchases:", error);
             if (error.response && error.response.status === 401) {
@@ -64,7 +64,7 @@ function PurchasesList() {
                 return map;
             }, {});
             setCategories(categoriesMap);
-            console.log("Fetched categories:", categoriesMap);
+            // console.log("Fetched categories:", categoriesMap);
         } catch (error) {
             console.error("Error fetching categories:", error);
         }

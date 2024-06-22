@@ -23,7 +23,7 @@
 //         });
 //         return response.data;
 //     } catch (error) {
-//         console.error('お気に入りの解除に失敗しました', error);
+//         console.error('気になるの解除に失敗しました', error);
 //         throw error;
 //     }
 // };

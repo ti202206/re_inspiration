@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const PurchaseDetail = () => {
     const { id } = useParams();
@@ -20,14 +20,16 @@ const PurchaseDetail = () => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get('/api/user', {
+            const response = await axios.get("/api/user", {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
             setUser(response.data);
         } catch (error) {
-            console.error('Error fetching user:', error);
+            console.error("Error fetching user:", error);
         }
     };
 
@@ -35,12 +37,14 @@ const PurchaseDetail = () => {
         try {
             const response = await axios.get(`/api/favorites/idea/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
             setFavorite(response.data);
         } catch (error) {
-            console.error('Error fetching favorite:', error);
+            console.error("Error fetching favorite:", error);
         }
     };
 
@@ -48,8 +52,10 @@ const PurchaseDetail = () => {
         try {
             const response = await axios.get(`/api/ideas/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
             setIdea(response.data.idea);
             setAverageRating(response.data.average_rating || 0);
@@ -58,22 +64,22 @@ const PurchaseDetail = () => {
             setPurchaseCount(response.data.purchase_count || 0);
             setReviews(response.data.reviews || []);
         } catch (error) {
-            console.error('Error fetching idea:', error);
-            setError('データの取得に失敗しました。');
+            console.error("Error fetching idea:", error);
+            setError("データの取得に失敗しました。");
         }
     };
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('/api/categories');
+            const response = await axios.get("/api/categories");
             const categoriesMap = response.data.reduce((map, category) => {
                 map[category.id] = category.name;
                 return map;
             }, {});
             setCategories(categoriesMap);
         } catch (error) {
-            console.error('Error fetching categories:', error);
-            setError('カテゴリデータの取得に失敗しました。');
+            console.error("Error fetching categories:", error);
+            setError("カテゴリデータの取得に失敗しました。");
         }
     };
 
@@ -86,16 +92,22 @@ const PurchaseDetail = () => {
 
     const fetchReviews = async () => {
         try {
-            const response = await axios.get('/api/reviews', {
+            const response = await axios.get("/api/reviews", {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
-            const filteredReviews = response.data.filter(review => review.idea_id === Number(id));
-            const sortedReviews = filteredReviews.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+            const filteredReviews = response.data.filter(
+                (review) => review.idea_id === Number(id)
+            );
+            const sortedReviews = filteredReviews.sort(
+                (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+            );
             setReviews(sortedReviews);
         } catch (error) {
-            console.error('Error fetching reviews:', error);
+            console.error("Error fetching reviews:", error);
         }
     };
 
@@ -115,18 +127,24 @@ const PurchaseDetail = () => {
 
     const handleToggleFavorite = async (ideaId) => {
         try {
-            const response = await axios.post('/api/favorites/toggle', { idea_id: ideaId }, {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
+            const response = await axios.post(
+                "/api/favorites/toggle",
+                { idea_id: ideaId },
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem(
+                            "auth_token"
+                        )}`,
+                    },
                 }
-            });
+            );
             if (response.status === 200) {
                 fetchFavorite();
             } else {
-                throw new Error('サーバーエラー: ' + response.status);
+                throw new Error("サーバーエラー: " + response.status);
             }
         } catch (error) {
-            console.error('お気に入りの解除に失敗しました', error);
+            console.error("気になるの解除に失敗しました", error);
         }
     };
 
@@ -155,7 +173,13 @@ const PurchaseDetail = () => {
                     <div className="form-group">
                         <label>投稿者:</label>
                         <div className="form-value">
-                            {idea.user ? <Link to={`/user/${idea.user.id}`}>{idea.user.name}</Link> : '投稿者不明'}
+                            {idea.user ? (
+                                <Link to={`/user/${idea.user.id}`}>
+                                    {idea.user.name}
+                                </Link>
+                            ) : (
+                                "投稿者不明"
+                            )}
                         </div>
                     </div>
 
@@ -167,7 +191,7 @@ const PurchaseDetail = () => {
                     <div className="form-group">
                         <label>カテゴリ:</label>
                         <div className="form-value">
-                            {categories[idea.category_id] || 'カテゴリ不明'}
+                            {categories[idea.category_id] || "カテゴリ不明"}
                         </div>
                     </div>
 
@@ -180,7 +204,9 @@ const PurchaseDetail = () => {
 
                     <div className="form-group">
                         <label>平均評価:</label>
-                        <div className="form-value">{Number(averageRating).toFixed(1)} / 5</div>
+                        <div className="form-value">
+                            {Number(averageRating).toFixed(1)} / 5
+                        </div>
                     </div>
 
                     <div className="form-group">
@@ -202,12 +228,24 @@ const PurchaseDetail = () => {
                         {user && idea.user_id !== user.id && favorite && (
                             <>
                                 {purchaseCount > 0 && reviewCount === 0 && (
-                                    <button className="purchase-detail__button" onClick={() => navigate(`/reviews/${idea.id}`)}>
+                                    <button
+                                        className="purchase-detail__button"
+                                        onClick={() =>
+                                            navigate(`/reviews/${idea.id}`)
+                                        }
+                                    >
                                         レビューをする
                                     </button>
                                 )}
                                 {purchaseCount > 0 && reviewCount > 0 && (
-                                    <button className="purchase-detail__button" onClick={() => navigate(`/review-update/${idea.id}`)}>
+                                    <button
+                                        className="purchase-detail__button"
+                                        onClick={() =>
+                                            navigate(
+                                                `/review-update/${idea.id}`
+                                            )
+                                        }
+                                    >
                                         レビューを編集する
                                     </button>
                                 )}
@@ -219,7 +257,9 @@ const PurchaseDetail = () => {
                                 className="purchase-detail__button"
                                 onClick={() => handleToggleFavorite(idea.id)}
                             >
-                                {favorite.is_favorite ? 'お気に入りから削除' : '気になる'}
+                                {favorite.is_favorite
+                                    ? "気になるから削除"
+                                    : "気になる"}
                             </button>
                         )}
 
@@ -236,12 +276,38 @@ const PurchaseDetail = () => {
                         {reviews.length > 0 ? (
                             reviews.map((review, index) => (
                                 <div key={index} className="review">
-                                    <p><strong>評価:</strong> {review.rating} / 5</p>
-                                    <p><strong>レビュー:</strong> {review.review}</p>
-                                    <p><strong>投稿者:</strong>
-                                        {review.buyer_id ? <Link to={`/user/${review.buyer_id}`}>{review.buyer_name}</Link> : review.buyer_name || '投稿者不明'}
+                                    <p>
+                                        <strong>評価:</strong> {review.rating} /
+                                        5
                                     </p>
-                                    <p><small>投稿日: {new Date(review.updated_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}</small></p>
+                                    <p>
+                                        <strong>レビュー:</strong>{" "}
+                                        {review.review}
+                                    </p>
+                                    <p>
+                                        <strong>投稿者:</strong>
+                                        {review.buyer_id ? (
+                                            <Link
+                                                to={`/user/${review.buyer_id}`}
+                                            >
+                                                {review.buyer_name}
+                                            </Link>
+                                        ) : (
+                                            review.buyer_name || "投稿者不明"
+                                        )}
+                                    </p>
+                                    <p>
+                                        <small>
+                                            投稿日:{" "}
+                                            {new Date(
+                                                review.updated_at
+                                            ).toLocaleDateString("ja-JP", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            })}
+                                        </small>
+                                    </p>
                                 </div>
                             ))
                         ) : (

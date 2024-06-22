@@ -9,7 +9,7 @@ const IdeaDetail = () => {
     const [user, setUser] = useState(null);
     const [idea, setIdea] = useState({});
     const [categories, setCategories] = useState({}); // カテゴリの状態管理
-    const [favorite, setFavorite] = useState({}); // お気に入りの状態管理
+    const [favorite, setFavorite] = useState({}); // 気になるの状態管理
     const [reviews, setReviews] = useState([]); // レビューの状態管理
     const [averageRating, setAverageRating] = useState(0); // 平均評価
     const [reviewCount, setReviewCount] = useState(0); // レビュー数
@@ -19,6 +19,7 @@ const IdeaDetail = () => {
     const [error, setError] = useState(null); // エラーメッセージの状態を管理
     const navigate = useNavigate();
 
+    // ユーザー情報，購入情報を取得
     const fetchUser = async () => {
         try {
             const response = await axios.get("/api/user", {
@@ -29,7 +30,7 @@ const IdeaDetail = () => {
                 },
             });
             setUser(response.data);
-            console.log("Fetched user:", response.data);
+            // console.log("Fetched user:", response.data);
 
             // 購入情報を取得
             const purchaseResponse = await axios.get("/api/mypurchases", {
@@ -40,13 +41,13 @@ const IdeaDetail = () => {
                 },
             });
             setPurchases(purchaseResponse.data);
-            console.log("Fetched purchases:", purchaseResponse.data);
+            // console.log("Fetched purchases:", purchaseResponse.data);
         } catch (error) {
             console.error("Error fetching user:", error);
         }
     };
 
-    // お気に入り情報を取得
+    // 気になる情報を取得
     const fetchFavorite = async () => {
         try {
             const response = await axios.get(`/api/favorites/idea/${id}`, {
@@ -57,7 +58,7 @@ const IdeaDetail = () => {
                 },
             });
             setFavorite(response.data || {});
-            console.log("Fetched favorite:", response.data);
+            // console.log("Fetched favorite:", response.data);
         } catch (error) {
             console.error("Error fetching favorite:", error);
         }
@@ -73,7 +74,7 @@ const IdeaDetail = () => {
                     )}`,
                 },
             });
-            console.log("Fetched idea:", response.data); // デバッグ用
+            // console.log("Fetched idea:", response.data); // デバッグ用
             setIdea(response.data.idea); // アイデアデータを設定
 
             setAverageRating(response.data.average_rating || 0); // 平均評価を設定
@@ -88,10 +89,11 @@ const IdeaDetail = () => {
         }
     };
 
+    // カテゴリー情報取得
     const fetchCategories = async () => {
         try {
             const response = await axios.get("/api/categories");
-            console.log("Fetched categories:", response.data); // デバッグ用
+            // console.log("Fetched categories:", response.data); // デバッグ用
             const categoriesMap = response.data.reduce((map, category) => {
                 map[category.id] = category.name;
                 return map;
@@ -110,6 +112,7 @@ const IdeaDetail = () => {
         fetchFavorite();
     }, [id]);
 
+    // レビュー情報取得
     const fetchReviews = async () => {
         try {
             const response = await axios.get("/api/reviews", {
@@ -176,6 +179,7 @@ const IdeaDetail = () => {
         }
     };
 
+    // 気になるトグル処理
     const handleToggleFavorite = async (ideaId) => {
         try {
             const response = await axios.post(
@@ -190,12 +194,12 @@ const IdeaDetail = () => {
                 }
             );
             if (response.status === 200) {
-                fetchFavorite(); // お気に入りの状態を再取得
+                fetchFavorite(); // 気になるの状態を再取得
             } else {
                 throw new Error("サーバーエラー: " + response.status);
             }
         } catch (error) {
-            console.error("お気に入りの解除に失敗しました", error);
+            console.error("気になるの解除に失敗しました", error);
         }
     };
 
@@ -234,14 +238,15 @@ const IdeaDetail = () => {
                     </div>
 
                     <div className="form-group">
-                        <label>投稿者:
-                        {idea.user?.name ? (
-                            <Link to={`/user/${idea.user.id}`}>
-                                {idea.user.name}
-                            </Link>
-                        ) : (
-                            "投稿者不明"
-                        )}
+                        <label>
+                            投稿者:
+                            {idea.user?.name ? (
+                                <Link to={`/user/${idea.user.id}`}>
+                                    {idea.user.name}
+                                </Link>
+                            ) : (
+                                "投稿者不明"
+                            )}
                         </label>
                     </div>
 
@@ -289,8 +294,6 @@ const IdeaDetail = () => {
                     </div>
 
                     <div className="idea-card__buttons">
-                        {/* 自身の投稿でない場合に「購入」ボタンを表示 */}
-                        {/* {user && idea.user_id !== user.id && !hasPurchased(idea.id) && ( */}
                         {user &&
                             idea.user_id !== user.id &&
                             idea.user_id !== null &&
@@ -315,7 +318,10 @@ const IdeaDetail = () => {
                             </button>
                         )}
 
-                        <button className="idea-detail__button idea-detail__button--back" onClick={() => navigate(-1)}>
+                        <button
+                            className="idea-detail__button idea-detail__button--back"
+                            onClick={() => navigate(-1)}
+                        >
                             戻る
                         </button>
                     </div>

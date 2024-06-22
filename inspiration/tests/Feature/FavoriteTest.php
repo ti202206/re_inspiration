@@ -36,7 +36,7 @@ class FavoriteTest extends TestCase
             'password' => bcrypt('123456')
         ]);
 
-          // ユーザー2の生成
+        // ユーザー2の生成
         $this->user2 = User::factory()->create([
             'id' => 2,
             'name' => 'user2',
@@ -62,8 +62,8 @@ class FavoriteTest extends TestCase
 
         //アイディアを生成(ダミーでuser_id,category_idを設定)
         $this->ideas = Idea::factory()->count(5)->create([
-        'user_id' => $this->user1->id,
-        'category_id' => 1,
+            'user_id' => $this->user1->id,
+            'category_id' => 1,
         ]);
 
         // テスト購入者のユーザー２に切り替える
@@ -79,41 +79,41 @@ class FavoriteTest extends TestCase
     /**
      * @test
      */
-    public function 自身のお気に入りを切り替えられる()
+    public function 自身の気になるを切り替えられる()
     {
-        // お気に入り登録のトグル機能をテスト
+        // 気になる登録のトグル機能をテスト
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
         $response->assertOk();
 
-        //お気に入り登録されたことを確認
+        //気になる登録されたことを確認
         $this->assertDatabaseHas('favorites', [
             'user_id' => $this->user2->id,
             'idea_id' => $this->ideas[0]->id,
             'is_favorite' => true
         ]);
 
-        //お気に入り解除のトグル機能テスト
+        //気になる解除のトグル機能テスト
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
         $response->assertOk();
 
-        //お気に入り解除されたことを確認
+        //気になる解除されたことを確認
         $this->assertDatabaseHas('favorites', [
             'user_id' => $this->user2->id,
             'idea_id' => $this->ideas[0]->id,
-            'is_favorite'=>false
+            'is_favorite' => false
         ]);
     }
 
     /**
      * @test
      */
-    public function 他のユーザーのお気に入りを切り替えられない()
+    public function 他のユーザーの気になるを切り替えられない()
     {
-        // お気に入り登録のトグル機能をテスト
+        // 気になる登録のトグル機能をテスト
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
         $response->assertOk();
 
-        //お気に入り登録されたことを確認
+        //気になる登録されたことを確認
         $this->assertDatabaseHas('favorites', [
             'user_id' => $this->user2->id,
             'idea_id' => $this->ideas[0]->id,
@@ -123,20 +123,20 @@ class FavoriteTest extends TestCase
         // ユーザーの切り替え
         $this->actingAs($this->user3);
 
-        // お気に入りの切り替え
+        // 気になるの切り替え
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
 
         // レスポンスの確認
         $response->assertStatus(200);
 
-        //ユーザー２のお気に入りが影響を受けていないことを確認．
+        //ユーザー２の気になるが影響を受けていないことを確認．
         $this->assertDatabaseHas('favorites', [
             'user_id' => $this->user2->id,
             'idea_id' => $this->ideas[0]->id,
             'is_favorite' => true
         ]);
 
-        //ユーザー３のお気に入りが追加されていることを確認
+        //ユーザー３の気になる追加されていることを確認
         $this->assertDatabaseHas('favorites', [
             'user_id' => $this->user3->id,
             'idea_id' => $this->ideas[0]->id,
@@ -147,9 +147,9 @@ class FavoriteTest extends TestCase
     /**
      * @test
      */
-    public function 自身のお気に入り一覧を取得できる()
+    public function 自身の気になる一覧を取得できる()
     {
-        // お気に入り登録のトグル機能をテスト
+        // 気になる登録のトグル機能をテスト
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
         $response->assertOk();
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[1]->id]);
@@ -160,7 +160,7 @@ class FavoriteTest extends TestCase
         // 一覧の取得
         $response = $this->getJson('/api/favorites');
 
-        // 自身のお気に入りを取得できる
+        // 自身の気になるを取得できる
         $response->assertOk();
         $response->assertJsonCount(3);
         $response->assertJsonFragment([
@@ -174,9 +174,9 @@ class FavoriteTest extends TestCase
     /**
      * @test
      */
-    public function 他人のお気に入り一覧を取得できない()
+    public function 他人の気になる一覧を取得できない()
     {
-        // お気に入り登録のトグル機能をテスト
+        // 気になる登録のトグル機能をテスト
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[0]->id]);
         $response->assertOk();
         $response = $this->postJson('/api/favorites/toggle', ['idea_id' => $this->ideas[1]->id]);
@@ -190,7 +190,7 @@ class FavoriteTest extends TestCase
         // 一覧の取得
         $response = $this->getJson('/api/favorites');
 
-        // 他の人のお気に入り一覧は取得できない
+        // 他の人の気になる一覧は取得できない
         $response->assertOk();
         $response->assertJsonCount(0);
     }

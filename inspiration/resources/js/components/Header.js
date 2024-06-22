@@ -8,6 +8,7 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // 認証チェック
     useEffect(() => {
         const checkAuth = async () => {
             try {
@@ -28,6 +29,7 @@ const Header = () => {
         checkAuth();
     }, []);
 
+    // ボタン押下時の処理
     const handleRegisterClick = () => {
         navigate("/register");
     };

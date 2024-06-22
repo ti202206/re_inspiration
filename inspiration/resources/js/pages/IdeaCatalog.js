@@ -68,7 +68,7 @@ function IdeaCatalog() {
                     )}`,
                 },
             });
-            console.log("Fetched purchases:", response); // デバッグ用
+            // console.log("Fetched purchases:", response); // デバッグ用
 
             // レスポンスが配列かどうか確認し、配列でない場合エラーを表示
             if (response.status === 200 && Array.isArray(response.data)) {
@@ -95,7 +95,7 @@ function IdeaCatalog() {
         filterIdeas(ideas);
     }, [filterCategory, filterPrice, filterStartDate, filterEndDate, ideas]);
 
-    // フィルタリングロジック
+    // フィルタリング
     const filterIdeas = () => {
         let filtered = ideas;
 
@@ -132,6 +132,7 @@ function IdeaCatalog() {
         setFilteredIdeas(filtered);
     };
 
+    // ボタン機能
     const handleDetailClick = (id) => {
         const isPurchased = userPurchases.some(
             (purchase) => purchase.idea_id === id
@@ -143,77 +144,71 @@ function IdeaCatalog() {
         }
     };
 
-    const handleEditClick = (id) => {
-        navigate(`/idea-update/${id}`);
-    };
+    // 必要なら使う
+    // const handleEditClick = (id) => {
+    //     navigate(`/idea-update/${id}`);
+    // };
 
     return (
         <div>
             <Header />
             <main className="container">
                 <section className="section__container">
+                    <h2>アイディア一覧</h2>
 
-                        <h2>アイディア一覧</h2>
-
-                        <div className="filters">
-                            <div className="filter-item">
-                                <label htmlFor="filterCategory">
-                                    カテゴリ:
-                                </label>
-                                <select
-                                    id="filterCategory"
-                                    value={filterCategory}
-                                    onChange={(e) =>
-                                        setFilterCategory(e.target.value)
-                                    }
-                                >
-                                    <option value="">すべて</option>
-                                    {Object.entries(categories).map(
-                                        ([id, name]) => (
-                                            <option key={id} value={id}>
-                                                {name}
-                                            </option>
-                                        )
-                                    )}
-                                </select>
-                            </div>
-                            <div className="filter-item">
-                                <label htmlFor="filterPrice">
-                                    価格 (上限):
-                                </label>
-                                <input
-                                    type="number"
-                                    id="filterPrice"
-                                    value={filterPrice}
-                                    onChange={(e) =>
-                                        setFilterPrice(e.target.value)
-                                    }
-                                    min="0"
-                                />
-                            </div>
-                            <div className="filter-item">
-                                <label htmlFor="filterStartDate">開始日:</label>
-                                <input
-                                    type="date"
-                                    id="filterStartDate"
-                                    value={filterStartDate}
-                                    onChange={(e) =>
-                                        setFilterStartDate(e.target.value)
-                                    }
-                                />
-                            </div>
-                            <div className="filter-item">
-                                <label htmlFor="filterEndDate">終了日:</label>
-                                <input
-                                    type="date"
-                                    id="filterEndDate"
-                                    value={filterEndDate}
-                                    onChange={(e) =>
-                                        setFilterEndDate(e.target.value)
-                                    }
-                                />
-                            </div>
+                    <div className="filters">
+                        <div className="filter-item">
+                            <label htmlFor="filterCategory">カテゴリ:</label>
+                            <select
+                                id="filterCategory"
+                                value={filterCategory}
+                                onChange={(e) =>
+                                    setFilterCategory(e.target.value)
+                                }
+                            >
+                                <option value="">すべて</option>
+                                {Object.entries(categories).map(
+                                    ([id, name]) => (
+                                        <option key={id} value={id}>
+                                            {name}
+                                        </option>
+                                    )
+                                )}
+                            </select>
                         </div>
+                        <div className="filter-item">
+                            <label htmlFor="filterPrice">価格 (上限):</label>
+                            <input
+                                type="number"
+                                id="filterPrice"
+                                value={filterPrice}
+                                onChange={(e) => setFilterPrice(e.target.value)}
+                                min="0"
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <label htmlFor="filterStartDate">開始日:</label>
+                            <input
+                                type="date"
+                                id="filterStartDate"
+                                value={filterStartDate}
+                                onChange={(e) =>
+                                    setFilterStartDate(e.target.value)
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <label htmlFor="filterEndDate">終了日:</label>
+                            <input
+                                type="date"
+                                id="filterEndDate"
+                                value={filterEndDate}
+                                onChange={(e) =>
+                                    setFilterEndDate(e.target.value)
+                                }
+                            />
+                        </div>
+                    </div>
 
                     {filteredIdeas.length > 0 ? (
                         filteredIdeas.map((idea) => (
@@ -235,6 +230,7 @@ function IdeaCatalog() {
                                         onClick: () =>
                                             handleDetailClick(idea.id),
                                     },
+                                    // 必要なら使う
                                     // ...(user && idea.user_id === user.id
                                     //     ? [
                                     //         {

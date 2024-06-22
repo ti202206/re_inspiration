@@ -29,7 +29,7 @@ class IdeaController extends Controller
         //ideaテーブルの全てのデータを取得
         $ideas = Idea::orderByDesc('created_at')->get();
 
-        // 各アイディアに平均評価とお気に入り数を追加
+        // 各アイディアに平均評価と気になる数を追加
         $ideas->each(function ($idea) {
             $idea->average_rating = $idea->averageRating;
             $idea->favorite_count = $idea->favoriteCount;
@@ -54,7 +54,7 @@ class IdeaController extends Controller
         // ユーザーが投稿したアイディアを取得
         $ideas = Idea::where('user_id', $user->id)->orderByDesc('created_at')->get();
 
-        // 各アイディアに平均評価とお気に入り数を追加
+        // 各アイディアに平均評価と気になる数を追加
         $ideas->each(function ($idea) {
             $idea->average_rating = $idea->averageRating;
             $idea->favorite_count = $idea->favoriteCount;
@@ -92,20 +92,19 @@ class IdeaController extends Controller
         // return $idea ? response()->json($idea, 201) : response()->json([], 500);
 
 
-                // バリデーション済みのデータを使用してアイデアを作成
-                $validatedData = $request->validated();
-                $idea = new Idea();
-                $idea->user_id = Auth::id();
-                $idea->category_id = $validatedData['category_id'];
-                $idea->title = $validatedData['title'];
-                $idea->overview = $validatedData['overview'];
-                $idea->content = $validatedData['content'];
-                $idea->price = $validatedData['price'];
-                $idea->save();
+        // バリデーション済みのデータを使用してアイデアを作成
+        $validatedData = $request->validated();
+        $idea = new Idea();
+        $idea->user_id = Auth::id();
+        $idea->category_id = $validatedData['category_id'];
+        $idea->title = $validatedData['title'];
+        $idea->overview = $validatedData['overview'];
+        $idea->content = $validatedData['content'];
+        $idea->price = $validatedData['price'];
+        $idea->save();
 
-                // データがあればjsonで返す（ステータスコード201）
-                return response()->json($idea, 201);
-
+        // データがあればjsonで返す（ステータスコード201）
+        return response()->json($idea, 201);
     }
 
     /**
@@ -130,7 +129,7 @@ class IdeaController extends Controller
         // $idea->load(['purchases' => function($query) {
         //     $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
         // }]);
-        $idea->load(['user:id,name', 'purchases' => function($query) {
+        $idea->load(['user:id,name', 'purchases' => function ($query) {
             $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
         }]);
 
@@ -180,38 +179,37 @@ class IdeaController extends Controller
     //     return response()->json($idea,200);
     // }
     public function update(Request $request, $id)
-{
+    {
 
-    $idea = Idea::find($id);
-    if (!$idea) {
-        return response()->json(['message' => 'Idea not found'], 404);
+        $idea = Idea::find($id);
+        if (!$idea) {
+            return response()->json(['message' => 'Idea not found'], 404);
+        }
+
+        // 更新は投稿者のみ許可、かつ purchased が false であることが条件
+        if ($idea->user_id !== Auth::id() || $idea->purchased) {
+            return response()->json(['error' => 'すでに販売済みのため，変更できません'], 403);
+        }
+
+        // バリデーション済みのデータを使用してアイデアを更新
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'overview' => 'nullable|string',
+            'content' => 'nullable|string',
+            'price' => 'nullable|numeric|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+        ]);
+
+        // 更新処理
+        try {
+            $idea->update($validatedData);
+        } catch (\Exception $e) {
+            Log::error('Error updating idea: ' . $e->getMessage());
+            return response()->json(['error' => '更新中にエラーが発生しました'], 500);
+        }
+
+        return response()->json(['message' => 'Idea updated successfully', 'idea' => $idea], 200);
     }
-
-    // 更新は投稿者のみ許可、かつ purchased が false であることが条件
-    if ($idea->user_id !== Auth::id() || $idea->purchased) {
-        return response()->json(['error' => 'すでに販売済みのため，変更できません'], 403);
-    }
-
-    // バリデーション済みのデータを使用してアイデアを更新
-    $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
-        'overview' => 'nullable|string',
-        'content' => 'nullable|string',
-        'price' => 'nullable|numeric|min:0',
-        'category_id' => 'nullable|exists:categories,id',
-    ]);
-
-    // 更新処理
-    try {
-        $idea->update($validatedData);
-    } catch (\Exception $e) {
-        Log::error('Error updating idea: ' . $e->getMessage());
-        return response()->json(['error' => '更新中にエラーが発生しました'], 500);
-    }
-
-    return response()->json(['message' => 'Idea updated successfully', 'idea' => $idea], 200);
-
-}
 
 
     /**
@@ -233,14 +231,14 @@ class IdeaController extends Controller
         //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
         //削除が失敗した場合はからのjsonレスポンスを返す（ステータスコード５００）
         // return $idea->delete() ? response()->json($deletedIdea) : response()->json([],500);
-            //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
-    //削除が失敗した場合は空のjsonレスポンスを返す（ステータスコード５００）
-    try {
-        $idea->delete();
-        return response()->json(['message' => 'Idea deleted successfully'], 200);
-    } catch (\Exception $e) {
-        Log::error('Error deleting idea: ' . $e->getMessage());
-        return response()->json(['error' => '削除中にエラーが発生しました'], 500);
-    }
+        //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
+        //削除が失敗した場合は空のjsonレスポンスを返す（ステータスコード５００）
+        try {
+            $idea->delete();
+            return response()->json(['message' => 'Idea deleted successfully'], 200);
+        } catch (\Exception $e) {
+            Log::error('Error deleting idea: ' . $e->getMessage());
+            return response()->json(['error' => '削除中にエラーが発生しました'], 500);
+        }
     }
 }

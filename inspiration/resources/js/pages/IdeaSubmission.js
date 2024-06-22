@@ -32,6 +32,7 @@ function IdeaSubmission() {
         fetchCategories();
     }, []);
 
+    // ボタン機能
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -46,7 +47,7 @@ function IdeaSubmission() {
                     )}`,
                 },
             });
-            console.log("Idea Submitted: ", response.data);
+            // console.log("Idea Submitted: ", response.data);
             navigate("/my-page");
         } catch (error) {
             console.error("Error submitting idea:", error);
@@ -81,7 +82,9 @@ function IdeaSubmission() {
                         <label htmlFor="overview">
                             概要:公開情報です（90文字）
                             {errors.overview && (
-                                <p className="submission__error">{errors.overview}</p>
+                                <p className="submission__error">
+                                    {errors.overview}
+                                </p>
                             )}
                         </label>
                         <textarea
@@ -91,14 +94,13 @@ function IdeaSubmission() {
                             onChange={handleChange}
                             className="submission__input submission__input-overview"
                         />
-                        {/* {errors.overview && (
-                            <p className="error">{errors.overview}</p>
-                        )} */}
 
                         <label htmlFor="content">
                             詳細:購入者のみ見れるようになります（255文字）
                             {errors.content && (
-                                <p className="submission__error">{errors.content}</p>
+                                <p className="submission__error">
+                                    {errors.content}
+                                </p>
                             )}
                         </label>
                         <textarea
@@ -108,9 +110,6 @@ function IdeaSubmission() {
                             onChange={handleChange}
                             className="submission__input submission__input-content"
                         />
-                        {/* {errors.content && (
-                            <p className="error">{errors.content}</p>
-                        )} */}
 
                         <label htmlFor="price">
                             価格 (円):
@@ -130,9 +129,6 @@ function IdeaSubmission() {
                             step="1"
                             className="submission__input"
                         />
-                        {/* {errors.price && (
-                            <p className="submission__error">{errors.price}</p>
-                        )} */}
 
                         <label htmlFor="category_id">
                             カテゴリ:
@@ -156,11 +152,6 @@ function IdeaSubmission() {
                                 </option>
                             ))}
                         </select>
-                        {/* {errors.category_id && (
-                            <p className="submission__error">
-                                {errors.category_id}
-                            </p>
-                        )} */}
 
                         <button type="submit" className="submission__button">
                             投稿する

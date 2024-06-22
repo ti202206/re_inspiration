@@ -10440,6 +10440,8 @@ var Header = function Header() {
     setUser = _useState4[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
+
+  // 認証チェック
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -10476,6 +10478,8 @@ var Header = function Header() {
     }();
     checkAuth();
   }, []);
+
+  // ボタン押下時の処理
   var handleRegisterClick = function handleRegisterClick() {
     navigate("/register");
   };
@@ -10656,6 +10660,7 @@ var IdeaCard = function IdeaCard(_ref) {
       style: "decimal"
     }).format(price);
   };
+  // ポストを送信する
   var generateTweetLink = function generateTweetLink(idea) {
     var tweetText = "Inspiration\u3092\u307F\u3093\u306A\u3067\u30B7\u30A7\u30A2\n\u30A2\u30A4\u30C7\u30A3\u30A2: \n".concat(idea.title, "\n\u8A73\u7D30\u306F\u3053\u3061\u3089: ").concat(window.location.origin, "/idea-detail/").concat(idea.id);
     var tweetURL = "https://twitter.com/intent/tweet?text=".concat(encodeURIComponent(tweetText));
@@ -10998,7 +11003,7 @@ function FavoritesList() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
     favorites = _useState4[0],
-    setFavorites = _useState4[1]; // お気に入りの状態管理
+    setFavorites = _useState4[1]; // 気になるの状態管理
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState6 = _slicedToArray(_useState5, 2),
     categories = _useState6[0],
@@ -11008,6 +11013,8 @@ function FavoritesList() {
     purchases = _useState8[0],
     setPurchases = _useState8[1]; // 購入履歴の状態管理
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+
+  // ユーザー情報を取得
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -11024,25 +11031,25 @@ function FavoritesList() {
           case 3:
             response = _context.sent;
             setUser(response.data);
-            console.log("Fetched user:", response.data);
-            _context.next = 11;
+            // console.log("Fetched user:", response.data);
+            _context.next = 10;
             break;
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching user:", _context.t0);
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 7]]);
     }));
     return function fetchUser() {
       return _ref.apply(this, arguments);
     };
   }();
 
-  // お気に入り情報を取得
+  // 気になる情報を取得
   var fetchFavorites = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response, sortedFavorites, recentFavorites;
@@ -11051,9 +11058,9 @@ function FavoritesList() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/favorites', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/favorites", {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -11063,18 +11070,18 @@ function FavoritesList() {
             });
             recentFavorites = sortedFavorites.slice(0, 5);
             setFavorites(recentFavorites);
-            console.log('Fetched favorites:', recentFavorites);
-            _context2.next = 13;
+            // console.log("Fetched favorites:", recentFavorites);
+            _context2.next = 12;
             break;
-          case 10:
-            _context2.prev = 10;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
-            console.error('Error fetching favorites:', _context2.t0);
-          case 13:
+            console.error("Error fetching favorites:", _context2.t0);
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function fetchFavorites() {
       return _ref2.apply(this, arguments);
@@ -11098,18 +11105,18 @@ function FavoritesList() {
           case 3:
             response = _context3.sent;
             setPurchases(response.data);
-            console.log("Fetched purchases:", response.data);
-            _context3.next = 11;
+            // console.log("Fetched purchases:", response.data);
+            _context3.next = 10;
             break;
-          case 8:
-            _context3.prev = 8;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             console.error("Error fetching purchases:", _context3.t0);
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 8]]);
+      }, _callee3, null, [[0, 7]]);
     }));
     return function fetchMyPurchases() {
       return _ref3.apply(this, arguments);
@@ -11125,7 +11132,7 @@ function FavoritesList() {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
           case 3:
             response = _context4.sent;
             categoriesMap = response.data.reduce(function (map, category) {
@@ -11133,23 +11140,25 @@ function FavoritesList() {
               return map;
             }, {});
             setCategories(categoriesMap);
-            console.log('Fetched categories:', categoriesMap);
-            _context4.next = 12;
+            // console.log("Fetched categories:", categoriesMap);
+            _context4.next = 11;
             break;
-          case 9:
-            _context4.prev = 9;
+          case 8:
+            _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            console.error('Error fetching categories:', _context4.t0);
-          case 12:
+            console.error("Error fetching categories:", _context4.t0);
+          case 11:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[0, 9]]);
+      }, _callee4, null, [[0, 8]]);
     }));
     return function fetchCategories() {
       return _ref4.apply(this, arguments);
     };
   }();
+
+  // 購入済みかどうか確認
   var isPurchased = function isPurchased(ideaId) {
     return purchases.some(function (purchase) {
       return purchase.idea.id === ideaId;
@@ -11161,68 +11170,36 @@ function FavoritesList() {
     fetchMyPurchases();
     fetchCategories();
   }, []);
+
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(id) {
     navigate("/idea-detail/".concat(id));
   };
 
-  // const handleToggleFavorite = (ideaId) => {
-  //     navigate(`/review-edit/${ideaId}`);
-  // };
-  var handleToggleFavorite = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
-      var response;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
-              idea_id: id
-            }, {
-              headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
-              }
-            });
-          case 3:
-            response = _context5.sent;
-            fetchFavorites(); // トグル後にお気に入り情報を再取得
-            _context5.next = 10;
-            break;
-          case 7:
-            _context5.prev = 7;
-            _context5.t0 = _context5["catch"](0);
-            console.error('お気に入りの解除に失敗しました', _context5.t0);
-          case 10:
-          case "end":
-            return _context5.stop();
-        }
-      }, _callee5, null, [[0, 7]]);
-    }));
-    return function handleToggleFavorite(_x) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-
-  // useEffect(() => {
-  //     axios
-  //         .get("/api/favorites", {
-  //             headers: {
-  //                 Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
-  //             },
-  //         })
-  //         .then((response) => {
-  //             const sortedFavorites = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  //             setFavorites(sortedFavorites);
-  //         })
-  //         .catch((error) =>
-  //             console.error("Error fetching favorites:", error)
+  // 気になるのトグル 必要なら使う
+  // const handleToggleFavorite = async (id) => {
+  //     try {
+  //         const response = await axios.post(
+  //             "/api/favorites/toggle",
+  //             { idea_id: id },
+  //             {
+  //                 headers: {
+  //                     Authorization: `Bearer ${sessionStorage.getItem(
+  //                         "auth_token"
+  //                     )}`,
+  //                 },
+  //             }
   //         );
-  // }, []);
+  //         fetchFavorites(); // トグル後に気になる情報を再取得
+  //     } catch (error) {
+  //         console.error("気になるの解除に失敗しました", error);
+  //     }
+  // };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
         children: "\u6C17\u306B\u306A\u308B\u4E00\u89A7"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
         className: "section-container",
@@ -11235,6 +11212,7 @@ function FavoritesList() {
             ,
             updatedAt: idea.updated_at,
             buttons: [{
+              // 必要ならコメントアウトを外してボタンをつける
               // label: "詳細",
               // onClick: () => handleDetailClick(idea.id),
               label: isPurchased(idea.id) ? "詳細" : "概要",
@@ -11243,7 +11221,7 @@ function FavoritesList() {
               }
             }
             // {
-            //     label: "お気に入りから削除",
+            //     label: "気になるから削除",
             //     onClick: () => handleToggleFavorite(idea.id),
             // },
             ]
@@ -11458,7 +11436,7 @@ function IdeaCatalog() {
             });
           case 3:
             response = _context4.sent;
-            console.log("Fetched purchases:", response); // デバッグ用
+            // console.log("Fetched purchases:", response); // デバッグ用
 
             // レスポンスが配列かどうか確認し、配列でない場合エラーを表示
             if (response.status === 200 && Array.isArray(response.data)) {
@@ -11466,17 +11444,17 @@ function IdeaCatalog() {
             } else {
               console.error("Error: Purchases data is not an array or not a valid response:", response.data);
             }
-            _context4.next = 11;
+            _context4.next = 10;
             break;
-          case 8:
-            _context4.prev = 8;
+          case 7:
+            _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
             console.error("Error fetching purchases:", _context4.t0);
-          case 11:
+          case 10:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 7]]);
     }));
     return function fetchPurchases() {
       return _ref4.apply(this, arguments);
@@ -11492,7 +11470,7 @@ function IdeaCatalog() {
     filterIdeas(ideas);
   }, [filterCategory, filterPrice, filterStartDate, filterEndDate, ideas]);
 
-  // フィルタリングロジック
+  // フィルタリング
   var filterIdeas = function filterIdeas() {
     var filtered = ideas;
     if (filterCategory) {
@@ -11519,6 +11497,8 @@ function IdeaCatalog() {
     }
     setFilteredIdeas(filtered);
   };
+
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(id) {
     var isPurchased = userPurchases.some(function (purchase) {
       return purchase.idea_id === id;
@@ -11529,9 +11509,12 @@ function IdeaCatalog() {
       navigate("/idea-detail/".concat(id));
     }
   };
-  var handleEditClick = function handleEditClick(id) {
-    navigate("/idea-update/".concat(id));
-  };
+
+  // 必要なら使う
+  // const handleEditClick = (id) => {
+  //     navigate(`/idea-update/${id}`);
+  // };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
@@ -11621,6 +11604,7 @@ function IdeaCatalog() {
                 return handleDetailClick(idea.id);
               }
             }
+            // 必要なら使う
             // ...(user && idea.user_id === user.id
             //     ? [
             //         {
@@ -11703,7 +11687,7 @@ var IdeaDetail = function IdeaDetail() {
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState8 = _slicedToArray(_useState7, 2),
     favorite = _useState8[0],
-    setFavorite = _useState8[1]; // お気に入りの状態管理
+    setFavorite = _useState8[1]; // 気になるの状態管理
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
     reviews = _useState10[0],
@@ -11733,6 +11717,8 @@ var IdeaDetail = function IdeaDetail() {
     error = _useState22[0],
     setError = _useState22[1]; // エラーメッセージの状態を管理
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+
+  // ユーザー情報，購入情報を取得
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response, purchaseResponse;
@@ -11749,37 +11735,37 @@ var IdeaDetail = function IdeaDetail() {
           case 3:
             response = _context.sent;
             setUser(response.data);
-            console.log("Fetched user:", response.data);
+            // console.log("Fetched user:", response.data);
 
             // 購入情報を取得
-            _context.next = 8;
+            _context.next = 7;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/mypurchases", {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
-          case 8:
+          case 7:
             purchaseResponse = _context.sent;
             setPurchases(purchaseResponse.data);
-            console.log("Fetched purchases:", purchaseResponse.data);
-            _context.next = 16;
+            // console.log("Fetched purchases:", purchaseResponse.data);
+            _context.next = 14;
             break;
-          case 13:
-            _context.prev = 13;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching user:", _context.t0);
-          case 16:
+          case 14:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 13]]);
+      }, _callee, null, [[0, 11]]);
     }));
     return function fetchUser() {
       return _ref.apply(this, arguments);
     };
   }();
 
-  // お気に入り情報を取得
+  // 気になる情報を取得
   var fetchFavorite = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
@@ -11796,18 +11782,18 @@ var IdeaDetail = function IdeaDetail() {
           case 3:
             response = _context2.sent;
             setFavorite(response.data || {});
-            console.log("Fetched favorite:", response.data);
-            _context2.next = 11;
+            // console.log("Fetched favorite:", response.data);
+            _context2.next = 10;
             break;
-          case 8:
-            _context2.prev = 8;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching favorite:", _context2.t0);
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 7]]);
     }));
     return function fetchFavorite() {
       return _ref2.apply(this, arguments);
@@ -11830,7 +11816,7 @@ var IdeaDetail = function IdeaDetail() {
             });
           case 3:
             response = _context3.sent;
-            console.log("Fetched idea:", response.data); // デバッグ用
+            // console.log("Fetched idea:", response.data); // デバッグ用
             setIdea(response.data.idea); // アイデアデータを設定
 
             setAverageRating(response.data.average_rating || 0); // 平均評価を設定
@@ -11839,23 +11825,25 @@ var IdeaDetail = function IdeaDetail() {
             setPurchaseCount(response.data.purchase_count || 0); // 購入数を設定
 
             setReviews(response.data.reviews || []);
-            _context3.next = 17;
+            _context3.next = 16;
             break;
-          case 13:
-            _context3.prev = 13;
+          case 12:
+            _context3.prev = 12;
             _context3.t0 = _context3["catch"](0);
             console.error("Error fetching idea:", _context3.t0);
             setError("データの取得に失敗しました。");
-          case 17:
+          case 16:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 13]]);
+      }, _callee3, null, [[0, 12]]);
     }));
     return function fetchIdea() {
       return _ref3.apply(this, arguments);
     };
   }();
+
+  // カテゴリー情報取得
   var fetchCategories = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
       var response, categoriesMap;
@@ -11867,24 +11855,24 @@ var IdeaDetail = function IdeaDetail() {
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
           case 3:
             response = _context4.sent;
-            console.log("Fetched categories:", response.data); // デバッグ用
+            // console.log("Fetched categories:", response.data); // デバッグ用
             categoriesMap = response.data.reduce(function (map, category) {
               map[category.id] = category.name;
               return map;
             }, {});
             setCategories(categoriesMap);
-            _context4.next = 13;
+            _context4.next = 12;
             break;
-          case 9:
-            _context4.prev = 9;
+          case 8:
+            _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
             console.error("Error fetching categories:", _context4.t0);
             setError("カテゴリデータの取得に失敗しました。");
-          case 13:
+          case 12:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[0, 9]]);
+      }, _callee4, null, [[0, 8]]);
     }));
     return function fetchCategories() {
       return _ref4.apply(this, arguments);
@@ -11896,6 +11884,8 @@ var IdeaDetail = function IdeaDetail() {
     fetchCategories();
     fetchFavorite();
   }, [id]);
+
+  // レビュー情報取得
   var fetchReviews = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
       var response, filteredReviews, sortedReviews;
@@ -12002,6 +11992,8 @@ var IdeaDetail = function IdeaDetail() {
       return _ref6.apply(this, arguments);
     };
   }();
+
+  // 気になるトグル処理
   var handleToggleFavorite = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(ideaId) {
       var response;
@@ -12023,7 +12015,7 @@ var IdeaDetail = function IdeaDetail() {
               _context7.next = 8;
               break;
             }
-            fetchFavorite(); // お気に入りの状態を再取得
+            fetchFavorite(); // 気になるの状態を再取得
             _context7.next = 9;
             break;
           case 8:
@@ -12034,7 +12026,7 @@ var IdeaDetail = function IdeaDetail() {
           case 11:
             _context7.prev = 11;
             _context7.t0 = _context7["catch"](0);
-            console.error("お気に入りの解除に失敗しました", _context7.t0);
+            console.error("気になるの解除に失敗しました", _context7.t0);
           case 14:
           case "end":
             return _context7.stop();
@@ -12312,6 +12304,8 @@ function IdeaSubmission() {
     }();
     fetchCategories();
   }, []);
+
+  // ボタン機能
   var handleChange = function handleChange(e) {
     setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, e.target.name, e.target.value)));
   };
@@ -12331,20 +12325,20 @@ function IdeaSubmission() {
             });
           case 4:
             response = _context2.sent;
-            console.log("Idea Submitted: ", response.data);
+            // console.log("Idea Submitted: ", response.data);
             navigate("/my-page");
-            _context2.next = 13;
+            _context2.next = 12;
             break;
-          case 9:
-            _context2.prev = 9;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](1);
             console.error("Error submitting idea:", _context2.t0);
             setErrors(_context2.t0.response.data.errors || {});
-          case 13:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 9]]);
+      }, _callee2, null, [[1, 8]]);
     }));
     return function handleSubmit(_x) {
       return _ref2.apply(this, arguments);
@@ -12490,429 +12484,11 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// // import React, { useState, useEffect } from "react";
-// // import axios from "axios";
-// // import Header from "../components/Header";
-// // import Footer from "../components/Footer";
-// // import { useNavigate, useParams } from 'react-router-dom';
-
-// // function IdeaUpdate() {
-// //     const { id } = useParams(); // アイディアIDをURLパラメータから取得
-// //     const [idea, setIdea] = useState({
-// //         title: '',
-// //         overview: '',
-// //         content: '',
-// //         price: '',
-// //         category_id: '',
-// //     });
-// //     const [categories, setCategories] = useState([]);
-// //     const [isPurchased, setIsPurchased] = useState(false); // 購入済みかどうかの状態
-// //     const [error, setError] = useState(null);
-// //     const navigate = useNavigate();
-
-// //     useEffect(() => {
-// //         const fetchIdea = async () => {
-// //             try {
-// //                 console.log(`Fetching idea with id: ${id}`); 
-// //                 const response = await axios.get(`/api/ideas/${id}`, {
-// //                     headers: {
-// //                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-// //                     }
-// //                 });
-// //                 const ideaData = response.data.idea;
-// //                 setIdea({
-// //                     title: ideaData.title || '',
-// //                     overview: ideaData.overview || '',
-// //                     content: ideaData.content || '',
-// //                     price: ideaData.price || '',
-// //                     category_id: ideaData.category_id || ''
-// //                 });
-// //                 setIsPurchased(ideaData.purchased); // 購入済みかどうかを設定
-// //             } catch (error) {
-// //                 console.error('Error fetching idea:', error);
-// //                 setError('アイディアの取得に失敗しました。');
-// //             }
-// //         };
-
-// //         const fetchCategories = async () => {
-// //             try {
-// //                 const response = await axios.get('/api/categories');
-// //                 setCategories(response.data);
-// //             } catch (error) {
-// //                 console.error('Error fetching categories:', error);
-// //                 setError('カテゴリの取得に失敗しました。');
-// //             }
-// //         };
-
-// //         fetchIdea();
-// //         fetchCategories();
-// //     }, [id]);
-
-// //     const handleChange = (e) => {
-// //         setIdea({ ...idea, [e.target.name]: e.target.value });
-// //     };
-
-// //     const handleSubmit = async (e) => {
-// //         e.preventDefault();
-// //         console.log(`Submitting update for idea with id: ${id}`); // デバッグ用ログ
-// //         if (!id) {
-// //             setError('IDが指定されていません。');
-// //             return;
-// //         }
-// //         try {
-// //             await axios.put(`/api/ideas/${id}`, idea, {
-// //                 headers: {
-// //                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-// //                 }
-// //             });
-// //             alert('アイディアが更新されました。');
-// //             navigate('/mypage');
-// //         } catch (error) {
-// //             console.error('Error updating idea:', error);
-// //             if (error.response && error.response.status === 403) {
-// //                 setError('すでに販売済みのため，変更できません');
-// //             } else if (error.response && error.response.status === 404) {
-// //                 setError('アイディアが見つかりません。');
-// //             } else {
-// //                 setError('アイディアの更新中にエラーが発生しました。');
-// //             }
-// //         }
-// //     };
-
-// //     const handleDelete = async () => {
-// //         if (window.confirm('このアイディアを削除してもよろしいですか？')) {
-// //             try {
-// //                 await axios.delete(`/api/ideas/${id}`, {
-// //                     headers: {
-// //                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-// //                     }
-// //                 });
-// //                 alert('アイディアが削除されました。');
-// //                 navigate('/mypage');
-// //             } catch (error) {
-// //                 console.error('Error deleting idea:', error);
-// //                 setError('アイディアの削除中にエラーが発生しました。');
-// //             }
-// //         }
-// //     };
-
-// //     return (
-// //         <div>
-// //             <Header />
-// //             <main className="container">
-// //                 <div className="submission-form">
-// //                     <h2>アイデアを編集する</h2>
-// //                     {isPurchased ? (
-// //                         <p className="error">販売済みのため変更できません。</p>
-// //                     ) : ('')}
-// //                     {error && <p className="error">{error}</p>}
-// //                         <form onSubmit={handleSubmit}>
-// //                             <label htmlFor="title">タイトル:</label>
-// //                             <input
-// //                                 type="text"
-// //                                 id="title"
-// //                                 name="title"
-// //                                 value={idea.title}
-// //                                 onChange={handleChange}
-// //                                 disabled={isPurchased}
-// //                             />
-
-// //                             <label htmlFor="overview">概要:</label>
-// //                             <textarea
-// //                                 id="overview"
-// //                                 name="overview"
-// //                                 value={idea.overview}
-// //                                 onChange={handleChange}
-// //                                 disabled={isPurchased}
-// //                             />
-
-// //                             <label htmlFor="content">詳細:</label>
-// //                             <textarea
-// //                                 id="content"
-// //                                 name="content"
-// //                                 value={idea.content}
-// //                                 onChange={handleChange}
-// //                                 disabled={isPurchased}
-// //                             />
-
-// //                             <label htmlFor="price">価格 (円):</label>
-// //                             <input
-// //                                 type="number"
-// //                                 id="price"
-// //                                 name="price"
-// //                                 value={idea.price}
-// //                                 onChange={handleChange}
-// //                                 disabled={isPurchased}
-// //                                 min="1"
-// //                                 step="1"
-// //                             />
-
-// //                             <label htmlFor="category_id">カテゴリ:</label>
-// //                             <select
-// //                                 id="category_id"
-// //                                 name="category_id"
-// //                                 value={idea.category_id}
-// //                                 onChange={handleChange}
-// //                                 disabled={isPurchased}
-// //                             >
-// //                                 <option value="">カテゴリを選択</option>
-// //                                 {categories.map(category => (
-// //                                     <option key={category.id} value={category.id}>{category.name}</option>
-// //                                 ))}
-// //                             </select>
-// //                             {/* <button type="submit">更新する</button>
-// //                             <button 
-// //                                 className="btn delete-btn" 
-// //                                 onClick={handleDelete}
-// //                             >
-// //                                 削除する
-// //                             </button> */}
-// //                             {!isPurchased && (
-// //                             <>
-// //                                 <button type="submit">更新する</button>
-// //                                 <button 
-// //                                     className="btn delete-btn"
-// //                                     type="button"
-// //                                     onClick={handleDelete}
-// //                                 >
-// //                                     削除する
-// //                                 </button>
-// //                             </>
-// //                         )}
-// //                         </form>
-
-// //                     <button className="btn" onClick={() => navigate(-1)}>戻る</button>
-// //                 </div>
-// //             </main>
-// //             <Footer />
-// //         </div>
-// //     );
-// // }
-
-// // export default IdeaUpdate;
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import { useNavigate, useParams } from 'react-router-dom';
-
-// function IdeaUpdate() {
-//     const { id } = useParams(); // アイディアIDをURLパラメータから取得
-//     const [idea, setIdea] = useState({
-//         title: '',
-//         overview: '',
-//         content: '',
-//         price: '',
-//         category_id: '',
-//     });
-//     const [categories, setCategories] = useState([]);
-//     const [isPurchased, setIsPurchased] = useState(false); // 購入済みかどうかの状態
-//     const [error, setError] = useState(null);
-//     const navigate = useNavigate();
-
-//     useEffect(() => {
-//         const fetchIdea = async () => {
-//             try {
-//                 console.log(`Fetching idea with id: ${id}`);
-//                 const response = await axios.get(`/api/ideas/${id}`, {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 const ideaData = response.data.idea;
-//                 setIdea({
-//                     title: ideaData.title || '',
-//                     overview: ideaData.overview || '',
-//                     content: ideaData.content || '',
-//                     price: ideaData.price || '',
-//                     category_id: ideaData.category_id || ''
-//                 });
-//                 setIsPurchased(ideaData.purchased); // 購入済みかどうかを設定
-//             } catch (error) {
-//                 console.error('Error fetching idea:', error);
-//                 setError('アイディアの取得に失敗しました。');
-//             }
-//         };
-
-//         const fetchCategories = async () => {
-//             try {
-//                 const response = await axios.get('/api/categories');
-//                 setCategories(response.data);
-//             } catch (error) {
-//                 console.error('Error fetching categories:', error);
-//                 setError('カテゴリの取得に失敗しました。');
-//             }
-//         };
-
-//         fetchIdea();
-//         fetchCategories();
-//     }, [id]);
-
-//     const handleChange = (e) => {
-//         setIdea({ ...idea, [e.target.name]: e.target.value });
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         if (!id) {
-//             setError('IDが指定されていません。');
-//             return;
-//         }
-//         try {
-//             await axios.put(`/api/ideas/${id}`, idea, {
-//                 headers: {
-//                     Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                 }
-//             });
-//             alert('アイディアが更新されました。');
-//             navigate('/mypage');
-//         } catch (error) {
-//             console.error('Error updating idea:', error);
-//             if (error.response && error.response.status === 403) {
-//                 setError('すでに販売済みのため、変更できません');
-//             } else if (error.response && error.response.status === 404) {
-//                 setError('アイディアが見つかりません。');
-//             } else {
-//                 setError('アイディアの更新中にエラーが発生しました。');
-//             }
-//         }
-//     };
-
-//     const handleDelete = async () => {
-//         if (window.confirm('このアイディアを削除してもよろしいですか？')) {
-//             try {
-//                 await axios.delete(`/api/ideas/${id}`, {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 alert('アイディアが削除されました。');
-//                 navigate('/mypage');
-//             } catch (error) {
-//                 console.error('Error deleting idea:', error);
-//                 setError('アイディアの削除中にエラーが発生しました。');
-//             }
-//         }
-//     };
-
-//     return (
-//         <div className="submission__page">
-//             <Header />
-//             <main className="submission__container">
-//                 <div className="submission__form">
-//                     <h2>アイデアを編集する</h2>
-//                     {/* {isPurchased && <p className="submission__error">販売済みのため変更できません。</p>}
-//                     {error && <p className="submission__error">{error}</p>} */}
-//                                         {isPurchased === true && <p className="submission__error">販売済みのため変更できません。</p>}
-//                     {typeof error === 'string' && error.length > 0 && <p className="submission__error">{error}</p>}
-//                     <form onSubmit={handleSubmit}>
-//                         <label htmlFor="title">
-//                             タイトル:公開情報です（30文字）
-//                         </label>
-//                         <textarea
-//                             type="text"
-//                             id="title"
-//                             name="title"
-//                             value={idea.title || ''}
-//                             onChange={handleChange}
-//                             disabled={isPurchased}
-//                             className="submission__input submission__input-title"
-//                         />
-
-//                         <label htmlFor="overview">
-//                             概要:公開情報です（90文字）
-//                         </label>
-//                         <textarea
-//                             id="overview"
-//                             name="overview"
-//                             value={idea.overview}
-//                             onChange={handleChange}
-//                             disabled={isPurchased}
-//                             className="submission__input submission__input-overview"
-//                         />
-
-//                         <label htmlFor="content">
-//                             詳細:購入者のみ見れるようになります（255文字）
-//                         </label>
-//                         <textarea
-//                             id="content"
-//                             name="content"
-//                             value={idea.content}
-//                             onChange={handleChange}
-//                             disabled={isPurchased}
-//                             className="submission__input submission__input-content"
-//                         />
-
-//                         <label htmlFor="price">価格 (円):</label>
-//                         <input
-//                             type="number"
-//                             id="price"
-//                             name="price"
-//                             value={idea.price}
-//                             onChange={handleChange}
-//                             disabled={isPurchased}
-//                             min="1"
-//                             step="1"
-//                             className="submission__input"
-//                         />
-
-//                         <label htmlFor="category_id">カテゴリ:</label>
-//                         <select
-//                             id="category_id"
-//                             name="category_id"
-//                             value={idea.category_id}
-//                             onChange={handleChange}
-//                             disabled={isPurchased}
-//                             className="submission__input"
-//                         >
-//                             <option value="">カテゴリを選択</option>
-//                             {categories.map((category) => (
-//                                 <option key={category.id} value={category.id}>
-//                                     {category.name}
-//                                 </option>
-//                             ))}
-//                         </select>
-
-//                         {!isPurchased && (
-//                             <>
-//                                 <button type="submit" className="submission__button">
-//                                     更新する
-//                                 </button>
-//                                 <button
-//                                     className="submission__button"
-//                                     type="button"
-//                                     onClick={handleDelete}
-//                                 >
-//                                     削除する
-//                                 </button>
-//                             </>
-//                         )}
-//                     </form>
-//                     <button
-//                         className="submission__button"
-//                         onClick={() => navigate(-1)}
-//                         style={{ marginTop: "10px" }}
-//                     >
-//                         戻る
-//                     </button>
-//                 </div>
-//             </main>
-//             <Footer />
-//         </div>
-//     );
-// }
-
-// export default IdeaUpdate;
-
-// src/pages/IdeaUpdate.js
 
 
 
 
 
-
-// import "../scss/pages/idea-update.scss"; // スタイルシートのインポート
 
 function IdeaUpdate() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
@@ -13662,7 +13238,7 @@ var MyPage = function MyPage() {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
     favorites = _useState6[0],
-    setFavorites = _useState6[1]; // お気に入りの状態管理
+    setFavorites = _useState6[1]; // 気になるの状態管理
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
     purchases = _useState8[0],
@@ -13692,18 +13268,18 @@ var MyPage = function MyPage() {
           case 3:
             response = _context.sent;
             setUser(response.data);
-            console.log("Fetched user:", response.data);
-            _context.next = 11;
+            // console.log("Fetched user:", response.data);
+            _context.next = 10;
             break;
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching user:", _context.t0);
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 7]]);
     }));
     return function fetchUser() {
       return _ref.apply(this, arguments);
@@ -13731,25 +13307,25 @@ var MyPage = function MyPage() {
             });
             recentIdeas = sortedIdeas.slice(0, 5);
             setIdeas(recentIdeas);
-            console.log("Fetched ideas:", recentIdeas);
-            _context2.next = 13;
+            // console.log("Fetched ideas:", recentIdeas);
+            _context2.next = 12;
             break;
-          case 10:
-            _context2.prev = 10;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching ideas:", _context2.t0);
-          case 13:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function fetchMyIdeas() {
       return _ref2.apply(this, arguments);
     };
   }();
 
-  // お気に入り情報を取得
+  // 気になる情報を取得
   var fetchFavorites = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var response, sortedFavorites, recentFavorites;
@@ -13770,18 +13346,18 @@ var MyPage = function MyPage() {
             });
             recentFavorites = sortedFavorites.slice(0, 5);
             setFavorites(recentFavorites);
-            console.log("Fetched favorites:", recentFavorites);
-            _context3.next = 13;
+            // console.log("Fetched favorites:", recentFavorites);
+            _context3.next = 12;
             break;
-          case 10:
-            _context3.prev = 10;
+          case 9:
+            _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
             console.error("Error fetching favorites:", _context3.t0);
-          case 13:
+          case 12:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 10]]);
+      }, _callee3, null, [[0, 9]]);
     }));
     return function fetchFavorites() {
       return _ref3.apply(this, arguments);
@@ -13809,18 +13385,18 @@ var MyPage = function MyPage() {
             });
             recentPurchases = sortedPurchases.slice(0, 5);
             setPurchases(recentPurchases);
-            console.log("Fetched purchases:", recentPurchases);
-            _context4.next = 13;
+            // console.log("Fetched purchases:", recentPurchases);
+            _context4.next = 12;
             break;
-          case 10:
-            _context4.prev = 10;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
             console.error("Error fetching purchases:", _context4.t0);
-          case 13:
+          case 12:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[0, 10]]);
+      }, _callee4, null, [[0, 9]]);
     }));
     return function fetchMyPurchases() {
       return _ref4.apply(this, arguments);
@@ -13848,18 +13424,18 @@ var MyPage = function MyPage() {
             });
             recentReviewed = sortedReviewed.slice(0, 5);
             setReviewed(recentReviewed);
-            console.log("Fetched Reviewed:", recentReviewed);
-            _context5.next = 13;
+            // console.log("Fetched Reviewed:", recentReviewed);
+            _context5.next = 12;
             break;
-          case 10:
-            _context5.prev = 10;
+          case 9:
+            _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
             console.error("Error fetching Reviewed:", _context5.t0);
-          case 13:
+          case 12:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 10]]);
+      }, _callee5, null, [[0, 9]]);
     }));
     return function fetchMyReviewed() {
       return _ref5.apply(this, arguments);
@@ -13883,18 +13459,18 @@ var MyPage = function MyPage() {
               return map;
             }, {});
             setCategories(categoriesMap);
-            console.log("Fetched categories:", categoriesMap);
-            _context6.next = 12;
+            // console.log("Fetched categories:", categoriesMap);
+            _context6.next = 11;
             break;
-          case 9:
-            _context6.prev = 9;
+          case 8:
+            _context6.prev = 8;
             _context6.t0 = _context6["catch"](0);
             console.error("Error fetching categories:", _context6.t0);
-          case 12:
+          case 11:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[0, 9]]);
+      }, _callee6, null, [[0, 8]]);
     }));
     return function fetchCategories() {
       return _ref6.apply(this, arguments);
@@ -13945,13 +13521,13 @@ var MyPage = function MyPage() {
               }
             });
           case 3:
-            fetchFavorites(); // トグル後にお気に入り情報を再取得
+            fetchFavorites(); // トグル後に気になる情報を再取得
             _context7.next = 9;
             break;
           case 6:
             _context7.prev = 6;
             _context7.t0 = _context7["catch"](0);
-            console.error("お気に入りの解除に失敗しました", _context7.t0);
+            console.error("気になるの解除に失敗しました", _context7.t0);
           case 9:
           case "end":
             return _context7.stop();
@@ -14780,9 +14356,9 @@ var PurchaseDetail = function PurchaseDetail() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user", {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -14793,7 +14369,7 @@ var PurchaseDetail = function PurchaseDetail() {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.error('Error fetching user:', _context.t0);
+            console.error("Error fetching user:", _context.t0);
           case 10:
           case "end":
             return _context.stop();
@@ -14814,7 +14390,7 @@ var PurchaseDetail = function PurchaseDetail() {
             _context2.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/favorites/idea/".concat(id), {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -14825,7 +14401,7 @@ var PurchaseDetail = function PurchaseDetail() {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            console.error('Error fetching favorite:', _context2.t0);
+            console.error("Error fetching favorite:", _context2.t0);
           case 10:
           case "end":
             return _context2.stop();
@@ -14846,7 +14422,7 @@ var PurchaseDetail = function PurchaseDetail() {
             _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -14862,8 +14438,8 @@ var PurchaseDetail = function PurchaseDetail() {
           case 12:
             _context3.prev = 12;
             _context3.t0 = _context3["catch"](0);
-            console.error('Error fetching idea:', _context3.t0);
-            setError('データの取得に失敗しました。');
+            console.error("Error fetching idea:", _context3.t0);
+            setError("データの取得に失敗しました。");
           case 16:
           case "end":
             return _context3.stop();
@@ -14882,7 +14458,7 @@ var PurchaseDetail = function PurchaseDetail() {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/categories');
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
           case 3:
             response = _context4.sent;
             categoriesMap = response.data.reduce(function (map, category) {
@@ -14895,8 +14471,8 @@ var PurchaseDetail = function PurchaseDetail() {
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            console.error('Error fetching categories:', _context4.t0);
-            setError('カテゴリデータの取得に失敗しました。');
+            console.error("Error fetching categories:", _context4.t0);
+            setError("カテゴリデータの取得に失敗しました。");
           case 12:
           case "end":
             return _context4.stop();
@@ -14921,9 +14497,9 @@ var PurchaseDetail = function PurchaseDetail() {
           case 0:
             _context5.prev = 0;
             _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviews', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/reviews", {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -14940,7 +14516,7 @@ var PurchaseDetail = function PurchaseDetail() {
           case 9:
             _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
-            console.error('Error fetching reviews:', _context5.t0);
+            console.error("Error fetching reviews:", _context5.t0);
           case 12:
           case "end":
             return _context5.stop();
@@ -14974,11 +14550,11 @@ var PurchaseDetail = function PurchaseDetail() {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/favorites/toggle', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/favorites/toggle", {
               idea_id: ideaId
             }, {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -14991,14 +14567,14 @@ var PurchaseDetail = function PurchaseDetail() {
             _context6.next = 9;
             break;
           case 8:
-            throw new Error('サーバーエラー: ' + response.status);
+            throw new Error("サーバーエラー: " + response.status);
           case 9:
             _context6.next = 14;
             break;
           case 11:
             _context6.prev = 11;
             _context6.t0 = _context6["catch"](0);
-            console.error('お気に入りの解除に失敗しました', _context6.t0);
+            console.error("気になるの解除に失敗しました", _context6.t0);
           case 14:
           case "end":
             return _context6.stop();
@@ -15050,7 +14626,7 @@ var PurchaseDetail = function PurchaseDetail() {
             children: idea.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
               to: "/user/".concat(idea.user.id),
               children: idea.user.name
-            }) : '投稿者不明'
+            }) : "投稿者不明"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",
@@ -15066,7 +14642,7 @@ var PurchaseDetail = function PurchaseDetail() {
             children: "\u30AB\u30C6\u30B4\u30EA:"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
-            children: categories[idea.category_id] || 'カテゴリ不明'
+            children: categories[idea.category_id] || "カテゴリ不明"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",
@@ -15129,7 +14705,7 @@ var PurchaseDetail = function PurchaseDetail() {
             onClick: function onClick() {
               return handleToggleFavorite(idea.id);
             },
-            children: favorite.is_favorite ? 'お気に入りから削除' : '気になる'
+            children: favorite.is_favorite ? "気になるから削除" : "気になる"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             className: "purchase-detail__button purchase-detail__button--back",
             onClick: function onClick() {
@@ -15158,13 +14734,13 @@ var PurchaseDetail = function PurchaseDetail() {
                 }), review.buyer_id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
                   to: "/user/".concat(review.buyer_id),
                   children: review.buyer_name
-                }) : review.buyer_name || '投稿者不明']
+                }) : review.buyer_name || "投稿者不明"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("small", {
-                  children: ["\u6295\u7A3F\u65E5: ", new Date(review.updated_at).toLocaleDateString('ja-JP', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+                  children: ["\u6295\u7A3F\u65E5:", " ", new Date(review.updated_at).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
                   })]
                 })
               })]
@@ -15272,22 +14848,22 @@ function PurchasesList() {
             // setPurchases(recentPurchases);
             // console.log("Fetched purchases:", recentPurchases);
             setPurchases(sortedPurchases);
-            console.log("Fetched purchases:", sortedPurchases);
-            _context.next = 13;
+            // console.log("Fetched purchases:", sortedPurchases);
+            _context.next = 12;
             break;
-          case 9:
-            _context.prev = 9;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching purchases:", _context.t0);
             if (_context.t0.response && _context.t0.response.status === 401) {
               setIsAuthenticated(false); // 認証エラーの場合、認証状態を false に設定
               navigate('/login'); // 認証エラーの場合、ログインページへリダイレクト
             }
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 9]]);
+      }, _callee, null, [[0, 8]]);
     }));
     return function fetchMyPurchases() {
       return _ref.apply(this, arguments);
@@ -15311,18 +14887,18 @@ function PurchasesList() {
               return map;
             }, {});
             setCategories(categoriesMap);
-            console.log("Fetched categories:", categoriesMap);
-            _context2.next = 12;
+            // console.log("Fetched categories:", categoriesMap);
+            _context2.next = 11;
             break;
-          case 9:
-            _context2.prev = 9;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching categories:", _context2.t0);
-          case 12:
+          case 11:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 9]]);
+      }, _callee2, null, [[0, 8]]);
     }));
     return function fetchCategories() {
       return _ref2.apply(this, arguments);

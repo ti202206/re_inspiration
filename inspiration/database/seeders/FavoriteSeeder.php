@@ -20,12 +20,12 @@ class FavoriteSeeder extends Seeder
         // $users = User::all();
         // $ideas = Idea::all();
 
-        // // 各ユーザーに対してランダムなアイデアをお気に入りとして設定
+        // // 各ユーザーに対してランダムなアイデアを気になるとして設定
         // foreach ($users as $user) {
-        //     for ($i = 0; $i < 5; $i++) { // 各ユーザーに対して最大5個のお気に入りを作成
+        //     for ($i = 0; $i < 5; $i++) { // 各ユーザーに対して最大5個の気になるを作成
         //         $randomIdea = $ideas->random();
 
-        //         // すでにお気に入りとして登録されているか確認
+        //         // すでに気になるとして登録されているか確認
         //         $exists = Favorite::where('user_id', $user->id)->where('idea_id', $randomIdea->id)->exists();
 
         //         if (!$exists) {

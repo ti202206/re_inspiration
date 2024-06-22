@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const MyPage = () => {
     const [user, setUser] = useState(null); // ユーザー情報の状態管理
     const [ideas, setIdeas] = useState([]); // アイディアの状態管理
-    const [favorites, setFavorites] = useState([]); // お気に入りの状態管理
+    const [favorites, setFavorites] = useState([]); // 気になるの状態管理
     const [purchases, setPurchases] = useState([]); // 購入履歴の状態管理
     const [reviewed, setReviewed] = useState([]); // レビューしたアイディアの状態管理
     const [categories, setCategories] = useState({}); // カテゴリ名のステート
@@ -25,7 +25,7 @@ const MyPage = () => {
                 },
             });
             setUser(response.data);
-            console.log("Fetched user:", response.data);
+            // console.log("Fetched user:", response.data);
         } catch (error) {
             console.error("Error fetching user:", error);
         }
@@ -46,13 +46,13 @@ const MyPage = () => {
             );
             const recentIdeas = sortedIdeas.slice(0, 5);
             setIdeas(recentIdeas);
-            console.log("Fetched ideas:", recentIdeas);
+            // console.log("Fetched ideas:", recentIdeas);
         } catch (error) {
             console.error("Error fetching ideas:", error);
         }
     };
 
-    // お気に入り情報を取得
+    // 気になる情報を取得
     const fetchFavorites = async () => {
         try {
             const response = await axios.get("/api/favorites", {
@@ -67,7 +67,7 @@ const MyPage = () => {
             );
             const recentFavorites = sortedFavorites.slice(0, 5);
             setFavorites(recentFavorites);
-            console.log("Fetched favorites:", recentFavorites);
+            // console.log("Fetched favorites:", recentFavorites);
         } catch (error) {
             console.error("Error fetching favorites:", error);
         }
@@ -88,7 +88,7 @@ const MyPage = () => {
             );
             const recentPurchases = sortedPurchases.slice(0, 5);
             setPurchases(recentPurchases);
-            console.log("Fetched purchases:", recentPurchases);
+            // console.log("Fetched purchases:", recentPurchases);
         } catch (error) {
             console.error("Error fetching purchases:", error);
         }
@@ -109,7 +109,7 @@ const MyPage = () => {
             );
             const recentReviewed = sortedReviewed.slice(0, 5);
             setReviewed(recentReviewed);
-            console.log("Fetched Reviewed:", recentReviewed);
+            // console.log("Fetched Reviewed:", recentReviewed);
         } catch (error) {
             console.error("Error fetching Reviewed:", error);
         }
@@ -124,7 +124,7 @@ const MyPage = () => {
                 return map;
             }, {});
             setCategories(categoriesMap);
-            console.log("Fetched categories:", categoriesMap);
+            // console.log("Fetched categories:", categoriesMap);
         } catch (error) {
             console.error("Error fetching categories:", error);
         }
@@ -173,9 +173,9 @@ const MyPage = () => {
                     },
                 }
             );
-            fetchFavorites(); // トグル後にお気に入り情報を再取得
+            fetchFavorites(); // トグル後に気になる情報を再取得
         } catch (error) {
-            console.error("お気に入りの解除に失敗しました", error);
+            console.error("気になるの解除に失敗しました", error);
         }
     };
 

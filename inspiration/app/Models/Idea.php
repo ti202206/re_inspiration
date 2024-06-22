@@ -25,12 +25,12 @@ class Idea extends Model
         'purchased'
     ];
 
-        // リレーション： user
-        public function user()
-        {
-            return $this->belongsTo(User::class,'user_id');
-        }
-        
+    // リレーション： user
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     // リレーション: purchases
     public function purchases()
     {
@@ -56,7 +56,7 @@ class Idea extends Model
         return $this->hasMany(Favorite::class);
     }
 
-    // お気に入り数を取得
+    // 気になる数を取得
     public function getFavoriteCountAttribute()
     {
         return $this->favorites()->count();
@@ -66,7 +66,7 @@ class Idea extends Model
     public function getAverageRatingAttribute()
     {
         $average = $this->purchases()->whereNotNull('rating')->avg('rating');
-        return $average && $average >0 ? number_format($average, 1) : '-';
+        return $average && $average > 0 ? number_format($average, 1) : '-';
     }
 
     // purchasedがtrueの場合，編集できない

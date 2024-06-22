@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Log;
 
 class FavoriteController extends Controller
 {
-    // お気に入りの切り替えを行う
+    // 気になるの切り替えを行う
     public function toggleFavorite(Request $request)
     {
-        //お気に入りを検索する
+        //気になるを検索する
         $idea = Idea::findOrFail($request->idea_id);
 
         //アイディアの所有者が現在のユーザーである場合は403エラーを返す
@@ -23,13 +23,13 @@ class FavoriteController extends Controller
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 
-        //お気に入り登録する．（ない場合はtrueとして作成する）
+        //気になる登録する．（ない場合はtrueとして作成する）
         $favorite = Favorite::firstOrCreate(
             ['user_id' => auth()->id(), 'idea_id' => $idea->id],
             ['is_favorite' => 0]
         );
 
-        //お気に入りを反転させて，保存
+        //気になるを反転させて，保存
         $favorite->is_favorite = !$favorite->is_favorite;
         $favorite->save();
 
@@ -38,17 +38,17 @@ class FavoriteController extends Controller
     }
 
     public function getFavoriteByIdeaId($idea_id)
-{
-    $favorite = Favorite::where('user_id', Auth::id())
-        ->where('idea_id', $idea_id)
-        ->first();
+    {
+        $favorite = Favorite::where('user_id', Auth::id())
+            ->where('idea_id', $idea_id)
+            ->first();
 
-    if (!$favorite) {
-        return response()->json(['is_favorite' => false], 200);
+        if (!$favorite) {
+            return response()->json(['is_favorite' => false], 200);
+        }
+
+        return response()->json($favorite);
     }
-
-    return response()->json($favorite);
-}
 
     // public function toggleFavorite(Request $request)
     // {
@@ -61,7 +61,7 @@ class FavoriteController extends Controller
     //     $favorite = Favorite::where('user_id', auth()->id())->where('idea_id', $idea->id)->first();
 
     //     if ($favorite) {
-    //         // お気に入りの状態を反転
+    //         // 気になるの状態を反転
     //         $favorite->is_favorite = !$favorite->is_favorite;
     //         $favorite->save();
     //     } else {
@@ -79,13 +79,13 @@ class FavoriteController extends Controller
 
 
     /**
-     * ログインユーザーのお気に入り一覧を表示
+     * ログインユーザーの気になる一覧を表示
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // お気に入りリストの取得とアイディアデータのフォーマット
+        // 気になるリストの取得とアイディアデータのフォーマット
         // 変更開始
         $favorites = Favorite::where('user_id', Auth::id())
             ->where('is_favorite', 1) // is_favoriteがtrueのものだけを取得
