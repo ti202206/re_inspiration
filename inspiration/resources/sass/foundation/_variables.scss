@@ -8,7 +8,8 @@ $sec-bg: #f9f9f9; // ページバックグラウンドカラー
 
 // Text Colors
 $txt-default: #333; // 通常のテキストカラー
-$txt-nav-bright: #ff8c00; // ナビゲーションリンクの文字色
+$txt-nav-bright: #ff8c00; // ナビゲーションリンクの文字
+$txt-nav-bright-bg:#fff; // ナビゲーションリンク背景色
 $txt-nav-white: white; // ナビゲーションリンクの文字色（白）
 
 // Link Colors
@@ -27,9 +28,11 @@ $btn-txt-bright: #ffffff; // 明るいオレンジボタンのテキストの色
 $btn-bg-white: #ffffff; // 白色ボタンの背景色
 $btn-bg-light: #ffcc99; // ライトオレンジボタンの背景色
 $btn-txt-light: #ff8c00; // ライトオレンジボタンのテキストの色
+$btn-bg-warning:#8B0000; // 削除ボタン背景
 
-$btn-bg-hover: #ff8c00; // ホバー時のオレンジボタンの背景色
+$btn-bg-hover: #ffa500; // ホバー時のオレンジボタンの背景色
 $btn-txt-hover: #ffffff; // ホバー時のオレンジボタンのテキストの色
+$btn-bg-warning-hover:#650000; // ホバー時の削除ボタンの背景色
 
 // Background Colors
 $bg-light: #ffcc99; // ライトボタンの背景色

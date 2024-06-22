@@ -1,0 +1,146 @@
+@import "../../foundation/variables"; // カラーバリエーションと変数のインポート
+
+.review-update {
+    &__page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: $sec-bg;
+        font-family: $txt-font-family;
+    }
+
+    &__container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        background-color: $sec-bg;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px $shdw-default;
+        width: 100%;
+        margin: 150px auto;
+        @media (min-width: 1200px) {
+            width: 900px;
+        }
+    }
+
+    &__form {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        background: $form-bg;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: $prim-bright;
+            border-bottom: 2px solid $prim-med;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: $txt-default;
+                font-size: 16px;
+            }
+
+            .form-value {
+                padding: 12px 15px;
+                background-color: $prim-light;
+                border-radius: 5px;
+                color: $txt-default;
+                font-size: 16px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            input[type="number"],
+            textarea {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid $bd-default;
+                border-radius: 5px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                resize: vertical;
+                outline: none;
+                &:focus {
+                    border-color: $prim-bright;
+                    box-shadow: 0 0 5px rgba($prim-bright, 0.5);
+                    outline: none;
+                }
+            }
+
+            textarea {
+                min-height: 80px;
+                outline: none;
+            }
+        }
+    }
+
+    &__buttons{
+        display: flex;
+        margin-top: 30px;
+        flex-direction: column;
+        @media screen and (max-width: 600px) {
+            margin: 3px;
+            flex-direction: column;
+        }
+    }
+
+    &__button {
+        padding: 12px 20px;
+        margin-top: 5px;
+        font-size: 16px;
+        color: $btn-txt-bright;
+        background-color: $prim-bright;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &:hover {
+            background-color: lighten($prim-bright, 10%);
+            box-shadow: 0 4px 8px rgba($prim-bright, 0.2);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            background-color: darken($prim-bright, 10%);
+            box-shadow: inset 0 4px 8px rgba($prim-bright, 0.4);
+            transform: translateY(2px);
+        }
+
+        &--back {
+            background-color: $prim-bright;
+            color: $btn-txt-bright;
+
+            &:hover {
+                background-color: lighten($prim-bright, 10%);
+                color: $btn-txt-hover;
+                box-shadow: 0 4px 8px rgba($prim-bright, 0.2);
+                transform: translateY(-2px);
+            }
+
+            &:active {
+                background-color: darken($prim-bright, 10%);
+                box-shadow: inset 0 4px 8px rgba($prim-bright, 0.4);
+                transform: translateY(2px);
+            }
+        }
+    }
+}

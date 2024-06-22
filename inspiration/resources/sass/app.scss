@@ -1,5 +1,5 @@
 // Variables
-@import 'foundation/variables';
+@import 'foundation/_variables';
 
 // Reset and base styles
 @import 'foundation/_reset';
@@ -24,15 +24,19 @@
 @import 'object/project/register';
 @import 'object/project/login';
 @import 'object/project/mypage';
-// @import 'object/project/top';
-// @import '';
-// @import '';
-// @import '';
-// @import '';
-// @import '';
+@import 'object/project/idea-submission';
+@import 'object/project/idea-detail';
+@import 'object/project/purchase-detail';
+@import 'object/project/ReviewUpdate';
+
+@import 'object/project/IdeaUpdate';
+@import 'object/project/review-submission';
 
 // @import 'tailwindcss/base';
 // @import 'tailwindcss/components';
 // @import 'tailwindcss/utilities';
 
-@import './IdeaSubmission';
+@import 'object/project/notfound';
+@import 'object/project/profile';
+@import 'object/project/profile-edit';
+@import 'object/project/user-profile.scss';

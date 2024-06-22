@@ -15,9 +15,9 @@
         align-items: stretch;
     }
 
-    &__max-width{
+    &__max-width {
         @media screen and (min-width: 1200px) {
-            width: 100% !important ;
+            width: 100%;
         }
     }
 
@@ -70,7 +70,7 @@
         margin: 0 5px 0 0;
     }
 
-    &__price{
+    &__price {
         width: 85px;
     }
 
@@ -100,17 +100,17 @@
             background-color: $txt-link-hover;
         }
 
-        &:active{
+        &:active {
             background-color: $txt-link-bg;
             color: $txt-nav-active;
             transition: none;
         }
 
-        p{
+        p {
             color: $txt-nav-bright;
             margin: 0;
 
-            &:active{
+            &:active {
                 background-color: $txt-link-bg;
                 color: $txt-nav-active;
                 transition: none;
@@ -130,7 +130,7 @@
         height: 15px;
 
         i {
-            font-size: 15px; /* アイコンのフォントサイズを調整 */
+            font-size: 15px;
         }
     }
 
@@ -140,7 +140,7 @@
         margin: auto;
 
         @media screen and (max-width: 600px) {
-            margin: 0;
+            margin: 3px;
             flex-direction: row;
         }
     }
@@ -152,6 +152,21 @@
         border-radius: 5px;
         background-color: $btn-bg-bright;
         color: $btn-txt-bright;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s, box-shadow 0.3s;
+
+        &:hover {
+            background-color: $prim-med;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($prim-bright, 0.5);
+        }
+
+        &:active {
+            background-color: $prim-med;
+        }
 
         @media screen and (max-width: 600px) {
             flex: 1;

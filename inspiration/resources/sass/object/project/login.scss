@@ -2,7 +2,7 @@
 
 // ページ全体のスタイル
 .login {
-    &-page {
+    &__page {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -10,7 +10,7 @@
     }
 
     // フォームのコンテナ
-    &-container {
+    &__container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,34 +18,47 @@
         padding: 40px;
     }
     // フォームスタイル
-    &-form {
+    &__form {
         background-color: $form-bg;
         padding: 20px 40px;
         border: 1px solid $form-border;
         box-shadow: 0 2px 4px $shdw-default;
-        border-radius: 8px; // 角丸
+        border-radius: 8px;
         width: 100%;
         max-width: 400px;
-        text-align: center; // テキスト中央揃え
+        text-align: center;
+        @media only screen and (max-width: 400px) {
+            margin-top: 160px;
+            padding: 0px;
+        }
     }
     // タイトルスタイル
-    &-title {
+    &__title {
         margin-bottom: 20px;
         font-size: 24px;
         color: $prim-bright;
     }
     // 入力フィールド
-    &-input {
+    &__input {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
         border: 1px solid $form-border;
-        border-radius: 4px; // 角丸
+        border-radius: 4px;
         box-sizing: border-box;
         font-size: 16px;
+        outline: none;
+        &:focus {
+            border-color: $prim-bright;
+            box-shadow: 0 0 5px rgba($prim-bright, 0.5);
+            outline: none;
+        }
+        @media only screen and (max-width: 400px) {
+            width: 60%;
+    }
     }
     // ボタンスタイル
-    &-button {
+    &__button {
         width: 100%;
         padding: 10px;
         background-color: $btn-bg-bright;
@@ -54,13 +67,14 @@
         border-radius: 4px; // 角丸
         cursor: pointer;
         transition: background-color 0.3s;
+        outline: none;
 
         &:hover {
             background-color: $prim-med; // ホバー時の背景色
         }
     }
     // エラーメッセージ
-    &-error {
+    &__error {
         color: $error-red;
         margin-bottom: 15px;
     }

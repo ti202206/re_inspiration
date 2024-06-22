@@ -1,7 +1,5 @@
-@import "../../foundation/variables";
-
-// ページ全体のスタイル
-.register {
+@import "../../foundation/_variables";
+.submission{
     &__page {
         display: flex;
         flex-direction: column;
@@ -15,11 +13,10 @@
         align-items: center;
         flex: 1;
         padding: 40px;
-
     }
 
     &__form {
-        margin: 5em 0 5em;
+        margin: 7em 0 5em;
         background-color: $form-bg;
         padding: 20px 40px;
         border: 1px solid $form-border;
@@ -28,11 +25,10 @@
         width: 100%;
         max-width: 400px;
         text-align: center;
-
-    @media only screen and (max-width: 400px) {
-        margin-top: 160px;
-        padding: 0px;
-    }
+        @media only screen and (max-width: 400px) {
+            margin-top: 160px;
+            padding: 0px;
+        }
     }
 
     &__title {
@@ -55,44 +51,24 @@
             box-shadow: 0 0 5px rgba($prim-bright, 0.5);
             outline: none;
         }
-        @media only screen and (max-width: 400px) {
-            width: 60%;
-    }
+        &-title{
+            padding: 5;
+            height: 60px;
+        }
+        &-overview{
+            padding: 5;
+            height: 110px;
+        }
+        &-content{
+            padding: 5;
+            height: 280px;
+        }
     }
 
     &__input-file {
         width: 100%;
         padding: 10px;
-        margin-bottom: 15px;
         box-sizing: border-box;
-        background-color: $form-bg;
-
-        &:focus {
-            border: 2px solid $prim-bright;
-            box-shadow: 0 0 5px rgba($prim-bright, 0.5);
-            outline: none;
-        }
-        // スタイルを改善
-        &::-webkit-file-upload-button {
-            visibility: hidden;
-        }
-
-        &::before {
-            content: "ファイルを選択";
-            display: inline-block;
-            background: $btn-bg-bright;
-            border: 1px solid $form-border;
-            border-radius: 4px;
-            padding: 10px;
-            cursor: pointer;
-            text-align: center;
-            color: $btn-txt-bright;
-            transition: background-color 0.3s;
-        }
-
-        &:hover::before {
-            background: $prim-med;
-        }
     }
 
     &__button {
@@ -104,20 +80,16 @@
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
+        outline: none;
 
         &:hover {
             background-color: $prim-med;
-        }
-
-        &:focus {
-            box-shadow: 0 0 5px $shdw-default;
-            outline: none;
         }
     }
 
     &__error {
         color: $error-red;
-        margin-bottom: 15px;
+        margin: 0;
     }
 
     &__icon-preview {

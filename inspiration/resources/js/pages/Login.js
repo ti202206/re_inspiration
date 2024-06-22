@@ -25,18 +25,18 @@ const Login = () => {
     };
 
     return (
-        <div className="login-page">
+        <div className="login__page">
             <Header />
-            <div className="login-container">
-                <form onSubmit={handleSubmit} className="login-form">
-                    <h2 className="login-title">ログイン</h2>
-                    {error && <p className="login-error">{error}</p>}
+            <div className="login__container">
+                <form onSubmit={handleSubmit} className="login__form">
+                    <h2 className="login__title">ログイン</h2>
+                    {error && <p className="login__error">{error}</p>}
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
-                        className="login-input"
+                        className="login__input"
                         required
                         autoComplete="email"
                     />
@@ -45,11 +45,11 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
-                        className="login-input"
+                        className="login__input"
                         required
                         autoComplete="current-password"
                     />
-                    <button type="submit" className="login-button">ログイン</button>
+                    <button type="submit" className="login__button">ログイン</button>
                 </form>
             </div>
             <Footer />

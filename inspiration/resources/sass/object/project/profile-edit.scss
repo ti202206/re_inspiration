@@ -1,0 +1,163 @@
+@import "../../foundation/variables";
+
+.profile-edit {
+    &__page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px;
+        background-color: $bg-page-margin;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $form-bg;
+        padding: 20px;
+        border: 1px solid $form-border;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px $shdw-default;
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    &__title {
+        font-size: 32px;
+        color: $prim-bright;
+        margin-bottom: 20px;
+    }
+
+    &__image-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+        background-color: $form-bg;
+        border: 1px solid $form-border;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    &__input-file-container {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    &__input-file {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        background-color: $form-bg;
+
+        &:focus {
+            border: 2px solid $prim-bright;
+            box-shadow: 0 0 5px rgba($prim-bright, 0.5);
+            outline: none;
+        }
+        // スタイルを改善
+        &::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        &::before {
+            content: "ファイルを選択";
+            display: inline-block;
+            background: $btn-bg-bright;
+            border: 1px solid $form-border;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            color: $btn-txt-bright;
+            transition: background-color 0.3s;
+        }
+
+        &:hover::before {
+            background: $prim-med;
+        }
+        &-container {
+            width: 80%;
+        }
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid $form-border;
+        border-radius: 4px; // 角丸
+        box-sizing: border-box;
+        font-size: 16px;
+
+        &:focus {
+            border-color: $prim-bright;
+            box-shadow: 0 0 5px rgba($prim-bright, 0.5);
+            outline: none;
+        }
+    }
+
+    &__textarea {
+        height: 100px;
+    }
+
+    &__button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin: 5px;
+
+        &:hover {
+            background-color: $prim-med;
+        }
+
+        &--update {
+            margin-top: 10px;
+        }
+
+        &--delete {
+            background-color: $btn-bg-warning;
+            color: $btn-txt-bright;
+            &:hover {
+                background-color: $btn-bg-warning-hover;
+                color: $btn-txt-hover;
+            }
+        }
+
+        &--back {
+            background-color: $btn-bg-light;
+
+            &:hover {
+                background-color: $btn-bg-hover;
+                color: $btn-txt-hover;
+            }
+        }
+    }
+
+    &__message {
+        color: $prim-bright;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

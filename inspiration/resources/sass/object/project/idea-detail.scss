@@ -1,0 +1,153 @@
+@import "../../foundation/variables";
+
+.idea-detail {
+    &__page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: $sec-bg;
+        font-family: $txt-font-family;
+    }
+
+    &__container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        background-color: $sec-bg;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px $shdw-default;
+        width: 900px;
+        margin: 150px auto;
+    }
+
+    &__form {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        background: $form-bg;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px $shdw-default;
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: $prim-bright;
+            border-bottom: 2px solid $prim-med;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: $txt-default;
+                font-size: 16px;
+            }
+        }
+
+        .form-value {
+            padding: 12px 15px;
+            background-color: $prim-light;
+            border-radius: 5px;
+            color: $txt-default;
+            font-size: 16px;
+            box-shadow: inset 0 1px 3px $shdw-default;
+        }
+    }
+
+    .idea-card {
+        &__buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__button {
+        padding: 8px 15px;
+        margin: 5px;
+        font-size: 16px;
+        color: $btn-txt-bright;
+        background-color: $prim-bright; 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &:hover {
+            background-color: lighten($prim-bright, 10%);
+            box-shadow: 0 4px 8px rgba($prim-bright, 0.2);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            background-color: darken($prim-bright, 10%);
+            box-shadow: inset 0 4px 8px rgba($prim-bright, 0.4);
+            transform: translateY(2px);
+        }
+
+        &--back {
+            background-color: $prim-bright;
+            color: $btn-txt-bright;
+
+            &:hover {
+                background-color: lighten($prim-bright, 10%);
+                color: $btn-txt-hover;
+                box-shadow: 0 4px 8px rgba($prim-bright, 0.2);
+                transform: translateY(-2px);
+            }
+
+            &:active {
+                background-color: darken($prim-bright, 10%);
+                box-shadow: inset 0 4px 8px rgba($prim-bright, 0.4);
+                transform: translateY(2px);
+            }
+        }
+    }
+
+    .review-section {
+        margin-top: 40px;
+
+        h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: $txt-default;
+            border-bottom: 2px solid $prim-med;
+            padding-bottom: 10px;
+        }
+
+        .review {
+            background-color: $form-bg;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px $shdw-default;
+            border: 1px solid $form-border;
+
+            p {
+                margin: 10px 0;
+                color: $txt-default;
+                font-size: 15px;
+
+                strong {
+                    color: $prim-bright;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

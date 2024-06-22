@@ -110,31 +110,31 @@
         margin-bottom: 10px;
     }
 
-    &__links{
-        display: flex;
-        list-style: none;
-        padding: 0;
-        justify-content: center;
+    // &__links{
+    //     display: flex;
+    //     list-style: none;
+    //     padding: 0;
+    //     justify-content: center;
 
-        li{
-            margin-right: 10px;
+    //     li{
+    //         margin-right: 10px;
 
-            &:last-child{
-                margin-right: 0;
-            }
+    //         &:last-child{
+    //             margin-right: 0;
+    //         }
 
-            a{
-                display: inline;
-                text-decoration: none;
-                color: $txt-nav-white;
+    //         a{
+    //             display: inline;
+    //             text-decoration: none;
+    //             color: $txt-nav-white;
 
-                &:active{
-                    color:#ff8c00;
-                    background-color: white;
-                }
-            }
-        }
-    }
+    //             &:active{
+    //                 color:$txt-nav-bright;
+    //                 background-color: $txt-nav-bright-bg;
+    //             }
+    //         }
+    //     }
+    // }
 
     &__buttons{
         display: flex;

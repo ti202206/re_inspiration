@@ -1,0 +1,50 @@
+@import "../../foundation/variables";
+
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: $bg-page-margin;
+
+    &__content {
+        text-align: center;
+        padding: 40px;
+        background-color: $form-bg;
+        border: 1px solid $form-border;
+        box-shadow: 0 2px 4px $shdw-default;
+        border-radius: 8px;
+    }
+
+    &__title {
+        font-size: 36px;
+        color: $prim-bright;
+        margin-bottom: 20px;
+    }
+
+    &__message {
+        font-size: 18px;
+        color: $txt-default;
+        margin-bottom: 30px;
+    }
+
+    &__button {
+        padding: 10px 20px;
+        background-color: $btn-bg-bright;
+        color: $btn-txt-bright;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $prim-med;
+        }
+
+        &:focus {
+            box-shadow: 0 0 5px rgba($prim-bright, 0.5);
+            outline: none;
+        }
+    }
+}

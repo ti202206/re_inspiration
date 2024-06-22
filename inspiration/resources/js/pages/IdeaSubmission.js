@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
@@ -7,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 function IdeaSubmission() {
     const initialFormData = {
-        title: '',
-        overview: '',
-        content: '',
-        price: '',
-        category_id: '',
+        title: "",
+        overview: "",
+        content: "",
+        price: "",
+        category_id: "",
         purchased: false,
     };
 
@@ -24,10 +23,10 @@ function IdeaSubmission() {
         // カテゴリデータの取得
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/api/categories');
+                const response = await axios.get("/api/categories");
                 setCategories(response.data);
             } catch (error) {
-                console.error('Error fetching categories:', error);
+                console.error("Error fetching categories:", error);
             }
         };
         fetchCategories();
@@ -37,70 +36,90 @@ function IdeaSubmission() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const response = await axios.post('/api/ideas', formData);
-    //         console.log('Idea Submitted: ', response.data);
-    //         setFormData(initialFormData);
-    //         setErrors({});
-    //     } catch (error) {
-    //         console.error('Error submitting idea:', error);
-    //         setErrors(error.response.data.errors || {});
-    //     }
-    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/ideas', formData, {
+            const response = await axios.post("/api/ideas", formData, {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
-            console.log('Idea Submitted: ', response.data);
-            navigate('/my-page'); // ＊＊＊＊＊＊変更：提出後に /my-page にリダイレクト＊＊＊＊＊＊
+            console.log("Idea Submitted: ", response.data);
+            navigate("/my-page");
         } catch (error) {
-            console.error('Error submitting idea:', error);
+            console.error("Error submitting idea:", error);
             setErrors(error.response.data.errors || {});
         }
     };
 
     return (
-        <div>
+        <div className="submission__page">
             <Header />
-            <main className="container">
-                <div className="submission-form">
+            <main className="submission__container">
+                <div className="submission__form">
                     <h2>アイデアを投稿する</h2>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="title">タイトル:公開情報です</label>
-                        <input
+                        <label htmlFor="submission__title">
+                            タイトル:公開情報です（30文字）
+                            {errors.title && (
+                                <p className="submission__error">
+                                    {errors.title}
+                                </p>
+                            )}
+                        </label>
+                        <textarea
                             type="text"
                             id="title"
                             name="title"
                             value={formData.title}
                             onChange={handleChange}
+                            className="submission__input submission__input-title"
                         />
-                        {errors.title && <p className="error">{errors.title}</p>}
 
-                        <label htmlFor="overview">概要:公開情報です</label>
+                        <label htmlFor="overview">
+                            概要:公開情報です（90文字）
+                            {errors.overview && (
+                                <p className="submission__error">{errors.overview}</p>
+                            )}
+                        </label>
                         <textarea
                             id="overview"
                             name="overview"
                             value={formData.overview}
                             onChange={handleChange}
+                            className="submission__input submission__input-overview"
                         />
-                        {errors.overview && <p className="error">{errors.overview}</p>}
+                        {/* {errors.overview && (
+                            <p className="error">{errors.overview}</p>
+                        )} */}
 
-                        <label htmlFor="content">詳細:購入者のみ見れるようになります</label>
+                        <label htmlFor="content">
+                            詳細:購入者のみ見れるようになります（255文字）
+                            {errors.content && (
+                                <p className="submission__error">{errors.content}</p>
+                            )}
+                        </label>
                         <textarea
                             id="content"
                             name="content"
                             value={formData.content}
                             onChange={handleChange}
+                            className="submission__input submission__input-content"
                         />
-                        {errors.content && <p className="error">{errors.content}</p>}
+                        {/* {errors.content && (
+                            <p className="error">{errors.content}</p>
+                        )} */}
 
-                        <label htmlFor="price">価格 (円):</label>
+                        <label htmlFor="price">
+                            価格 (円):
+                            {errors.price && (
+                                <p className="submission__error">
+                                    {errors.price}
+                                </p>
+                            )}
+                        </label>
                         <input
                             type="number"
                             id="price"
@@ -109,26 +128,49 @@ function IdeaSubmission() {
                             onChange={handleChange}
                             min="1"
                             step="1"
+                            className="submission__input"
                         />
-                        {errors.price && <p className="error">{errors.price}</p>}
+                        {/* {errors.price && (
+                            <p className="submission__error">{errors.price}</p>
+                        )} */}
 
-                        <label htmlFor="category_id">カテゴリ:</label>
+                        <label htmlFor="category_id">
+                            カテゴリ:
+                            {errors.category_id && (
+                                <p className="submission__error">
+                                    {errors.category_id}
+                                </p>
+                            )}
+                        </label>
                         <select
                             id="category_id"
                             name="category_id"
                             value={formData.category_id}
                             onChange={handleChange}
+                            className="submission__input"
                         >
                             <option value="">カテゴリを選択</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
                             ))}
                         </select>
-                        {errors.category_id && <p className="error">{errors.category_id}</p>}
+                        {/* {errors.category_id && (
+                            <p className="submission__error">
+                                {errors.category_id}
+                            </p>
+                        )} */}
 
-                        <button type="submit">投稿する</button>
+                        <button type="submit" className="submission__button">
+                            投稿する
+                        </button>
                     </form>
-                    <button className="btn" onClick={() => navigate(-1)} style={{ marginTop: '10px' }}>
+                    <button
+                        className="submission__button"
+                        onClick={() => navigate(-1)}
+                        style={{ marginTop: "10px" }}
+                    >
                         戻る
                     </button>
                 </div>
@@ -139,66 +181,3 @@ function IdeaSubmission() {
 }
 
 export default IdeaSubmission;
-
-
-/* src/styles/IdeaSubmission.css */
-
-// .submission-form {
-//     max-width: 600px;
-//     margin: 20px auto;
-//     padding: 20px;
-//     border: 1px solid #ccc;
-//     border-radius: 8px;
-//     background-color: #f9f9f9;
-// }
-
-// .submission-form h2 {
-//     text-align: center;
-//     margin-bottom: 20px;
-//     font-size: 24px;
-// }
-
-// .submission-form label {
-//     display: block;
-//     margin: 10px 0 5px;
-//     font-weight: bold;
-// }
-
-// .submission-form input[type="text"],
-// .submission-form input[type="number"],
-// .submission-form textarea,
-// .submission-form select {
-//     width: 100%;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     margin-bottom: 10px;
-//     box-sizing: border-box;
-// }
-
-// .submission-form textarea {
-//     height: 100px;
-// }
-
-// .submission-form button {
-//     display: block;
-//     width: 100%;
-//     background-color: #007bff;
-//     color: white;
-//     padding: 10px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     font-size: 16px;
-//     margin-top: 10px;
-//     transition: background-color 0.3s ease;
-// }
-
-// .submission-form button:hover {
-//     background-color: #0056b3;
-// }
-
-// .error {
-//     color: red;
-//     font-size: 14px;
-// }
