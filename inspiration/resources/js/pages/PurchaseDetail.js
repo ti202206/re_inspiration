@@ -344,6 +344,9 @@ const PurchaseDetail = () => {
                                             })}
                                         </small>
                                     </p>
+                                    {index < reviews.length - 1 && (
+                                        <hr className="review-divider" />
+                                    )}
                                 </div>
                             ))
                         ) : (

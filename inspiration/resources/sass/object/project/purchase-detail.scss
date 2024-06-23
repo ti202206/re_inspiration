@@ -134,7 +134,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px $shdw-default;
             border: 1px solid $form-border;
 
             p {
@@ -147,6 +147,11 @@
                     font-size: 18px;
                 }
             }
+        }
+        .review-divider {
+            margin-top: 20px;
+            border: none;
+            border-top: 1px solid $bd-default;
         }
     }
 }
