@@ -18,7 +18,7 @@ const Login = () => {
             const response = await axios.post("/api/login", { email, password });
             Cookies.set('auth_token', response.data.token);
             alert("ログイン成功");
-            window.location.href = "/mypage";
+            window.location.href = "/my-page";
         } catch (error) {
             setError("ログインに失敗しました");
         }

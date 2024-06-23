@@ -1,42 +1,38 @@
 // Variables
-@import 'foundation/_variables';
+@import "foundation/_variables";
 
 // Reset and base styles
-@import 'foundation/_reset';
-@import 'foundation/_base';
+@import "foundation/_reset";
+@import "foundation/_base";
 
 // Layout styles
-@import 'layout/_header';
-@import 'layout/_footer';
-@import 'layout/_container';
-@import 'layout/_idea-card';
-@import 'layout/review-card';
+@import "layout/_header";
+@import "layout/_footer";
+@import "layout/_container";
+@import "layout/_idea-card";
+@import "layout/review-card";
 
 // Object styles
 // components.
-@import 'object/components/_button';
-@import 'object/components/_section';
-@import 'object/components/_links';
-@import 'object/components/_icon';
+@import "object/components/_button";
+@import "object/components/_section";
+@import "object/components/_links";
+@import "object/components/_icon";
 
 //project
-@import 'object/project/top';
-@import 'object/project/register';
-@import 'object/project/login';
-@import 'object/project/mypage';
-@import 'object/project/idea-submission';
-@import 'object/project/idea-detail';
-@import 'object/project/purchase-detail';
-@import 'object/project/ReviewUpdate';
+@import "object/project/top";
+@import "object/project/register";
+@import "object/project/login";
+@import "object/project/mypage";
+@import "object/project/idea-submission";
+@import "object/project/idea-detail";
+@import "object/project/purchase-detail";
+@import "object/project/review-update";
 
-@import 'object/project/IdeaUpdate';
-@import 'object/project/review-submission';
+@import "object/project/idea-update";
+@import "object/project/review-submission";
 
-// @import 'tailwindcss/base';
-// @import 'tailwindcss/components';
-// @import 'tailwindcss/utilities';
-
-@import 'object/project/notfound';
-@import 'object/project/profile';
-@import 'object/project/profile-edit';
-@import 'object/project/user-profile.scss';
+@import "object/project/notfound";
+@import "object/project/profile";
+@import "object/project/profile-edit";
+@import "object/project/user-profile.scss";

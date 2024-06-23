@@ -102,9 +102,10 @@
         padding: 10px;
         margin-bottom: 15px;
         border: 1px solid $form-border;
-        border-radius: 4px; // 角丸
+        border-radius: 4px;
         box-sizing: border-box;
         font-size: 16px;
+        
 
         &:focus {
             border-color: $prim-bright;
@@ -127,6 +128,8 @@
         cursor: pointer;
         transition: background-color 0.3s;
         margin: 5px;
+        outline: none;
+        
 
         &:hover {
             background-color: $prim-med;

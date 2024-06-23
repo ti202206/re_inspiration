@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
 import "../../sass/object/project/top.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// import { brainstormImage } from "../assets";
-import brainstormImage from '../../assets/images/brainstorm-idea.png'; // 適切なパスに変更
-// import "../../sass/app.scss";
+import brainstormImage from "../../assets/images/brainstorm-idea.png";
 
+// ボタン機能
 function TopPage() {
     const handleRegisterClick = () => {
         window.location.href = "/register";
@@ -15,8 +13,6 @@ function TopPage() {
     const handleLoginClick = () => {
         window.location.href = "/login";
     };
-
-
 
     return (
         <div>
@@ -191,7 +187,7 @@ function TopPage() {
 
                 <section className="registration">
                     <p className="registration__message">
-                        あ！が消え去る前に．．．　　新規登録はこちら
+                        あ！が消え去る前に．．． 新規登録はこちら
                     </p>
                     <div className="registration__buttons">
                         <button

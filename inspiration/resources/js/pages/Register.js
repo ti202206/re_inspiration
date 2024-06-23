@@ -14,7 +14,7 @@ const Register = () => {
         passwordConfirmation: "",
         icon: null,
     });
-    const [iconPreview, setIconPreview] = useState(defaultIcon);
+    const [iconPreview, setIconPreview] = useState(defaultIcon); // アイコンの初期値を設定
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -27,6 +27,7 @@ const Register = () => {
         }
     }, []);
 
+    // アイコンの変更
     const handleChange = (event) => {
         const { name, value, files } = event.target;
         if (name === "icon") {
@@ -47,6 +48,7 @@ const Register = () => {
         }
     };
 
+    // プロフィール変更処理
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData();
@@ -56,16 +58,16 @@ const Register = () => {
         data.append("password_confirmation", formData.passwordConfirmation);
         if (formData.icon) {
             data.append("icon", formData.icon);
-        }else{
+        } else {
             const response = await fetch(defaultIcon);
             const blob = await response.blob();
-            data.append("icon", blob, 'default-user-icon.png');
+            data.append("icon", blob, "default-user-icon.png");
         }
 
         try {
             await axios.post("/api/register", data);
             alert("登録が完了しました。");
-            window.location.href = "/mypage";
+            window.location.href = "/my-page";
         } catch (error) {
             if (error.response) {
                 setErrors(error.response.data.errors || {});
@@ -108,7 +110,9 @@ const Register = () => {
                             className="register__input"
                         />
                         {errors.email && (
-                            <div className="register__error">{errors.email}</div>
+                            <div className="register__error">
+                                {errors.email}
+                            </div>
                         )}
                     </div>
                     <div className="form-group">
@@ -158,9 +162,6 @@ const Register = () => {
                                 className="register__icon-preview"
                             />
                         )}
-                        {/* {errors.icon && (
-                            <div className="register__error">{errors.icon}</div>
-                        )} */}
                     </div>
                     <button type="submit" className="register__button">
                         登録

@@ -15,6 +15,7 @@ const MyPage = () => {
     const [categories, setCategories] = useState({}); // カテゴリ名のステート
     const navigate = useNavigate();
 
+    //ユーザー情報を取得
     const fetchUser = async () => {
         try {
             const response = await axios.get("/api/user", {
@@ -139,7 +140,7 @@ const MyPage = () => {
         fetchCategories();
     }, []);
 
-    // アイディアの詳細ページに遷移する関数
+    // ボタン機能
     const handleDetailClick = (id, purchased) => {
         if (purchased) {
             navigate(`/purchase-detail/${id}`); // 購入したアイディアの詳細ページに遷移
@@ -148,35 +149,13 @@ const MyPage = () => {
         }
     };
 
-    const handleIdeaUpdateClick = (id) => {
-        navigate(`/idea-update/${id}`);
-    };
-
-    const handleReviewUpdateClick = (ideaId, reviewId) => {
-        navigate(`/review-update/${ideaId}`, { state: { reviewId } });
-    };
+    // 必要ならつける レビューの編集機能
+    // const handleReviewUpdateClick = (ideaId, reviewId) => {
+    //     navigate(`/review-update/${ideaId}`, { state: { reviewId } });
+    // };
 
     const handleEditClick = (id) => {
         navigate(`/idea-update/${id}`);
-    };
-
-    const handleToggleFavorite = async (id) => {
-        try {
-            await axios.post(
-                "/api/favorites/toggle",
-                { idea_id: id },
-                {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem(
-                            "auth_token"
-                        )}`,
-                    },
-                }
-            );
-            fetchFavorites(); // トグル後に気になる情報を再取得
-        } catch (error) {
-            console.error("気になるの解除に失敗しました", error);
-        }
     };
 
     // 購入済みかどうかを確認
@@ -188,6 +167,7 @@ const MyPage = () => {
         <div>
             <Header />
             <main className="container">
+                {/* デバッグ用 データ表示 */}
                 <div>
                     {/* <h2>User Information</h2>
                 <pre>{JSON.stringify(user, null, 2)}</pre> */}
@@ -213,7 +193,7 @@ const MyPage = () => {
                     {/* <h2>Fetched categories (State)</h2>
                 <pre>{JSON.stringify(categories, null, 2)}</pre> */}
                 </div>
-                {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><p>MyPage</p> */}
+
                 <div className="section__container">
                     <section className="mypage__section">
                         <div className="mypage__title">
@@ -274,6 +254,7 @@ const MyPage = () => {
                                                     true
                                                 ),
                                         },
+                                        // レビューアップデート機能必要ならつける
                                         // {
                                         //     label: "評価を変更",
                                         //     onClick: () => handleReviewUpdateClick(purchase.idea.id),
@@ -322,7 +303,6 @@ const MyPage = () => {
 
                         {reviewed.length > 0 ? (
                             reviewed.map((review) => (
-                                // reviewedのデータ構造に基づいて idea を取得
                                 <ReviewCard
                                     key={`review-${review.id}`}
                                     idea={review.idea}

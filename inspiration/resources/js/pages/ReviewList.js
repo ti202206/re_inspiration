@@ -30,6 +30,7 @@ function ReviewsList() {
         }
     };
 
+    // ユーザー情報を取得
     const fetchCurrentUser = async () => {
         try {
             const response = await axios.get("/api/user", {
@@ -50,6 +51,7 @@ function ReviewsList() {
         fetchCurrentUser();
     }, []);
 
+    // ボタン機能
     const handleDetailClick = (id) => {
         navigate(`/idea-detail/${id}`);
     };
@@ -62,10 +64,6 @@ function ReviewsList() {
         <div>
             <Header />
             <main className="container">
-                <div>
-                    {/* <h2>Fetched reviewed (State)</h2>
-                <pre>{JSON.stringify(reviews, null, 2)}</pre> */}
-                </div>
                 <h2>レビュー一覧</h2>
                 <section className="section-container">
                     {reviews.length > 0 ? (

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FavoriteController;
@@ -13,9 +14,9 @@ use App\Http\Controllers\ProfileController;
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:sanctum');
 Route::post('/register', [RegisteredUserController::class, 'store']);
-Route::get('/categories', [CategoryController::class, 'index']); //カテゴリー情報を取得
+Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     // Idea関連のルート
     Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
     Route::get('/my-ideas', [IdeaController::class, 'myIdeas'])->name('ideas.my-ideas');
@@ -41,16 +42,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // profile関連のルート
     Route::get('/user', [ProfileController::class, 'getUser']);
     Route::post('/profile/image', [ProfileController::class, 'updateProfileImage']);
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile']);
     Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
 
     //他のユーザーの情報を取得するルート
-    Route::get('/user/:usrId', [ProfileController::class, 'showUserProfile']);
-
-    // 認証されたユーザー情報の取得
-    // Route::get('/user', function (Request $request) {
-    //     return $request->user();
-    // });
-
-
-
+    Route::get('/user/{usrId}', [ProfileController::class, 'showUserProfile']);
 });

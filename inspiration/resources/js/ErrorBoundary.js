@@ -1,38 +1,41 @@
-import React, { Component } from 'react';
+// import React, { Component } from "react";
 
-class ErrorBoundary extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { hasError: false, error: null, errorInfo: null };
-    }
+// class ErrorBoundary extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { hasError: false, error: null, errorInfo: null }; //エラーの状態管理
+//     }
 
-    static getDerivedStateFromError(error) {
-        return { hasError: true, error };
-    }
+//     //エラーを検出し，状態更新
+//     static getDerivedStateFromError(error) {
+//         return { hasError: true, error };
+//     }
 
-    componentDidCatch(error, errorInfo) {
-        this.setState({
-            error,
-            errorInfo
-        });
-    }
+//     //エラーの詳細を更新
+//     componentDidCatch(error, errorInfo) {
+//         this.setState({
+//             error,
+//             errorInfo,
+//         });
+//     }
 
-    render() {
-        if (this.state.hasError) {
-            return (
-                <div>
-                    <h2>Something went wrong.</h2>
-                    <details style={{ whiteSpace: 'pre-wrap' }}>
-                        {this.state.error && this.state.error.toString()}
-                        <br />
-                        {this.state.errorInfo && this.state.errorInfo.componentStack}
-                    </details>
-                </div>
-            );
-        }
+//     render() {
+//         if (this.state.hasError) {
+//             return (
+//                 <div>
+//                     <h2>Something went wrong.</h2>
+//                     <details style={{ whiteSpace: "pre-wrap" }}>
+//                         {this.state.error && this.state.error.toString()}
+//                         <br />
+//                         {this.state.errorInfo &&
+//                             this.state.errorInfo.componentStack}
+//                     </details>
+//                 </div>
+//             );
+//         }
 
-        return this.props.children; 
-    }
-}
+//         return this.props.children;
+//     }
+// }
 
-export default ErrorBoundary;
+// export default ErrorBoundary;

@@ -45,6 +45,7 @@ const ReviewSubmission = () => {
         fetchIdea();
     }, [id]);
 
+    // ボタン機能
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -60,7 +61,7 @@ const ReviewSubmission = () => {
                 }
             );
             if (response.status === 200) {
-                navigate(`/purchases/${id}`);
+                navigate(-1);
             } else {
                 throw new Error("レビューの送信に失敗しました。");
             }
@@ -129,7 +130,6 @@ const ReviewSubmission = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="rating">評価 (1-5):</label>
-                            {/*＊＊＊＊＊＊変更：評価の入力で数字以外が入力されないように設定＊＊＊＊＊＊*/}
                             <input
                                 type="number"
                                 id="rating"
@@ -144,7 +144,6 @@ const ReviewSubmission = () => {
                                 required
                                 className="review-submission__input"
                             />
-                            {/*＊＊＊＊＊＊変更：評価の入力で数字以外が入力されないように設定＊＊＊＊＊＊*/}
                         </div>
 
                         <div className="form-group">
@@ -157,22 +156,24 @@ const ReviewSubmission = () => {
                                 className="review-submission__input"
                             />
                         </div>
-                    </form>
-                    <div className="review-submission__buttons">
-                        <button
-                            type="submit"
-                            className="review-submission__button"
-                        >
-                            送信
-                        </button>
 
-                        <button
-                            className="review-submission__button review-submission__button--back"
-                            onClick={() => navigate(-1)}
-                        >
-                            戻る
-                        </button>
-                    </div>
+                        <div className="review-submission__buttons">
+                            <button
+                                type="submit"
+                                className="review-submission__button"
+                            >
+                                送信
+                            </button>
+
+                            <button
+                                type="button"
+                                className="review-submission__button review-submission__button--back"
+                                onClick={() => navigate(-1)}
+                            >
+                                戻る
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </main>
             <Footer />

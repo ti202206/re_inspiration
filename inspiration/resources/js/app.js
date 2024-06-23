@@ -1,15 +1,21 @@
-import './bootstrap';
-import Alpine from 'alpinejs';
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
-import AuthenticatedApp from './pages/AuthenticatedApp';
-import UnauthenticatedApp from './pages/UnauthenticatedApp';
-import TopPage from './pages/TopPage';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import MyPage from './pages/MyPage';
-import axios from './axiosConfig';
+// import './bootstrap';
+import Alpine from "alpinejs";
+import React, { useState, useEffect } from "react";
+import { createRoot } from "react-dom/client";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useLocation,
+    Navigate,
+} from "react-router-dom";
+import AuthenticatedApp from "./pages/AuthenticatedApp";
+import UnauthenticatedApp from "./pages/UnauthenticatedApp";
+import TopPage from "./pages/TopPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import MyPage from "./pages/MyPage";
+import axios from "./axiosConfig";
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -20,7 +26,7 @@ const App = () => {
     const location = useLocation();
 
     // 認証チェックをスキップするパス
-    const authFreePaths = ['/', '/register', '/login'];
+    const authFreePaths = ["/register", "/login"];
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -29,11 +35,11 @@ const App = () => {
                 setIsCheckingAuth(false);
                 return;
             }
-            
+
             //認証チェック
             try {
-                await axios.get('/sanctum/csrf-cookie');
-                const response = await axios.get('/api/user');
+                await axios.get("/sanctum/csrf-cookie");
+                const response = await axios.get("/api/user");
                 if (response.status === 200) {
                     setIsAuthenticated(true);
                 } else {
@@ -44,7 +50,7 @@ const App = () => {
                     // 認証されていない場合は認証状態を false に設定する
                     setIsAuthenticated(false);
                 } else {
-                    console.error('Authentication check failed:', error);
+                    console.error("Authentication check failed:", error);
                 }
             } finally {
                 setIsCheckingAuth(false);
@@ -60,12 +66,32 @@ const App = () => {
 
     return (
         <Routes>
-            <Route path="/" element={isAuthenticated ? <Navigate to="/mypage" /> : <TopPage />} />
+            <Route
+                path="/"
+                element={
+                    isAuthenticated ? <Navigate to="/my-page" /> : <TopPage />
+                }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/mypage" element={isAuthenticated ? <MyPage /> : <Navigate to="/login" />} />
-            <Route path="/*" element={isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />} />
-            <Route path="*" element={<Navigate to="/" />} /> {/* 未定義のルートにアクセスした場合のリダイレクト */}
+            <Route
+                path="/mypage"
+                element={
+                    isAuthenticated ? <MyPage /> : <Navigate to="/login" />
+                }
+            />
+            <Route
+                path="/*"
+                element={
+                    isAuthenticated ? (
+                        <AuthenticatedApp />
+                    ) : (
+                        <UnauthenticatedApp />
+                    )
+                }
+            />
+            <Route path="*" element={<Navigate to="/" />} />{" "}
+            {/* 未定義のルートにアクセスした場合のリダイレクト */}
         </Routes>
     );
 };
@@ -76,6 +102,6 @@ const RootApp = () => (
     </Router>
 );
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = createRoot(container);
 root.render(<RootApp />);

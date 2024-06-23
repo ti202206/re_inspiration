@@ -9985,22 +9985,20 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _pages_AuthenticatedApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/AuthenticatedApp */ "./resources/js/pages/AuthenticatedApp.js");
-/* harmony import */ var _pages_UnauthenticatedApp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/UnauthenticatedApp */ "./resources/js/pages/UnauthenticatedApp.js");
-/* harmony import */ var _pages_TopPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/TopPage */ "./resources/js/pages/TopPage.js");
-/* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.js");
-/* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Register */ "./resources/js/pages/Register.js");
-/* harmony import */ var _pages_MyPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/MyPage */ "./resources/js/pages/MyPage.js");
-/* harmony import */ var _axiosConfig__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./axiosConfig */ "./resources/js/axiosConfig.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _pages_AuthenticatedApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/AuthenticatedApp */ "./resources/js/pages/AuthenticatedApp.js");
+/* harmony import */ var _pages_UnauthenticatedApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/UnauthenticatedApp */ "./resources/js/pages/UnauthenticatedApp.js");
+/* harmony import */ var _pages_TopPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/TopPage */ "./resources/js/pages/TopPage.js");
+/* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.js");
+/* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Register */ "./resources/js/pages/Register.js");
+/* harmony import */ var _pages_MyPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/MyPage */ "./resources/js/pages/MyPage.js");
+/* harmony import */ var _axiosConfig__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./axiosConfig */ "./resources/js/axiosConfig.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -10011,6 +10009,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// import './bootstrap';
 
 
 
@@ -10023,23 +10022,22 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isAuthenticated = _useState2[0],
     setIsAuthenticated = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
     _useState4 = _slicedToArray(_useState3, 2),
     isCheckingAuth = _useState4[0],
     setIsCheckingAuth = _useState4[1];
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useLocation)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
 
   // 認証チェックをスキップするパス
-  var authFreePaths = ['/', '/register', '/login'];
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+  var authFreePaths = ["/register", "/login"];
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var response;
@@ -10055,10 +10053,10 @@ var App = function App() {
             case 3:
               _context.prev = 3;
               _context.next = 6;
-              return _axiosConfig__WEBPACK_IMPORTED_MODULE_10__["default"].get('/sanctum/csrf-cookie');
+              return _axiosConfig__WEBPACK_IMPORTED_MODULE_9__["default"].get("/sanctum/csrf-cookie");
             case 6:
               _context.next = 8;
-              return _axiosConfig__WEBPACK_IMPORTED_MODULE_10__["default"].get('/api/user');
+              return _axiosConfig__WEBPACK_IMPORTED_MODULE_9__["default"].get("/api/user");
             case 8:
               response = _context.sent;
               if (response.status === 200) {
@@ -10075,7 +10073,7 @@ var App = function App() {
                 // 認証されていない場合は認証状態を false に設定する
                 setIsAuthenticated(false);
               } else {
-                console.error('Authentication check failed:', _context.t0);
+                console.error("Authentication check failed:", _context.t0);
               }
             case 15:
               _context.prev = 15;
@@ -10094,46 +10092,46 @@ var App = function App() {
     checkAuth();
   }, [location.pathname]);
   if (isCheckingAuth && !authFreePaths.includes(location.pathname)) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
       children: "Loading..."
     }); // 認証チェック中のローディング表示
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Routes, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/",
-      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Navigate, {
-        to: "/mypage"
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_TopPage__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Navigate, {
+        to: "/my-page"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_TopPage__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/login",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_Login__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/register",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_Register__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_Register__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/mypage",
-      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_MyPage__WEBPACK_IMPORTED_MODULE_9__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Navigate, {
+      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_MyPage__WEBPACK_IMPORTED_MODULE_8__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Navigate, {
         to: "/login"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/*",
-      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_AuthenticatedApp__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_pages_UnauthenticatedApp__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      element: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_AuthenticatedApp__WEBPACK_IMPORTED_MODULE_3__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_UnauthenticatedApp__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Navigate, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Navigate, {
         to: "/"
       })
     }), " "]
   });
 };
 var RootApp = function RootApp() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(App, {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(App, {})
   });
 };
-var container = document.getElementById('app');
-var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_3__.createRoot)(container);
-root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(RootApp, {}));
+var container = document.getElementById("app");
+var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_2__.createRoot)(container);
+root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(RootApp, {}));
 
 /***/ }),
 
@@ -10152,123 +10150,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
-// import axios from 'axios';
-
-// // クッキーを使うための設定
-// axios.defaults.withCredentials = true;
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-// export default axios;
-
-// import axios from 'axios';
-// import Cookies from 'js-cookie';
-
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-// const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-// if (token) {
-//     axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
-// }
-
-// export default axios;
-
-// import axios from 'axios';
-// import Cookies from 'js-cookie';
-
-// axios.defaults.baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// axios.defaults.withCredentials = true;
-
-// axios.interceptors.request.use(config => {
-//     const token = Cookies.get('auth_token');
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-// export default axios;
-
-// // axiosConfig.js
-// import axios from 'axios';
-// import Cookies from 'js-cookie';
-
-// // CSRFトークンの取得
-// axios.get('/sanctum/csrf-cookie').then(response => {
-//     // CSRFトークンが設定された状態でAPIリクエストを行う
-// });
-
-// axios.defaults.baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// axios.defaults.withCredentials = true;
-
-// axios.interceptors.request.use(config => {
-//     const token = Cookies.get('auth_token');
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-// export default axios;
 
 
-
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common['X-Requested-With'] = 'XMLHttpRequest';
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common["X-Requested-With"] = "XMLHttpRequest";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).withCredentials = true;
 
-// axios.interceptors.request.use(config => {
-//     const token = Cookies.get('auth_token');
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
 // 認証が不要なパスのリスト
-var authFreePaths = ['/',
+var authFreePaths = ["/",
 // トップページのルート
-'/api/auth/login',
+"/api/auth/login",
 // ログインAPI
-'/api/auth/register' // 登録API
+"/api/auth/register" // 登録API
 ];
 
 // 認証トークンの設定
-// axios.interceptors.request.use(config => {
-//     const token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-// axios.interceptors.request.use(config => {
-//     const token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
-//     // 認証が不要なパスの完全一致でチェック
-//     const isAuthFree = authFreePaths.some(path => config.url.startsWith(axios.defaults.baseURL + path));
-//     // 認証が不要なパスの場合はトークンをヘッダーに追加しない
-//     if (!isAuthFree && token) {
-//         config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-// axiosConfig.js
-
-// 認証トークンの設定
 axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.request.use(function (config) {
-  var token = sessionStorage.getItem('auth_token'); // トークンを sessionStorage から取得
-  // [修正] 認証が不要なパスの完全一致でチェック
+  var token = sessionStorage.getItem("auth_token"); // トークンを sessionStorage から取得
+  // 認証が不要なパスの完全一致でチェック
   var isAuthFree = authFreePaths.some(function (path) {
     return config.url.startsWith(path) || config.url.startsWith((axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL + path);
   });
@@ -10281,92 +10180,6 @@ axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.request.use(function (
   return Promise.reject(error);
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
-
-// import axios from 'axios';
-// import Cookies from 'js-cookie';
-
-// axios.defaults.baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// axios.defaults.withCredentials = true;
-
-// axios.interceptors.request.use(async config => {
-//     // CSRFトークンを取得してリクエストに設定
-//     if (!config.headers['X-CSRF-TOKEN']) {
-//         await axios.get('/sanctum/csrf-cookie');
-//         config.headers['X-CSRF-TOKEN'] = Cookies.get('XSRF-TOKEN');
-//     }
-//     const token = Cookies.get('auth_token');
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-// export default axios;
-
-// // axiosConfig.js
-// import axios from 'axios';
-// import Cookies from 'js-cookie';
-
-// // CSRFトークンの取得
-// axios.get('/sanctum/csrf-cookie').then(response => {
-//     // CSRFトークンが設定された状態でAPIリクエストを行う
-// });
-
-// axios.defaults.baseURL = process.env.MIX_APP_URL || 'http://127.0.0.1:8000';
-// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// axios.defaults.withCredentials = true;
-
-// axios.interceptors.request.use(config => {
-//     const token = Cookies.get('auth_token');
-//     if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-// export default axios;
-
-/***/ }),
-
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
-/***/ (() => {
-
-// window._ = require('lodash');
-
-// /**
-//  * We'll load the axios HTTP library which allows us to easily issue requests
-//  * to our Laravel back-end. This library automatically handles sending the
-//  * CSRF token as a header based on the value of the "XSRF" token cookie.
-//  */
-
-// window.axios = require('axios');
-
-// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-// /**
-//  * Echo exposes an expressive API for subscribing to channels and listening
-//  * for events that are broadcast by Laravel. Echo and event broadcasting
-//  * allows your team to easily build robust real-time web applications.
-//  */
-
-// // import Echo from 'laravel-echo';
-
-// // window.Pusher = require('pusher-js');
-
-// // window.Echo = new Echo({
-// //     broadcaster: 'pusher',
-// //     key: process.env.MIX_PUSHER_APP_KEY,
-// //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-// //     forceTLS: true
-// // });
 
 /***/ }),
 
@@ -12850,7 +12663,7 @@ var Login = function Login() {
             response = _context.sent;
             js_cookie__WEBPACK_IMPORTED_MODULE_2__["default"].set('auth_token', response.data.token);
             alert("ログイン成功");
-            window.location.href = "/mypage";
+            window.location.href = "/my-page";
             _context.next = 15;
             break;
           case 12:
@@ -12943,110 +12756,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import IdeaCard from "../components/IdeaCard";
-// import { useNavigate } from "react-router-dom";
-
-// function MyIdeas() {
-//     const [ideas, setIdeas] = useState([]);
-//     const navigate = useNavigate();
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 const response = await axios.get("/api/my-ideas", {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem(
-//                             "auth_token"
-//                         )}`,
-//                     },
-//                 });
-//                 setIdeas(response.data);
-//             } catch (error) {
-//                 console.error("Error fetching my ideas:", error);
-//             }
-//         };
-//         fetchData();
-//     }, []);
-
-//     const handleEditClick = (id) => {
-//         navigate(`/idea-update/${id}`); // IDをURLに渡してリダイレクト
-//     };
-
-//     return (
-//         <div>
-//             <Header />
-//             <main className="container">
-//                 <section className="section-container">
-//                     <h2>私が投稿したアイディア</h2>
-//                     {ideas.length > 0 ? (
-//                         ideas.map((idea) => (
-//                             <div className="idea-card" key={idea.id}>
-//                                 <div className="idea-card__content">
-//                                     <div className="idea-card__title-category">
-//                                         <h3 className="idea-card__title">
-//                                             {idea.title}
-//                                         </h3>
-//                                     </div>
-//                                     <p className="idea-card__summary">
-//                                         {idea.overview}
-//                                     </p>
-//                                     <div className="idea-card__meta">
-//                                         <span className="idea-card__review-count">
-//                                             <i className="fa-regular fa-comment-dots"></i>{" "}
-//                                             {idea.reviewCount}
-//                                         </span>
-//                                         <span className="idea-card__average-rating">
-//                                             <i className="fa-regular fa-thumbs-up"></i>{" "}
-//                                             {idea.averageRating}
-//                                         </span>
-//                                         <p className="idea-card__category">
-//                                             <i className="fa-solid fa-tags"></i>{" "}
-//                                             {idea.category}
-//                                         </p>
-//                                         <p className="idea-card__created_date">
-//                                             <i className="fa-regular fa-clock"></i>{" "}
-//                                             {idea.created_at}
-//                                         </p>
-//                                     </div>
-//                                 </div>
-//                                 <div className="idea-card__buttons">
-//                                     {/* <button className="idea-card__button">
-//                                         詳細
-//                                     </button> */}
-//                                     <button
-//                                         className="idea-card__button"
-//                                         onClick={() => handleEditClick(idea.id)}
-//                                     >
-//                                         編集
-//                                     </button>{" "}
-//                                     {/* 編集ボタン */}
-//                                 </div>
-//                             </div>
-//                         ))
-//                     ) : (
-//                         <p>投稿したアイディアはありません。</p>
-//                     )}
-//                 </section>
-//                 <button
-//                     className="idea-card__button"
-//                     onClick={() => navigate(-1)}
-//                 >
-//                     戻る
-//                 </button>
-//             </main>
-//             <Footer />
-//         </div>
-//     );
-// }
-
-// export default MyIdeas;
-
-// src/components/MyIdeas.js
-
 
 
 
@@ -13092,7 +12801,7 @@ function MyIdeas() {
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching my ideas:", _context.t0);
-            setError('私のアイディアの取得に失敗しました。');
+            setError("私のアイディアの取得に失敗しました。");
           case 11:
           case "end":
             return _context.stop();
@@ -13127,7 +12836,7 @@ function MyIdeas() {
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.error("Error fetching categories:", _context2.t0);
-            setError('カテゴリーデータの取得に失敗しました。');
+            setError("カテゴリーデータの取得に失敗しました。");
           case 12:
           case "end":
             return _context2.stop();
@@ -13142,9 +12851,13 @@ function MyIdeas() {
     fetchMyIdeas();
     fetchCategories();
   }, []);
+
+  // ボタン機能
   var handleEditClick = function handleEditClick(id) {
     navigate("/idea-update/".concat(id));
   };
+
+  // エラー時の表示
   if (error) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       children: error
@@ -13252,6 +12965,8 @@ var MyPage = function MyPage() {
     categories = _useState12[0],
     setCategories = _useState12[1]; // カテゴリ名のステート
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+
+  //ユーザー情報を取得
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -13485,7 +13200,7 @@ var MyPage = function MyPage() {
     fetchCategories();
   }, []);
 
-  // アイディアの詳細ページに遷移する関数
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(id, purchased) {
     if (purchased) {
       navigate("/purchase-detail/".concat(id)); // 購入したアイディアの詳細ページに遷移
@@ -13493,51 +13208,15 @@ var MyPage = function MyPage() {
       navigate("/idea-detail/".concat(id)); // 購入していないアイディアの詳細ページに遷移
     }
   };
-  var handleIdeaUpdateClick = function handleIdeaUpdateClick(id) {
-    navigate("/idea-update/".concat(id));
-  };
-  var handleReviewUpdateClick = function handleReviewUpdateClick(ideaId, reviewId) {
-    navigate("/review-update/".concat(ideaId), {
-      state: {
-        reviewId: reviewId
-      }
-    });
-  };
+
+  // 必要ならつける レビューの編集機能
+  // const handleReviewUpdateClick = (ideaId, reviewId) => {
+  //     navigate(`/review-update/${ideaId}`, { state: { reviewId } });
+  // };
+
   var handleEditClick = function handleEditClick(id) {
     navigate("/idea-update/".concat(id));
   };
-  var handleToggleFavorite = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id) {
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
-          case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/favorites/toggle", {
-              idea_id: id
-            }, {
-              headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
-              }
-            });
-          case 3:
-            fetchFavorites(); // トグル後に気になる情報を再取得
-            _context7.next = 9;
-            break;
-          case 6:
-            _context7.prev = 6;
-            _context7.t0 = _context7["catch"](0);
-            console.error("気になるの解除に失敗しました", _context7.t0);
-          case 9:
-          case "end":
-            return _context7.stop();
-        }
-      }, _callee7, null, [[0, 6]]);
-    }));
-    return function handleToggleFavorite(_x) {
-      return _ref7.apply(this, arguments);
-    };
-  }();
 
   // 購入済みかどうかを確認
   var isPurchased = function isPurchased(ideaId) {
@@ -13599,6 +13278,7 @@ var MyPage = function MyPage() {
                   return handleDetailClick(purchase.idea.id, true);
                 }
               }
+              // レビューアップデート機能必要ならつける
               // {
               //     label: "評価を変更",
               //     onClick: () => handleReviewUpdateClick(purchase.idea.id),
@@ -13645,22 +13325,18 @@ var MyPage = function MyPage() {
               children: "\u5168\u3066\u3092\u8868\u793A"
             })]
           }), reviewed.length > 0 ? reviewed.map(function (review) {
-            return (
-              /*#__PURE__*/
-              // reviewedのデータ構造に基づいて idea を取得
-              (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                idea: review.idea,
-                review: review,
-                user: user,
-                isPlaceholder: false,
-                buttons: [{
-                  label: "詳細",
-                  onClick: function onClick() {
-                    return handleDetailClick(review.idea.id, isPurchased(review.idea.id));
-                  }
-                }]
-              }, "review-".concat(review.id))
-            );
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              idea: review.idea,
+              review: review,
+              user: user,
+              isPlaceholder: false,
+              buttons: [{
+                label: "詳細",
+                onClick: function onClick() {
+                  return handleDetailClick(review.idea.id, isPurchased(review.idea.id));
+                }
+              }]
+            }, "review-".concat(review.id));
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
             isPlaceholder: true
           })]
@@ -13721,7 +13397,7 @@ function MyReviewsList() {
     setCurrentUser = _useState4[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
 
-  // 自身のレビュー情報を取得
+  // 投稿したレビュー情報を取得
   var fetchMyReviews = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var userResponse, _currentUser, reviewsResponse, myReviews, sortedReviews;
@@ -13730,9 +13406,9 @@ function MyReviewsList() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user", {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
@@ -13740,15 +13416,16 @@ function MyReviewsList() {
             _currentUser = userResponse.data;
             setCurrentUser(_currentUser);
 
-            // 現在のユーザーのレビューのみを取得
+            // 自身のレビューのみを取得
             _context.next = 8;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/reviews', {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/reviews", {
               headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 8:
             reviewsResponse = _context.sent;
+            // 自身の投稿したレビューを表示 最新が上に来るように並び替え
             myReviews = reviewsResponse.data.filter(function (review) {
               return review.buyer_id === _currentUser.id;
             });
@@ -13761,7 +13438,7 @@ function MyReviewsList() {
           case 14:
             _context.prev = 14;
             _context.t0 = _context["catch"](0);
-            console.error('Error fetching my reviews:', _context.t0);
+            console.error("Error fetching my reviews:", _context.t0);
           case 17:
           case "end":
             return _context.stop();
@@ -13775,12 +13452,17 @@ function MyReviewsList() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchMyReviews();
   }, []);
+
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(id) {
     navigate("/idea-detail/".concat(id));
   };
-  var handleEditReviewClick = function handleEditReviewClick(reviewId) {
-    navigate("/review-edit/".concat(reviewId));
-  };
+
+  // 必要なら，レビューをする機能
+  // const handleEditReviewClick = (reviewId) => {
+  //     navigate(`/review-edit/${reviewId}`);
+  // };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
@@ -13794,7 +13476,7 @@ function MyReviewsList() {
             idea: review.idea,
             review: review,
             user: {
-              name: ((_review$buyer = review.buyer) === null || _review$buyer === void 0 ? void 0 : _review$buyer.name) || '匿名ユーザー'
+              name: ((_review$buyer = review.buyer) === null || _review$buyer === void 0 ? void 0 : _review$buyer.name) || "匿名ユーザー"
             },
             isOwner: true // 常に自身のレビューのみ表示
             ,
@@ -13804,6 +13486,7 @@ function MyReviewsList() {
                 return handleDetailClick(review.idea.id);
               }
             }
+            // 必要なら，レビューをする機能
             // {
             //     label: "レビューを編集",
             //     onClick: () => handleEditReviewClick(review.id),
@@ -13843,22 +13526,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _sass_object_project_notfound_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../sass/object/project/notfound.scss */ "./resources/sass/object/project/notfound.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-// import React from 'react';
-
-// function NotFound() {
-//   return <div><h1>404 Not Found</h1><p>お探しのページは見つかりませんでした。</p></div>;
-// }
-
-// export default NotFound;
-
 
 
 
 
 function NotFound() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+
+  // トップページに戻る
   var handleGoHome = function handleGoHome() {
-    navigate('/');
+    navigate("/");
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "not-found",
@@ -13910,135 +13587,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useState, useEffect } from "react";
-// import axios from "../axiosConfig";
-// import { useNavigate } from "react-router-dom";
-
-// const ProfileEdit = () => {
-//     const [profileImage, setProfileImage] = useState(null);
-//     const [currentProfileImage, setCurrentProfileImage] = useState("");
-//     const [name, setName] = useState("");
-//     const [email, setEmail] = useState("");
-//     const [bio, setBio] = useState("");
-//     const [message, setMessage] = useState("");
-//     const navigate = useNavigate();
-
-//     useEffect(() => {
-//         // ユーザー情報を取得
-//         const fetchUser = async () => {
-//             try {
-//                 const response = await axios.get("/api/user", {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem(
-//                             "auth_token"
-//                         )}`,
-//                     },
-//                 });
-//                 setName(response.data.name);
-//                 setEmail(response.data.email);
-//                 setBio(response.data.bio || "");
-//                 setCurrentProfileImage(response.data.profile_image_url);
-//             } catch (error) {
-//                 console.error("Error fetching user data", error);
-//             }
-//         };
-
-//         fetchUser();
-//     }, []);
-
-//     const handleImageChange = (e) => {
-//         setProfileImage(e.target.files[0]);
-//     };
-
-//     const handleUpload = async () => {
-//         const formData = new FormData();
-//         if (profileImage) {
-//             formData.append("profile_image", profileImage);
-//         }
-//         formData.append("name", name);
-//         formData.append("email", email);
-//         formData.append("bio", bio);
-
-//         try {
-//             const response = await axios.post("/api/profile/image", formData, {
-//                 headers: {
-//                     "Content-Type": "multipart/form-data",
-//                     Authorization: `Bearer ${sessionStorage.getItem(
-//                         "auth_token"
-//                     )}`,
-//                 },
-//             });
-//             setMessage(response.data.message);
-//             setTimeout(() => {
-//                 navigate("/profile"); // プロフィールページにリダイレクト
-//             }, 1000); // メッセージ表示後1秒待ってリダイレクト
-//         } catch (error) {
-//             console.error("Error updating profile", error);
-//             setMessage("プロフィールの更新に失敗しました。");
-//         }
-//     };
-
-//     const handleBackToProfile = () => {
-//         navigate("/profile"); // プロフィール確認ページに戻る
-//     };
-
-//     const handleDeleteAccount = async () => {
-//         if (window.confirm('本当にアカウントを削除しますか？この操作は元に戻せません。')) {
-//             try {
-//                 await axios.delete('/api/profile', {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 alert('アカウントが削除されました。');
-//                 sessionStorage.removeItem('auth_token');
-//                 navigate('/'); // topページにリダイレクト
-//             } catch (error) {
-//                 console.error('Error deleting account', error);
-//                 alert('アカウントの削除に失敗しました。');
-//             }
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <h2>プロフィールを編集</h2>
-//             <img
-//                 src={profileImage ? URL.createObjectURL(profileImage) : currentProfileImage} // プレビュー画像
-//                 alt="Profile"
-//                 style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-//             />
-//             <input
-//                 type="text"
-//                 value={name}
-//                 onChange={(e) => setName(e.target.value)}
-//                 placeholder="名前を入力"
-//             />
-//             <input
-//                 type="email"
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//                 placeholder="メールアドレスを入力"
-//             />
-//             <textarea
-//                 value={bio}
-//                 onChange={(e) => setBio(e.target.value)}
-//                 placeholder="自己紹介を入力"
-//             />
-
-//             <button onClick={handleUpload}>更新</button>
-//             {message && <p>{message}</p>}
-
-//             <button onClick={handleDeleteAccount}>アカウントを削除</button>
-
-//             <button onClick={handleBackToProfile}>戻る</button>{" "}
-//             {/* プロフィール確認ページに戻るボタン */}
-//         </div>
-//     );
-// };
-
-// export default ProfileEdit;
-
 
 
 
@@ -14049,11 +13597,11 @@ var ProfileEdit = function ProfileEdit() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     profileImage = _useState2[0],
-    setProfileImage = _useState2[1];
+    setProfileImage = _useState2[1]; //プロフィール画像の状態管理
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     currentProfileImage = _useState4[0],
-    setCurrentProfileImage = _useState4[1];
+    setCurrentProfileImage = _useState4[1]; //現在のプロフィール画像のurl
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
     name = _useState6[0],
@@ -14065,7 +13613,7 @@ var ProfileEdit = function ProfileEdit() {
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
     bio = _useState10[0],
-    setBio = _useState10[1];
+    setBio = _useState10[1]; //自己紹介の状態管理
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState12 = _slicedToArray(_useState11, 2),
     message = _useState12[0],
@@ -14110,9 +13658,14 @@ var ProfileEdit = function ProfileEdit() {
     }();
     fetchUser();
   }, []);
+
+  // ボタン機能
+  // 画像ファイルの変更
   var handleImageChange = function handleImageChange(e) {
     setProfileImage(e.target.files[0]);
   };
+
+  // プロフィールの更新をサーバーに送信
   var handleUpload = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var formData, response;
@@ -14145,8 +13698,14 @@ var ProfileEdit = function ProfileEdit() {
           case 13:
             _context2.prev = 13;
             _context2.t0 = _context2["catch"](5);
+            // console.error("Error updating profile", error);
+            // setMessage("プロフィールの更新に失敗しました。");
             console.error("Error updating profile", _context2.t0);
-            setMessage("プロフィールの更新に失敗しました。");
+            if (_context2.t0.response && _context2.t0.response.data && _context2.t0.response.data.errors) {
+              setMessage("プロフィールの更新に失敗しました: " + _context2.t0.response.data.errors);
+            } else {
+              setMessage("プロフィールの更新に失敗しました。");
+            }
           case 17:
           case "end":
             return _context2.stop();
@@ -14343,11 +13902,17 @@ var PurchaseDetail = function PurchaseDetail() {
     _useState18 = _slicedToArray(_useState17, 2),
     purchaseCount = _useState18[0],
     setPurchaseCount = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    error = _useState20[0],
-    setError = _useState20[1];
+    hasUserReviewed = _useState20[0],
+    setHasUserReviewed = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    hasUserPurchased = _useState22[0],
+    setHasUserPurchased = _useState22[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+
+  // ユーザー情報を取得
   var fetchUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -14380,6 +13945,8 @@ var PurchaseDetail = function PurchaseDetail() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  // 気になるを取得
   var fetchFavorite = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
@@ -14412,9 +13979,11 @@ var PurchaseDetail = function PurchaseDetail() {
       return _ref2.apply(this, arguments);
     };
   }();
+
+  // アイディア情報を取得
   var fetchIdea = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var response;
+      var response, userReview, purchaseResponse, hasPurchased;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
@@ -14433,23 +14002,44 @@ var PurchaseDetail = function PurchaseDetail() {
             setFavoriteCount(response.data.favorite_count || 0);
             setPurchaseCount(response.data.purchase_count || 0);
             setReviews(response.data.reviews || []);
-            _context3.next = 16;
+
+            //＊＊＊＊＊＊変更： ユーザーがレビューしているかどうかを設定＊＊＊＊＊＊
+            if (user) {
+              userReview = response.data.reviews.find(function (review) {
+                return review.buyer_id === user.id;
+              });
+              setHasUserReviewed(!!userReview);
+            }
+            _context3.next = 13;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/mypurchases", {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
+              }
+            });
+          case 13:
+            purchaseResponse = _context3.sent;
+            hasPurchased = purchaseResponse.data.some(function (purchase) {
+              return purchase.idea.id === parseInt(id);
+            });
+            setHasUserPurchased(hasPurchased);
+            _context3.next = 21;
             break;
-          case 12:
-            _context3.prev = 12;
+          case 18:
+            _context3.prev = 18;
             _context3.t0 = _context3["catch"](0);
             console.error("Error fetching idea:", _context3.t0);
-            setError("データの取得に失敗しました。");
-          case 16:
+          case 21:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 12]]);
+      }, _callee3, null, [[0, 18]]);
     }));
     return function fetchIdea() {
       return _ref3.apply(this, arguments);
     };
   }();
+
+  // カテゴリー情報を取得
   var fetchCategories = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
       var response, categoriesMap;
@@ -14466,14 +14056,13 @@ var PurchaseDetail = function PurchaseDetail() {
               return map;
             }, {});
             setCategories(categoriesMap);
-            _context4.next = 12;
+            _context4.next = 11;
             break;
           case 8:
             _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
             console.error("Error fetching categories:", _context4.t0);
-            setError("カテゴリデータの取得に失敗しました。");
-          case 12:
+          case 11:
           case "end":
             return _context4.stop();
         }
@@ -14489,9 +14078,11 @@ var PurchaseDetail = function PurchaseDetail() {
     fetchCategories();
     fetchFavorite();
   }, [id]);
+
+  // レビュー情報を取得
   var fetchReviews = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-      var response, filteredReviews, sortedReviews;
+      var response, filteredReviews, sortedReviews, userReview;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
@@ -14504,44 +14095,50 @@ var PurchaseDetail = function PurchaseDetail() {
             });
           case 3:
             response = _context5.sent;
+            // レビューをフィルタリング
             filteredReviews = response.data.filter(function (review) {
               return review.idea_id === Number(id);
-            });
+            }); // ソート
             sortedReviews = filteredReviews.sort(function (a, b) {
               return new Date(b.updated_at) - new Date(a.updated_at);
             });
+            if (user) {
+              userReview = sortedReviews.find(function (review) {
+                return review.buyer_id === user.id;
+              });
+              setHasUserReviewed(!!userReview);
+            }
             setReviews(sortedReviews);
-            _context5.next = 12;
+            _context5.next = 13;
             break;
-          case 9:
-            _context5.prev = 9;
+          case 10:
+            _context5.prev = 10;
             _context5.t0 = _context5["catch"](0);
             console.error("Error fetching reviews:", _context5.t0);
-          case 12:
+          case 13:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 9]]);
+      }, _callee5, null, [[0, 10]]);
     }));
     return function fetchReviews() {
       return _ref5.apply(this, arguments);
     };
   }();
+
+  // ユーザー情報取得後にレビューを取得
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (user) {
       fetchReviews();
     }
   }, [user, id]);
-  if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      children: error
-    });
-  }
   if (!idea) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       children: "Loading..."
     });
   }
+
+  // ボタン機能
   var handleToggleFavorite = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(ideaId) {
       var response;
@@ -14686,14 +14283,14 @@ var PurchaseDetail = function PurchaseDetail() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "purchase-detail__buttons",
-          children: [user && idea.user_id !== user.id && favorite && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-            children: [purchaseCount > 0 && reviewCount === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: [user && idea.user_id !== user.id && hasUserPurchased && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: [purchaseCount > 0 && !hasUserReviewed && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               className: "purchase-detail__button",
               onClick: function onClick() {
                 return navigate("/reviews/".concat(idea.id));
               },
               children: "\u30EC\u30D3\u30E5\u30FC\u3092\u3059\u308B"
-            }), purchaseCount > 0 && reviewCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            }), purchaseCount > 0 && hasUserReviewed && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               className: "purchase-detail__button",
               onClick: function onClick() {
                 return navigate("/review-update/".concat(idea.id));
@@ -14809,22 +14406,6 @@ function PurchasesList() {
     isAuthenticated = _useState6[0],
     setIsAuthenticated = _useState6[1]; //認証状態の管理
 
-  // const fetchUser = async () => {
-  //     try {
-  //         const response = await axios.get("/api/user", {
-  //             headers: {
-  //                 Authorization: `Bearer ${sessionStorage.getItem(
-  //                     "auth_token"
-  //                 )}`, // 認証トークンを設定
-  //             },
-  //         });
-  //         setUser(response.data);
-  //         console.log("Fetched user:", response.data);
-  //     } catch (error) {
-  //         console.error("Error fetching user:", error);
-  //     }
-  // };
-
   // 購入済み情報を取得
   var fetchMyPurchases = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -14844,11 +14425,8 @@ function PurchasesList() {
             // updated_atに基づいてソート
             sortedPurchases = response.data.sort(function (a, b) {
               return new Date(b.updated_at) - new Date(a.updated_at);
-            }); // const recentPurchases = sortedPurchases.slice(0, 5);
-            // setPurchases(recentPurchases);
-            // console.log("Fetched purchases:", recentPurchases);
+            });
             setPurchases(sortedPurchases);
-            // console.log("Fetched purchases:", sortedPurchases);
             _context.next = 12;
             break;
           case 8:
@@ -14857,7 +14435,7 @@ function PurchasesList() {
             console.error("Error fetching purchases:", _context.t0);
             if (_context.t0.response && _context.t0.response.status === 401) {
               setIsAuthenticated(false); // 認証エラーの場合、認証状態を false に設定
-              navigate('/login'); // 認証エラーの場合、ログインページへリダイレクト
+              navigate("/login"); // 認証エラーの場合、ログインページへリダイレクト
             }
           case 12:
           case "end":
@@ -14887,7 +14465,6 @@ function PurchasesList() {
               return map;
             }, {});
             setCategories(categoriesMap);
-            // console.log("Fetched categories:", categoriesMap);
             _context2.next = 11;
             break;
           case 8:
@@ -14912,9 +14489,9 @@ function PurchasesList() {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user", {
                 headers: {
-                  Authorization: "Bearer ".concat(sessionStorage.getItem('auth_token'))
+                  Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
                 }
               });
             case 3:
@@ -14925,7 +14502,7 @@ function PurchasesList() {
               _context3.prev = 6;
               _context3.t0 = _context3["catch"](0);
               setIsAuthenticated(false);
-              navigate('/login'); // 認証されていない場合、ログインページへリダイレクト
+              navigate("/login"); // 認証されていない場合、ログインページへリダイレクト
             case 10:
             case "end":
               return _context3.stop();
@@ -14937,18 +14514,22 @@ function PurchasesList() {
       };
     }();
     checkAuth();
-    // fetchUser();
     fetchCategories();
     fetchMyPurchases();
   }, []);
+
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(ideaId) {
     // 詳細ボタンがクリックされたときの処理
-    navigate("/purchase-detail/".concat(ideaId)); // `/idea-detail/:ideaId` のパスに遷移
+    navigate("/purchase-detail/".concat(ideaId));
   };
-  var handleEditReviewClick = function handleEditReviewClick(purchaseId) {
-    // レビューボタンがクリックされたときの処理
-    navigate("/review-edit/".concat(purchaseId)); // `/review-edit/:purchaseId` のパスに遷移
-  };
+
+  // 必要ならつける レビューを編集するボタン
+  // const handleEditReviewClick = (purchaseId) => {
+  //     // レビューボタンがクリックされたときの処理
+  //     navigate(`/review-edit/${purchaseId}`);
+  // };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
@@ -14969,70 +14550,14 @@ function PurchasesList() {
                 return handleDetailClick(idea.id);
               }
             }
+            // 必要ならつける レビューボタン
             // {
             //     label: "レビューを編集",
             //     onClick: () => handleEditReviewClick(purchase.id),
             // },
             ]
           }, index);
-        })
-        //         <div className="idea-card" key={index}>
-        //             <div className="idea-card__content">
-        //                 <div className="idea-card__title-category">
-        //                     <h3 className="idea-card__title">
-        //                         {idea.title}
-        //                     </h3>
-        //                 </div>
-        //                 <p className="idea-card__summary">
-        //                     {idea.overview ||
-        //                         "概要はありません"}
-        //                 </p>
-        //                 {/* <p className="purchase-card__summary">{purchase.review}</p> */}
-        //                 <div className="idea-card__meta">
-        //                     <span className="idea-card__review-count">
-        //                         <i className="fa-regular fa-comment-dots"></i>
-        //                         {idea.favorite_count || 0}
-        //                     </span>
-        //                     <span className="idea-card__average-rating">
-        //                         <i className="fa-regular fa-thumbs-up"></i>
-        //                         {idea.average_rating || 0}
-        //                     </span>
-        //                     <p className="idea-card__category">
-        //                         <i className="fa-solid fa-tags"></i>
-        //                         {categories[idea.category_id]}
-        //                     </p>
-        //                     {/* <span className="idea-card__rating">
-        //                     <i className="fa-regular fa-thumbs-up"></i>
-        //                     {purchase.rating}
-        //                 </span>
-        //                 <p className="purchase-card__created_date">
-        //                     <i className="fa-regular fa-clock"></i>
-        //                     {new Date(purchase.created_at).toLocaleDateString()}
-        //                 </p> */}
-        //                 </div>
-        //             </div>
-        //             <div className="idea-card__buttons">
-        //                 <button
-        //                     className="idea-card__button"
-        //                     onClick={() =>
-        //                         handleDetailClick(idea.id)
-        //                     }
-        //                 >
-        //                     詳細
-        //                 </button>
-        //                 <button
-        //                     className="idea-card__button"
-        //                     onClick={() =>
-        //                         handleEditReviewClick(idea.id)
-        //                     }
-        //                 >
-        //                     レビューを編集
-        //                 </button>
-        //             </div>
-        //         </div>
-        //     );
-        // })
-        : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "\u8CFC\u5165\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093\u3002"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
@@ -15105,7 +14630,7 @@ var Register = function Register() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]),
     _useState4 = _slicedToArray(_useState3, 2),
     iconPreview = _useState4[0],
-    setIconPreview = _useState4[1];
+    setIconPreview = _useState4[1]; // アイコンの初期値を設定
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState6 = _slicedToArray(_useState5, 2),
     errors = _useState6[0],
@@ -15119,6 +14644,8 @@ var Register = function Register() {
       console.error("CSRF token not found");
     }
   }, []);
+
+  // アイコンの変更
   var handleChange = function handleChange(event) {
     var _event$target = event.target,
       name = _event$target.name,
@@ -15144,6 +14671,8 @@ var Register = function Register() {
       });
     }
   };
+
+  // プロフィール変更処理
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
       var data, response, blob;
@@ -15172,14 +14701,14 @@ var Register = function Register() {
             return response.blob();
           case 15:
             blob = _context.sent;
-            data.append("icon", blob, 'default-user-icon.png');
+            data.append("icon", blob, "default-user-icon.png");
           case 17:
             _context.prev = 17;
             _context.next = 20;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
           case 20:
             alert("登録が完了しました。");
-            window.location.href = "/mypage";
+            window.location.href = "/my-page";
             _context.next = 27;
             break;
           case 24:
@@ -15383,6 +14912,8 @@ function ReviewsList() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  // ユーザー情報を取得
   var fetchCurrentUser = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
@@ -15419,6 +14950,8 @@ function ReviewsList() {
     fetchReviews();
     fetchCurrentUser();
   }, []);
+
+  // ボタン機能
   var handleDetailClick = function handleDetailClick(id) {
     navigate("/idea-detail/".concat(id));
   };
@@ -15428,7 +14961,7 @@ function ReviewsList() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("main", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
         children: "\u30EC\u30D3\u30E5\u30FC\u4E00\u89A7"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
         className: "section-container",
@@ -15587,6 +15120,8 @@ var ReviewSubmission = function ReviewSubmission() {
     }();
     fetchIdea();
   }, [id]);
+
+  // ボタン機能
   var handleSubmit = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {
       var response;
@@ -15610,7 +15145,7 @@ var ReviewSubmission = function ReviewSubmission() {
               _context2.next = 9;
               break;
             }
-            navigate("/purchases/".concat(id));
+            navigate(-1);
             _context2.next = 10;
             break;
           case 9:
@@ -15745,19 +15280,20 @@ var ReviewSubmission = function ReviewSubmission() {
               required: true,
               className: "review-submission__input"
             })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "review-submission__buttons",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "submit",
-            className: "review-submission__button",
-            children: "\u9001\u4FE1"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            className: "review-submission__button review-submission__button--back",
-            onClick: function onClick() {
-              return navigate(-1);
-            },
-            children: "\u623B\u308B"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "review-submission__buttons",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "submit",
+              className: "review-submission__button",
+              children: "\u9001\u4FE1"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              className: "review-submission__button review-submission__button--back",
+              onClick: function onClick() {
+                return navigate(-1);
+              },
+              children: "\u623B\u308B"
+            })]
           })]
         })]
       })
@@ -15808,46 +15344,40 @@ var ReviewUpdate = function ReviewUpdate() {
     id = _useParams.id; // アイディアIDをURLパラメータから取得
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    user = _useState2[0],
-    setUser = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    idea = _useState2[0],
+    setIdea = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
-    idea = _useState4[0],
-    setIdea = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    review = _useState4[0],
+    setReview = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState6 = _slicedToArray(_useState5, 2),
-    categories = _useState6[0],
-    setCategories = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    rating = _useState6[0],
+    setRating = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState8 = _slicedToArray(_useState7, 2),
-    review = _useState8[0],
-    setReview = _useState8[1];
+    averageRating = _useState8[0],
+    setAverageRating = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState10 = _slicedToArray(_useState9, 2),
-    rating = _useState10[0],
-    setRating = _useState10[1];
+    reviewCount = _useState10[0],
+    setReviewCount = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
-    averageRating = _useState12[0],
-    setAverageRating = _useState12[1];
+    favoriteCount = _useState12[0],
+    setFavoriteCount = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState14 = _slicedToArray(_useState13, 2),
-    reviewCount = _useState14[0],
-    setReviewCount = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    purchaseCount = _useState14[0],
+    setPurchaseCount = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState16 = _slicedToArray(_useState15, 2),
-    favoriteCount = _useState16[0],
-    setFavoriteCount = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState18 = _slicedToArray(_useState17, 2),
-    purchaseCount = _useState18[0],
-    setPurchaseCount = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState20 = _slicedToArray(_useState19, 2),
-    error = _useState20[0],
-    setError = _useState20[1];
+    error = _useState16[0],
+    setError = _useState16[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
-  var fetchUser = /*#__PURE__*/function () {
+
+  // アイディア取得
+  var fetchIdea = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -15855,31 +15385,42 @@ var ReviewUpdate = function ReviewUpdate() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user", {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
             response = _context.sent;
-            setUser(response.data);
-            _context.next = 10;
+            setIdea(response.data.idea);
+            setAverageRating(response.data.average_rating || 0);
+            setReviewCount(response.data.review_count || 0);
+            setFavoriteCount(response.data.favorite_count || 0);
+            setPurchaseCount(response.data.purchase_count || 0);
+            _context.next = 15;
             break;
-          case 7:
-            _context.prev = 7;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
-            console.error("Error fetching user:", _context.t0);
-          case 10:
+            console.error("Error fetching idea:", _context.t0);
+            if (_context.t0.response && _context.t0.response.status === 403) {
+              setError("アクセス権限がありません。");
+            } else {
+              setError("アイディアの取得に失敗しました。");
+            }
+          case 15:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 11]]);
     }));
-    return function fetchUser() {
+    return function fetchIdea() {
       return _ref.apply(this, arguments);
     };
   }();
-  var fetchIdea = /*#__PURE__*/function () {
+
+  // レビュー取得
+  var fetchReview = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -15887,123 +15428,49 @@ var ReviewUpdate = function ReviewUpdate() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/ideas/".concat(id), {
-              headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
-              }
-            });
-          case 3:
-            response = _context2.sent;
-            setIdea(response.data.idea);
-            setAverageRating(response.data.average_rating || 0);
-            setReviewCount(response.data.review_count || 0);
-            setFavoriteCount(response.data.favorite_count || 0);
-            setPurchaseCount(response.data.purchase_count || 0);
-            _context2.next = 15;
-            break;
-          case 11:
-            _context2.prev = 11;
-            _context2.t0 = _context2["catch"](0);
-            console.error("Error fetching idea:", _context2.t0);
-            if (_context2.t0.response && _context2.t0.response.status === 403) {
-              setError("アクセス権限がありません。");
-            } else {
-              setError("アイディアの取得に失敗しました。");
-            }
-          case 15:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 11]]);
-    }));
-    return function fetchIdea() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var fetchCategories = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      var response, categoriesMap;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
-          case 3:
-            response = _context3.sent;
-            categoriesMap = response.data.reduce(function (map, category) {
-              map[category.id] = category.name;
-              return map;
-            }, {});
-            setCategories(categoriesMap);
-            _context3.next = 12;
-            break;
-          case 8:
-            _context3.prev = 8;
-            _context3.t0 = _context3["catch"](0);
-            console.error("Error fetching categories:", _context3.t0);
-            setError("カテゴリデータの取得に失敗しました。");
-          case 12:
-          case "end":
-            return _context3.stop();
-        }
-      }, _callee3, null, [[0, 8]]);
-    }));
-    return function fetchCategories() {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-  var fetchReview = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-      var response;
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/reviews/".concat(id, "/my-review"), {
               headers: {
                 Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
               }
             });
           case 3:
-            response = _context4.sent;
+            response = _context2.sent;
             if (response.data.review) {
               setReview(response.data.review.review);
               setRating(response.data.review.rating);
             }
-            _context4.next = 11;
+            _context2.next = 11;
             break;
           case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.error("Error fetching review:", _context4.t0);
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.error("Error fetching review:", _context2.t0);
             setError("レビューの取得に失敗しました。");
           case 11:
           case "end":
-            return _context4.stop();
+            return _context2.stop();
         }
-      }, _callee4, null, [[0, 7]]);
+      }, _callee2, null, [[0, 7]]);
     }));
     return function fetchReview() {
-      return _ref4.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchUser();
     fetchIdea();
-    fetchCategories();
     fetchReview();
   }, [id]);
+
+  // レビュー更新を送信
   var handleSubmit = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(event) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(event) {
       var response;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
             event.preventDefault();
-            _context5.prev = 1;
-            _context5.next = 4;
+            _context3.prev = 1;
+            _context3.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/reviews/".concat(id), {
               review: review,
               rating: rating
@@ -16013,32 +15480,32 @@ var ReviewUpdate = function ReviewUpdate() {
               }
             });
           case 4:
-            response = _context5.sent;
+            response = _context3.sent;
             if (!(response.status === 200)) {
-              _context5.next = 9;
+              _context3.next = 9;
               break;
             }
             navigate(-1); // 直前のページに戻る
-            _context5.next = 10;
+            _context3.next = 10;
             break;
           case 9:
             throw new Error("レビューの更新に失敗しました。");
           case 10:
-            _context5.next = 16;
+            _context3.next = 16;
             break;
           case 12:
-            _context5.prev = 12;
-            _context5.t0 = _context5["catch"](1);
-            console.error("Error updating review:", _context5.t0);
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](1);
+            console.error("Error updating review:", _context3.t0);
             setError("レビューの更新に失敗しました。");
           case 16:
           case "end":
-            return _context5.stop();
+            return _context3.stop();
         }
-      }, _callee5, null, [[1, 12]]);
+      }, _callee3, null, [[1, 12]]);
     }));
     return function handleSubmit(_x) {
-      return _ref5.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
   if (error) {
@@ -16146,22 +15613,23 @@ var ReviewUpdate = function ReviewUpdate() {
               },
               required: true
             })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "review-update__buttons",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "submit",
-            className: "review-update__button",
-            children: "\u66F4\u65B0"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            className: "review-update__button review-update__button--back",
-            onClick: function onClick() {
-              return navigate(-1);
-            },
-            style: {
-              marginTop: "10px"
-            },
-            children: "\u623B\u308B"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "review-update__buttons",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "submit",
+              className: "review-update__button",
+              children: "\u66F4\u65B0"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              className: "review-update__button review-update__button--back",
+              onClick: function onClick() {
+                return navigate(-1);
+              },
+              style: {
+                marginTop: "10px"
+              },
+              children: "\u623B\u308B"
+            })]
           })]
         })]
       })
@@ -16191,13 +15659,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/images/brainstorm-idea.png */ "./resources/assets/images/brainstorm-idea.png");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-// import axios from "axios";
 
 
 
-// import { brainstormImage } from "../assets";
- // 適切なパスに変更
-// import "../../sass/app.scss";
+
+
+// ボタン機能
 
 function TopPage() {
   var handleRegisterClick = function handleRegisterClick() {
@@ -16298,7 +15765,7 @@ function TopPage() {
         className: "registration",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           className: "registration__message",
-          children: "\u3042\uFF01\u304C\u6D88\u3048\u53BB\u308B\u524D\u306B\uFF0E\uFF0E\uFF0E\u3000\u3000\u65B0\u898F\u767B\u9332\u306F\u3053\u3061\u3089"
+          children: "\u3042\uFF01\u304C\u6D88\u3048\u53BB\u308B\u524D\u306B\uFF0E\uFF0E\uFF0E \u65B0\u898F\u767B\u9332\u306F\u3053\u3061\u3089"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "registration__buttons",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
@@ -16358,9 +15825,6 @@ var UnauthenticatedApp = function UnauthenticatedApp() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
       path: "*",
       element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_NotFound__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-      path: "/not",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_NotFound__WEBPACK_IMPORTED_MODULE_4__["default"], {})
     })]
   });
 };
@@ -16396,64 +15860,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// // pages/UserProfile.js
-// import React, { useEffect, useState } from 'react';
-// import axios from '../axiosConfig';
-// import { useNavigate, useParams } from 'react-router-dom';
-
-// const UserProfile = () => {
-//     const [user, setUser] = useState(null);
-//     const navigate = useNavigate();
-//     const { userId } = useParams(); // URLからユーザーIDを取得
-
-//     // 指定したユーザー情報を取得
-//     useEffect(() => {
-//         const fetchUser = async () => {
-//             try {
-//                 const response = await axios.get(`/api/user/${userId}`, {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-//                     }
-//                 });
-//                 setUser(response.data);
-//             } catch (error) {
-//                 console.error('Error fetching user data', error);
-//             }
-//         };
-
-//         fetchUser();
-//     }, [userId]);
-
-//     const handleBackToMyPage = () => {
-//         navigate('/my-page'); // マイページに戻る
-//     };
-
-//     return (
-//         <div>
-//             <h2>ユーザープロフィール</h2>
-//             {user ? (
-//                 <div>
-//                     {/* プロフィール情報の表示 */}
-//                     <img 
-//                         src={user.profile_image_url || '/images/default-user-icon.png'} 
-//                         alt="User Icon" 
-//                         className="profile__image"
-//                         style={{ width: '100px', height: '100px' }}
-//                     />
-//                     <p>名前: {user.name}</p>
-//                     {/* <p>メール: {user.email}</p> */}
-//                     <p>自己紹介: {user.bio || "自己紹介がありません"}</p>
-//                 </div>
-//             ) : (
-//                 <p>読み込み中...</p>
-//             )}
-//             <button onClick={handleBackToMyPage}>マイページに戻る</button> {/* マイページに戻るボタン */}
-//         </div>
-//     );
-// };
-
-// export default UserProfile;
-
 
 
 
@@ -16570,74 +15976,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useEffect, useState } from "react";
-// import axios from "../axiosConfig";
-// import { useNavigate } from "react-router-dom";
-
-// const Profile = () => {
-//     const [user, setUser] = useState(null);
-//     const navigate = useNavigate();
-
-//     // ユーザー情報を取得
-//     useEffect(() => {
-//         const fetchUser = async () => {
-//             try {
-//                 const response = await axios.get("/api/user", {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem(
-//                             "auth_token"
-//                         )}`,
-//                     },
-//                 });
-//                 setUser(response.data);
-//             } catch (error) {
-//                 console.error("Error fetching user data", error);
-//             }
-//         };
-
-//         fetchUser();
-//     }, []);
-
-//     const handleEditProfile = () => {
-//         navigate("/profile-edit");
-//     };
-
-//     const handleBackToMyPage = () => {
-//         navigate("/my-page");
-//     };
-
-//     return (
-//         <div>
-//             <h2>プロフィール</h2>
-//             {user ? (
-//                 <div>
-//                     <img
-//                         src={
-//                             user.profile_image_url ||
-//                             "/images/default-user-icon.png"
-//                         }
-//                         alt="User Icon"
-//                         className="profile__image"
-//                         style={{ width: "100px", height: "100px" }}
-//                     />
-//                     <p>名前: {user.name}</p>
-
-//                     <p>自己紹介: {user.bio || "自己紹介がありません"}</p>
-
-//                     <button onClick={handleEditProfile}>
-//                         プロフィールを編集
-//                     </button>
-//                 </div>
-//             ) : (
-//                 <p>読み込み中...</p>
-//             )}
-//             <button onClick={handleBackToMyPage}>マイページに戻る</button>{" "}
-//         </div>
-//     );
-// };
-
-// export default Profile;
-
 
 
 
@@ -16687,11 +16025,13 @@ var Profile = function Profile() {
     }();
     fetchUser();
   }, []);
+
+  // ボタン機能
   var handleEditProfile = function handleEditProfile() {
     navigate("/profile-edit");
   };
   var handleBackToMyPage = function handleBackToMyPage() {
-    navigate("/my-page"); // マイページに戻る
+    navigate("/my-page");
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "profile__page",

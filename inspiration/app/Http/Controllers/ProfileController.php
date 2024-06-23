@@ -58,7 +58,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'bio' => 'nullable|string|max;255',
+            'bio' => 'nullable|string|max:255',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像バリデーションの変更
         ]);
 

@@ -10,30 +10,39 @@ function MyReviewsList() {
     const [currentUser, setCurrentUser] = useState(null);
     const navigate = useNavigate();
 
-    // 自身のレビュー情報を取得
+    // 投稿したレビュー情報を取得
     const fetchMyReviews = async () => {
         try {
-            // 現在のユーザー情報を取得
-            const userResponse = await axios.get('/api/user', {
+            // 自身のユーザー情報を取得
+            const userResponse = await axios.get("/api/user", {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
             const currentUser = userResponse.data;
             setCurrentUser(currentUser);
 
-            // 現在のユーザーのレビューのみを取得
-            const reviewsResponse = await axios.get('/api/reviews', {
+            // 自身のレビューのみを取得
+            const reviewsResponse = await axios.get("/api/reviews", {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('auth_token')}`
-                }
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
             });
 
-            const myReviews = reviewsResponse.data.filter(review => review.buyer_id === currentUser.id);
-            const sortedReviews = myReviews.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            // 自身の投稿したレビューを表示 最新が上に来るように並び替え
+            const myReviews = reviewsResponse.data.filter(
+                (review) => review.buyer_id === currentUser.id
+            );
+            const sortedReviews = myReviews.sort(
+                (a, b) => new Date(b.created_at) - new Date(a.created_at)
+            );
             setReviews(sortedReviews);
         } catch (error) {
-            console.error('Error fetching my reviews:', error);
+            console.error("Error fetching my reviews:", error);
         }
     };
 
@@ -41,13 +50,15 @@ function MyReviewsList() {
         fetchMyReviews();
     }, []);
 
+    // ボタン機能
     const handleDetailClick = (id) => {
         navigate(`/idea-detail/${id}`);
     };
 
-    const handleEditReviewClick = (reviewId) => {
-        navigate(`/review-edit/${reviewId}`);
-    };
+    // 必要なら，レビューをする機能
+    // const handleEditReviewClick = (reviewId) => {
+    //     navigate(`/review-edit/${reviewId}`);
+    // };
 
     return (
         <div>
@@ -61,13 +72,17 @@ function MyReviewsList() {
                                 key={index}
                                 idea={review.idea}
                                 review={review}
-                                user={{ name: review.buyer?.name || '匿名ユーザー' }}
+                                user={{
+                                    name: review.buyer?.name || "匿名ユーザー",
+                                }}
                                 isOwner={true} // 常に自身のレビューのみ表示
                                 buttons={[
                                     {
                                         label: "詳細",
-                                        onClick: () => handleDetailClick(review.idea.id),
+                                        onClick: () =>
+                                            handleDetailClick(review.idea.id),
                                     },
+                                    // 必要なら，レビューをする機能
                                     // {
                                     //     label: "レビューを編集",
                                     //     onClick: () => handleEditReviewClick(review.id),

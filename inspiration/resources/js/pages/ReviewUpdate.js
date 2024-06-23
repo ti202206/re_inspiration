@@ -6,9 +6,7 @@ import Footer from "../components/Footer";
 
 const ReviewUpdate = () => {
     const { id } = useParams(); // アイディアIDをURLパラメータから取得
-    const [user, setUser] = useState(null);
     const [idea, setIdea] = useState(null);
-    const [categories, setCategories] = useState({});
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
@@ -18,21 +16,7 @@ const ReviewUpdate = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const fetchUser = async () => {
-        try {
-            const response = await axios.get("/api/user", {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem(
-                        "auth_token"
-                    )}`,
-                },
-            });
-            setUser(response.data);
-        } catch (error) {
-            console.error("Error fetching user:", error);
-        }
-    };
-
+    // アイディア取得
     const fetchIdea = async () => {
         try {
             const response = await axios.get(`/api/ideas/${id}`, {
@@ -57,20 +41,7 @@ const ReviewUpdate = () => {
         }
     };
 
-    const fetchCategories = async () => {
-        try {
-            const response = await axios.get("/api/categories");
-            const categoriesMap = response.data.reduce((map, category) => {
-                map[category.id] = category.name;
-                return map;
-            }, {});
-            setCategories(categoriesMap);
-        } catch (error) {
-            console.error("Error fetching categories:", error);
-            setError("カテゴリデータの取得に失敗しました。");
-        }
-    };
-
+    // レビュー取得
     const fetchReview = async () => {
         try {
             const response = await axios.get(`/api/reviews/${id}/my-review`, {
@@ -91,12 +62,11 @@ const ReviewUpdate = () => {
     };
 
     useEffect(() => {
-        fetchUser();
         fetchIdea();
-        fetchCategories();
         fetchReview();
     }, [id]);
 
+    // レビュー更新を送信
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -202,20 +172,25 @@ const ReviewUpdate = () => {
                                 required
                             />
                         </div>
-                    </form>
-                    <div className="review-update__buttons">
-                        <button type="submit" className="review-update__button">
-                            更新
-                        </button>
 
-                        <button
-                            className="review-update__button review-update__button--back"
-                            onClick={() => navigate(-1)}
-                            style={{ marginTop: "10px" }}
-                        >
-                            戻る
-                        </button>
-                    </div>
+                        <div className="review-update__buttons">
+                            <button
+                                type="submit"
+                                className="review-update__button"
+                            >
+                                更新
+                            </button>
+
+                            <button
+                                type="button"
+                                className="review-update__button review-update__button--back"
+                                onClick={() => navigate(-1)}
+                                style={{ marginTop: "10px" }}
+                            >
+                                戻る
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </main>
             <Footer />
