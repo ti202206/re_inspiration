@@ -12009,6 +12009,8 @@ var IdeaDetail = function IdeaDetail() {
                     day: "numeric"
                   })
                 })
+              }), index < reviews.length - 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {
+                className: "review-divider"
               })]
             }, index);
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
@@ -13471,12 +13473,11 @@ function MyReviewsList() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
         className: "section-container",
         children: reviews.length > 0 ? reviews.map(function (review, index) {
-          var _review$buyer;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_ReviewCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
             idea: review.idea,
             review: review,
             user: {
-              name: ((_review$buyer = review.buyer) === null || _review$buyer === void 0 ? void 0 : _review$buyer.name) || "匿名ユーザー"
+              name: review.buyer_name || "匿名ユーザー"
             },
             isOwner: true // 常に自身のレビューのみ表示
             ,
@@ -14340,6 +14341,8 @@ var PurchaseDetail = function PurchaseDetail() {
                     day: "numeric"
                   })]
                 })
+              }), index < reviews.length - 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {
+                className: "review-divider"
               })]
             }, index);
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {

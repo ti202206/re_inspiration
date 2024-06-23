@@ -73,7 +73,7 @@ function MyReviewsList() {
                                 idea={review.idea}
                                 review={review}
                                 user={{
-                                    name: review.buyer?.name || "匿名ユーザー",
+                                    name: review.buyer_name || "匿名ユーザー",
                                 }}
                                 isOwner={true} // 常に自身のレビューのみ表示
                                 buttons={[
