@@ -15,9 +15,11 @@ const PurchaseDetail = () => {
     const [reviewCount, setReviewCount] = useState(0);
     const [favoriteCount, setFavoriteCount] = useState(0);
     const [purchaseCount, setPurchaseCount] = useState(0);
-    const [error, setError] = useState(null);
+    const [hasUserReviewed, setHasUserReviewed] = useState(false);
+    const [hasUserPurchased, setHasUserPurchased] = useState(false);
     const navigate = useNavigate();
 
+    // ユーザー情報を取得
     const fetchUser = async () => {
         try {
             const response = await axios.get("/api/user", {
@@ -33,6 +35,7 @@ const PurchaseDetail = () => {
         }
     };
 
+    // 気になるを取得
     const fetchFavorite = async () => {
         try {
             const response = await axios.get(`/api/favorites/idea/${id}`, {
@@ -48,6 +51,7 @@ const PurchaseDetail = () => {
         }
     };
 
+    // アイディア情報を取得
     const fetchIdea = async () => {
         try {
             const response = await axios.get(`/api/ideas/${id}`, {
@@ -63,12 +67,32 @@ const PurchaseDetail = () => {
             setFavoriteCount(response.data.favorite_count || 0);
             setPurchaseCount(response.data.purchase_count || 0);
             setReviews(response.data.reviews || []);
+
+            //＊＊＊＊＊＊変更： ユーザーがレビューしているかどうかを設定＊＊＊＊＊＊
+            if (user) {
+                const userReview = response.data.reviews.find(
+                    (review) => review.buyer_id === user.id
+                );
+                setHasUserReviewed(!!userReview);
+            }
+
+            const purchaseResponse = await axios.get("/api/mypurchases", {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
+            });
+            const hasPurchased = purchaseResponse.data.some(
+                (purchase) => purchase.idea.id === parseInt(id)
+            );
+            setHasUserPurchased(hasPurchased);
         } catch (error) {
             console.error("Error fetching idea:", error);
-            setError("データの取得に失敗しました。");
         }
     };
 
+    // カテゴリー情報を取得
     const fetchCategories = async () => {
         try {
             const response = await axios.get("/api/categories");
@@ -79,7 +103,6 @@ const PurchaseDetail = () => {
             setCategories(categoriesMap);
         } catch (error) {
             console.error("Error fetching categories:", error);
-            setError("カテゴリデータの取得に失敗しました。");
         }
     };
 
@@ -90,6 +113,7 @@ const PurchaseDetail = () => {
         fetchFavorite();
     }, [id]);
 
+    // レビュー情報を取得
     const fetchReviews = async () => {
         try {
             const response = await axios.get("/api/reviews", {
@@ -99,32 +123,40 @@ const PurchaseDetail = () => {
                     )}`,
                 },
             });
+            // レビューをフィルタリング
             const filteredReviews = response.data.filter(
                 (review) => review.idea_id === Number(id)
             );
+            // ソート
             const sortedReviews = filteredReviews.sort(
                 (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
             );
+
+            if (user) {
+                const userReview = sortedReviews.find(
+                    (review) => review.buyer_id === user.id
+                );
+                setHasUserReviewed(!!userReview);
+            }
+
             setReviews(sortedReviews);
         } catch (error) {
             console.error("Error fetching reviews:", error);
         }
     };
 
+    // ユーザー情報取得後にレビューを取得
     useEffect(() => {
         if (user) {
             fetchReviews();
         }
     }, [user, id]);
 
-    if (error) {
-        return <div>{error}</div>;
-    }
-
     if (!idea) {
         return <div>Loading...</div>;
     }
 
+    // ボタン機能
     const handleToggleFavorite = async (ideaId) => {
         try {
             const response = await axios.post(
@@ -225,32 +257,36 @@ const PurchaseDetail = () => {
                     </div>
 
                     <div className="purchase-detail__buttons">
-                        {user && idea.user_id !== user.id && favorite && (
-                            <>
-                                {purchaseCount > 0 && reviewCount === 0 && (
-                                    <button
-                                        className="purchase-detail__button"
-                                        onClick={() =>
-                                            navigate(`/reviews/${idea.id}`)
-                                        }
-                                    >
-                                        レビューをする
-                                    </button>
-                                )}
-                                {purchaseCount > 0 && reviewCount > 0 && (
-                                    <button
-                                        className="purchase-detail__button"
-                                        onClick={() =>
-                                            navigate(
-                                                `/review-update/${idea.id}`
-                                            )
-                                        }
-                                    >
-                                        レビューを編集する
-                                    </button>
-                                )}
-                            </>
-                        )}
+                        {user &&
+                            idea.user_id !== user.id &&
+                            hasUserPurchased && (
+                                <>
+                                    {/* 購入して，レビューしていない場合はレビューをする */}
+                                    {purchaseCount > 0 && !hasUserReviewed && (
+                                        <button
+                                            className="purchase-detail__button"
+                                            onClick={() =>
+                                                navigate(`/reviews/${idea.id}`)
+                                            }
+                                        >
+                                            レビューをする
+                                        </button>
+                                    )}
+                                    {/* 購入して，レビューもしている場合は編集する */}
+                                    {purchaseCount > 0 && hasUserReviewed && (
+                                        <button
+                                            className="purchase-detail__button"
+                                            onClick={() =>
+                                                navigate(
+                                                    `/review-update/${idea.id}`
+                                                )
+                                            }
+                                        >
+                                            レビューを編集する
+                                        </button>
+                                    )}
+                                </>
+                            )}
 
                         {user && idea.user_id !== user.id && favorite && (
                             <button
