@@ -84,14 +84,6 @@ class IdeaController extends Controller
      */
     public function store(StoreIdeaRequest $request)  //storeIdeaRequestのauthorizeをtrueに変更中
     {
-        // //ポストされたデータを取得して登録する
-        // $idea = Idea::create($request->all());
-
-        // //データがあればjsonで返す（ステータスコード２０１）
-        // //アイディアがなければ，エラーレスポンス（ステータスコード５００）
-        // return $idea ? response()->json($idea, 201) : response()->json([], 500);
-
-
         // バリデーション済みのデータを使用してアイデアを作成
         $validatedData = $request->validated();
         $idea = new Idea();
@@ -126,9 +118,6 @@ class IdeaController extends Controller
         }
 
         //レビューがある購入の詳細情報をロードする
-        // $idea->load(['purchases' => function($query) {
-        //     $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
-        // }]);
         $idea->load(['user:id,name', 'purchases' => function ($query) {
             $query->whereNotNull('review')->select('idea_id', 'review', 'rating', 'created_at');
         }]);
@@ -225,12 +214,6 @@ class IdeaController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        //削除する前にデータを保持
-        // $deletedIdea = $idea;
-
-        //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
-        //削除が失敗した場合はからのjsonレスポンスを返す（ステータスコード５００）
-        // return $idea->delete() ? response()->json($deletedIdea) : response()->json([],500);
         //データが削除されれば削除されたアイディアを含むレスポンスをjsonで返す
         //削除が失敗した場合は空のjsonレスポンスを返す（ステータスコード５００）
         try {

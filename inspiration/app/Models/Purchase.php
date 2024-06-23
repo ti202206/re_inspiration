@@ -15,8 +15,6 @@ class Purchase extends Model
         'rating',
         'review',
         'reviewed_at',
-        // 'created_at',
-        // 'updated_at'
     ];
 
     public $timestamps = true;

@@ -37,6 +37,7 @@ class FavoriteController extends Controller
         return response()->json(['message' => 'Favorite toggled successfully.', 'is_favorite' => $favorite->is_favorite]);
     }
 
+    // アイディアIDに基づいて気になる情報を取得
     public function getFavoriteByIdeaId($idea_id)
     {
         $favorite = Favorite::where('user_id', Auth::id())
@@ -49,34 +50,6 @@ class FavoriteController extends Controller
 
         return response()->json($favorite);
     }
-
-    // public function toggleFavorite(Request $request)
-    // {
-    //     $idea = Idea::findOrFail($request->idea_id);
-
-    //     if ($idea->user_id == auth()->id()) {
-    //         return response()->json(['message' => 'Unauthorized'], 403);
-    //     }
-
-    //     $favorite = Favorite::where('user_id', auth()->id())->where('idea_id', $idea->id)->first();
-
-    //     if ($favorite) {
-    //         // 気になるの状態を反転
-    //         $favorite->is_favorite = !$favorite->is_favorite;
-    //         $favorite->save();
-    //     } else {
-    //         // レコードがない場合は新規作成してtrueに設定
-    //         $favorite = Favorite::create([
-    //             'user_id' => auth()->id(),
-    //             'idea_id' => $idea->id,
-    //             'is_favorite' => true
-    //         ]);
-    //     }
-
-    //     return response()->json(['message' => 'Favorite toggled successfully.', 'is_favorite' => $favorite->is_favorite]);
-    // }
-
-
 
     /**
      * ログインユーザーの気になる一覧を表示

@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /**
+     *認証リクエストを処理
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
     {
+        // バリデーション
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -25,10 +27,12 @@ class LoginController extends Controller
             return response()->json(Auth::user());
         }
 
-        return response()->json([],401);
+        return response()->json([], 401);
     }
 
-        /**
+    /**
+     * ログアウト処理
+     * 
      *@param Request $request
      *@return \Illuminate\Http\JsonResponse
      */

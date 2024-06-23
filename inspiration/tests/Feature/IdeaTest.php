@@ -99,7 +99,7 @@ class IdeaTest extends TestCase
             'overview' => 'テスト概要',
             'content' => '1234567890',
             'price' => 10000,
-            'purchased' => 1
+            'purchased' => 0
         ];
 
         //アイディアを登録
@@ -535,11 +535,4 @@ class IdeaTest extends TestCase
         $response->assertStatus(403);
     }
 
-
-
-
-    //権限以外の人がcontentを見れないそれぞれ？
-    // 権限以外の人が編集削除ができない→ideaについては完了
-    //平均値が出力される
-    //個別レビューが取得できる
 }

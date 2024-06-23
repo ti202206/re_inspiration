@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * 登録画面を表示
      *
      * @return \Illuminate\View\View
      */
@@ -24,7 +24,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * 新規ユーザー登録の処理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -33,12 +33,14 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーション
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // ユーザー作成
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

@@ -126,9 +126,9 @@ class PurchaseTest extends TestCase
 
         //データベースから購入情報を取得
         $purchase = Purchase::first();
-
+        // dd($purchase);
         //レビューと評価を追加
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'review' => 'Great product!',
             'rating' => 5
         ]);
@@ -158,7 +158,7 @@ class PurchaseTest extends TestCase
         $purchase = Purchase::first();
 
         //レビューと評価を追加
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'rating' => 5
         ]);
 
@@ -186,7 +186,7 @@ class PurchaseTest extends TestCase
         $purchase = Purchase::first();
 
         //レビューと評価を追加
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'review' => 'Great product!',
         ]);
 
@@ -215,7 +215,7 @@ class PurchaseTest extends TestCase
         $purchase = Purchase::first();
 
         //レビューと評価を追加
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'review' => 'Great product!',
             'rating' => 5
         ]);
@@ -224,13 +224,13 @@ class PurchaseTest extends TestCase
         $this->actingAs($this->user3);
 
         //評価・レビューの変更
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'review' => 'Good Service!',
             'rating' => 4
         ]);
 
-        //レスポンス（403:禁止されている）の確認
-        $response->assertStatus(403);
+        //コントローラーから404購入情報が見当たらないが返ってくる
+        $response->assertStatus(404);
     }
 
     /**
@@ -253,13 +253,13 @@ class PurchaseTest extends TestCase
         $this->actingAs($this->user1);
 
         //レビューと評価を追加
-        $response = $this->patchJson("/api/purchases/{$purchase->id}", [
+        $response = $this->putJson("/api/reviews/{$purchase->idea_id}", [
             'review' => 'Great product!',
             'rating' => 5
         ]);
 
-        //レスポンス（403:禁止されている）の確認
-        $response->assertStatus(403);
+        //コントローラーから404購入情報が見当たらないが返ってくる
+        $response->assertStatus(404);
     }
 
     /**
@@ -279,7 +279,7 @@ class PurchaseTest extends TestCase
         ]);
 
         //一覧の取得
-        $response = $this->getJson('/api/purchases');
+        $response = $this->getJson('/api/mypurchases');
 
         //レスポンスの確認
         $response->assertOk();
@@ -306,7 +306,7 @@ class PurchaseTest extends TestCase
         $this->actingAs($this->user3);
 
         //一覧を取得
-        $response = $this->getJson('/api/purchases');
+        $response = $this->getJson('/api/mypurchases');
 
         //何も取得できないことを確認
         $response->assertJsonCount(0);
@@ -330,12 +330,12 @@ class PurchaseTest extends TestCase
 
         //データから取得して，レビュー操作
         $purchase1 = Purchase::where('idea_id', $this->ideas[0]->id)->first();
-        $this->patchJson("/api/purchases/{$purchase1->id}", [
+        $this->putJson("/api/reviews/{$purchase1->idea_id}", [
             'review' => 'Great product!',
             'rating' => 5
         ]);
         $purchase2 = Purchase::where('idea_id', $this->ideas[1]->id)->first();
-        $this->patchJson("/api/purchases/{$purchase2->id}", [
+        $this->putJson("/api/reviews/{$purchase2->idea_id}", [
             'review' => 'Good Service!',
             'rating' => 4
         ]);
@@ -404,12 +404,9 @@ class PurchaseTest extends TestCase
      */
     public function 購入履歴が空の場合は何も表示しない()
     {
-        $response = $this->getJson('/api/purchases');
+        $response = $this->getJson('/api/mypurchases');
 
         $response->assertOk();
         $response->assertJsonCount(0);
     }
 }
-
-
-//同じアイディアは購入できない

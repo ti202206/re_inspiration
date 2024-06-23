@@ -14,10 +14,9 @@ class StorePurchaseRequest extends FormRequest
      */
     public function authorize()
     {
-        // アイディアを取得
+        // アイディアを取得しユーザー権限をチェック
         $idea = Idea::find($this->idea_id);
 
-        // アイディアが存在し、かつリクエストユーザーがアイディアの所有者でないことを確認
         return $idea && $idea->user_id !== auth()->id();
     }
 
