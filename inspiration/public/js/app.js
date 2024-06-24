@@ -12633,11 +12633,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var Login = function Login() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("test@example.com"),
+  // const [email, setEmail] = useState("test@example.com"); //開発時用
+  // const [password, setPassword] = useState("12345678");
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
     email = _useState2[0],
     setEmail = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("12345678"),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     password = _useState4[0],
     setPassword = _useState4[1];
@@ -15660,7 +15662,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/components/Footer.js");
 /* harmony import */ var _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/images/brainstorm-idea.png */ "./resources/assets/images/brainstorm-idea.png");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _assets_images_image2_webp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../assets/images/image2.webp */ "./resources/assets/images/image2.webp");
+/* harmony import */ var _assets_images_image3_webp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/images/image3.webp */ "./resources/assets/images/image3.webp");
+/* harmony import */ var _assets_images_image4_webp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/images/image4.webp */ "./resources/assets/images/image4.webp");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -15676,113 +15683,113 @@ function TopPage() {
   var handleLoginClick = function handleLoginClick() {
     window.location.href = "/login";
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
         className: "section section--concept",
         id: "concept",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h2", {
           className: "section__title",
-          children: ["\u3042\u306A\u305F\u306EInspiration\u3092\u73FE\u5B9F\u306B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u65B0\u3057\u3044\u4E16\u754C\u3092\u4F5C\u308A\u51FA\u305D\u3046\u3002"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: ["\u3042\u306A\u305F\u306EInspiration\u3092\u73FE\u5B9F\u306B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u65B0\u3057\u3044\u4E16\u754C\u3092\u4F5C\u308A\u51FA\u305D\u3046\u3002"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "concept",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
             className: "concept__image",
             src: _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__["default"],
-            alt: "\u30A4\u30E1\u30FC\u30B8"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            alt: "\u30A4\u30E1\u30FC\u30B81"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
             className: "concept__description",
-            children: ["\u666E\u6BB5\u4F55\u6C17\u306A\u3044\u65E5\u5E38\u306E\u4E2D\u3067\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3075\u3068\u3057\u305F\u304D\u3063\u304B\u3051\u3067\u6E67\u3044\u3066\u304F\u308B\u30A2\u30A4\u30C7\u30A3\u30A2\u3042\u308A\u307E\u305B\u3093\u304B\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u300C\u304A\u3063\uFF01\u3053\u308C\u304C\u3067\u304D\u305F\u3089\u9762\u767D\u3044\uFF01\u300D\u3068\u601D\u3063\u305F\u77AC\u9593\u306B\u3084\u3063\u3066\u304F\u308B\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u300C\u4ECA\u306F\u307E\u3060\u7121\u7406\u3060\u306A\uFF0E\uFF0E\uFF0E\u300D\u3068\u3044\u3046\u8AE6\u3081\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3053\u308C\u3092\u4ECA\u304B\u3089\u5F62\u306B\u3057\u3066\u3044\u304D\u307E\u305B\u3093\u304B\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3067\u3082\u3069\u3046\u3084\u3063\u3066\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u304A\u91D1\u3082\u306A\u3044\u3057\u3001\u8CC7\u91D1\u3082\u306A\u3044\u3057\u3001\u77E5\u8B58\u3082\u306A\u3044\uFF0E\uFF0E\uFF0E", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3042\u308B\u306E\u306F\u30A2\u30A4\u30C7\u30A3\u30A2\u3060\u3051\uFF0E\uFF0E\uFF0E", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u5927\u4E08\u592B\uFF01\u3053\u306E\u30B5\u30A4\u30C8\u3067\u3042\u306A\u305F\u306E\u300C\uFF01\uFF08\u3072\u3089\u3081\u304D\uFF09\u300D\u304C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3008\u3042\u306A\u305F\u3009\u306E\u3001\u305D\u3057\u3066\u3008\u307F\u3093\u306A\u3009\u306E\u5F79\u306B\u7ACB\u3061\u307E\u3059\uFF01\uFF01", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u305D\u3046\u3001\u3042\u306A\u305F\u304C\u65B0\u3057\u3044\u4E16\u754C\u3092\u4F5C\u308B\u306E\u3067\u3059\uFF01\uFF01"]
+            children: ["\u666E\u6BB5\u4F55\u6C17\u306A\u3044\u65E5\u5E38\u306E\u4E2D\u3067\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3075\u3068\u3057\u305F\u304D\u3063\u304B\u3051\u3067\u6E67\u3044\u3066\u304F\u308B\u30A2\u30A4\u30C7\u30A3\u30A2\u3042\u308A\u307E\u305B\u3093\u304B\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u300C\u304A\u3063\uFF01\u3053\u308C\u304C\u3067\u304D\u305F\u3089\u9762\u767D\u3044\uFF01\u300D\u3068\u601D\u3063\u305F\u77AC\u9593\u306B\u3084\u3063\u3066\u304F\u308B\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u300C\u7121\u7406\u304B\u3082\uFF0E\uFF0E\uFF0E\u300D\u3068\u3044\u3046\u5FC3\u306E\u8A00\u8449\uFF0E\uFF0E\uFF0E", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3053\u308C\u3092\u4ECA\u304B\u3089\u5F62\u306B\u3057\u3066\u3044\u304D\u307E\u305B\u3093\u304B\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3067\u3082\u3069\u3046\u3084\u3063\u3066\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u304A\u91D1\u3082\u306A\u3044\u3057\u3001\u8CC7\u91D1\u3082\u306A\u3044\u3057\u3001\u77E5\u8B58\u3082\u306A\u3044\uFF0E\uFF0E\uFF0E", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3042\u308B\u306E\u306F\u30A2\u30A4\u30C7\u30A3\u30A2\u3060\u3051\uFF0E\uFF0E\uFF0E", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u5927\u4E08\u592B\uFF01\u3053\u306E\u30B5\u30A4\u30C8\u3067\u3042\u306A\u305F\u306E\u300C\uFF01\uFF08\u3072\u3089\u3081\u304D\uFF09\u300D\u304C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3008\u3042\u306A\u305F\u3009\u306E\u3001\u305D\u3057\u3066\u3008\u307F\u3093\u306A\u3009\u306E\u5F79\u306B\u7ACB\u3061\u307E\u3059\uFF01\uFF01", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u305D\u3046\u3001\u3042\u306A\u305F\u304C\u65B0\u3057\u3044\u4E16\u754C\u3092\u4F5C\u308B\u306E\u3067\u3059\uFF01\uFF01"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
         className: "section section--feature",
         id: "feature",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
           className: "section__title",
           children: "\u307F\u3093\u306A\u306E\u300C\u3042\uFF01\u300D\u304C\u3069\u3093\u3069\u3093\u96C6\u307E\u3063\u3066\u307E\u3059\u3002"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "feature",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
             className: "feature__title",
             children: "\u30A2\u30A4\u30C7\u30A2\u306E\u4FA1\u5024\u3092\u6700\u5927\u5316"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "feature__description",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
               className: "feature__image--first",
-              src: _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__["default"],
-              alt: "\u30A4\u30E1\u30FC\u30B8\uFF11"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+              src: _assets_images_image2_webp__WEBPACK_IMPORTED_MODULE_5__["default"],
+              alt: "\u30A4\u30E1\u30FC\u30B82"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
               className: "feature__description--text1  feature__text--primary",
-              children: ["\u3042\u306A\u305F\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u306E\u6F5C\u5728\u7684\u306A\u4FA1\u5024\u3092\u6700\u5927\u9650\u306B\u5F15\u304D\u51FA\u305B\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u306A\u305C\u306A\u3089\u3001\u3042\u306A\u305F\u81EA\u8EAB\u3067\u5024\u6BB5\u3092\u6C7A\u3081\u308C\u308B\u306E\u3060\u304B\u3089\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3042\u306A\u305F\u304C\u8D77\u696D\u5BB6\u3067\u3042\u308B\u5FC5\u8981\u306F\u3042\u308A\u307E\u305B\u3093\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u6D88\u8CBB\u8005\u3084\u5229\u7528\u8005\u76EE\u7DDA\u3067\u3082\u5927\u4E08\u592B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u76EE\u7DDA\u304C\u9055\u3048\u3070\u3001\u898B\u3048\u3066\u304F\u308B\u666F\u8272\u3082\u5909\u308F\u3063\u3066\u304F\u308B\u306F\u305A\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u30A2\u30A4\u30C7\u30A3\u30A2\u306B\u5171\u611F\u3055\u308C\u305F\u3089\u3001\u305D\u3053\u304B\u3089\u65B0\u3057\u3044\u30D3\u30B8\u30CD\u30B9\u304C\u59CB\u307E\u308B\uFF01"]
+              children: ["\u30A2\u30A4\u30C7\u30A3\u30A2\u306E\u6F5C\u5728\u7684\u306A\u4FA1\u5024\u3092\u6700\u5927\u9650\u306B\u5F15\u304D\u51FA\u305B\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u306A\u305C\u306A\u3089\u3001\u3042\u306A\u305F\u81EA\u8EAB\u3067\u4FA1\u5024\u3092\u6C7A\u3081\u308C\u308B\u306E\u3060\u304B\u3089\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3042\u306A\u305F\u304C\u8D77\u696D\u5BB6\u3067\u3042\u308B\u5FC5\u8981\u306F\u3042\u308A\u307E\u305B\u3093\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6D88\u8CBB\u8005\u3084\u5229\u7528\u8005\u76EE\u7DDA\u3067\u3082\u5927\u4E08\u592B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u76EE\u7DDA\u304C\u9055\u3048\u3070\u3001\u898B\u3048\u3066\u304F\u308B\u666F\u8272\u3082\u5909\u308F\u3063\u3066\u304F\u308B\u306F\u305A\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u30A2\u30A4\u30C7\u30A3\u30A2\u306B\u5171\u611F\u3055\u308C\u305F\u3089\u3001\u305D\u3053\u304B\u3089\u65B0\u3057\u3044\u30D3\u30B8\u30CD\u30B9\u304C\u59CB\u307E\u308B\uFF01"]
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "feature feature--reverse  feature--layoute__reversed",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
             className: "feature__title",
             children: "\u4E16\u754C\u3092\u5909\u3048\u308B\u30C1\u30E3\u30F3\u30B9\u304C\u3053\u3053\u306B\uFF01"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "feature__description",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
               className: "feature__image--secondary",
-              src: _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__["default"],
-              alt: "\u30A4\u30E1\u30FC\u30B8\uFF12"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+              src: _assets_images_image3_webp__WEBPACK_IMPORTED_MODULE_6__["default"],
+              alt: "\u30A4\u30E1\u30FC\u30B83"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
               className: "feature__description--text2 feature__description--secondary",
-              children: ["\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u304C\u591A\u304F\u306E\u4EBA\u306E\u76EE\u306B\u6B62\u307E\u3063\u305F\u3089\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u305D\u3053\u304B\u3089\u591A\u304F\u306E\u30D3\u30B8\u30CD\u30B9\u304C\u59CB\u307E\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3064\u307E\u308A\u3001\u3042\u306A\u305F\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u304C\u4E16\u754C\u3092\u5909\u3048\u308B\u304D\u3063\u304B\u3051\u306B\u306A\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u306B\u81EA\u4FE1\u304C\u6301\u3066\u308B\u3088\u3046\u306B\u306A\u3063\u305F\u3089\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u4ECA\u5EA6\u306F\u3042\u306A\u305F\u304C\u5B9F\u969B\u306B\u4E16\u754C\u3092\u5909\u3048\u308B\u3053\u3068\u3082\u3067\u304D\u308B\u304B\u3082\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {})]
+              children: ["\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u304C\u591A\u304F\u306E\u4EBA\u306E\u76EE\u306B\u6B62\u307E\u3063\u305F\u3089\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u305D\u3053\u304B\u3089\u591A\u304F\u306E\u30D3\u30B8\u30CD\u30B9\u304C\u59CB\u307E\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3064\u307E\u308A\u3001\u3042\u306A\u305F\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u304C\u4E16\u754C\u3092\u5909\u3048\u308B\u304D\u3063\u304B\u3051\u306B\u306A\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u306B\u81EA\u4FE1\u304C\u6301\u3066\u308B\u3088\u3046\u306B\u306A\u3063\u305F\u3089\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6B21\u306F\u3042\u306A\u305F\u304C\u5B9F\u969B\u306B\u4E16\u754C\u3092\u5909\u3048\u308B\u3053\u3068\u3082\u3067\u304D\u308B\u304B\u3082\uFF1F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {})]
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "feature",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
             className: "feature__title",
             children: "\u9769\u65B0\u7684\u306A\u672A\u6765\u3092\u5171\u306B\u7BC9\u3053\u3046"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "feature__description",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
               className: "feature__image--tertiary",
-              src: _assets_images_brainstorm_idea_png__WEBPACK_IMPORTED_MODULE_4__["default"],
-              alt: "\u30A4\u30E1\u30FC\u30B8\uFF13"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+              src: _assets_images_image4_webp__WEBPACK_IMPORTED_MODULE_7__["default"],
+              alt: "\u30A4\u30E1\u30FC\u30B84"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
               className: "feature__description--text3 feature__description--tertiary",
-              children: ["\u6295\u7A3F\u3055\u308C\u305F\u30A2\u30A4\u30C7\u30A3\u30A2\u306F\uFF0C\u8A55\u4FA1\u3068\u53E3\u30B3\u30DF\u3067\u78BA\u8A8D\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u6B32\u3057\u3044\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u691C\u7D22\u3059\u308B\u3053\u3068\u3082\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u4ED6\u306E\u4EBA\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u53C2\u8003\u3057\u306B\u3057\u3066\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3055\u3089\u306B\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u78E8\u304F\u3053\u3068\u3082\u3067\u304D\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {})]
+              children: ["\u6295\u7A3F\u3055\u308C\u305F\u30A2\u30A4\u30C7\u30A3\u30A2\u306F\uFF0C\u8A55\u4FA1\u3068\u53E3\u30B3\u30DF\u3067\u78BA\u8A8D\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6B32\u3057\u3044\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u691C\u7D22\u3059\u308B\u3053\u3068\u3082\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u4ED6\u306E\u4EBA\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u53C2\u8003\u3057\u306B\u3057\u3066\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3055\u3089\u306B\u81EA\u5206\u306E\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u78E8\u304F\u3053\u3068\u3082\u3067\u304D\u308B\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {})]
             })]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
         className: "section section--column",
         id: "column",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
           className: "section__title",
           children: "\u4F55\u4E8B\u3082\u6700\u521D\u306F\u5C0F\u3055\u306A\u4E00\u6B69\u304B\u3089"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "column",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
             className: "column__description",
-            children: ["\u30B8\u30A7\u30D5\u30FB\u30D9\u30BE\u30B9\u304CAmazon\u3092\u5275\u696D\u3057\u305F\u306E\u306F1994\u5E74\u306E\u3053\u3068\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u6700\u521D\u306F\u66F8\u7C4D\u306E\u30AA\u30F3\u30E9\u30A4\u30F3\u8CA9\u58F2\u3060\u3063\u305F\u3053\u3068\u306F\u6709\u540D\u306A\u8A71\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3057\u304B\u3057\u5F7C\u306F\u3001\u30A4\u30F3\u30BF\u30FC\u30CD\u30C3\u30C8\u306E\u6210\u9577\u3068\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u66F8\u7C4D\u306E\u30AA\u30F3\u30E9\u30A4\u30F3\u8CA9\u58F2\u304C\u5C0F\u58F2\u696D\u754C\u306B\u9769\u547D\u3092\u3082\u305F\u3089\u3059\u53EF\u80FD\u6027\u3092\u898B\u51FA\u3057\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u307E\u305F\uFF0C\u30B9\u30C6\u30A3\u30FC\u30D6\u30FB\u30B8\u30E7\u30D6\u30BA\u3068\u30B9\u30C6\u30A3\u30FC\u30D6\u30FB\u30A6\u30A9\u30BA\u30CB\u30A2\u30C3\u30AF\u304C\u5171\u540C\u3067\u958B\u767A\u3057\u305F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u30D1\u30FC\u30BD\u30CA\u30EB\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FC\u306E\u300CApple I\u300D", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3053\u308C\u3082\uFF0C\u5F53\u6642\u5F7C\u3089\u3082\u30B8\u30E7\u30D6\u30BA\u306E\u4E21\u89AA\u306E\u30AC\u30EC\u30FC\u30B8\u3067\u5275\u696D\u3055\u308C\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3055\u3089\u306BApple\u306EiPad\u306F\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u4E00\u90E8\u306E\u8A55\u8AD6\u5BB6\u304B\u3089\u305D\u306E\u5B58\u5728\u610F\u7FA9\u3092\u7591\u554F\u3055\u308C\u3066\u3044\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u5F7C\u3089\u306F\u3001\u5927\u304D\u306A\u30B9\u30DE\u30FC\u30C8\u30D5\u30A9\u30F3\u3068\u3057\u3066\u3057\u304B\u6A5F\u80FD\u3057\u306A\u3044\u3068\u6307\u6458\u3057\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u3057\u304B\u3057\uFF0C\u4ECA\u3084\u30E2\u30D0\u30A4\u30EB\u30C7\u30D0\u30A4\u30B9\u5E02\u5834\u306B\u9769\u547D\u3092\u3082\u305F\u3089\u3057\u3066\u3044\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u5171\u306B\u73FE\u4EE3\u3067\u306F\u4E16\u754C\u30C8\u30C3\u30D7\u30AF\u30E9\u30B9\u306E\u4F01\u696D\u3067\u3059\u304C\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u6700\u521D\u306E\u4E00\u6B69\u306F\u5C0F\u3055\u306A\u30A2\u30A4\u30C7\u30A3\u30A2\u304B\u3089\u3067\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u5B9F\u884C\u306B\u79FB\u3059\u306B\u306F\u81EA\u4FE1\u304C\u306A\u304F\u3066\u3082\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u8AB0\u304B\u304C\u305D\u308C\u3092\u5F62\u306B\u3057\u3066\u304F\u308C\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u307E\u305A\u306F\u3001\u65B0\u898F\u767B\u9332\u3057\u3066\uFF0C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "\u6BCE\u65E5\u51FA\u3066\u304F\u308B\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u3057\u3063\u304B\u308A\u63B4\u307F\u53D6\u308A\u307E\u3057\u3087\u3046\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {})]
+            children: ["\u30B8\u30A7\u30D5\u30FB\u30D9\u30BE\u30B9\u304CAmazon\u3092\u5275\u696D\u3057\u305F\u306E\u306F1994\u5E74\u306E\u3053\u3068\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6700\u521D\u306F\u66F8\u7C4D\u306E\u30AA\u30F3\u30E9\u30A4\u30F3\u8CA9\u58F2\u3060\u3063\u305F\u3053\u3068\u306F\u6709\u540D\u306A\u8A71\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3057\u304B\u3057\u5F7C\u306F\u3001\u30A4\u30F3\u30BF\u30FC\u30CD\u30C3\u30C8\u306E\u6210\u9577\u3068\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u66F8\u7C4D\u306E\u30AA\u30F3\u30E9\u30A4\u30F3\u8CA9\u58F2\u304C\u5C0F\u58F2\u696D\u754C\u306B\u9769\u547D\u3092\u3082\u305F\u3089\u3059\u53EF\u80FD\u6027\u3092\u898B\u51FA\u3057\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u307E\u305F\uFF0C\u30B9\u30C6\u30A3\u30FC\u30D6\u30FB\u30B8\u30E7\u30D6\u30BA\u3068\u30B9\u30C6\u30A3\u30FC\u30D6\u30FB\u30A6\u30A9\u30BA\u30CB\u30A2\u30C3\u30AF\u304C\u5171\u540C\u3067\u958B\u767A\u3057\u305F", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u30D1\u30FC\u30BD\u30CA\u30EB\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FC\u306E\u300CApple I\u300D", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3053\u308C\u3082\uFF0C\u5F53\u6642\u5F7C\u3089\u3082\u30B8\u30E7\u30D6\u30BA\u306E\u4E21\u89AA\u306E\u30AC\u30EC\u30FC\u30B8\u3067\u5275\u696D\u3055\u308C\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3055\u3089\u306BApple\u306EiPad\u306F\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u4E00\u90E8\u306E\u8A55\u8AD6\u5BB6\u304B\u3089\u305D\u306E\u5B58\u5728\u610F\u7FA9\u3092\u7591\u554F\u3055\u308C\u3066\u3044\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u5F7C\u3089\u306F\u3001\u5927\u304D\u306A\u30B9\u30DE\u30FC\u30C8\u30D5\u30A9\u30F3\u3068\u3057\u3066\u3057\u304B\u6A5F\u80FD\u3057\u306A\u3044\u3068\u6307\u6458\u3057\u307E\u3057\u305F\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u3057\u304B\u3057\uFF0C\u4ECA\u3084\u30E2\u30D0\u30A4\u30EB\u30C7\u30D0\u30A4\u30B9\u5E02\u5834\u306B\u9769\u547D\u3092\u3082\u305F\u3089\u3057\u3066\u3044\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u5171\u306B\u73FE\u4EE3\u3067\u306F\u4E16\u754C\u30C8\u30C3\u30D7\u30AF\u30E9\u30B9\u306E\u4F01\u696D\u3067\u3059\u304C\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6700\u521D\u306E\u4E00\u6B69\u306F\u5C0F\u3055\u306A\u30A2\u30A4\u30C7\u30A3\u30A2\u304B\u3089\u3067\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u5B9F\u884C\u306B\u79FB\u3059\u306B\u306F\u81EA\u4FE1\u304C\u306A\u304F\u3066\u3082\u3001", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u8AB0\u304B\u304C\u305D\u308C\u3092\u5F62\u306B\u3057\u3066\u304F\u308C\u307E\u3059\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u307E\u305A\u306F\u3001\u65B0\u898F\u767B\u9332\u3057\u3066\uFF0C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), "\u6BCE\u65E5\u51FA\u3066\u304F\u308B\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u3057\u3063\u304B\u308A\u63B4\u307F\u53D6\u308A\u307E\u3057\u3087\u3046\u3002", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {})]
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
         className: "registration",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
           className: "registration__message",
           children: "\u3042\uFF01\u304C\u6D88\u3048\u53BB\u308B\u524D\u306B\uFF0E\uFF0E\uFF0E \u65B0\u898F\u767B\u9332\u306F\u3053\u3061\u3089"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "registration__buttons",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
             className: "registration__button registration__button--register",
             onClick: handleRegisterClick,
             children: "\u65B0\u898F\u767B\u9332"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
             className: "registration__button registration__button--login",
             onClick: handleLoginClick,
             children: "\u30ED\u30B0\u30A4\u30F3"
           })]
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TopPage);
@@ -16273,6 +16280,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/brainstorm-idea.png?8e2e04ad1ef4f7f8cc333432dd96c690");
+
+/***/ }),
+
+/***/ "./resources/assets/images/image2.webp":
+/*!*********************************************!*\
+  !*** ./resources/assets/images/image2.webp ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/image2.webp?81f2a794192fb6a64a5f13ed248dc039");
+
+/***/ }),
+
+/***/ "./resources/assets/images/image3.webp":
+/*!*********************************************!*\
+  !*** ./resources/assets/images/image3.webp ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/image3.webp?abbd40dde567184cac5c1952d32faa7e");
+
+/***/ }),
+
+/***/ "./resources/assets/images/image4.webp":
+/*!*********************************************!*\
+  !*** ./resources/assets/images/image4.webp ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/image4.webp?b3583f15b0599560dfc1d1ae55c35785");
 
 /***/ }),
 

@@ -3,7 +3,9 @@ import "../../sass/object/project/top.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import brainstormImage from "../../assets/images/brainstorm-idea.png";
-
+import image2 from "../../assets/images/image2.webp";
+import image3 from "../../assets/images/image3.webp";
+import image4 from "../../assets/images/image4.webp";
 // ボタン機能
 function TopPage() {
     const handleRegisterClick = () => {
@@ -28,7 +30,7 @@ function TopPage() {
                         <img
                             className="concept__image"
                             src={brainstormImage}
-                            alt="イメージ"
+                            alt="イメージ1"
                         />
                         <p className="concept__description">
                             普段何気ない日常の中で、
@@ -37,7 +39,7 @@ function TopPage() {
                             <br />
                             「おっ！これができたら面白い！」と思った瞬間にやってくる、
                             <br />
-                            「今はまだ無理だな．．．」という諦め。
+                            「無理かも．．．」という心の言葉．．．
                             <br />
                             <br />
                             これを今から形にしていきませんか？
@@ -71,13 +73,13 @@ function TopPage() {
                         <div className="feature__description">
                             <img
                                 className="feature__image--first"
-                                src={brainstormImage}
-                                alt="イメージ１"
+                                src={image2}
+                                alt="イメージ2"
                             />
                             <p className="feature__description--text1  feature__text--primary">
-                                あなたのアイディアの潜在的な価値を最大限に引き出せます。
+                                アイディアの潜在的な価値を最大限に引き出せます。
                                 <br />
-                                なぜなら、あなた自身で値段を決めれるのだから。
+                                なぜなら、あなた自身で価値を決めれるのだから。
                                 <br />
                                 あなたが起業家である必要はありません。
                                 <br />
@@ -97,8 +99,8 @@ function TopPage() {
                         <div className="feature__description">
                             <img
                                 className="feature__image--secondary"
-                                src={brainstormImage}
-                                alt="イメージ２"
+                                src={image3}
+                                alt="イメージ3"
                             />
                             <p className="feature__description--text2 feature__description--secondary">
                                 自分のアイディアが多くの人の目に止まったら、
@@ -109,7 +111,7 @@ function TopPage() {
                                 <br />
                                 自分のアイディアに自信が持てるようになったら、
                                 <br />
-                                今度はあなたが実際に世界を変えることもできるかも？
+                                次はあなたが実際に世界を変えることもできるかも？
                                 <br />
                             </p>
                         </div>
@@ -121,11 +123,11 @@ function TopPage() {
                         <div className="feature__description">
                             <img
                                 className="feature__image--tertiary"
-                                src={brainstormImage}
-                                alt="イメージ３"
+                                src={image4}
+                                alt="イメージ4"
                             />
                             <p className="feature__description--text3 feature__description--tertiary">
-                                投稿されたアイディアは，評価と口コミで確認することができる。
+                                投稿されたアイディアは，評価と口コミで確認することができます。
                                 <br />
                                 欲しいアイディアを検索することも、
                                 <br />

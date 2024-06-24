@@ -6,8 +6,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Login = () => {
-    const [email, setEmail] = useState("test@example.com");
-    const [password, setPassword] = useState("12345678");
+    // const [email, setEmail] = useState("test@example.com"); //開発時用
+    // const [password, setPassword] = useState("12345678");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = async (event) => {

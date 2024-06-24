@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -13,4 +13,4 @@
     <div id="app"></div>
     <script type="module" src="{{ mix('js/app.js') }}"></script>
 </body>
-</html>
+</html> -->
