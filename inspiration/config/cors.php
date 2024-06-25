@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'DELETE'],
 
-    'allowed_origins' => ['*'],//本番環境時はURLを指定
+    'allowed_origins' => ['https://tests-dev.net'],//本番環境時はURLを指定
 
     'allowed_origins_patterns' => [],
 
