@@ -59,7 +59,6 @@ class FavoriteController extends Controller
     public function index()
     {
         // 気になるリストの取得とアイディアデータのフォーマット
-        // 変更開始
         $favorites = Favorite::where('user_id', Auth::id())
             ->where('is_favorite', 1) // is_favoriteがtrueのものだけを取得
             ->with(['idea'])
@@ -97,7 +96,6 @@ class FavoriteController extends Controller
         });
 
         return response()->json($formattedFavorites);
-        // 変更終了
     }
 
     // /**

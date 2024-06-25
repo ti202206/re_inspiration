@@ -68,7 +68,7 @@ const PurchaseDetail = () => {
             setPurchaseCount(response.data.purchase_count || 0);
             setReviews(response.data.reviews || []);
 
-            //＊＊＊＊＊＊変更： ユーザーがレビューしているかどうかを設定＊＊＊＊＊＊
+            // ユーザーがレビューしているかどうかを設定
             if (user) {
                 const userReview = response.data.reviews.find(
                     (review) => review.buyer_id === user.id

@@ -14006,7 +14006,7 @@ var PurchaseDetail = function PurchaseDetail() {
             setPurchaseCount(response.data.purchase_count || 0);
             setReviews(response.data.reviews || []);
 
-            //＊＊＊＊＊＊変更： ユーザーがレビューしているかどうかを設定＊＊＊＊＊＊
+            // ユーザーがレビューしているかどうかを設定
             if (user) {
               userReview = response.data.reviews.find(function (review) {
                 return review.buyer_id === user.id;
