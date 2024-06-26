@@ -3,9 +3,9 @@ import "../../sass/object/project/top.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import brainstormImage from "../../assets/images/brainstorm-idea.png";
-import image2 from "../../assets/images/image2.webp";
-import image3 from "../../assets/images/image3.webp";
-import image4 from "../../assets/images/image4.webp";
+import image2 from "../../assets/images/image2.jpg";
+import image3 from "../../assets/images/image3.jpg";
+import image4 from "../../assets/images/image4.jpg";
 // ボタン機能
 function TopPage() {
     const handleRegisterClick = () => {

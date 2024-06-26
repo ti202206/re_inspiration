@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Purchaseが保存されたときにIdeaのupdated_atを更新
         Purchase::saved(function ($purchase) {
-            $purchase->idea->touch(); // 変更：関連するIdeaのupdated_atを更新
+            $purchase->idea->touch();
         });
     }
 }

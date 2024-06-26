@@ -150,23 +150,7 @@ class IdeaController extends Controller
      * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    // public function update(UpdateIdeaRequest $request, Idea $idea)
-    // {
-    //     // 更新は投稿者のみ許可、かつ purchased が false であることが条件
-    //     if ($idea->user_id !== Auth::id() || $idea->purchased) {
-    //         return response()->json(['error' => 'すでに販売済みのため，変更できません'], 403);
-    //     }
 
-    //     // アイデアを更新
-    //     try {
-    //         $idea->updateIdea($request->all());
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 403);
-    //     }
-
-    //     //データがあればjsonで返す（ステータスコード２０１）
-    //     return response()->json($idea,200);
-    // }
     public function update(Request $request, $id)
     {
 
