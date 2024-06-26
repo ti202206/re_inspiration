@@ -16,6 +16,12 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->midd
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/categories', [CategoryController::class, 'index']);
 
+// すべてのルートでOPTIONSメソッドを許可
+Route::options('{any}', function () {
+    return response()->json([], 200);
+})->where('any', '.*');
+
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // Idea関連のルート
     Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
