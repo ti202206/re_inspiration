@@ -1381,8 +1381,8 @@ body {
 }
 @media only screen and (max-width: 600px) {
   .container {
-    margin-top: 150px;
-    padding-top: 50px;
+    margin-top: 50px;
+    padding-top: 150px;
   }
 }
 
