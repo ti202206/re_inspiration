@@ -1,7 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Laravel APIのベースURLを設定
-const baseURL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';//.envに設定がなければlocalhost:8000へ
+const baseURL =
+    process.env.REACT_APP_API_BASE_URL ||
+    "https://tests-dev.net" ||
+    "http://localhost:8000";
 axios.defaults.baseURL = baseURL;
 
 // クッキーを含めたリクエストを送信するための設定
@@ -10,10 +13,10 @@ axios.defaults.withCredentials = true;
 // ユーザー登録
 const register = async (userData) => {
     try {
-        const response = await axios.post('/api/register', userData);
+        const response = await axios.post("/api/register", userData);
         return response.data;
     } catch (error) {
-        console.error('Error registering user:', error);
+        console.error("Error registering user:", error);
         throw error;
     }
 };
@@ -21,10 +24,10 @@ const register = async (userData) => {
 // ユーザー認証（ログイン）
 const login = async (credentials) => {
     try {
-        const response = await axios.post('/api/login', credentials);
+        const response = await axios.post("/api/login", credentials);
         return response.data;
     } catch (error) {
-        console.error('Error logging in user:', error);
+        console.error("Error logging in user:", error);
         throw error;
     }
 };
@@ -32,10 +35,10 @@ const login = async (credentials) => {
 // ユーザーログアウト
 const logout = async () => {
     try {
-        const response = await axios.post('/api/logout');
+        const response = await axios.post("/api/logout");
         return response.data;
     } catch (error) {
-        console.error('Error logging out user:', error);
+        console.error("Error logging out user:", error);
         throw error;
     }
 };
