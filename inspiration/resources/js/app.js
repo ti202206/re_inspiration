@@ -75,7 +75,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route
-                path="/mypage"
+                path="/my-page"
                 element={
                     isAuthenticated ? <MyPage /> : <Navigate to="/login" />
                 }
