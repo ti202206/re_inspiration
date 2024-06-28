@@ -2,9 +2,11 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 axios.defaults.baseURL =
-    process.env.MIX_APP_URL ||
-    "https://tests-dev.net" ||
-    "https://api.tests-dev.net";
+process.env.MIX_APP_URL ||
+"https://tests-dev.net";
+    // process.env.MIX_APP_URL ||
+    // "https://tests-dev.net" ||
+    // "https://api.tests-dev.net";
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.withCredentials = true;
 
