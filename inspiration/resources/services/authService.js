@@ -1,10 +1,10 @@
 import axios from "axios";
 
 // Laravel APIのベースURLを設定
-const baseURL =
-    process.env.REACT_APP_API_BASE_URL ||
-    "https://tests-dev.net" ||
-    "http://localhost:8000";
+const baseURL = process.env.REACT_APP_API_BASE_URL || "https://tests-dev.net";
+// process.env.REACT_APP_API_BASE_URL ||
+// "https://tests-dev.net" ||
+// "http://localhost:8000";
 axios.defaults.baseURL = baseURL;
 
 // クッキーを含めたリクエストを送信するための設定
