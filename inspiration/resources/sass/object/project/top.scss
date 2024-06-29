@@ -8,15 +8,16 @@
         line-height: 1.5;
     }
 
-    & > img{
-        flex:1;
+    & > img {
+        flex: 1;
         max-width: 50%;
         height: auto;
+        width: 100%;
         object-fit: contain;
         overflow: hidden;
     }
 
-    &__description{
+    &__description {
         box-sizing: border-box;
         flex: 1;
         padding: 20px;
@@ -28,9 +29,11 @@
         align-items: center;
         text-align: center;
 
-        & > img, &__description{
+        & > img,
+        &__description {
             max-width: 100%;
             margin: 10px 0;
+            height: auto;
         }
     }
 }
@@ -45,47 +48,56 @@
         line-height: 2;
     }
 
-    &__title{
+    &__title {
         margin: 0 0 10px;
     }
 
-    &__description{
+    &__description {
         margin: 0;
         display: flex;
         flex-direction: row;
         align-items: center;
 
-        & > img{
+        & > img {
             flex: 1;
             max-width: 50%;
             height: auto;
+            width: 100%;
             object-fit: contain;
             overflow: hidden;
         }
 
-        &--text1, &--text2, &--text3{
+        &--text1,
+        &--text2,
+        &--text3 {
             flex: 2;
         }
     }
 
-    &--reverse &__description--text2{
+    &--reverse &__description--text2 {
         order: -1;
     }
 
     @media only screen and (max-width: 600px) {
-        &__description{
+        &__description {
             flex-direction: column;
             align-items: center;
+
+            & > img {
+                max-width: 100%;
+                margin: 10px 0;
+                height: auto;
+            }
         }
 
-        &--reverse &__description--text2{
+        &--reverse &__description--text2 {
             order: 3;
         }
     }
 }
 
-.column{
-    &__description{
+.column {
+    &__description {
         text-align: center;
         padding: 20px;
         max-width: 1200px;
@@ -105,44 +117,18 @@
         line-height: 2;
     }
 
-    &__message{
+    &__message {
         font-weight: bold;
         margin-bottom: 10px;
     }
 
-    // &__links{
-    //     display: flex;
-    //     list-style: none;
-    //     padding: 0;
-    //     justify-content: center;
-
-    //     li{
-    //         margin-right: 10px;
-
-    //         &:last-child{
-    //             margin-right: 0;
-    //         }
-
-    //         a{
-    //             display: inline;
-    //             text-decoration: none;
-    //             color: $txt-nav-white;
-
-    //             &:active{
-    //                 color:$txt-nav-bright;
-    //                 background-color: $txt-nav-bright-bg;
-    //             }
-    //         }
-    //     }
-    // }
-
-    &__buttons{
+    &__buttons {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    &__button{
+    &__button {
         padding: 4px 8px;
         margin: 5px;
         border: 2px solid $bd-light;
@@ -153,12 +139,13 @@
         transition: background-color 0.3s, color 0.3s;
         outline: none;
 
-        &:hover{
+        &:hover {
             background-color: $btn-bg-hover;
             color: $btn-txt-hover;
         }
 
-        &--register, &--login{
+        &--register,
+        &--login {
             background-color: $btn-bg-white;
         }
     }
