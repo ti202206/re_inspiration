@@ -12430,7 +12430,7 @@ function IdeaUpdate() {
             });
           case 7:
             alert("アイディアが更新されました。");
-            navigate("/mypage");
+            navigate("/my-page");
             _context3.next = 15;
             break;
           case 11:
@@ -12472,7 +12472,7 @@ function IdeaUpdate() {
             });
           case 4:
             alert("アイディアが削除されました。");
-            navigate("/mypage");
+            navigate("/my-page");
             _context4.next = 12;
             break;
           case 8:

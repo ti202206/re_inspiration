@@ -76,7 +76,7 @@ function IdeaUpdate() {
                 },
             });
             alert("アイディアが更新されました。");
-            navigate("/mypage");
+            navigate("/my-page");
         } catch (error) {
             console.error("Error updating idea:", error);
             if (error.response && error.response.status === 403) {
@@ -100,7 +100,7 @@ function IdeaUpdate() {
                     },
                 });
                 alert("アイディアが削除されました。");
-                navigate("/mypage");
+                navigate("/my-page");
             } catch (error) {
                 console.error("Error deleting idea:", error);
                 setError("アイディアの削除中にエラーが発生しました。");
