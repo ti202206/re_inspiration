@@ -16085,9 +16085,23 @@ var Profile = function Profile() {
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/login.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n  ╷\n9 │         background-color: $bg-page-margin; // ページ背景色\n  │                           ^^^^^^^^^^^^^^^\n  ╵\n  resources/sass/object/project/login.scss 9:27  root stylesheet");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".login__page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background-color: #f5f5f5;\n}\n.login__container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex: 1;\n  padding: 40px;\n}\n.login__form {\n  background-color: #ffffff;\n  padding: 20px 40px;\n  border: 1px solid #ddd;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  width: 100%;\n  max-width: 400px;\n  text-align: center;\n}\n@media only screen and (max-width: 400px) {\n  .login__form {\n    margin-top: 160px;\n    padding: 0px;\n  }\n}\n.login__title {\n  margin-bottom: 20px;\n  font-size: 24px;\n  color: #ff8c00;\n}\n.login__input {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  box-sizing: border-box;\n  font-size: 16px;\n  outline: none;\n}\n.login__input:focus {\n  border-color: #ff8c00;\n  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);\n  outline: none;\n}\n@media only screen and (max-width: 400px) {\n  .login__input {\n    width: 60%;\n  }\n}\n.login__button {\n  width: 100%;\n  padding: 10px;\n  background-color: #ff8c00;\n  color: #ffffff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n  outline: none;\n}\n.login__button:hover {\n  background-color: #ffa500;\n}\n.login__error {\n  color: red;\n  margin-bottom: 15px;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -16095,9 +16109,23 @@ throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.j
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/notfound.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n  ╷\n8 │     background-color: $bg-page-margin;\n  │                       ^^^^^^^^^^^^^^^\n  ╵\n  resources/sass/object/project/notfound.scss 8:23  root stylesheet");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".not-found {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n  background-color: #f5f5f5;\n}\n.not-found__content {\n  text-align: center;\n  padding: 40px;\n  background-color: #ffffff;\n  border: 1px solid #ddd;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n}\n.not-found__title {\n  font-size: 36px;\n  color: #ff8c00;\n  margin-bottom: 20px;\n}\n.not-found__message {\n  font-size: 18px;\n  color: #333;\n  margin-bottom: 30px;\n}\n.not-found__button {\n  padding: 10px 20px;\n  background-color: #ff8c00;\n  color: #ffffff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  transition: background-color 0.3s;\n}\n.not-found__button:hover {\n  background-color: #ffa500;\n}\n.not-found__button:focus {\n  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);\n  outline: none;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -16105,9 +16133,23 @@ throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.j
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/register.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n  ╷\n9 │         background-color: $bg-page-margin;\n  │                           ^^^^^^^^^^^^^^^\n  ╵\n  resources/sass/object/project/register.scss 9:27  root stylesheet");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.register__page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background-color: #f5f5f5;\n}\n.register__container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex: 1;\n  padding: 40px;\n}\n.register__form {\n  margin: 5em 0 5em;\n  background-color: #ffffff;\n  padding: 20px 40px;\n  border: 1px solid #ddd;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  width: 100%;\n  max-width: 400px;\n  text-align: center;\n}\n@media only screen and (max-width: 400px) {\n  .register__form {\n    margin-top: 160px;\n    padding: 0px;\n  }\n}\n.register__title {\n  margin-bottom: 20px;\n  font-size: 24px;\n  color: #ff8c00;\n  text-align: center;\n}\n.register__input {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  box-sizing: border-box;\n  font-size: 16px;\n}\n.register__input:focus {\n  border-color: #ff8c00;\n  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);\n  outline: none;\n}\n@media only screen and (max-width: 400px) {\n  .register__input {\n    width: 60%;\n  }\n}\n.register__input-file {\n  width: 100%;\n  padding: 10px;\n  margin-bottom: 15px;\n  box-sizing: border-box;\n  background-color: #ffffff;\n}\n.register__input-file:focus {\n  border: 2px solid #ff8c00;\n  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);\n  outline: none;\n}\n.register__input-file::-webkit-file-upload-button {\n  visibility: hidden;\n}\n.register__input-file::before {\n  content: \"ファイルを選択\";\n  display: inline-block;\n  background: #ff8c00;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  padding: 10px;\n  cursor: pointer;\n  text-align: center;\n  color: #ffffff;\n  transition: background-color 0.3s;\n}\n.register__input-file:hover::before {\n  background: #ffa500;\n}\n.register__button {\n  width: 100%;\n  padding: 10px;\n  background-color: #ff8c00;\n  color: #ffffff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.register__button:hover {\n  background-color: #ffa500;\n}\n.register__button:focus {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);\n  outline: none;\n}\n.register__error {\n  color: red;\n  margin-bottom: 15px;\n}\n.register__icon-preview {\n  display: block;\n  max-width: 50px;\n  max-height: 50px;\n  margin: 10px auto;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -16115,9 +16157,99 @@ throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.j
 /*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/object/project/top.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Undefined variable.\n   ╷\n44 │     border: 1px solid $shdw-default;\n   │                       ^^^^^^^^^^^^^\n   ╵\n  resources/sass/object/project/top.scss 44:23  root stylesheet");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".concept {\n  display: flex;\n}\n.concept p {\n  margin: auto;\n  line-height: 1.5;\n}\n.concept > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  width: 100%;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.concept__description {\n  box-sizing: border-box;\n  flex: 1;\n  padding: 20px;\n  margin: 20px;\n}\n@media only screen and (max-width: 600px) {\n  .concept {\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n  }\n  .concept > img, .concept__description {\n    max-width: 100%;\n    margin: 10px 0;\n    height: auto;\n  }\n}\n\n.feature {\n  text-align: center;\n  padding: 20px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n.feature p {\n  margin: auto;\n  line-height: 2;\n}\n.feature__title {\n  margin: 0 0 10px;\n}\n.feature__description {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.feature__description > img {\n  flex: 1;\n  max-width: 50%;\n  height: auto;\n  width: 100%;\n  -o-object-fit: contain;\n     object-fit: contain;\n  overflow: hidden;\n}\n.feature__description--text1, .feature__description--text2, .feature__description--text3 {\n  flex: 2;\n}\n.feature--reverse .feature__description--text2 {\n  order: -1;\n}\n@media only screen and (max-width: 600px) {\n  .feature__description {\n    flex-direction: column;\n    align-items: center;\n  }\n  .feature__description > img {\n    max-width: 100%;\n    margin: 10px 0;\n    height: auto;\n  }\n  .feature--reverse .feature__description--text2 {\n    order: 3;\n  }\n}\n\n.column__description {\n  text-align: center;\n  padding: 20px;\n  max-width: 1200px;\n  margin: auto;\n}\n\n.registration {\n  background-color: #ffa500;\n  width: 100%;\n  text-align: center;\n  box-sizing: border-box;\n  padding-bottom: 20px;\n}\n.registration p {\n  margin: auto;\n  line-height: 2;\n}\n.registration__message {\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.registration__buttons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.registration__button {\n  padding: 4px 8px;\n  margin: 5px;\n  border: 2px solid #f9cc9f;\n  border-radius: 5px;\n  color: #ff8c00;\n  background-color: #ffffff;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  outline: none;\n}\n.registration__button:hover {\n  background-color: #ffa500;\n  color: #ffffff;\n}\n.registration__button--register, .registration__button--login {\n  background-color: #ffffff;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
 
 /***/ }),
 
