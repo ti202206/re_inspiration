@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 function IdeaUpdate() {
     const { id } = useParams(); // アイディアIDをURLパラメータから取得
     const [idea, setIdea] = useState({
