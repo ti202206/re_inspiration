@@ -237,7 +237,9 @@ const PurchaseDetail = () => {
                     <div className="form-group">
                         <label>平均評価:</label>
                         <div className="form-value">
-                            {Number(averageRating).toFixed(1)} / 5
+                            {averageRating > 0
+                                ? `${Number(averageRating).toFixed(1)} / 5`
+                                : "－"}
                         </div>
                     </div>
 
