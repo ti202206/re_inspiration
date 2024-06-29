@@ -17,8 +17,8 @@ const IdeaCard = ({
     };
     // ポストを送信する
     const generateTweetLink = (idea) => {
-        const inspirationUrl = "https://tests-dev.net";
-        const tweetText = `Inspirationをみんなでシェア\nアイディア: \n${idea.title}\n詳細はこちらから: ${inspirationUrl}`;
+        const inspirationUrl = "https://tests-dev.net/idea-detail/";
+        const tweetText = `Inspirationをみんなでシェア\nアイディア: \n${idea.title}\n詳細はこちら: ${inspirationUrl}${idea.id}`;
         const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
             tweetText
         )}`;
