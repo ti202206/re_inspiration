@@ -97,6 +97,7 @@
         border-radius: 5px;
         background-color: $btn-bg-bright;
         color: $btn-txt-bright;
+        outline: none;
 
         @media screen and (max-width: 600px) {
             flex: 1;

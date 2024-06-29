@@ -14257,9 +14257,9 @@ var PurchaseDetail = function PurchaseDetail() {
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             children: "\u5E73\u5747\u8A55\u4FA1:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "form-value",
-            children: [Number(averageRating).toFixed(1), " / 5"]
+            children: averageRating > 0 ? "".concat(Number(averageRating).toFixed(1), " / 5") : "－"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",

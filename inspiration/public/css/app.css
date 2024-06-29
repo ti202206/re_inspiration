@@ -1625,6 +1625,7 @@ body {
   border-radius: 5px;
   background-color: #ff8c00;
   color: #ffffff;
+  outline: none;
 }
 @media screen and (max-width: 600px) {
   .review-card__button {
