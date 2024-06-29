@@ -10475,7 +10475,8 @@ var IdeaCard = function IdeaCard(_ref) {
   };
   // ポストを送信する
   var generateTweetLink = function generateTweetLink(idea) {
-    var tweetText = "Inspiration\u3092\u307F\u3093\u306A\u3067\u30B7\u30A7\u30A2\n\u30A2\u30A4\u30C7\u30A3\u30A2: \n".concat(idea.title, "\n\u8A73\u7D30\u306F\u3053\u3061\u3089: ").concat(window.location.origin, "/idea-detail/").concat(idea.id);
+    var inspirationUrl = "https://tests-dev.net/idea-detail/";
+    var tweetText = "Inspiration\u3092\u307F\u3093\u306A\u3067\u30B7\u30A7\u30A2\n\u30A2\u30A4\u30C7\u30A3\u30A2: \n".concat(idea.title, "\n\u8A73\u7D30\u306F\u3053\u3061\u3089: ").concat(inspirationUrl).concat(idea.id);
     var tweetURL = "https://twitter.com/intent/tweet?text=".concat(encodeURIComponent(tweetText));
     return tweetURL;
   };
