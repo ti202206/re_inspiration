@@ -1,5 +1,4 @@
-
-@import "../../foundation/variables";
+// @import "../../foundation/variables";
 
 .review-submission {
     &__page {
@@ -63,7 +62,8 @@
                 box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
             }
 
-            input[type="number"], textarea {
+            input[type="number"],
+            textarea {
                 padding: 10px;
                 font-size: 16px;
                 border: 1px solid $bd-default;
@@ -84,7 +84,7 @@
         }
     }
 
-    &__buttons{
+    &__buttons {
         display: flex;
         margin-top: 30px;
         flex-direction: column;
@@ -98,7 +98,7 @@
         margin-top: 5px;
         font-size: 16px;
         color: $btn-txt-bright;
-        background-color: $prim-bright; 
+        background-color: $prim-bright;
         border: none;
         border-radius: 5px;
         cursor: pointer;

@@ -1,6 +1,4 @@
 .section {
-    // margin-bottom: 40px;
-
     & h2 {
         margin-top: -10px;
     }
@@ -20,17 +18,4 @@
             flex-direction: column;
         }
     }
-
-    // &__header {
-    //     display: flex;
-    //     justify-content: space-between;
-    //     flex-wrap: wrap;
-    //     // align-items: center;
-    //     // margin-bottom: 20px; /* 調整 */
-
-    //     @media screen and (max-width: 600px) {
-    //         flex-direction: column;
-    //         // align-items: stretch;
-    //     }
-    // }
 }

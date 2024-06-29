@@ -63,7 +63,7 @@
         white-space: normal;
     }
 
-    &__extra-content{
+    &__extra-content {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -103,21 +103,4 @@
             margin: 0 5px;
         }
     }
-
-
-
-    // &__category,
-    // &__summary,
-    // &__review,
-    // &__rating {
-    //     margin: 0;
-    //     margin-bottom: 5px;
-    // }
-
-
-
-    // &__review-count,
-    // &__average-rating {
-    //     margin: 0 10px 0 0;
-    // }
 }

@@ -35,26 +35,8 @@ class ProfileController extends Controller
      */
     public function updateProfileImage(Request $request)
     {
-        // $request->validate([
-        //     'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // ]);
-
-        // $user = Auth::user();
-
-        // // 古い画像を削除
-        // if ($user->profile_image_path) {
-        //     Storage::disk('public')->delete($user->profile_image_path);
-        // }
-
-        // // 新しい画像を保存
-        // $path = $request->file('profile_image')->store('profile_images', 'public');
-
-        // // ユーザーレコードを更新
-        // $user->update(['profile_image_path' => $path]);
-
-        // return response()->json(['message' => 'プロフィール画像が更新されました', 'path' => $path]);
         $user = Auth::user();
-        
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -93,17 +75,13 @@ class ProfileController extends Controller
             'email' => $user->email,
             'bio' => $user->bio,
             'profile_image_url' => $user->profile_image_path
-            ? asset('storage/' . $user->profile_image_path)
-            : asset('images/default-user-icon.png'),
-            // 'profile_image_url' => $user->profile_image_url,
-            // 'profile_image_url' => $user->profile_image_path
-            // ? asset('storage/' . $user->profile_image_path)
-            // : asset('images/default-user-icon.png'),
+                ? asset('storage/' . $user->profile_image_path)
+                : asset('images/default-user-icon.png'),
 
         ]);
     }
 
-        /**
+    /**
      * アカウント削除
      */
     public function deleteAccount(Request $request)
@@ -111,13 +89,12 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         // 未購入アイディアの削除
-        // $user->ideas()->where('purchased', false)->delete();
         Idea::where('user_id', $user->id)
             ->where('purchased', false)
             ->delete();
 
-            // 購入済みアイディアの更新
-            Idea::where('user_id', $user->id)
+        // 購入済みアイディアの更新
+        Idea::where('user_id', $user->id)
             ->where('purchased', true)
             ->update(['user_id' => null]);
         // プロフィール画像の削除

@@ -2684,7 +2684,8 @@ body {
   font-size: 16px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-.review-submission__form .form-group input[type=number], .review-submission__form .form-group textarea {
+.review-submission__form .form-group input[type=number],
+.review-submission__form .form-group textarea {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -2693,7 +2694,8 @@ body {
   resize: vertical;
   outline: none;
 }
-.review-submission__form .form-group input[type=number]:focus, .review-submission__form .form-group textarea:focus {
+.review-submission__form .form-group input[type=number]:focus,
+.review-submission__form .form-group textarea:focus {
   border-color: #ff8c00;
   box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
   outline: none;

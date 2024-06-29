@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "../axiosConfig";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import "../../sass/object/project/login.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Login = () => {
     // const [email, setEmail] = useState("test@example.com"); //開発時用
-    // const [password, setPassword] = useState("12345678");
+    // const [password, setPassword] = useState("12345678"); //開発時用
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -16,9 +16,12 @@ const Login = () => {
         event.preventDefault();
         try {
             // CSRFトークンを取得
-            await axios.get('/sanctum/csrf-cookie');
-            const response = await axios.post("/api/login", { email, password });
-            Cookies.set('auth_token', response.data.token);
+            await axios.get("/sanctum/csrf-cookie");
+            const response = await axios.post("/api/login", {
+                email,
+                password,
+            });
+            Cookies.set("auth_token", response.data.token);
             alert("ログイン成功");
             window.location.href = "/my-page";
         } catch (error) {
@@ -51,7 +54,9 @@ const Login = () => {
                         required
                         autoComplete="current-password"
                     />
-                    <button type="submit" className="login__button">ログイン</button>
+                    <button type="submit" className="login__button">
+                        ログイン
+                    </button>
                 </form>
             </div>
             <Footer />
