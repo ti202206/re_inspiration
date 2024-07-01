@@ -80,7 +80,7 @@ const App = () => {
                     isAuthenticated ? <MyPage /> : <Navigate to="/login" />
                 }
             />
-            {/* <Route
+            <Route
                 path="/*"
                 element={
                     isAuthenticated ? (
@@ -89,8 +89,8 @@ const App = () => {
                         <UnauthenticatedApp />
                     )
                 }
-            /> */}
-            {/* <Route path="*" element={<Navigate to="/" />} />{" "} */}
+            />
+            <Route path="*" element={<Navigate to="/" />} />{" "}
             {/* 未定義のルートにアクセスした場合のリダイレクト */}
         </Routes>
     );

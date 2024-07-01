@@ -10,7 +10,7 @@ const UnauthenticatedApp = () => (
     <Routes>
         <Route path="/" element={<TopPage />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
     </Routes>
 );
 
