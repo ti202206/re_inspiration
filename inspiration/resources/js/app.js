@@ -90,7 +90,7 @@ const App = () => {
                     )
                 }
             />
-            <Route path="*" element={<Navigate to="/" />} />{" "}
+            {/* <Route path="*" element={<Navigate to="/" />} />{" "} */}
             {/* 未定義のルートにアクセスした場合のリダイレクト */}
         </Routes>
     );
