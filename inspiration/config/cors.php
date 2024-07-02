@@ -23,8 +23,8 @@ return [
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['Content-Type', 'X-XSRF-TOKEN','X-Requested-With', 'Authorization'],
-
+    // 'allowed_headers' => ['Content-Type', 'X-XSRF-TOKEN','X-Requested-With', 'Authorization'],
+    'allowed_headers' => ['*'],
     'exposed_headers' => [],
 
     'max_age' => 0,
