@@ -10161,7 +10161,9 @@ var authFreePaths = ["/",
 // トップページのルート
 "/api/auth/login",
 // ログインAPI
-"/api/auth/register" // 登録API
+"/api/auth/register",
+// 登録API
+"/sanctum/csrf-cookie" // CSRFクッキー取得
 ];
 
 // 認証トークンの設定
