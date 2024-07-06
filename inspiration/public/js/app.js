@@ -10152,7 +10152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "https://tests-dev.net";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common["X-Requested-With"] = "XMLHttpRequest";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).withCredentials = true;
 
