@@ -10152,7 +10152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "https://tests-dev.net";
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common["X-Requested-With"] = "XMLHttpRequest";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).withCredentials = true;
 
@@ -10161,9 +10161,7 @@ var authFreePaths = ["/",
 // トップページのルート
 "/api/auth/login",
 // ログインAPI
-"/api/auth/register",
-// 登録API
-"/sanctum/csrf-cookie" // CSRFクッキー取得
+"/api/auth/register" // 登録API
 ];
 
 // 認証トークンの設定
