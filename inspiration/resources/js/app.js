@@ -124,7 +124,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyPage from "./pages/MyPage";
 import axios from "./axiosConfig";
-import Header from "./Header"; //＊＊＊＊＊＊変更：Headerコンポーネントのインポート＊＊＊＊＊＊
+import Header from "./components/Header"; //＊＊＊＊＊＊変更：Headerコンポーネントのインポート＊＊＊＊＊＊
 
 window.Alpine = Alpine;
 Alpine.start();
