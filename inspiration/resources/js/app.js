@@ -20,13 +20,15 @@ import axios from "./axiosConfig";
 window.Alpine = Alpine;
 Alpine.start();
 
+const authFreePaths = ["/", "/register", "/login"];
+
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const location = useLocation();
 
     // 認証チェックをスキップするパス
-    const authFreePaths = ["/", "/register", "/login"];
+    // const authFreePaths = ["/", "/register", "/login"];
 
     // useEffect(() => {
     //     const checkAuth = async () => {

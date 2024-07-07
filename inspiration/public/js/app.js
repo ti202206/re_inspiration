@@ -10024,6 +10024,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+var authFreePaths = ["/", "/register", "/login"];
 var App = function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -10036,7 +10037,7 @@ var App = function App() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
 
   // 認証チェックをスキップするパス
-  var authFreePaths = ["/", "/register", "/login"];
+  // const authFreePaths = ["/", "/register", "/login"];
 
   // useEffect(() => {
   //     const checkAuth = async () => {
