@@ -10036,7 +10036,39 @@ var App = function App() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
 
   // 認証チェックをスキップするパス
-  var authFreePaths = ["/register", "/login"];
+  var authFreePaths = ["/", "/register", "/login"];
+
+  // useEffect(() => {
+  //     const checkAuth = async () => {
+  //         // 認証チェックをスキップするページの場合
+  //         if (authFreePaths.includes(location.pathname)) {
+  //             setIsCheckingAuth(false);
+  //             return;
+  //         }
+
+  //         //認証チェック
+  //         try {
+  //             await axios.get("/sanctum/csrf-cookie");
+  //             const response = await axios.get("/api/user");
+  //             if (response.status === 200) {
+  //                 setIsAuthenticated(true);
+  //             } else {
+  //                 setIsAuthenticated(false);
+  //             }
+  //         } catch (error) {
+  //             if (error.response && error.response.status === 401) {
+  //                 // 認証されていない場合は認証状態を false に設定する
+  //                 setIsAuthenticated(false);
+  //             } else {
+  //                 console.error("Authentication check failed:", error);
+  //             }
+  //         } finally {
+  //             setIsCheckingAuth(false);
+  //         }
+  //     };
+
+  //     checkAuth();
+  // }, [location.pathname]);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -10183,6 +10215,17 @@ axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.request.use(function (
 }, function (error) {
   return Promise.reject(error);
 });
+axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(function (response) {
+  try {
+    JSON.parse(response.data);
+    return response;
+  } catch (e) {
+    console.error("Invalid JSON response", e);
+    return Promise.reject(e);
+  }
+}, function (error) {
+  return Promise.reject(error);
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
 
 /***/ }),
@@ -10259,6 +10302,25 @@ var Header = function Header() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
 
   // 認証チェック
+  // useEffect(() => {
+  //     const checkAuth = async () => {
+  //         try {
+  //             const response = await axios.get("/api/user", {
+  //                 headers: {
+  //                     Authorization: `Bearer ${sessionStorage.getItem(
+  //                         "auth_token"
+  //                     )}`,
+  //                 },
+  //             });
+  //             setUser(response.data);
+  //             setIsAuthenticated(true);
+  //         } catch (error) {
+  //             setIsAuthenticated(false);
+  //         }
+  //     };
+
+  //     checkAuth();
+  // }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -10266,35 +10328,57 @@ var Header = function Header() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+              if (!authFreePaths.includes(location.pathname)) {
+                _context.next = 3;
+                break;
+              }
+              setIsCheckingAuth(false);
+              return _context.abrupt("return");
+            case 3:
+              _context.prev = 3;
+              _context.next = 6;
+              return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].get("/sanctum/csrf-cookie");
+            case 6:
+              _context.next = 8;
               return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/user", {
                 headers: {
                   Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
                 }
               });
-            case 3:
-              response = _context.sent;
-              setUser(response.data);
-              setIsAuthenticated(true);
-              _context.next = 11;
-              break;
             case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              setIsAuthenticated(false);
-            case 11:
+              response = _context.sent;
+              if (response.status === 200) {
+                setUser(response.data);
+                setIsAuthenticated(true);
+              } else {
+                setIsAuthenticated(false);
+              }
+              _context.next = 15;
+              break;
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context["catch"](3);
+              if (_context.t0.response && _context.t0.response.status === 401) {
+                setIsAuthenticated(false);
+              } else {
+                console.error("Authentication check failed:", _context.t0);
+              }
+            case 15:
+              _context.prev = 15;
+              setIsCheckingAuth(false);
+              return _context.finish(15);
+            case 18:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[3, 12, 15, 18]]);
       }));
       return function checkAuth() {
         return _ref.apply(this, arguments);
       };
     }();
     checkAuth();
-  }, []);
+  }, [location.pathname]);
 
   // ボタン押下時の処理
   var handleRegisterClick = function handleRegisterClick() {
@@ -15835,7 +15919,7 @@ var UnauthenticatedApp = function UnauthenticatedApp() {
       path: "/",
       element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_TopPage__WEBPACK_IMPORTED_MODULE_3__["default"], {})
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-      path: "/Login",
+      path: "/login",
       element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], {})
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
       path: "/register",

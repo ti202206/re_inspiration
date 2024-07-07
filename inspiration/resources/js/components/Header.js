@@ -9,9 +9,34 @@ const Header = () => {
     const location = useLocation();
 
     // 認証チェック
+    // useEffect(() => {
+    //     const checkAuth = async () => {
+    //         try {
+    //             const response = await axios.get("/api/user", {
+    //                 headers: {
+    //                     Authorization: `Bearer ${sessionStorage.getItem(
+    //                         "auth_token"
+    //                     )}`,
+    //                 },
+    //             });
+    //             setUser(response.data);
+    //             setIsAuthenticated(true);
+    //         } catch (error) {
+    //             setIsAuthenticated(false);
+    //         }
+    //     };
+
+    //     checkAuth();
+    // }, []);
     useEffect(() => {
         const checkAuth = async () => {
+            if (authFreePaths.includes(location.pathname)) {
+                setIsCheckingAuth(false);
+                return;
+            }
+
             try {
+                await axios.get("/sanctum/csrf-cookie");
                 const response = await axios.get("/api/user", {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem(
@@ -19,15 +44,25 @@ const Header = () => {
                         )}`,
                     },
                 });
-                setUser(response.data);
-                setIsAuthenticated(true);
+                if (response.status === 200) {
+                    setUser(response.data);
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                }
             } catch (error) {
-                setIsAuthenticated(false);
+                if (error.response && error.response.status === 401) {
+                    setIsAuthenticated(false);
+                } else {
+                    console.error("Authentication check failed:", error);
+                }
+            } finally {
+                setIsCheckingAuth(false);
             }
         };
 
         checkAuth();
-    }, []);
+    }, [location.pathname]);
 
     // ボタン押下時の処理
     const handleRegisterClick = () => {

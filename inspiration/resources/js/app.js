@@ -26,8 +26,39 @@ const App = () => {
     const location = useLocation();
 
     // 認証チェックをスキップするパス
-    const authFreePaths = ["/register", "/login"];
+    const authFreePaths = ["/", "/register", "/login"];
 
+    // useEffect(() => {
+    //     const checkAuth = async () => {
+    //         // 認証チェックをスキップするページの場合
+    //         if (authFreePaths.includes(location.pathname)) {
+    //             setIsCheckingAuth(false);
+    //             return;
+    //         }
+
+    //         //認証チェック
+    //         try {
+    //             await axios.get("/sanctum/csrf-cookie");
+    //             const response = await axios.get("/api/user");
+    //             if (response.status === 200) {
+    //                 setIsAuthenticated(true);
+    //             } else {
+    //                 setIsAuthenticated(false);
+    //             }
+    //         } catch (error) {
+    //             if (error.response && error.response.status === 401) {
+    //                 // 認証されていない場合は認証状態を false に設定する
+    //                 setIsAuthenticated(false);
+    //             } else {
+    //                 console.error("Authentication check failed:", error);
+    //             }
+    //         } finally {
+    //             setIsCheckingAuth(false);
+    //         }
+    //     };
+
+    //     checkAuth();
+    // }, [location.pathname]);
     useEffect(() => {
         const checkAuth = async () => {
             // 認証チェックをスキップするページの場合

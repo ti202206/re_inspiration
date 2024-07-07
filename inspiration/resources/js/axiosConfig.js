@@ -36,4 +36,19 @@ axios.interceptors.request.use(
     }
 );
 
+axios.interceptors.response.use(
+    (response) => {
+        try {
+            JSON.parse(response.data);
+            return response;
+        } catch (e) {
+            console.error("Invalid JSON response", e);
+            return Promise.reject(e);
+        }
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
 export default axios;
