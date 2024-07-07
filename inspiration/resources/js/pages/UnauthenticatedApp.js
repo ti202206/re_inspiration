@@ -9,6 +9,7 @@ import NotFound from "./NotFound";
 const UnauthenticatedApp = () => (
     <Routes>
         <Route path="/" element={<TopPage />} />
+        <Route path="/Login" element={<LoginForm />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
