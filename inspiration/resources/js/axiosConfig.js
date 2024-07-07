@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-axios.defaults.baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+// axios.defaults.baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+axios.defaults.baseURL = process.env.MIX_APP_URL || "https://tests-dev.net";
 
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.withCredentials = true;
@@ -11,6 +12,7 @@ const authFreePaths = [
     "/", // トップページのルート
     "/api/auth/login", // ログインAPI
     "/api/auth/register", // 登録API
+    "/sanctum/csrf-cookie", // CSRFクッキー取得
 ];
 
 // 認証トークンの設定
