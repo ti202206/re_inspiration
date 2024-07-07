@@ -1,3 +1,4 @@
+import AuthenticatedApp from "../pages/AuthenticatedApp";
 // import React, { useEffect, useState } from "react";
 // import axios from "../axiosConfig";
 // import { useLocation, useNavigate } from "react-router-dom";
@@ -185,14 +186,14 @@ import {
     useLocation,
     Navigate,
 } from "react-router-dom";
-import AuthenticatedApp from "./pages/AuthenticatedApp";
-import UnauthenticatedApp from "./pages/UnauthenticatedApp";
-import TopPage from "./pages/TopPage";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import MyPage from "./pages/MyPage";
-import axios from "./axiosConfig";
-import Header from "./components/Header"; //＊＊＊＊＊＊変更：Headerコンポーネントのインポート＊＊＊＊＊＊
+import AuthenticatedApp from "../pages/AuthenticatedApp";
+import UnauthenticatedApp from "../pages/UnauthenticatedApp";
+import TopPage from "../pages/TopPage";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import MyPage from "../pages/MyPage";
+import axios from "../axiosConfig";
+import Header from "../components/Header"; //＊＊＊＊＊＊変更：Headerコンポーネントのインポート＊＊＊＊＊＊
 
 window.Alpine = Alpine;
 Alpine.start();
