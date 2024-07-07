@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true); // 追加
     const navigate = useNavigate();
     const location = useLocation();
 

@@ -10299,6 +10299,10 @@ var Header = function Header() {
     _useState4 = _slicedToArray(_useState3, 2),
     user = _useState4[0],
     setUser = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isCheckingAuth = _useState6[0],
+    setIsCheckingAuth = _useState6[1]; // 追加
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
 
