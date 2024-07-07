@@ -1,4 +1,3 @@
-import AuthenticatedApp from "../pages/AuthenticatedApp";
 // import React, { useEffect, useState } from "react";
 // import axios from "../axiosConfig";
 // import { useLocation, useNavigate } from "react-router-dom";
