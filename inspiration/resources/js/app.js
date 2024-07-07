@@ -176,8 +176,8 @@ const App = () => {
                 authFreePaths={authFreePaths}
                 isAuthenticated={isAuthenticated}
                 isCheckingAuth={isCheckingAuth}
-            />{" "}
-            {/*＊＊＊＊＊＊変更：Headerコンポーネントの追加＊＊＊＊＊＊*/}
+            />
+            {/* ＊＊＊＊＊＊変更：Headerコンポーネントの追加＊＊＊＊＊＊ */}
             <Routes>
                 <Route
                     path="/"
