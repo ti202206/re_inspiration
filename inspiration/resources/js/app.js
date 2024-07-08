@@ -145,7 +145,7 @@ const App = () => {
                 return;
             }
 
-            //認証チェック
+            // 認証チェック
             try {
                 await axios.get("/sanctum/csrf-cookie");
                 const response = await axios.get("/api/user");

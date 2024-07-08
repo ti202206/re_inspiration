@@ -10575,7 +10575,11 @@ var Header = function Header() {
               _context.prev = 12;
               _context.t0 = _context["catch"](0);
               setIsAuthenticated(false);
-              console.error("Authentication check failed:", _context.t0); // 変更点: エラー内容をコンソールに表示
+              if (_context.t0.response && _context.t0.response.status === 401) {
+                console.error("Unauthorized: Token may be invalid or expired", _context.t0);
+              } else {
+                console.error("Authentication check failed:", _context.t0);
+              }
             case 16:
             case "end":
               return _context.stop();
@@ -10617,7 +10621,7 @@ var Header = function Header() {
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.error("Logout failed:", _context2.t0); // 変更点: エラー内容をコンソールに表示
+            console.error("Logout failed:", _context2.t0); // エラー内容をコンソールに表示
           case 11:
           case "end":
             return _context2.stop();
