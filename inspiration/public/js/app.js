@@ -10166,8 +10166,7 @@ var App = function App() {
               return _axiosConfig__WEBPACK_IMPORTED_MODULE_9__["default"].get("/api/user");
             case 8:
               response = _context.sent;
-              // レスポンスが200であり、かつデータが存在するかチェック
-              if (response.status === 200 && response.data) {
+              if (response.status === 200) {
                 setIsAuthenticated(true);
               } else {
                 setIsAuthenticated(false);
@@ -10181,7 +10180,7 @@ var App = function App() {
                 // 認証されていない場合は認証状態を false に設定する
                 setIsAuthenticated(false);
               } else {
-                console.error("Authentication check failed:", _context.t0); // エラー内容をコンソールに表示
+                console.error("Authentication check failed:", _context.t0);
               }
             case 15:
               _context.prev = 15;
@@ -10258,10 +10257,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+// import axios from "axios";
+// import Cookies from "js-cookie";
+
+// // axios.defaults.baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+// axios.defaults.baseURL = process.env.MIX_APP_URL || "https://tests-dev.net";
+
+// axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+// axios.defaults.withCredentials = true;
+
+// // 認証が不要なパスのリスト
+// const authFreePaths = [
+//     "/", // トップページのルート
+//     "/api/auth/login", // ログインAPI
+//     "/api/auth/register", // 登録API
+//     "/sanctum/csrf-cookie", // CSRFクッキー取得
+// ];
+
+// // 認証トークンの設定
+// axios.interceptors.request.use(
+//     (config) => {
+//         const token = sessionStorage.getItem("auth_token"); // トークンを sessionStorage から取得
+//         // 認証が不要なパスの完全一致でチェック
+//         const isAuthFree = authFreePaths.some(
+//             (path) =>
+//                 config.url.startsWith(path) ||
+//                 config.url.startsWith(axios.defaults.baseURL + path)
+//         );
+//         // 認証が不要なパスの場合はトークンをヘッダーに追加しない
+//         if (!isAuthFree && token) {
+//             config.headers.Authorization = `Bearer ${token}`; // トークンを Authorization ヘッダーに設定
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         return Promise.reject(error);
+//     }
+// );
+
+// export default axios;
 
 
 
-// axios.defaults.baseURL = process.env.MIX_APP_URL || "http://127.0.0.1:8000";
+
+// ベースURLの設定
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).baseURL = process.env.MIX_APP_URL || "https://tests-dev.net";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common["X-Requested-With"] = "XMLHttpRequest";
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).withCredentials = true;
@@ -10289,6 +10328,20 @@ axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.request.use(function (
   }
   return config;
 }, function (error) {
+  return Promise.reject(error);
+});
+
+// レスポンスインターセプターを追加
+axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(function (response) {
+  // レスポンスが正常な場合
+  return response;
+}, function (error) {
+  // 401エラーの場合の処理
+  if (error.response && error.response.status === 401) {
+    console.error("Unauthorized: Token may be invalid or expired", error);
+    // 必要に応じてリダイレクトや通知などの処理を追加
+    // window.location.href = '/login';  // ログインページにリダイレクトする例
+  }
   return Promise.reject(error);
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((axios__WEBPACK_IMPORTED_MODULE_0___default()));
@@ -10558,21 +10611,12 @@ var Header = function Header() {
               });
             case 3:
               response = _context.sent;
-              if (!(response && response.data)) {
-                _context.next = 9;
-                break;
-              }
               setUser(response.data);
               setIsAuthenticated(true);
-              _context.next = 10;
+              _context.next = 12;
               break;
-            case 9:
-              throw new Error("Invalid response format");
-            case 10:
-              _context.next = 16;
-              break;
-            case 12:
-              _context.prev = 12;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](0);
               setIsAuthenticated(false);
               if (_context.t0.response && _context.t0.response.status === 401) {
@@ -10580,11 +10624,11 @@ var Header = function Header() {
               } else {
                 console.error("Authentication check failed:", _context.t0);
               }
-            case 16:
+            case 12:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 8]]);
       }));
       return function checkAuth() {
         return _ref.apply(this, arguments);
@@ -10621,7 +10665,7 @@ var Header = function Header() {
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.error("Logout failed:", _context2.t0); // エラー内容をコンソールに表示
+            console.error("Logout failed:", _context2.t0);
           case 11:
           case "end":
             return _context2.stop();

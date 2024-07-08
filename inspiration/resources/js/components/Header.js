@@ -173,9 +173,6 @@
 
 // export default Header;
 
-
-
-
 import React, { useEffect, useState } from "react";
 import axios from "../axiosConfig";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -192,21 +189,20 @@ const Header = () => {
             try {
                 const response = await axios.get("/api/user", {
                     headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
+                        Authorization: `Bearer ${sessionStorage.getItem(
+                            "auth_token"
+                        )}`,
                     },
                 });
-
-                // レスポンスの内容が正しいJSON形式かチェック
-                if (response && response.data) {
-                    setUser(response.data);
-                    setIsAuthenticated(true);
-                } else {
-                    throw new Error("Invalid response format");
-                }
+                setUser(response.data);
+                setIsAuthenticated(true);
             } catch (error) {
                 setIsAuthenticated(false);
                 if (error.response && error.response.status === 401) {
-                    console.error("Unauthorized: Token may be invalid or expired", error);
+                    console.error(
+                        "Unauthorized: Token may be invalid or expired",
+                        error
+                    );
                 } else {
                     console.error("Authentication check failed:", error);
                 }
@@ -232,7 +228,9 @@ const Header = () => {
                 {},
                 {
                     headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem("auth_token")}`,
+                        Authorization: `Bearer ${sessionStorage.getItem(
+                            "auth_token"
+                        )}`,
                     },
                 }
             );
@@ -240,7 +238,7 @@ const Header = () => {
             setIsAuthenticated(false);
             navigate("/");
         } catch (error) {
-            console.error("Logout failed:", error); // エラー内容をコンソールに表示
+            console.error("Logout failed:", error);
         }
     };
 
