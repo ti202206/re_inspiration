@@ -10009,7 +10009,114 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import './bootstrap';
+// // import './bootstrap';
+// import Alpine from "alpinejs";
+// import React, { useState, useEffect } from "react";
+// import { createRoot } from "react-dom/client";
+// import {
+//     BrowserRouter as Router,
+//     Route,
+//     Routes,
+//     useLocation,
+//     Navigate,
+// } from "react-router-dom";
+// import AuthenticatedApp from "./pages/AuthenticatedApp";
+// import UnauthenticatedApp from "./pages/UnauthenticatedApp";
+// import TopPage from "./pages/TopPage";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+// import MyPage from "./pages/MyPage";
+// import axios from "./axiosConfig";
+
+// window.Alpine = Alpine;
+// Alpine.start();
+
+// const App = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+//     const location = useLocation();
+
+//     // 認証チェックをスキップするパス
+//     const authFreePaths = ["/register", "/login"];
+
+//     useEffect(() => {
+//         const checkAuth = async () => {
+//             // 認証チェックをスキップするページの場合
+//             if (authFreePaths.includes(location.pathname)) {
+//                 setIsCheckingAuth(false);
+//                 return;
+//             }
+
+//             //認証チェック
+//             try {
+//                 await axios.get("/sanctum/csrf-cookie");
+//                 const response = await axios.get("/api/user");
+//                 if (response.status === 200) {
+//                     setIsAuthenticated(true);
+//                 } else {
+//                     setIsAuthenticated(false);
+//                 }
+//             } catch (error) {
+//                 if (error.response && error.response.status === 401) {
+//                     // 認証されていない場合は認証状態を false に設定する
+//                     setIsAuthenticated(false);
+//                 } else {
+//                     console.error("Authentication check failed:", error);
+//                 }
+//             } finally {
+//                 setIsCheckingAuth(false);
+//             }
+//         };
+
+//         checkAuth();
+//     }, [location.pathname]);
+
+//     if (isCheckingAuth && !authFreePaths.includes(location.pathname)) {
+//         return <div>Loading...</div>; // 認証チェック中のローディング表示
+//     }
+
+//     return (
+//         <Routes>
+//             <Route
+//                 path="/"
+//                 element={
+//                     isAuthenticated ? <Navigate to="/my-page" /> : <TopPage />
+//                 }
+//             />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+//             <Route
+//                 path="/my-page"
+//                 element={
+//                     isAuthenticated ? <MyPage /> : <Navigate to="/login" />
+//                 }
+//             />
+//             <Route
+//                 path="/*"
+//                 element={
+//                     isAuthenticated ? (
+//                         <AuthenticatedApp />
+//                     ) : (
+//                         <UnauthenticatedApp />
+//                     )
+//                 }
+//             />
+//             <Route path="*" element={<Navigate to="/" />} />{" "}
+//             {/* 未定義のルートにアクセスした場合のリダイレクト */}
+//         </Routes>
+//     );
+// };
+
+// const RootApp = () => (
+//     <Router>
+//         <App />
+//     </Router>
+// );
+
+// const container = document.getElementById("app");
+// const root = createRoot(container);
+// root.render(<RootApp />);
+
 
 
 
@@ -10059,7 +10166,8 @@ var App = function App() {
               return _axiosConfig__WEBPACK_IMPORTED_MODULE_9__["default"].get("/api/user");
             case 8:
               response = _context.sent;
-              if (response.status === 200) {
+              // レスポンスが200であり、かつデータが存在するかチェック
+              if (response.status === 200 && response.data) {
                 setIsAuthenticated(true);
               } else {
                 setIsAuthenticated(false);
@@ -10073,7 +10181,7 @@ var App = function App() {
                 // 認証されていない場合は認証状態を false に設定する
                 setIsAuthenticated(false);
               } else {
-                console.error("Authentication check failed:", _context.t0);
+                console.error("Authentication check failed:", _context.t0); // エラー内容をコンソールに表示
               }
             case 15:
               _context.prev = 15;
@@ -10242,6 +10350,181 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// import React, { useEffect, useState } from "react";
+// import axios from "../axiosConfig";
+// import { useLocation, useNavigate } from "react-router-dom";
+
+// const Header = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [user, setUser] = useState(null);
+//     const navigate = useNavigate();
+//     const location = useLocation();
+
+//     // 認証チェック
+//     useEffect(() => {
+//         const checkAuth = async () => {
+//             try {
+//                 const response = await axios.get("/api/user", {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem(
+//                             "auth_token"
+//                         )}`,
+//                     },
+//                 });
+//                 setUser(response.data);
+//                 setIsAuthenticated(true);
+//             } catch (error) {
+//                 setIsAuthenticated(false);
+//             }
+//         };
+
+//         checkAuth();
+//     }, []);
+
+//     // ボタン押下時の処理
+//     const handleRegisterClick = () => {
+//         navigate("/register");
+//     };
+
+//     const handleLoginClick = () => {
+//         navigate("/login");
+//     };
+
+//     const handleLogoutClick = async () => {
+//         try {
+//             await axios.post(
+//                 "/api/logout",
+//                 {},
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem(
+//                             "auth_token"
+//                         )}`,
+//                     },
+//                 }
+//             );
+//             sessionStorage.removeItem("auth_token");
+//             setIsAuthenticated(false);
+//             navigate("/");
+//         } catch (error) {
+//             console.error("Logout failed:", error);
+//         }
+//     };
+
+//     const handleProfileClick = () => {
+//         navigate("/profile");
+//     };
+
+//     const handleTitleClick = () => {
+//         if (isAuthenticated) {
+//             navigate("/my-page");
+//             window.scrollTo(0, 0);
+//         } else {
+//             navigate("/");
+//             window.scrollTo(0, 0);
+//         }
+//     };
+
+//     const handleIdeaSubmissionClick = () => {
+//         navigate("/idea-submission");
+//     };
+
+//     return (
+//         <header className="header">
+//             <h1 className="header__title" onClick={handleTitleClick}>
+//                 Inspiration
+//             </h1>
+//             <nav className="header__nav">
+//                 <ul className="header__menu">
+//                     {isAuthenticated ? (
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="/ideas">アイディア一覧</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="/reviews">レビュー一覧</a>
+//                             </li>
+//                         </>
+//                     ) : (
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="#concept">コンセプト</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#feature">特徴</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#column">コラム</a>
+//                             </li>
+//                         </>
+//                     )}
+//                 </ul>
+
+//                 <div className="header__center-button">
+//                     {isAuthenticated &&
+//                         location.pathname !== "/idea-submission" && (
+//                             <button
+//                                 className="header__button header__buttons--submit"
+//                                 onClick={handleIdeaSubmissionClick}
+//                             >
+//                                 アイディアを投稿する
+//                             </button>
+//                         )}
+//                 </div>
+
+//                 <div className="header__buttons">
+//                     {!isAuthenticated ? (
+//                         <>
+//                             <button
+//                                 className="header__button header__buttons--register"
+//                                 onClick={handleRegisterClick}
+//                             >
+//                                 新規登録
+//                             </button>
+//                             <button
+//                                 className="header__button header__buttons--login"
+//                                 onClick={handleLoginClick}
+//                             >
+//                                 ログイン
+//                             </button>
+//                         </>
+//                     ) : (
+//                         <>
+//                             {user && (
+//                                 <div className="header__user">
+//                                     <img
+//                                         src={
+//                                             user.profile_image_url ||
+//                                             "/images/default-user-icon.png"
+//                                         }
+//                                         alt="User Icon"
+//                                         className="header__user-icon"
+//                                         onClick={handleProfileClick}
+//                                     />
+//                                     <span
+//                                         className="header__user-name"
+//                                         onClick={handleProfileClick}
+//                                     >
+//                                         {user.name}
+//                                     </span>
+//                                 </div>
+//                             )}
+//                             <button
+//                                 className="header__button header__buttons--logout"
+//                                 onClick={handleLogoutClick}
+//                             >
+//                                 ログアウト
+//                             </button>
+//                         </>
+//                     )}
+//                 </div>
+//             </nav>
+//         </header>
+//     );
+// };
+
+// export default Header;
+
 
 
 
@@ -10275,19 +10558,29 @@ var Header = function Header() {
               });
             case 3:
               response = _context.sent;
+              if (!(response && response.data)) {
+                _context.next = 9;
+                break;
+              }
               setUser(response.data);
               setIsAuthenticated(true);
-              _context.next = 11;
+              _context.next = 10;
               break;
-            case 8:
-              _context.prev = 8;
+            case 9:
+              throw new Error("Invalid response format");
+            case 10:
+              _context.next = 16;
+              break;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
               setIsAuthenticated(false);
-            case 11:
+              console.error("Authentication check failed:", _context.t0); // 変更点: エラー内容をコンソールに表示
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 12]]);
       }));
       return function checkAuth() {
         return _ref.apply(this, arguments);
@@ -10324,7 +10617,7 @@ var Header = function Header() {
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.error("Logout failed:", _context2.t0);
+            console.error("Logout failed:", _context2.t0); // 変更点: エラー内容をコンソールに表示
           case 11:
           case "end":
             return _context2.stop();
