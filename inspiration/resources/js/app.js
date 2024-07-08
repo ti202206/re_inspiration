@@ -108,7 +108,7 @@
 
 
 
-
+// import './bootstrap';
 import Alpine from "alpinejs";
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
@@ -149,6 +149,8 @@ const App = () => {
             // 認証チェック
             try {
                 await axios.get("/sanctum/csrf-cookie");
+
+                // ログインしている場合のみユーザー情報を取得して認証状態を設定
                 const response = await axios.get("/api/user");
                 if (response.status === 200) {
                     setIsAuthenticated(true);
@@ -157,7 +159,7 @@ const App = () => {
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    // 認証されていない場合は認証状態を false に設定する
+                    // 認証エラーの場合は認証状態を false に設定する
                     setIsAuthenticated(false);
                 } else {
                     console.error("Authentication check failed:", error);
