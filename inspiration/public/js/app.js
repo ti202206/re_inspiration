@@ -10144,7 +10144,7 @@ var App = function App() {
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
 
   // 認証チェックをスキップするパス
-  var authFreePaths = ["/register", "/login"];
+  var authFreePaths = ["/", "/register", "/login"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var checkAuth = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {

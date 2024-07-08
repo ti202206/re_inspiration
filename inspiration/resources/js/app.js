@@ -106,8 +106,6 @@
 // const root = createRoot(container);
 // root.render(<RootApp />);
 
-
-
 // import './bootstrap';
 import Alpine from "alpinejs";
 import React, { useState, useEffect } from "react";
@@ -136,7 +134,7 @@ const App = () => {
     const location = useLocation();
 
     // 認証チェックをスキップするパス
-    const authFreePaths = ["/register", "/login"];
+    const authFreePaths = ["/", "/register", "/login"];
 
     useEffect(() => {
         const checkAuth = async () => {
