@@ -10350,180 +10350,202 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// import React, { useEffect, useState } from "react";
-// import axios from "../axiosConfig";
-// import { useLocation, useNavigate } from "react-router-dom";
 
-// const Header = () => {
-//     const [isAuthenticated, setIsAuthenticated] = useState(false);
-//     const [user, setUser] = useState(null);
-//     const navigate = useNavigate();
-//     const location = useLocation();
 
-//     // 認証チェック
-//     useEffect(() => {
-//         const checkAuth = async () => {
-//             try {
-//                 const response = await axios.get("/api/user", {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem(
-//                             "auth_token"
-//                         )}`,
-//                     },
-//                 });
-//                 setUser(response.data);
-//                 setIsAuthenticated(true);
-//             } catch (error) {
-//                 setIsAuthenticated(false);
-//             }
-//         };
 
-//         checkAuth();
-//     }, []);
 
-//     // ボタン押下時の処理
-//     const handleRegisterClick = () => {
-//         navigate("/register");
-//     };
+var Header = function Header() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isAuthenticated = _useState2[0],
+    setIsAuthenticated = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    user = _useState4[0],
+    setUser = _useState4[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
 
-//     const handleLoginClick = () => {
-//         navigate("/login");
-//     };
+  // 認証チェック
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var checkAuth = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/user", {
+                headers: {
+                  Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
+                }
+              });
+            case 3:
+              response = _context.sent;
+              setUser(response.data);
+              setIsAuthenticated(true);
+              _context.next = 11;
+              break;
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              setIsAuthenticated(false);
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 8]]);
+      }));
+      return function checkAuth() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    checkAuth();
+  }, []);
 
-//     const handleLogoutClick = async () => {
-//         try {
-//             await axios.post(
-//                 "/api/logout",
-//                 {},
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${sessionStorage.getItem(
-//                             "auth_token"
-//                         )}`,
-//                     },
-//                 }
-//             );
-//             sessionStorage.removeItem("auth_token");
-//             setIsAuthenticated(false);
-//             navigate("/");
-//         } catch (error) {
-//             console.error("Logout failed:", error);
-//         }
-//     };
-
-//     const handleProfileClick = () => {
-//         navigate("/profile");
-//     };
-
-//     const handleTitleClick = () => {
-//         if (isAuthenticated) {
-//             navigate("/my-page");
-//             window.scrollTo(0, 0);
-//         } else {
-//             navigate("/");
-//             window.scrollTo(0, 0);
-//         }
-//     };
-
-//     const handleIdeaSubmissionClick = () => {
-//         navigate("/idea-submission");
-//     };
-
-//     return (
-//         <header className="header">
-//             <h1 className="header__title" onClick={handleTitleClick}>
-//                 Inspiration
-//             </h1>
-//             <nav className="header__nav">
-//                 <ul className="header__menu">
-//                     {isAuthenticated ? (
-//                         <>
-//                             <li className="header__menu--item">
-//                                 <a href="/ideas">アイディア一覧</a>
-//                             </li>
-//                             <li className="header__menu--item">
-//                                 <a href="/reviews">レビュー一覧</a>
-//                             </li>
-//                         </>
-//                     ) : (
-//                         <>
-//                             <li className="header__menu--item">
-//                                 <a href="#concept">コンセプト</a>
-//                             </li>
-//                             <li className="header__menu--item">
-//                                 <a href="#feature">特徴</a>
-//                             </li>
-//                             <li className="header__menu--item">
-//                                 <a href="#column">コラム</a>
-//                             </li>
-//                         </>
-//                     )}
-//                 </ul>
-
-//                 <div className="header__center-button">
-//                     {isAuthenticated &&
-//                         location.pathname !== "/idea-submission" && (
-//                             <button
-//                                 className="header__button header__buttons--submit"
-//                                 onClick={handleIdeaSubmissionClick}
-//                             >
-//                                 アイディアを投稿する
-//                             </button>
-//                         )}
-//                 </div>
-
-//                 <div className="header__buttons">
-//                     {!isAuthenticated ? (
-//                         <>
-//                             <button
-//                                 className="header__button header__buttons--register"
-//                                 onClick={handleRegisterClick}
-//                             >
-//                                 新規登録
-//                             </button>
-//                             <button
-//                                 className="header__button header__buttons--login"
-//                                 onClick={handleLoginClick}
-//                             >
-//                                 ログイン
-//                             </button>
-//                         </>
-//                     ) : (
-//                         <>
-//                             {user && (
-//                                 <div className="header__user">
-//                                     <img
-//                                         src={
-//                                             user.profile_image_url ||
-//                                             "/images/default-user-icon.png"
-//                                         }
-//                                         alt="User Icon"
-//                                         className="header__user-icon"
-//                                         onClick={handleProfileClick}
-//                                     />
-//                                     <span
-//                                         className="header__user-name"
-//                                         onClick={handleProfileClick}
-//                                     >
-//                                         {user.name}
-//                                     </span>
-//                                 </div>
-//                             )}
-//                             <button
-//                                 className="header__button header__buttons--logout"
-//                                 onClick={handleLogoutClick}
-//                             >
-//                                 ログアウト
-//                             </button>
-//                         </>
-//                     )}
-//                 </div>
-//             </nav>
-//         </header>
-//     );
-// };
-
-// export default Header;
+  // ボタン押下時の処理
+  var handleRegisterClick = function handleRegisterClick() {
+    navigate("/register");
+  };
+  var handleLoginClick = function handleLoginClick() {
+    navigate("/login");
+  };
+  var handleLogoutClick = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/logout", {}, {
+              headers: {
+                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
+              }
+            });
+          case 3:
+            sessionStorage.removeItem("auth_token");
+            setIsAuthenticated(false);
+            navigate("/");
+            _context2.next = 11;
+            break;
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.error("Logout failed:", _context2.t0);
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 8]]);
+    }));
+    return function handleLogoutClick() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleProfileClick = function handleProfileClick() {
+    navigate("/profile");
+  };
+  var handleTitleClick = function handleTitleClick() {
+    if (isAuthenticated) {
+      navigate("/my-page");
+      window.scrollTo(0, 0);
+    } else {
+      navigate("/");
+      window.scrollTo(0, 0);
+    }
+  };
+  var handleIdeaSubmissionClick = function handleIdeaSubmissionClick() {
+    navigate("/idea-submission");
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
+    className: "header",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      className: "header__title",
+      onClick: handleTitleClick,
+      children: "Inspiration"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
+      className: "header__nav",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+        className: "header__menu",
+        children: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "/ideas",
+              children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u4E00\u89A7"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "/reviews",
+              children: "\u30EC\u30D3\u30E5\u30FC\u4E00\u89A7"
+            })
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#concept",
+              children: "\u30B3\u30F3\u30BB\u30D7\u30C8"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#feature",
+              children: "\u7279\u5FB4"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "header__menu--item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "#column",
+              children: "\u30B3\u30E9\u30E0"
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "header__center-button",
+        children: isAuthenticated && location.pathname !== "/idea-submission" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "header__button header__buttons--submit",
+          onClick: handleIdeaSubmissionClick,
+          children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u6295\u7A3F\u3059\u308B"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "header__buttons",
+        children: !isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "header__button header__buttons--register",
+            onClick: handleRegisterClick,
+            children: "\u65B0\u898F\u767B\u9332"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "header__button header__buttons--login",
+            onClick: handleLoginClick,
+            children: "\u30ED\u30B0\u30A4\u30F3"
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+          children: [user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "header__user",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: user.profile_image_url || "/images/default-user-icon.png",
+              alt: "User Icon",
+              className: "header__user-icon",
+              onClick: handleProfileClick
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "header__user-name",
+              onClick: handleProfileClick,
+              children: user.name
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            className: "header__button header__buttons--logout",
+            onClick: handleLogoutClick,
+            children: "\u30ED\u30B0\u30A2\u30A6\u30C8"
+          })]
+        })
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
 
 // // GPT4o
 // import React, { useEffect, useState } from "react";
@@ -10901,224 +10923,197 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 // export default Header;
 
+// import React, { useEffect, useState } from "react";
+// import axios from "../axiosConfig";
+// import { useLocation, useNavigate } from "react-router-dom";
 
+// const Header = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [user, setUser] = useState(null);
+//     const navigate = useNavigate();
+//     const location = useLocation();
 
+//     // 初回の認証チェック
+//     useEffect(() => {
+//         const auth_token = sessionStorage.getItem("auth_token");
+//         if (auth_token) {
+//             const checkAuth = async () => {
+//                 try {
+//                     const response = await axios.get("/api/user", {
+//                         headers: {
+//                             Authorization: `Bearer ${auth_token}`,
+//                         },
+//                     });
+//                     setUser(response.data);
+//                     setIsAuthenticated(true); // 認証成功時に認証状態を更新
+//                 } catch (error) {
+//                     setIsAuthenticated(false); // 認証失敗時に認証状態を更新
+//                     if (error.response && error.response.status === 401) {
+//                         console.error(
+//                             "Unauthorized: Token may be invalid or expired",
+//                             error
+//                         );
+//                         // トークンを削除してログアウト状態にする
+//                         sessionStorage.removeItem("auth_token");
+//                         setIsAuthenticated(false); // トークン削除後に認証状態を更新
+//                         // ログインページにリダイレクト
+//                         navigate("/login");
+//                     } else {
+//                         console.error("Authentication check failed:", error);
+//                     }
+//                 }
+//             };
 
+//             checkAuth();
+//         } else {
+//             setIsAuthenticated(false); // トークンが存在しない場合に認証状態を更新
+//         }
+//     }, [navigate]);
 
-var Header = function Header() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isAuthenticated = _useState2[0],
-    setIsAuthenticated = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    user = _useState4[0],
-    setUser = _useState4[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
+//     // ボタン押下時の処理
+//     const handleRegisterClick = () => {
+//         navigate("/register");
+//     };
 
-  // 初回の認証チェック
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var auth_token = sessionStorage.getItem("auth_token");
-    if (auth_token) {
-      var checkAuth = /*#__PURE__*/function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-          var response;
-          return _regeneratorRuntime().wrap(function _callee$(_context) {
-            while (1) switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/user", {
-                  headers: {
-                    Authorization: "Bearer ".concat(auth_token)
-                  }
-                });
-              case 3:
-                response = _context.sent;
-                setUser(response.data);
-                setIsAuthenticated(true); // 認証成功時に認証状態を更新
-                _context.next = 12;
-                break;
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                setIsAuthenticated(false); // 認証失敗時に認証状態を更新
-                if (_context.t0.response && _context.t0.response.status === 401) {
-                  console.error("Unauthorized: Token may be invalid or expired", _context.t0);
-                  // トークンを削除してログアウト状態にする
-                  sessionStorage.removeItem("auth_token");
-                  setIsAuthenticated(false); // トークン削除後に認証状態を更新
-                  // ログインページにリダイレクト
-                  navigate("/login");
-                } else {
-                  console.error("Authentication check failed:", _context.t0);
-                }
-              case 12:
-              case "end":
-                return _context.stop();
-            }
-          }, _callee, null, [[0, 8]]);
-        }));
-        return function checkAuth() {
-          return _ref.apply(this, arguments);
-        };
-      }();
-      checkAuth();
-    } else {
-      setIsAuthenticated(false); // トークンが存在しない場合に認証状態を更新
-    }
-  }, [navigate]);
+//     const handleLoginClick = () => {
+//         navigate("/login");
+//     };
 
-  // ボタン押下時の処理
-  var handleRegisterClick = function handleRegisterClick() {
-    navigate("/register");
-  };
-  var handleLoginClick = function handleLoginClick() {
-    navigate("/login");
-  };
-  var handleLogoutClick = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return _axiosConfig__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/logout", {}, {
-              headers: {
-                Authorization: "Bearer ".concat(sessionStorage.getItem("auth_token"))
-              }
-            });
-          case 3:
-            sessionStorage.removeItem("auth_token");
-            setIsAuthenticated(false); // ログアウト後に認証状態を更新
-            setUser(null); // ユーザー情報をクリア
-            navigate("/");
-            _context2.next = 12;
-            break;
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](0);
-            console.error("Logout failed:", _context2.t0);
-          case 12:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 9]]);
-    }));
-    return function handleLogoutClick() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var handleProfileClick = function handleProfileClick() {
-    navigate("/profile");
-  };
-  var handleTitleClick = function handleTitleClick() {
-    if (isAuthenticated) {
-      navigate("/my-page");
-      window.scrollTo(0, 0);
-    } else {
-      navigate("/");
-      window.scrollTo(0, 0);
-    }
-  };
-  var handleIdeaSubmissionClick = function handleIdeaSubmissionClick() {
-    navigate("/idea-submission");
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
-    className: "header",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      className: "header__title",
-      onClick: handleTitleClick,
-      children: "Inspiration"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
-      className: "header__nav",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-        className: "header__menu",
-        children: isAuthenticated ?
-        /*#__PURE__*/
-        // 認証状態に応じてメニュー項目を表示
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "header__menu--item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-              href: "/ideas",
-              children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u4E00\u89A7"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "header__menu--item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-              href: "/reviews",
-              children: "\u30EC\u30D3\u30E5\u30FC\u4E00\u89A7"
-            })
-          })]
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "header__menu--item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-              href: "#concept",
-              children: "\u30B3\u30F3\u30BB\u30D7\u30C8"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "header__menu--item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-              href: "#feature",
-              children: "\u7279\u5FB4"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "header__menu--item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-              href: "#column",
-              children: "\u30B3\u30E9\u30E0"
-            })
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "header__center-button",
-        children: isAuthenticated && location.pathname !== "/idea-submission" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-          className: "header__button header__buttons--submit",
-          onClick: handleIdeaSubmissionClick,
-          children: "\u30A2\u30A4\u30C7\u30A3\u30A2\u3092\u6295\u7A3F\u3059\u308B"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "header__buttons",
-        children: !isAuthenticated ?
-        /*#__PURE__*/
-        // 認証状態に応じてボタンを表示
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "header__button header__buttons--register",
-            onClick: handleRegisterClick,
-            children: "\u65B0\u898F\u767B\u9332"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "header__button header__buttons--login",
-            onClick: handleLoginClick,
-            children: "\u30ED\u30B0\u30A4\u30F3"
-          })]
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: [user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "header__user",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              src: user.profile_image_url || "/images/default-user-icon.png",
-              alt: "User Icon",
-              className: "header__user-icon",
-              onClick: handleProfileClick
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              className: "header__user-name",
-              onClick: handleProfileClick,
-              children: user.name
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            className: "header__button header__buttons--logout",
-            onClick: handleLogoutClick,
-            children: "\u30ED\u30B0\u30A2\u30A6\u30C8"
-          })]
-        })
-      })]
-    })]
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+//     const handleLogoutClick = async () => {
+//         try {
+//             await axios.post(
+//                 "/api/logout",
+//                 {},
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem(
+//                             "auth_token"
+//                         )}`,
+//                     },
+//                 }
+//             );
+//             sessionStorage.removeItem("auth_token");
+//             setIsAuthenticated(false); // ログアウト後に認証状態を更新
+//             setUser(null); // ユーザー情報をクリア
+//             navigate("/");
+//         } catch (error) {
+//             console.error("Logout failed:", error);
+//         }
+//     };
+
+//     const handleProfileClick = () => {
+//         navigate("/profile");
+//     };
+
+//     const handleTitleClick = () => {
+//         if (isAuthenticated) {
+//             navigate("/my-page");
+//             window.scrollTo(0, 0);
+//         } else {
+//             navigate("/");
+//             window.scrollTo(0, 0);
+//         }
+//     };
+
+//     const handleIdeaSubmissionClick = () => {
+//         navigate("/idea-submission");
+//     };
+
+//     return (
+//         <header className="header">
+//             <h1 className="header__title" onClick={handleTitleClick}>
+//                 Inspiration
+//             </h1>
+//             <nav className="header__nav">
+//                 <ul className="header__menu">
+//                     {isAuthenticated ? ( // 認証状態に応じてメニュー項目を表示
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="/ideas">アイディア一覧</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="/reviews">レビュー一覧</a>
+//                             </li>
+//                         </>
+//                     ) : (
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="#concept">コンセプト</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#feature">特徴</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#column">コラム</a>
+//                             </li>
+//                         </>
+//                     )}
+//                 </ul>
+
+//                 <div className="header__center-button">
+//                     {isAuthenticated &&
+//                         location.pathname !== "/idea-submission" && (
+//                             <button
+//                                 className="header__button header__buttons--submit"
+//                                 onClick={handleIdeaSubmissionClick}
+//                             >
+//                                 アイディアを投稿する
+//                             </button>
+//                         )}
+//                 </div>
+
+//                 <div className="header__buttons">
+//                     {!isAuthenticated ? ( // 認証状態に応じてボタンを表示
+//                         <>
+//                             <button
+//                                 className="header__button header__buttons--register"
+//                                 onClick={handleRegisterClick}
+//                             >
+//                                 新規登録
+//                             </button>
+//                             <button
+//                                 className="header__button header__buttons--login"
+//                                 onClick={handleLoginClick}
+//                             >
+//                                 ログイン
+//                             </button>
+//                         </>
+//                     ) : (
+//                         <>
+//                             {user && (
+//                                 <div className="header__user">
+//                                     <img
+//                                         src={
+//                                             user.profile_image_url ||
+//                                             "/images/default-user-icon.png"
+//                                         }
+//                                         alt="User Icon"
+//                                         className="header__user-icon"
+//                                         onClick={handleProfileClick}
+//                                     />
+//                                     <span
+//                                         className="header__user-name"
+//                                         onClick={handleProfileClick}
+//                                     >
+//                                         {user.name}
+//                                     </span>
+//                                 </div>
+//                             )}
+//                             <button
+//                                 className="header__button header__buttons--logout"
+//                                 onClick={handleLogoutClick}
+//                             >
+//                                 ログアウト
+//                             </button>
+//                         </>
+//                     )}
+//                 </div>
+//             </nav>
+//         </header>
+//     );
+// };
+
+// export default Header;
 
 /***/ }),
 
