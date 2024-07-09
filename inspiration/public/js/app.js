@@ -10709,6 +10709,198 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 // export default Header;
 
+// //とりあえず最新
+// import React, { useEffect, useState } from "react";
+// import axios from "../axiosConfig";
+// import { useLocation, useNavigate } from "react-router-dom";
+
+// const Header = () => {
+//     const [isAuthenticated, setIsAuthenticated] = useState(false);
+//     const [user, setUser] = useState(null);
+//     const navigate = useNavigate();
+//     const location = useLocation();
+
+//     // 初回の認証チェック
+//     useEffect(() => {
+//         const auth_token = sessionStorage.getItem("auth_token");
+//         if (auth_token) {
+//             const checkAuth = async () => {
+//                 try {
+//                     const response = await axios.get("/api/user", {
+//                         headers: {
+//                             Authorization: `Bearer ${auth_token}`,
+//                         },
+//                     });
+//                     setUser(response.data);
+//                     setIsAuthenticated(true);
+//                 } catch (error) {
+//                     setIsAuthenticated(false);
+//                     if (error.response && error.response.status === 401) {
+//                         console.error(
+//                             "Unauthorized: Token may be invalid or expired",
+//                             error
+//                         );
+//                         // トークンを削除してログアウト状態にする
+//                         sessionStorage.removeItem("auth_token");
+//                         setIsAuthenticated(false);
+//                         // ログインページにリダイレクト
+//                         navigate("/login");
+//                     } else {
+//                         console.error("Authentication check failed:", error);
+//                     }
+//                 }
+//             };
+
+//             checkAuth();
+//         } else {
+//             setIsAuthenticated(false);
+//         }
+//     }, [navigate]);
+
+//     // ボタン押下時の処理
+//     const handleRegisterClick = () => {
+//         navigate("/register");
+//     };
+
+//     const handleLoginClick = () => {
+//         navigate("/login");
+//     };
+
+//     const handleLogoutClick = async () => {
+//         try {
+//             await axios.post(
+//                 "/api/logout",
+//                 {},
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${sessionStorage.getItem(
+//                             "auth_token"
+//                         )}`,
+//                     },
+//                 }
+//             );
+//             sessionStorage.removeItem("auth_token");
+//             setIsAuthenticated(false);
+//             navigate("/");
+//         } catch (error) {
+//             console.error("Logout failed:", error);
+//         }
+//     };
+
+//     const handleProfileClick = () => {
+//         navigate("/profile");
+//     };
+
+//     const handleTitleClick = () => {
+//         if (isAuthenticated) {
+//             navigate("/my-page");
+//             window.scrollTo(0, 0);
+//         } else {
+//             navigate("/");
+//             window.scrollTo(0, 0);
+//         }
+//     };
+
+//     const handleIdeaSubmissionClick = () => {
+//         navigate("/idea-submission");
+//     };
+
+//     return (
+//         <header className="header">
+//             <h1 className="header__title" onClick={handleTitleClick}>
+//                 Inspiration
+//             </h1>
+//             <nav className="header__nav">
+//                 <ul className="header__menu">
+//                     {isAuthenticated ? (
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="/ideas">アイディア一覧</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="/reviews">レビュー一覧</a>
+//                             </li>
+//                         </>
+//                     ) : (
+//                         <>
+//                             <li className="header__menu--item">
+//                                 <a href="#concept">コンセプト</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#feature">特徴</a>
+//                             </li>
+//                             <li className="header__menu--item">
+//                                 <a href="#column">コラム</a>
+//                             </li>
+//                         </>
+//                     )}
+//                 </ul>
+
+//                 <div className="header__center-button">
+//                     {isAuthenticated &&
+//                         location.pathname !== "/idea-submission" && (
+//                             <button
+//                                 className="header__button header__buttons--submit"
+//                                 onClick={handleIdeaSubmissionClick}
+//                             >
+//                                 アイディアを投稿する
+//                             </button>
+//                         )}
+//                 </div>
+
+//                 <div className="header__buttons">
+//                     {!isAuthenticated ? (
+//                         <>
+//                             <button
+//                                 className="header__button header__buttons--register"
+//                                 onClick={handleRegisterClick}
+//                             >
+//                                 新規登録
+//                             </button>
+//                             <button
+//                                 className="header__button header__buttons--login"
+//                                 onClick={handleLoginClick}
+//                             >
+//                                 ログイン
+//                             </button>
+//                         </>
+//                     ) : (
+//                         <>
+//                             {user && (
+//                                 <div className="header__user">
+//                                     <img
+//                                         src={
+//                                             user.profile_image_url ||
+//                                             "/images/default-user-icon.png"
+//                                         }
+//                                         alt="User Icon"
+//                                         className="header__user-icon"
+//                                         onClick={handleProfileClick}
+//                                     />
+//                                     <span
+//                                         className="header__user-name"
+//                                         onClick={handleProfileClick}
+//                                     >
+//                                         {user.name}
+//                                     </span>
+//                                 </div>
+//                             )}
+//                             <button
+//                                 className="header__button header__buttons--logout"
+//                                 onClick={handleLogoutClick}
+//                             >
+//                                 ログアウト
+//                             </button>
+//                         </>
+//                     )}
+//                 </div>
+//             </nav>
+//         </header>
+//     );
+// };
+
+// export default Header;
+
 
 
 
@@ -10745,18 +10937,18 @@ var Header = function Header() {
               case 3:
                 response = _context.sent;
                 setUser(response.data);
-                setIsAuthenticated(true);
+                setIsAuthenticated(true); // 認証成功時に認証状態を更新
                 _context.next = 12;
                 break;
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](0);
-                setIsAuthenticated(false);
+                setIsAuthenticated(false); // 認証失敗時に認証状態を更新
                 if (_context.t0.response && _context.t0.response.status === 401) {
                   console.error("Unauthorized: Token may be invalid or expired", _context.t0);
                   // トークンを削除してログアウト状態にする
                   sessionStorage.removeItem("auth_token");
-                  setIsAuthenticated(false);
+                  setIsAuthenticated(false); // トークン削除後に認証状態を更新
                   // ログインページにリダイレクト
                   navigate("/login");
                 } else {
@@ -10774,7 +10966,7 @@ var Header = function Header() {
       }();
       checkAuth();
     } else {
-      setIsAuthenticated(false);
+      setIsAuthenticated(false); // トークンが存在しない場合に認証状態を更新
     }
   }, [navigate]);
 
@@ -10799,7 +10991,7 @@ var Header = function Header() {
             });
           case 3:
             sessionStorage.removeItem("auth_token");
-            setIsAuthenticated(false);
+            setIsAuthenticated(false); // ログアウト後に認証状態を更新
             navigate("/");
             _context2.next = 11;
             break;
@@ -10842,7 +11034,10 @@ var Header = function Header() {
       className: "header__nav",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
         className: "header__menu",
-        children: isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: isAuthenticated ?
+        /*#__PURE__*/
+        // 認証状態に応じてメニュー項目を表示
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
             className: "header__menu--item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
@@ -10886,7 +11081,10 @@ var Header = function Header() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "header__buttons",
-        children: !isAuthenticated ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: !isAuthenticated ?
+        /*#__PURE__*/
+        // 認証状態に応じてボタンを表示
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             className: "header__button header__buttons--register",
             onClick: handleRegisterClick,
