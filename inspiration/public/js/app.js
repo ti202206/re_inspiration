@@ -10992,18 +10992,19 @@ var Header = function Header() {
           case 3:
             sessionStorage.removeItem("auth_token");
             setIsAuthenticated(false); // ログアウト後に認証状態を更新
+            setUser(null); // ユーザー情報をクリア
             navigate("/");
-            _context2.next = 11;
+            _context2.next = 12;
             break;
-          case 8:
-            _context2.prev = 8;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
             console.error("Logout failed:", _context2.t0);
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function handleLogoutClick() {
       return _ref2.apply(this, arguments);

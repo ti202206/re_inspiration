@@ -620,6 +620,7 @@ const Header = () => {
             );
             sessionStorage.removeItem("auth_token");
             setIsAuthenticated(false); // ログアウト後に認証状態を更新
+            setUser(null); // ユーザー情報をクリア
             navigate("/");
         } catch (error) {
             console.error("Logout failed:", error);
