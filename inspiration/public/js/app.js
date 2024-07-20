@@ -15308,7 +15308,7 @@ var Register = function Register() {
       email: "",
       password: "",
       passwordConfirmation: "",
-      icon: null
+      icon: _assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]
     }),
     _useState2 = _slicedToArray(_useState, 2),
     formData = _useState2[0],
@@ -15391,7 +15391,11 @@ var Register = function Register() {
           case 17:
             _context.prev = 17;
             _context.next = 20;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
           case 20:
             alert("登録が完了しました。");
             window.location.href = "/my-page";
