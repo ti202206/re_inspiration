@@ -1392,6 +1392,19 @@ body {
   justify-content: space-between;
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.filter-item {
+  flex: 1 1 100px; /* 各フィルターアイテムが最低100px幅を確保しつつ、均等に広がる */
+}
+
 .idea-card {
   display: flex;
   align-items: flex-start;
