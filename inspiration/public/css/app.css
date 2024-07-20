@@ -1401,24 +1401,6 @@ body {
   justify-content: space-between;
 }
 
-.filter-item {
-  flex: 1 1 100px; /* 各フィルターアイテムが最低100px幅を確保しつつ、均等に広がる */
-}
-
-@media (min-width: 768px) {
-  .section__container {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .filters {
-    flex: 1;
-    max-width: 250px;
-    margin-right: 20px;
-  }
-  .idea-cards-container {
-    flex: 3;
-  }
-}
 .idea-card {
   display: flex;
   align-items: flex-start;
