@@ -12,7 +12,7 @@ const Register = () => {
         email: "",
         password: "",
         passwordConfirmation: "",
-        icon: null,
+        icon: defaultIcon,
     });
     const [iconPreview, setIconPreview] = useState(defaultIcon); // アイコンの初期値を設定
     const [errors, setErrors] = useState({});
