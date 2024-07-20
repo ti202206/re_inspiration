@@ -27,27 +27,6 @@ const Register = () => {
         }
     }, []);
 
-    // // アイコンの変更
-    // const handleChange = (event) => {
-    //     const { name, value, files } = event.target;
-    //     if (name === "icon") {
-    //         const file = files[0];
-    //         setFormData((prevState) => ({ ...prevState, [name]: file }));
-
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             setIconPreview(reader.result);
-    //         };
-    //         if (file) {
-    //             reader.readAsDataURL(file);
-    //         } else {
-    //             setIconPreview(defaultIcon);
-    //         }
-    //     } else {
-    //         setFormData((prevState) => ({ ...prevState, [name]: value }));
-    //     }
-    // };
-
     // フォームの変更
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -62,13 +41,6 @@ const Register = () => {
         data.append("email", formData.email);
         data.append("password", formData.password);
         data.append("password_confirmation", formData.passwordConfirmation);
-        // if (formData.icon) {
-        //     data.append("icon", formData.icon);
-        // } else {
-        //     const response = await fetch(defaultIcon);
-        //     const blob = await response.blob();
-        //     data.append("icon", blob, "default-user-icon.png");
-        // }
 
         try {
             await axios.post("/api/register", data);
@@ -153,22 +125,7 @@ const Register = () => {
                             </div>
                         )}
                     </div>
-                    {/* <div className="form-group">
-                        <label>アイコン画像（任意）:</label>
-                        <input
-                            type="file"
-                            name="icon"
-                            onChange={handleChange}
-                            className="register__input-file"
-                        />
-                        {iconPreview && (
-                            <img
-                                src={iconPreview}
-                                alt="Icon Preview"
-                                className="register__icon-preview"
-                            />
-                        )}
-                    </div> */}
+
                     <button type="submit" className="register__button">
                         登録
                     </button>
