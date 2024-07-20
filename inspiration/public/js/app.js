@@ -15308,19 +15308,16 @@ var Register = function Register() {
       email: "",
       password: "",
       passwordConfirmation: "",
-      icon: null
+      icon: _assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]
     }),
     _useState2 = _slicedToArray(_useState, 2),
     formData = _useState2[0],
     setFormData = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(_assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]),
+  // const [iconPreview, setIconPreview] = useState(defaultIcon); // アイコンの初期値を設定
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState4 = _slicedToArray(_useState3, 2),
-    iconPreview = _useState4[0],
-    setIconPreview = _useState4[1]; // アイコンの初期値を設定
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
-    _useState6 = _slicedToArray(_useState5, 2),
-    errors = _useState6[0],
-    setErrors = _useState6[1];
+    errors = _useState4[0],
+    setErrors = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     if (csrfTokenMeta) {
@@ -15331,37 +15328,41 @@ var Register = function Register() {
     }
   }, []);
 
-  // アイコンの変更
+  // // アイコンの変更
+  // const handleChange = (event) => {
+  //     const { name, value, files } = event.target;
+  //     if (name === "icon") {
+  //         const file = files[0];
+  //         setFormData((prevState) => ({ ...prevState, [name]: file }));
+
+  //         const reader = new FileReader();
+  //         reader.onloadend = () => {
+  //             setIconPreview(reader.result);
+  //         };
+  //         if (file) {
+  //             reader.readAsDataURL(file);
+  //         } else {
+  //             setIconPreview(defaultIcon);
+  //         }
+  //     } else {
+  //         setFormData((prevState) => ({ ...prevState, [name]: value }));
+  //     }
+  // };
+
+  // フォームの変更
   var handleChange = function handleChange(event) {
     var _event$target = event.target,
       name = _event$target.name,
-      value = _event$target.value,
-      files = _event$target.files;
-    if (name === "icon") {
-      var file = files[0];
-      setFormData(function (prevState) {
-        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, file));
-      });
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        setIconPreview(reader.result);
-      };
-      if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        setIconPreview(_assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]);
-      }
-    } else {
-      setFormData(function (prevState) {
-        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
-      });
-    }
+      value = _event$target.value;
+    setFormData(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
+    });
   };
 
   // プロフィール変更処理
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-      var data, response, blob;
+      var data;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -15371,35 +15372,24 @@ var Register = function Register() {
             data.append("email", formData.email);
             data.append("password", formData.password);
             data.append("password_confirmation", formData.passwordConfirmation);
-            if (!formData.icon) {
-              _context.next = 10;
-              break;
-            }
-            data.append("icon", formData.icon);
-            _context.next = 17;
-            break;
-          case 10:
-            _context.next = 12;
-            return fetch(_assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]);
-          case 12:
-            response = _context.sent;
-            _context.next = 15;
-            return response.blob();
-          case 15:
-            blob = _context.sent;
-            data.append("icon", blob, "default-user-icon.png");
-          case 17:
-            _context.prev = 17;
-            _context.next = 20;
+            // if (formData.icon) {
+            //     data.append("icon", formData.icon);
+            // } else {
+            //     const response = await fetch(defaultIcon);
+            //     const blob = await response.blob();
+            //     data.append("icon", blob, "default-user-icon.png");
+            // }
+            _context.prev = 6;
+            _context.next = 9;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
-          case 20:
+          case 9:
             alert("登録が完了しました。");
             window.location.href = "/my-page";
-            _context.next = 27;
+            _context.next = 16;
             break;
-          case 24:
-            _context.prev = 24;
-            _context.t0 = _context["catch"](17);
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](6);
             if (_context.t0.response) {
               setErrors(_context.t0.response.data.errors || {});
               alert("エラーが発生しました。入力内容を確認してください。");
@@ -15407,11 +15397,11 @@ var Register = function Register() {
               console.error("Error:", _context.t0);
               alert("エラーが発生しました。");
             }
-          case 27:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[17, 24]]);
+      }, _callee, null, [[6, 13]]);
     }));
     return function handleSubmit(_x) {
       return _ref.apply(this, arguments);
@@ -15486,20 +15476,6 @@ var Register = function Register() {
           }), errors.password_confirmation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "register__error",
             children: errors.password_confirmation
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-            children: "\u30A2\u30A4\u30B3\u30F3\u753B\u50CF\uFF08\u4EFB\u610F\uFF09:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-            type: "file",
-            name: "icon",
-            onChange: handleChange,
-            className: "register__input-file"
-          }), iconPreview && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-            src: iconPreview,
-            alt: "Icon Preview",
-            className: "register__icon-preview"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           type: "submit",
