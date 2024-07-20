@@ -65,7 +65,12 @@ const Register = () => {
         }
 
         try {
-            await axios.post("/api/register", data);
+            // await axios.post("/api/register", data);
+            await axios.post("/api/register", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             alert("登録が完了しました。");
             window.location.href = "/my-page";
         } catch (error) {
