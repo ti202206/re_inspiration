@@ -12,7 +12,7 @@ const Register = () => {
         email: "",
         password: "",
         passwordConfirmation: "",
-        icon: defaultIcon,
+        icon: null,
     });
     const [iconPreview, setIconPreview] = useState(defaultIcon); // アイコンの初期値を設定
     const [errors, setErrors] = useState({});
@@ -56,24 +56,16 @@ const Register = () => {
         data.append("email", formData.email);
         data.append("password", formData.password);
         data.append("password_confirmation", formData.passwordConfirmation);
-        // if (formData.icon) {
-        //     data.append("icon", formData.icon);
-        // } else {
-        //     const response = await fetch(defaultIcon);
-        //     const blob = await response.blob();
-        //     data.append("icon", blob, "default-user-icon.png");
-        // }
-        if (formData.icon && formData.icon !== defaultIcon) {
+        if (formData.icon) {
             data.append("icon", formData.icon);
+        } else {
+            const response = await fetch(defaultIcon);
+            const blob = await response.blob();
+            data.append("icon", blob, "default-user-icon.png");
         }
 
         try {
-            // await axios.post("/api/register", data);
-            await axios.post("/api/register", data, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            await axios.post("/api/register", data);
             alert("登録が完了しました。");
             window.location.href = "/my-page";
         } catch (error) {

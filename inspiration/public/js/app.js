@@ -15308,7 +15308,7 @@ var Register = function Register() {
       email: "",
       password: "",
       passwordConfirmation: "",
-      icon: _assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]
+      icon: null
     }),
     _useState2 = _slicedToArray(_useState, 2),
     formData = _useState2[0],
@@ -15361,7 +15361,7 @@ var Register = function Register() {
   // プロフィール変更処理
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-      var data;
+      var data, response, blob;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -15371,31 +15371,35 @@ var Register = function Register() {
             data.append("email", formData.email);
             data.append("password", formData.password);
             data.append("password_confirmation", formData.passwordConfirmation);
-            // if (formData.icon) {
-            //     data.append("icon", formData.icon);
-            // } else {
-            //     const response = await fetch(defaultIcon);
-            //     const blob = await response.blob();
-            //     data.append("icon", blob, "default-user-icon.png");
-            // }
-            if (formData.icon && formData.icon !== _assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]) {
-              data.append("icon", formData.icon);
+            if (!formData.icon) {
+              _context.next = 10;
+              break;
             }
-            _context.prev = 7;
-            _context.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data, {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            });
-          case 10:
-            alert("登録が完了しました。");
-            window.location.href = "/my-page";
+            data.append("icon", formData.icon);
             _context.next = 17;
             break;
-          case 14:
-            _context.prev = 14;
-            _context.t0 = _context["catch"](7);
+          case 10:
+            _context.next = 12;
+            return fetch(_assets_icons_default_user_icon_png__WEBPACK_IMPORTED_MODULE_5__["default"]);
+          case 12:
+            response = _context.sent;
+            _context.next = 15;
+            return response.blob();
+          case 15:
+            blob = _context.sent;
+            data.append("icon", blob, "default-user-icon.png");
+          case 17:
+            _context.prev = 17;
+            _context.next = 20;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", data);
+          case 20:
+            alert("登録が完了しました。");
+            window.location.href = "/my-page";
+            _context.next = 27;
+            break;
+          case 24:
+            _context.prev = 24;
+            _context.t0 = _context["catch"](17);
             if (_context.t0.response) {
               setErrors(_context.t0.response.data.errors || {});
               alert("エラーが発生しました。入力内容を確認してください。");
@@ -15403,11 +15407,11 @@ var Register = function Register() {
               console.error("Error:", _context.t0);
               alert("エラーが発生しました。");
             }
-          case 17:
+          case 27:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[7, 14]]);
+      }, _callee, null, [[17, 24]]);
     }));
     return function handleSubmit(_x) {
       return _ref.apply(this, arguments);
