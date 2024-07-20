@@ -56,12 +56,15 @@ const Register = () => {
         data.append("email", formData.email);
         data.append("password", formData.password);
         data.append("password_confirmation", formData.passwordConfirmation);
-        if (formData.icon) {
+        // if (formData.icon) {
+        //     data.append("icon", formData.icon);
+        // } else {
+        //     const response = await fetch(defaultIcon);
+        //     const blob = await response.blob();
+        //     data.append("icon", blob, "default-user-icon.png");
+        // }
+        if (formData.icon && formData.icon !== defaultIcon) {
             data.append("icon", formData.icon);
-        } else {
-            const response = await fetch(defaultIcon);
-            const blob = await response.blob();
-            data.append("icon", blob, "default-user-icon.png");
         }
 
         try {
